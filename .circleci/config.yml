@@ -1,4 +1,6 @@
 version: 2
+orbs:
+  codecov: codecov/codecov@3.0.0
 jobs:
   build:
     working_directory: ~/main
@@ -6,8 +8,9 @@ jobs:
       - image: circleci/android:api-25-alpha
     environment:
       JVM_OPTS: -Xmx3200m
-    steps:
-      - checkout
+   steps:
+      - codecov/upload:
+          token: e5e9a1ac-93df-4a16-bd87-609381106e95
       - restore_cache:
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
       - run:
@@ -20,9 +23,6 @@ jobs:
           paths:
             - ~/.gradle
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
-     after_success:
-     - export CODECOV_TOKEN="e5e9a1ac-93df-4a16-bd87-609381106e95"
-     - bash <(curl -s https://codecov.io/bash)
    #   - run:
    #       name: Run Tests
    #       command:sudo chmod +x ./gradlew lint test
