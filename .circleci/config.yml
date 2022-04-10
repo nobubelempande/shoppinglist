@@ -25,9 +25,6 @@ jobs:
             - ~/.gradle
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
           language: java
-      - script:
-           command: ./gradlew check
-           command: ./gradlew codeCoverageReport
       - after_success:
           command: bash <(curl -s https://codecov.io/bash)
    #   - run:
