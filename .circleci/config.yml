@@ -5,7 +5,9 @@ jobs:
   build:
     working_directory: ~/main
     docker:
-      - image: circleci/android:api-25-alpha
+       - image: cimg/base:stable
+    steps:
+      - codecov/upload
     environment:
       JVM_OPTS: -Xmx3200m
     steps:
