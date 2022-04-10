@@ -24,6 +24,7 @@ jobs:
           paths:
             - ~/.gradle
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+          language: java
    #   - run:
    #       name: Run Tests
    #       command:sudo chmod +x ./gradlew lint test
