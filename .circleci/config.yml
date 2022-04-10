@@ -33,3 +33,46 @@ jobs:
    #       destination: reports
    #   - store_test_results:
    #       path: app/build/test-results
+        - run:
+          name: Upload Codecov
+          command: |
+            bash ./codecov -Z
+      - store_artifacts:
+          path: coverage
+  deploy:
+    docker:
+      - image: google/cloud-sdk
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "42:e9:e4:e6:59:80:63:01:eb:19:ae:e0:ff:e8:75:86"
+      - checkout
+      - run:
+          name: Init GCloud
+          command: |
+            echo $GCLOUD_SERVICE_KEY | gcloud auth activate-service-account --key-file=-
+            gcloud --quiet config set project ${GCLOUD_PROJECT_ID}
+            gcloud --quiet config set compute/zone ${GCLOUD_COMPUTE_ZONE}
+      - run:
+          name: Update and push release tag
+          command: ./scripts/version.sh
+      - run:
+          name: Upload Bash Uploader
+          command: gsutil -m cp codecov gs://codecov-bash-uploader/codecov
+      - run:
+          name: Upload ENV
+          command: gsutil -m cp env gs://codecov-bash-uploader/env
+
+workflows:
+  version: 2.1
+  build-deploy:
+    jobs:
+      - build
+      - deploy:
+          filters:
+            branches:
+              only:
+                - production
+          requires:
+            - build
+          context: "Bash Deploy"
