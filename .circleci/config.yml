@@ -2,7 +2,7 @@ version: 2.1 # to enable orb usage, you must be using circleci 2.1
 # Declare the orbs you wish to use.
 # Android orb docs are available here:  https://circleci.com/developer/orbs/orb/circleci/android
 orbs:
-  android: circleci/android@1.0
+  codecov: codecov/codecov@3.0.0
 jobs:
   build:
     working_directory: ~/main
@@ -25,6 +25,20 @@ jobs:
             - ~/.gradle
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
           language: java
+ jobs:
+   example-job:
+      docker:
+      # replace with your preferred image
+        - image: cimg/base:stable
+    steps:
+      - codecov/upload:
+          token: e5e9a1ac-93df-4a16-bd87-609381106e95 
+workflows:
+  example-workflow:
+    jobs:
+      - example-job
+
+          
    #   - run:
    #       name: Run Tests
    #       command:sudo chmod +x ./gradlew lint test
@@ -33,46 +47,6 @@ jobs:
    #       destination: reports
    #   - store_test_results:
    #       path: app/build/test-results
-        - run:
-          name: Upload Codecov
-          command: |
-            bash ./codecov -Z
-      - store_artifacts:
-          path: coverage
-  deploy:
-    docker:
-      - image: google/cloud-sdk
-    steps:
-      - add_ssh_keys:
-          fingerprints:
-            - "42:e9:e4:e6:59:80:63:01:eb:19:ae:e0:ff:e8:75:86"
-      - checkout
-      - run:
-          name: Init GCloud
-          command: |
-            echo $GCLOUD_SERVICE_KEY | gcloud auth activate-service-account --key-file=-
-            gcloud --quiet config set project ${GCLOUD_PROJECT_ID}
-            gcloud --quiet config set compute/zone ${GCLOUD_COMPUTE_ZONE}
-      - run:
-          name: Update and push release tag
-          command: ./scripts/version.sh
-      - run:
-          name: Upload Bash Uploader
-          command: gsutil -m cp codecov gs://codecov-bash-uploader/codecov
-      - run:
-          name: Upload ENV
-          command: gsutil -m cp env gs://codecov-bash-uploader/env
 
-workflows:
-  version: 2.1
-  build-deploy:
-    jobs:
-      - build
-      - deploy:
-          filters:
-            branches:
-              only:
-                - production
-          requires:
             - build
           context: "Bash Deploy"
