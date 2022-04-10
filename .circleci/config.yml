@@ -1,5 +1,7 @@
 version: 2
 jobs:
+  orbs:
+    codecov: codecov/codecov@3.0.0
   build:
     working_directory: ~/main
     docker:
