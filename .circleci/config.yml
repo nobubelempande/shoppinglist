@@ -25,8 +25,6 @@ jobs:
             - ~/.gradle
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
           language: java
-      - after_success:
-          command: bash <(curl -s https://codecov.io/bash)
    #   - run:
    #       name: Run Tests
    #       command:sudo chmod +x ./gradlew lint test
