@@ -11,10 +11,10 @@ jobs :
     environment:
       JVM_OPTS: -Xmx3200m
     steps:
-      - codecov/upload:
-          token: e5e9a1ac-93df-4a16-bd87-609381106e95 
-          url: https://codecov.io/bash 
-          when: always 
+     # - codecov/upload:
+      #    token: e5e9a1ac-93df-4a16-bd87-609381106e95 
+       #   url: https://codecov.io/bash 
+        #  when: always 
     - restore_cache:
         key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
     - run:
