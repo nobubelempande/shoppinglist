@@ -20,6 +20,9 @@ jobs:
           paths:
             - ~/.gradle
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+     after_success:
+  - export CODECOV_TOKEN="85d3b8be-ce43-4374-8230-15da233d5615"
+  - bash <(curl -s https://codecov.io/bash)
    #   - run:
    #       name: Run Tests
    #       command:sudo chmod +x ./gradlew lint test
