@@ -39,8 +39,8 @@
             android:id="@+id/btAddItems"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Add items"
-            android:onClick="itemAdd"/>
+            android:onClick="addItem"
+            android:text="Add items" />
 
         <EditText
             android:id="@+id/eItemName"

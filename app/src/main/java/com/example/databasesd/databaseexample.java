@@ -43,6 +43,7 @@ public class databaseexample extends SQLiteOpenHelper {
     }
 
     public Cursor doQuery(String sql, String[] params) {
+        //getting data from DB using SQL + Parameters
         try {
             Cursor mCur = getReadableDatabase().rawQuery(sql, params);
             return mCur;
@@ -54,6 +55,7 @@ public class databaseexample extends SQLiteOpenHelper {
     }
 
     public void doUpdate(String sql, String[] params) {
+        //inserting data into DB via SQL + parameters
         try {
             getWritableDatabase().execSQL(sql, params);
         } catch (SQLException mSQLException) {
@@ -64,6 +66,7 @@ public class databaseexample extends SQLiteOpenHelper {
 
 
     public Cursor doQuery(String sql) {
+        //Getting data from DB using SQL string
         try {
             Cursor mCur = getReadableDatabase().rawQuery(sql,null);
             return mCur;
@@ -75,6 +78,7 @@ public class databaseexample extends SQLiteOpenHelper {
     }
 
     public void doUpdate(String sql) {
+        //adding data to DB via SQL string
         try {
             this.getWritableDatabase().execSQL(sql);
         } catch (SQLException mSQLException) {
@@ -98,8 +102,19 @@ public class databaseexample extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("Create table items(item_id int PRIMARY KEY , name text not null, quantity int not null, list_id_items_table int not null, FOREIGN KEY(list_id_items_table)REFERENCES shoppingList(List_id))");
-        db.execSQL("Create table shoppingList(list_id PRIMARY KEY , list_name text not null,d_o_s date not null,item_id int not null,FOREIGN KEY(item_id)REFERENCES items(item_id))");
+        //DB details via SQL
+        db.execSQL("Create table items" +
+                "(item_id int PRIMARY KEY , " +
+                "name text not null, " +
+                "quantity int not null, " +
+                "list_id_items_table int not null, " +
+                "FOREIGN KEY(list_id_items_table)REFERENCES shoppingList(List_id))");
+        db.execSQL("Create table shoppingList" +
+                "(list_id PRIMARY KEY , " +
+                "list_name text not null," +
+                "d_o_s date not null," +
+                "item_id int not null," +
+                "FOREIGN KEY(item_id)REFERENCES items(item_id))");
 
     }
 

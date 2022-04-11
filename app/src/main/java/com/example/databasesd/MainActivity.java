@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void popUp(View view) {
+    public void goToCreateList(View view) {
 
 
                         Intent i = new Intent(getApplicationContext(), activityCreateList.class);

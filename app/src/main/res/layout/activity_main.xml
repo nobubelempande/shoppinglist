@@ -24,8 +24,8 @@
             android:id="@+id/bCreateList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Create List"
-            android:onClick="popUp"/>
+            android:onClick="goToCreateList"
+            android:text="Create List" />
 
         <Button
             android:id="@+id/bSavedList"
