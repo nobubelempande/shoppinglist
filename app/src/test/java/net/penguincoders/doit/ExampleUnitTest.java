@@ -1,4 +1,4 @@
-package com.example.databasesd;
+package net.penguincoders.doit;
 
 import org.junit.Test;
 
