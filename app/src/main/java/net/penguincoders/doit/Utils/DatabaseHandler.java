@@ -58,10 +58,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         final String CREATE_ITEMS_TABLE = "CREATE TABLE " + TABLE_ITEMS + "(" +
                 itemID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                itemName + " TEXT" +
-                itemQuantity + "INTEGER" +
-                itemPrice + "INTEGER" +
-                D_O_E + "DATE" +
+                itemName + " TEXT," +
+                itemQuantity + "INTEGER, " +
+                itemPrice + "INTEGER,  " +
+                D_O_E + "DATE, " +
                 itemCategory + "TEXT" +
                 ")";
 
@@ -79,6 +79,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Drop older table if existed
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_ShoppingLists);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_ITEMS);
         // Create tables again
         onCreate(db);
     }
