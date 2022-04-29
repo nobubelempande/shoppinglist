@@ -1,5 +1,7 @@
 package net.penguincoders.doit.Model;
 
+import java.util.ArrayList;
+
 public class mItems {
     private int item_id;
     private int item_qty;
@@ -9,6 +11,14 @@ public class mItems {
     public int getItem_id() {
         return item_id;
     }
+
+    public mItems(){
+        setItem_id(001);
+        setItem_name("no name");
+        setItem_qty(0);
+        setCategory("food");
+    }
+
 
     public void setItem_id(int item_id) {
         this.item_id = item_id;
