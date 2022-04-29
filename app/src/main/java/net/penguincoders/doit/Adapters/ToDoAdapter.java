@@ -19,6 +19,7 @@ import net.penguincoders.doit.Model.mShoppingList;
 import net.penguincoders.doit.R;
 import net.penguincoders.doit.Utils.DatabaseHandler;
 import net.penguincoders.doit.activitySelectedShoppingList;
+import net.penguincoders.doit.itemAddingActivity;
 
 import java.util.List;
 
@@ -117,7 +118,7 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
                     //own -- goto new page?
                     Bundle bundle = new Bundle();
                    bundle.putString("list_name", listName);
-                    Intent I = new Intent(getContext(), activitySelectedShoppingList.class);
+                    Intent I = new Intent(getContext(), itemAddingActivity.class);
                     I.putExtras(bundle);
                     getContext().startActivity(I);
                     Toast.makeText(getContext(), "opening shopping list: " + listName, Toast.LENGTH_SHORT).show();

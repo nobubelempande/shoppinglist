@@ -4,18 +4,42 @@
     android:padding="16dp">
 
     <EditText
-        android:id="@+id/newItemName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:hint="Shopping list name"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-    <Button
-        android:id="@+id/btnNewItem"
+        android:id="@+id/itemName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/newItemName"
+        android:background="@null"
+        android:hint="Item name"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+
+        />
+
+    <EditText
+        android:id="@+id/itemQuantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/itemName"
+        android:background="@null"
+        android:hint="Item quantity"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+
+        />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/itemQuantity"
+        android:id="@+id/itemCategory"
+        android:background="@null"
+        android:hint="Item category"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+
+        />
+
+    <Button
+        android:id="@+id/btnNewList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/itemCategory"
         android:layout_alignParentEnd="true"
         android:background="@android:color/transparent"
         android:text="@string/save"

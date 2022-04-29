@@ -21,8 +21,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     //own
     private final String TAG = "VIII";
+    private final String TAG2 = "X";
     private static final String TABLE_ShoppingLists = "shoppingLists";
-    private static final String TABLE_Items = "items";
+
+    private static final String TABLE_ITEMS = "ITEMS_TABLE";
+
 
     public DatabaseHandler(Context context) {
         super(context, NAME, null, VERSION);
@@ -38,17 +41,36 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         //createShoppingLists
         final String ID = "list_id";
         final String NAME = "list_name";
+        final String itemID = "item_id";
+        final String itemName = "item_name";
+        final String itemQuantity = "item_quantity";
+        final String itemPrice = "item_price";
+        final String D_O_E = "D_O_E";  //D_O_S = DATE OF EXPIRATION
+        final String itemCategory = "item_category";
 
 
         final String CREATE_ShoppingLists_TABLE = "CREATE TABLE " + TABLE_ShoppingLists + "(" +
                 ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 NAME + " TEXT" +
                 ")";
+
+        final String CREATE_ITEMS_TABLE = "CREATE TABLE " + TABLE_ITEMS + "(" +
+                itemID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                itemName + " TEXT" +
+                itemQuantity + "INTEGER" +
+                itemPrice + "INTEGER" +
+                D_O_E + "DATE" +
+                itemCategory + "TEXT" +
+                ")";
+
+
+
         db.execSQL(CREATE_ShoppingLists_TABLE);
+        db.execSQL(CREATE_ITEMS_TABLE);
 
         Log.d(TAG, "** ---> --> shopping list table Created");
-
-    }
+        Log.d(TAG2, "** ---> --> items table created");
+   }
 
 
     @Override
