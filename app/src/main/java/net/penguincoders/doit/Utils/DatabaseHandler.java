@@ -56,7 +56,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 NAME + " TEXT" +
                 ")";
 
-        final String CREATE_ITEMS_TABLE = "CREATE TABLE " + TABLE_ITEMS + "(" +
+        final String CREATE_ITEM_TABLE = "CREATE TABLE " + TABLE_ITEMS + "(" +
                 itemID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 itemName + " TEXT," +
                 itemQuantity + "INTEGER, " +
@@ -68,7 +68,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 
         db.execSQL(CREATE_ShoppingLists_TABLE);
-        db.execSQL(CREATE_ITEMS_TABLE);
+        db.execSQL(CREATE_ITEM_TABLE);
+        //db.execSQL(CREATE_ITEMS_TABLE);
 
         Log.d(TAG, "** ---> --> shopping list table Created");
         Log.d(TAG2, "** ---> --> items table created");
