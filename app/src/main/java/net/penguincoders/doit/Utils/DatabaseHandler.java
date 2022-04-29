@@ -56,19 +56,20 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 NAME + " TEXT" +
                 ")";
 
-        final String CREATE_ITEMS_TABLE = "CREATE TABLE " + TABLE_ITEMS + "(" +
+        final String CREATE_ITEM_TABLE = "CREATE TABLE " + TABLE_ITEMS + "(" +
                 itemID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                itemName + " TEXT" +
-                itemQuantity + "INTEGER" +
-                itemPrice + "INTEGER" +
-                D_O_E + "DATE" +
+                itemName + " TEXT," +
+                itemQuantity + "INTEGER, " +
+                itemPrice + "INTEGER,  " +
+                D_O_E + "DATE, " +
                 itemCategory + "TEXT" +
                 ")";
 
 
 
         db.execSQL(CREATE_ShoppingLists_TABLE);
-        db.execSQL(CREATE_ITEMS_TABLE);
+        db.execSQL(CREATE_ITEM_TABLE);
+        //db.execSQL(CREATE_ITEMS_TABLE);
 
         Log.d(TAG, "** ---> --> shopping list table Created");
         Log.d(TAG2, "** ---> --> items table created");
@@ -79,6 +80,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Drop older table if existed
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_ShoppingLists);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_ITEMS);
         // Create tables again
         onCreate(db);
     }

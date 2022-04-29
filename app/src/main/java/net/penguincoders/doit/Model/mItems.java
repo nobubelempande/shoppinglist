@@ -12,12 +12,12 @@ public class mItems {
         return item_id;
     }
 
-    public mItems(){
+    /*public mItems(){
         setItem_id(001);
         setItem_name("no name");
         setItem_qty(0);
         setCategory("food");
-    }
+    }*/
 
 
     public void setItem_id(int item_id) {
