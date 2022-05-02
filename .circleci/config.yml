@@ -25,15 +25,35 @@ jobs:
       # Checkout the code as the first step.
       - checkout
       # The next step will run the unit tests
-      - android/run-tests: #chmod ./gradlew
-          test-command: chmod +x gradlew && ./gradlew build jacocoTestReport assembleAndroidTest
-      #- android/run-tests:
-       #   test-command: ./gradlew lint testDebug --continue
+      #permission
+      - run:
+          name: permissions
+          command: sudo chmod +x gradlew
 
-      # Then start the emulator and run the Instrumentation tests!
-      - android/start-emulator-and-run-tests:
-          test-command: ./gradlew connectedDebugAndroidTest
-          system-image: system-images;android-25;google_apis;x86
+      - android/run-tests: #chmod ./gradlew
+          test-command: ./gradlew build jacocoTestReport assembleAndroidTest
+
+#      - run:
+#          name: Emulator setup
+#          command: sdkmanager "system-images;android-25;default;armeabi-v7a" && echo "no" | avdmanager create avd -n test -k "system-images;android-25;default;armeabi-v7a"
+#
+#            - run:
+#                name: Launch Emulator
+#                command: |
+#                  cd ${ANDROID_HOME}/emulator;ls
+#                  export LD_LIBRARY_PATH=${ANDROID_HOME}/emulator/lib64:${ANDROID_HOME}/emulator/lib64/qt/lib
+#                  emulator -avd test -no-window -noaudio -no-boot-anim -no-window -accel on
+#
+#      - run:
+#          name: Wait emulator
+#          command: |
+#            circle-android wait-for-boot
+#            adb shell input keyevent 82
+#      # Then start the emulator and run the Instrumentation tests!
+#      - android/start-emulator-and-run-tests:
+#          system-image: system-images;android-25;google_apis;x86
+#          test-command: ./gradlew connectedDebugAndroidTest
+#
 
       # And finally run the release build
       - run:
