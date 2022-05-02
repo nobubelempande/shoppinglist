@@ -8,7 +8,7 @@ version: 2.1
 # See: https://circleci.com/docs/2.0/orb-intro/
 orbs:
   android: circleci/android@1.0.3
-
+  codecov: codecov/codecov@3.2.2
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
@@ -24,10 +24,11 @@ jobs:
     steps:
       # Checkout the code as the first step.
       - checkout
-
       # The next step will run the unit tests
-      - android/run-tests:
-          test-command: ./gradlew lint testDebug --continue
+      - android/run-tests: #chmod ./gradlew
+          test-command: chmod +x gradlew && ./gradlew build jacocoTestReport assembleAndroidTest
+      #- android/run-tests:
+       #   test-command: ./gradlew lint testDebug --continue
 
       # Then start the emulator and run the Instrumentation tests!
       - android/start-emulator-and-run-tests:
@@ -36,14 +37,17 @@ jobs:
 
       # And finally run the release build
       - run:
+          command: chmod +x gradlew && ./gradlew jacocoTestReport
+      - run:
           name: Assemble release build
           command: |
-            ./gradlew assembleRelease
-
+            chmod +x gradlew && ./gradlew assembleRelease
+      - codecov/upload:
+          file: '/app/build/reports/jacoco/jacocoTestReport/jacocoTestReport.xml'
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
-#workflows:
+workflows:
   sample: # This is the name of the workflow, feel free to change it to better match your workflow.
     # Inside the workflow, you define the jobs you want to run.
-    #jobs:
-    #  - build-and-test
+    jobs:
+      - build-and-test
