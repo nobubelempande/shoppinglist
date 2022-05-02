@@ -25,17 +25,16 @@ jobs:
       # Checkout the code as the first step.
       - checkout
       # The next step will run the unit tests
-      - android/run-tests:
-          test-command: ./gradlew lint testDebug 
-      
+      - android/run-tests: #chmod ./gradlew
+          test-command: chmod +x gradlew && ./gradlew build jacocoTestReport assembleAndroidTest
 
       # And finally run the release build
       - run:
-          command: ./gradlew jacocoTestReport
+          command: chmod +x gradlew && ./gradlew jacocoTestReport
       - run:
           name: Assemble release build
           command: |
-            ./gradlew assembleRelease
+            chmod +x gradlew && ./gradlew assembleRelease
       - codecov/upload:
           file: '/app/build/reports/jacoco/jacocoTestReport/jacocoTestReport.xml'
 # Invoke jobs via workflows

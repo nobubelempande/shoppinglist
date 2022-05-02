@@ -15,7 +15,7 @@ import java.util.List;
 
 public class DatabaseHandler extends SQLiteOpenHelper {
 
-    private static final int VERSION = 2;
+    private static final int VERSION = 4;
     private static final String NAME = "ListDatabase_2";
 
     private SQLiteDatabase db;
@@ -108,18 +108,24 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         try{
             Log.d(TAG, "---> --> DB Query Starting");
             cur = db.rawQuery("SELECT * FROM " + TABLE_ShoppingLists, null);
+
             Log.d(TAG, "---> --> DB Query for all Lists done successfully");
             if(cur != null){
-                if(cur.moveToFirst()){
-                    do{
+                cur.moveToFirst();
+                    while(!cur.isAfterLast()){
                         //adding shoppingList to list of allShoppingLists
                         mShoppingList list = new mShoppingList();
-                        list.setList_id(cur.getInt(cur.getColumnIndex("list_id")));
-                        list.setList_name(cur.getString(cur.getColumnIndex("list_name")));
-                        allShoppingLists.add(list);
+                        //Log.d(TAG, "THIS IS THE MESSAGE"+ String.valueOf(cur.getColumnIndexOrThrow("list_id")));
+                        if(cur.getString(cur.getColumnIndexOrThrow("list_name")) != null)
+                        {
+
+                            list.setList_id(cur.getInt(cur.getColumnIndexOrThrow("list_id")));
+                            list.setList_name(cur.getString(cur.getColumnIndexOrThrow("list_name")));
+                            allShoppingLists.add(list);
+                        }
+                        cur.moveToNext();
                     }
-                    while(cur.moveToNext());
-                }
+
             }
         }
         finally {
@@ -144,10 +150,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                     do{
                         //adding item to list of allItemsList
                         mItems list = new mItems();
-                        list.setItem_id((cur.getInt(cur.getColumnIndex("item_id"))));
-                        list.setItem_name(cur.getString(cur.getColumnIndex("item_name")));
-                        list.setCategory(cur.getString(cur.getColumnIndex("item_category")));
-                        list.setItem_qty(cur.getInt(cur.getColumnIndex("item_quantity")));
+                        list.setItem_id((cur.getInt(cur.getColumnIndexOrThrow("item_id"))));
+                        list.setItem_name(cur.getString(cur.getColumnIndexOrThrow("item_name")));
+                        list.setCategory(cur.getString(cur.getColumnIndexOrThrow("item_category")));
+                        list.setItem_qty(cur.getInt(cur.getColumnIndexOrThrow("item_quantity")));
                         allItemsList.add(list);
                     }
                     while(cur.moveToNext());

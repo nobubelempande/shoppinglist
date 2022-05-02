@@ -50,7 +50,6 @@ public class MainActivityTest {
         Espresso.onView(withId(R.id.newTaskButton)).perform(click());
         Instrumentation.ActivityMonitor activityMonitor = getInstrumentation().addMonitor(itemAddingActivity.class.getName(), null, false);
         assertNotNull(activityMonitor);
-
     }
 
     @Test
