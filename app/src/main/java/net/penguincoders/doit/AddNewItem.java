@@ -122,8 +122,9 @@ public class AddNewItem extends BottomSheetDialogFragment {
 
     private void addingItemsToDB(String itemName, String itemCategory, int itemQuantity) {
         mItems currItems = new mItems();
-        currItems.setItem_name(itemName);
         currItems.setItem_qty(itemQuantity);
+        currItems.setItem_name(itemName);
+        //currItems.setItem_qty(itemQuantity);
         currItems.setCategory(itemCategory);
        db.insertItem(currItems);
        db.insertQuantity(currItems);
