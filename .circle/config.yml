@@ -65,7 +65,7 @@ jobs:
             chmod +x gradlew && ./gradlew assembleRelease
       - codecov/upload:
           file: '/app/build/reports/coverage/debug/index.html'
-          token: e5e9a1ac-93df-4a16-bd87-609381106e95
+         
 
 
 
