@@ -1,37 +1,57 @@
-version: 2
-jobs :
-  build:
-    working_directory: ~/app
-    docker:
-    - image: circleci/android:api-27-alpha
-    environment:
-      JVM_OPTS: -Xmx3200m
-    steps:
-    - checkout
-    - restore_cache:
-        key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
-    - run:
-          name: Download Dependencies
-          command: cd AndroidDemo; ./gradlew dependencies
-    - run:
-          name: Accept licenses
-          command: yes | sdkmanager --licenses || true
-    - save_cache:
-          paths:
-          - ~/.gradle
-          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "AndroidDemo/app/build.gradle" }}
-    - run:
-          name: Setup emulator
-          command: sdkmanager "system-images;android-21;default;armeabi-v7a" && echo "no" | avdmanager create avd -n test -k "system-images;android-21;default;armeabi-v7a"
-    - run:
-          name: Launch emulator
-          command: export LD_LIBRARY_PATH=${ANDROID_HOME}/emulator/lib64:${ANDROID_HOME}/emulator/lib64/qt/lib && emulator64-arm -avd test -no-audio -no-boot-anim -no-window -accel auto -verbose
-          background: true
-    - run:
-          name: Wait emulator
-          command: |
-            # wait for it to have booted
-            circle-android wait-for-boot
-            # unlock the emulator screen
-            sleep 30
-            adb shell input keyevent 82
+language: android
+dist: trusty
+os: linux
+jdk: openjdk11
+sudo: false
+
+android:
+  components:
+    - tools
+    - platform-tools
+    - tools
+    - extra-android-m2repository
+    - android-31
+    - android-24
+    - extra-google-google_play_services
+    - extra-google-m2repository
+    - extra-android-m2repository
+    - sys-img-armeabi-v7a-android-24
+    - sys-img-armeabi-v7a-addon-google_apis-google-31
+    - sys-img-armeabi-v7a-addon-google_apis-google-24
+
+  licenses:
+    - 'android-sdk-preview-license-52d11cd2'
+    - 'android-sdk-license-.+'
+    - 'google-gdk-license-.+'
+
+env:
+  global:
+    - TARGET_VERSION=31
+    - ANDROID_BUILD_TOOLS_VERSION=31.0.0
+    - ANDROID_HOME=~/android-sdk
+
+before_install:
+  - touch $HOME/.android/repositories.cfg
+  - wget "https://dl.google.com/android/repository/commandlinetools-linux-7302050_latest.zip" -O commandlinetools.zip
+  - unzip commandlinetools.zip -d $ANDROID_HOME/
+  - yes | $ANDROID_HOME/cmdline-tools/bin/sdkmanager "platforms;android-${TARGET_VERSION}" --sdk_root=$ANDROID_HOME
+  - yes | $ANDROID_HOME/cmdline-tools/bin/sdkmanager "build-tools;${ANDROID_BUILD_TOOLS_VERSION}" --sdk_root=$ANDROID_HOME
+
+before_script:
+  - echo no | android create avd --force -n test -t android-24 --abi armeabi-v7a
+  - emulator -avd test -no-window &
+  - android-wait-for-emulator
+  - adb shell settings put global window_animation_scale 0 &
+  - adb shell settings put global transition_animation_scale 0 &
+  - adb shell settings put global animator_duration_scale 0 &
+  - adb shell input keyevent 82 &
+script:
+  - chmod +x gradlew
+  - ./gradlew build jacocoTestReport assembleAndroidTest
+
+after_success:
+  - export CODECOV_TOKEN="e5e9a1ac-93df-4a16-bd87-609381106e95"
+  - bash <(curl -s https://codecov.io/bash)
+
+notifications:
+  email: false
