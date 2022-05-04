@@ -15,8 +15,8 @@ import java.util.List;
 
 public class DatabaseHandler extends SQLiteOpenHelper {
 
-    private static final int VERSION = 4;
-    private static final String NAME = "ListDatabase_2";
+    private static final int VERSION = 100000;
+    private static final String NAME = "Shoppinglist_database";
 
     private SQLiteDatabase db;
 
@@ -68,8 +68,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         final String CREATE_ITEM_TABLE = "CREATE TABLE " + TABLE_ITEMS + "(" +
                 itemID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 itemName + " TEXT," +
-                itemQuantity + "INTEGER, " +
-                itemCategory + "TEXT" +
+                itemQuantity + " INTEGER," +
+                itemCategory + " TEXT" +
                 ")";
 
 
