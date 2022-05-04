@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.Toast;
 
 import net.penguincoders.doit.Model.mItems;
 import net.penguincoders.doit.Model.mShoppingList;
@@ -14,9 +15,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseHandler extends SQLiteOpenHelper {
-
-    private static final int VERSION = 100000;
-    private static final String NAME = "Shoppinglist_database";
+    private Context context;
+    private static final int VERSION = 2;
+    private static final String NAME = "viii_database";
 
     private SQLiteDatabase db;
 
@@ -30,6 +31,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public DatabaseHandler(Context context) {
         super(context, NAME, null, VERSION);
+        this.context = context;
     }
 
     @Override
@@ -175,11 +177,27 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.insert(TABLE_ShoppingLists, null, cv);
     }
 
+    void insertitems(mItems currItem){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put("item_name",currItem.getItem_name());
+        cv.put("item_quantity",currItem.getItem_qty());
+        cv.put("item_category",currItem.getCategory());
+        long result = db.insert(TABLE_ITEMS,null, cv);
+        if(result == -1){
+            Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
+        }else {
+            Toast.makeText(context, "Added Successfully!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     public void insertItem(mItems currItem){
         //adding  item to db
         ContentValues cv = new ContentValues();
         cv.put("item_name",currItem.getItem_name());
         db.insert(TABLE_ITEMS,null,cv);
+        Toast.makeText(context, "Added Successfully!", Toast.LENGTH_SHORT).show();
     }
 
     public void insertQuantity(mItems currItem){
@@ -187,12 +205,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         ContentValues cv = new ContentValues();
         cv.put("item_quantity",currItem.getItem_qty());
         db.insert(TABLE_ITEMS,null,cv);
+        Toast.makeText(context, "Added Successfully!", Toast.LENGTH_SHORT).show();
     }
     public void insertCategory(mItems currItem){
         //adding quantity to db
         ContentValues cv = new ContentValues();
         cv.put("item_category",currItem.getCategory());
         db.insert(TABLE_ITEMS,null,cv);
+        Toast.makeText(context, "Added Successfully!", Toast.LENGTH_SHORT).show();
     }
 
     public void updateShoppingList(int list_id, String list_name) {
