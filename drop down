@@ -1,0 +1,220 @@
+add item xml
+
+This XML file does not appear to have any style information associated with it. The document tree is shown below.
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="16dp">
+<EditText android:id="@+id/itemName" android:layout_width="wrap_content" android:layout_height="wrap_content" android:background="@null" android:hint="Item name" android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+<Spinner android:id="@+id/itemCategory" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_below="@id/itemQuantity" android:layout_marginTop="21dp" android:entries="@array/cat_arrays" android:prompt="@string/cat_prompt"/>
+android:hint="Select catogory" />
+<EditText android:id="@+id/itemQuantity" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@id/itemName" android:background="@null" android:hint="Item quantity" android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+<Button android:id="@+id/btnNewList" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@id/itemCategory" android:layout_alignParentEnd="true" android:background="@android:color/transparent" android:text="@string/save" android:textAllCaps="false" android:textColor="@android:color/darker_gray" android:textSize="16sp"/>
+</RelativeLayout>
+
+
+
+
+strings xml
+<resources>
+<string name="app_name">VIII</string>
+<string name="save">Save</string>
+<string name="new_task">New Task</string>
+<string name="tasks">Tasks</string>
+<string name="cat_prompt">Choose a category</string>
+<string-array name="cat_arrays">
+<item>Clothing</item>
+<item>Food</item>
+<item>Prepaid</item>
+<item>Insurance</item>
+</string-array>
+</resources>
+
+
+
+cust java
+
+
+package net.penguincoders.doit;
+
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.Toast;
+
+public class CustomOnItemSelectedListener implements OnItemSelectedListener {
+
+    public void onItemSelected(AdapterView<?> parent, View view, int pos,long id) {
+        Toast.makeText(parent.getContext(),
+                "OnItemSelectedListener : " + parent.getItemAtPosition(pos).toString(),
+                Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> arg0) {
+        // TODO Auto-generated method stub
+    }
+
+}
+
+
+
+
+add new item 
+
+package net.penguincoders.doit;
+
+import android.app.Activity;
+import android.content.DialogInterface;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
+import java.util.ArrayList;
+import java.util.List;
+import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
+
+import android.widget.Toast;
+
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
+
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+
+import net.penguincoders.doit.Model.mItems;
+import net.penguincoders.doit.Model.mShoppingList;
+import net.penguincoders.doit.Utils.DatabaseHandler;
+
+import java.util.Objects;
+
+public class AddNewItem extends BottomSheetDialogFragment {
+    public static final String TAG= " ActionBottomDialog";
+
+    private EditText etNewItem;
+    private EditText etQuantity;
+    private EditText etCategory;
+    private Button btnSaveItem;
+    private Spinner itemCategory;
+
+    private DatabaseHandler db;
+
+
+    public static AddNewItem newInstance() {
+        return new AddNewItem();
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+        setStyle(STYLE_NORMAL, R.style.DialogStyle);
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState){
+        //addListenerOnSpinnerItemSelection();
+        View view = inflater.inflate(R.layout.new_item, container, false);
+        getDialog().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+        return view;
+
+    }
+    //public void addListenerOnSpinnerItemSelection() {
+
+    //}
+
+    @Override
+    public void onDismiss(@NonNull DialogInterface dialog){
+        Activity activity=getActivity();
+        if(activity instanceof DialogCloseListener)
+            ((DialogCloseListener)activity).handleDialogClose(dialog);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
+        super.onViewCreated(view, savedInstanceState);
+        setupShoppingListEditorLayout(view, savedInstanceState);
+
+    }
+
+    private void setupShoppingListEditorLayout(View view, Bundle savedInstanceState){
+        etNewItem = Objects.requireNonNull(getView()).findViewById(R.id.itemName);
+        etQuantity = Objects.requireNonNull(getView()).findViewById(R.id.itemQuantity);
+       // etCategory = Objects.requireNonNull(getView()).findViewById(R.id.itemCategory);
+        itemCategory = (Spinner) getView().findViewById(R.id.itemCategory);
+        itemCategory.setOnItemSelectedListener(new CustomOnItemSelectedListener());
+        btnSaveItem = getView().findViewById(R.id.btnNewList);
+
+        boolean isUpdate = false;
+        db = new DatabaseHandler(getActivity());
+        db.openDatabase();
+
+        final boolean finalIsUpdate = isUpdate;
+        final Bundle bundle = getArguments();
+
+        btnSaveItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String itemName= etNewItem.getText().toString();
+                String itemQuantity = etQuantity.getText().toString();
+                String itemCategory = etCategory.getText().toString();
+                int itemQuantityInteger = Integer.parseInt(itemQuantity);
+
+                if(finalIsUpdate){
+                   // db.updateShoppingList(bundle.getInt("id"), text);
+                    db.updateItemName(bundle.getInt("item_id"),itemName);
+                    db.updateItemCategory(bundle.getInt("item_id"),itemCategory);
+                    db.updateItemQuantity(bundle.getInt("item_id"),itemQuantityInteger);
+                }
+                else {
+                    addingItemsToDB(itemName, itemCategory, itemQuantityInteger);
+                }
+                dismiss();
+            }
+        });
+
+
+        /* final Bundle bundle = getArguments();
+        if(bundle != null){
+            //toDo  check bundle keys
+            isUpdate = true;
+            String strItemName = bundle.getString("name");
+            String strQuantity = bundle.getString("quantity");
+            String strCategory = bundle.getString("category");
+            etNewItem.setText(strItemName);
+            etQuantity.setText(strQuantity);
+            etCategory.setText(strCategory );
+            assert strItemName != null;
+            if(strItemName.length()>0)
+                btnSaveItem.setTextColor(ContextCompat.getColor(Objects.requireNonNull(getContext()), R.color.colorPrimaryDark));
+        }*/
+
+
+
+    }
+
+    private void addingItemsToDB(String itemName, String itemCategory, int itemQuantity) {
+        mItems currItems = new mItems();
+        currItems.setItem_qty(itemQuantity);
+        currItems.setItem_name(itemName);
+        //currItems.setItem_qty(itemQuantity);
+        currItems.setCategory(itemCategory);
+       db.insertItem(currItems);
+       db.insertQuantity(currItems);
+       db.insertCategory(currItems);
+
+    }
+
+
+
+}
+
+
+
+addd item
+
+
