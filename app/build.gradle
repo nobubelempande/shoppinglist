@@ -54,4 +54,26 @@ task jacocoTestReport(type: JacocoReport,
         html.required = true
     }
 
+    def fileFilter = ['androidx/**/*.*',
+                      '**/view/*.*',
+                      '**/data/*.*',
+                      '**/data/model/*.*',
+                      '**/generated/callback/*.*',
+                      '**/lambda$*.class',
+                      '**/lambda.class',
+                      '**/*lambda.class',
+                      '**/*lambda*.class']
+
+    def debugTree = fileTree(dir:
+            "${buildDir}/intermediates/javac/debug/classes",
+            excludes: fileFilter
+    )
+
+    def mainSrc = "/src/androidTest/java"
+
+    sourceDirectories.setFrom(files([mainSrc]))
+
+    classDirectories.setFrom(files([debugTree]))
+    executionData.setFrom(fileTree(dir: "${buildDir}", includes:[
+            "/jacoco/testDebugUnitTest.exec","outputs/unit_test_code_coverage/debugUnitTest/testDebugUnitTest.exec"]))
 }
