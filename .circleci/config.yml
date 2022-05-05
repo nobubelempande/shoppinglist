@@ -26,7 +26,7 @@ jobs:
       - checkout
       # The next step will run the unit tests
       - android/run-tests:
-          test-command: ./gradlew lint testDebug
+          test-command: ./gradlew assembleAndroidTest
 
 
       # And finally run the release build
