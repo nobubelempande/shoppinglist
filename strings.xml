@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">SqliteTutorial</string>
+    <string name="cat_prompt">Choose a category</string>
+    <string-array name="cat_arrays">
+        <item>Clothing</item>
+        <item>Food</item>
+        <item>Prepaid</item>
+        <item>Insurance</item>
+    </string-array>
+</resources>
