@@ -26,7 +26,8 @@ jobs:
       - checkout
       # The next step will run the unit tests
       - android/run-tests:
-          test-command: ./gradlew assembleAndroidTest
+          test-command: ./gradlew testDebugUnitTest
+
 
 
       # And finally run the release build
@@ -37,7 +38,7 @@ jobs:
           command: |
             ./gradlew assembleRelease
       - codecov/upload:
-          file: '/app/build/reports/jacoco/jacocoTestReport/jacocoTestReport.xml'
+          file: '/app/build/reports/coverage/debug/report.xml'
           #'/app/build/reports/jacoco/jacocoTestReport/jacocoTestReport.xml'
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows

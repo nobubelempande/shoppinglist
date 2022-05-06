@@ -76,7 +76,7 @@ public class MainActivityTest {
 
     }
 
-    @Test
+    @Ignore
     public void ClickableRecycleViewer(){
         Espresso.onView(withId(R.id.tasksRecyclerView)).perform(ViewActions.click());
     }
