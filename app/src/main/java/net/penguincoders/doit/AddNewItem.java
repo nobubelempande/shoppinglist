@@ -124,7 +124,7 @@ public class AddNewItem extends BottomSheetDialogFragment {
         mItems currItems = new mItems();
         currItems.setItem_qty(itemQuantity);
         currItems.setItem_name(itemName);
-        //currItems.setItem_qty(itemQuantity);
+        //cuItems.setItem_qty(itemQuantity);
         currItems.setCategory(itemCategory);
        db.insertItem(currItems);
        db.insertQuantity(currItems);
