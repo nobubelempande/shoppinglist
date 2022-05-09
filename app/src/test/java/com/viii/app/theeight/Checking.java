@@ -11,6 +11,7 @@ import org.junit.runners.JUnit4;
 
 public class Checking {
 
+
     @Test
     public void isinputValid(){
         String a = "Katleho";

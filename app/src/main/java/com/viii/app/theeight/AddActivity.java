@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+//THIS ACTIVITY IS FOR ADDING THE ITEMS OF EACH SPECIFIC LIST
 public class AddActivity extends AppCompatActivity {
 
     EditText item_name, item_category, item_quantity;
