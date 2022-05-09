@@ -2,6 +2,9 @@ apply plugin: 'com.android.application'
 apply plugin: 'jacoco'
 
 android {
+    lintOptions {
+        checkReleaseBuilds false
+    }
     compileSdkVersion 31
 
     defaultConfig {
