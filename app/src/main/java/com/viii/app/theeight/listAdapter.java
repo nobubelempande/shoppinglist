@@ -24,6 +24,8 @@ public class listAdapter extends RecyclerView.Adapter<listAdapter.MyViewHolder>{
     private Activity activity;
     private ArrayList list_id, list_name, list_date;
 
+
+    //List Adapter
     listAdapter(Activity activity, Context context, ArrayList list_id, ArrayList list_name, ArrayList list_date){
         this.activity = activity;
         this.context = context;
