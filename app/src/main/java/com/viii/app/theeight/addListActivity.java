@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+//THIS ACTIVITY IS FOR ADDING THE DIFFERENT LISTS
 public class addListActivity extends AppCompatActivity {
 
     EditText list_name, list_date;
