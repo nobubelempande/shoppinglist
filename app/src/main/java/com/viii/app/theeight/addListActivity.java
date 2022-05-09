@@ -21,6 +21,8 @@ public class addListActivity extends AppCompatActivity {
         list_name = findViewById(R.id.list_name);
         list_date = findViewById(R.id.list_date);
 
+        //Add new list
+
         add_button = findViewById(R.id.btnIAddtem);
         add_button.setOnClickListener(new View.OnClickListener() {
             @Override

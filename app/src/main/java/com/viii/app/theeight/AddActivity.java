@@ -34,6 +34,7 @@ public class AddActivity extends AppCompatActivity {
         name=getIntent().getStringExtra("key");
 
         listname.setText(name);
+        //Add new item
 
         add_button = findViewById(R.id.btnIAddtem);
         add_button.setOnClickListener(new View.OnClickListener() {
