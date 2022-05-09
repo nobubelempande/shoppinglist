@@ -71,6 +71,7 @@ public class makeListActivity extends AppCompatActivity {
         }
     }
 
+    //Store data in array
     void storeDataInArrays() {
         Cursor cursor = myDB.readAllListData();
         if(cursor.getCount() == 0){

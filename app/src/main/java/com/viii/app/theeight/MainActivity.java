@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
+    //store data in array
     void storeDataInArrays(){
         Cursor cursor = myDB.readAllItemsData(list_name);
         if(cursor.getCount() == 0){
