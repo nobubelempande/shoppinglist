@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="net.penguincoders.doit">
+    package="com.viii.app.theeight">
 
     <application
         android:allowBackup="true"
@@ -10,19 +10,35 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activitySelectedShoppingList"
-            android:exported="false" />
-        <activity
-            android:name=".itemAddingActivity"
-            android:exported="false" />
-        <activity android:name=".SplashActivity">
-            <intent-filter>
-                <category android:name="android.intent.category.LAUNCHER" />
+            android:name="com.viii.app.theeight.InventoryActivity"
+            android:label="Inventory items">
 
+        </activity>
+        <activity
+            android:name="com.viii.app.theeight.addListActivity"
+            android:label="Add List"
+            android:parentActivityName="com.viii.app.theeight.makeListActivity"></activity>
+        <activity
+            android:name="com.viii.app.theeight.makeListActivity"
+            android:label="List">
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
+        <activity
+            android:name="com.viii.app.theeight.MainActivity"
+            android:label="Items"
+            android:parentActivityName="com.viii.app.theeight.makeListActivity"></activity>
+        <activity
+            android:name="com.viii.app.theeight.UpdateActivity"
+            android:parentActivityName="com.viii.app.theeight.MainActivity" />
+        <activity
+            android:name="com.viii.app.theeight.AddActivity"
+            android:label="Add items"
+            android:parentActivityName="com.viii.app.theeight.MainActivity" />
     </application>
 
 </manifest>
