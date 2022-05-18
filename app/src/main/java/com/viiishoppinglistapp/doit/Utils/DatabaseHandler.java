@@ -35,8 +35,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         //db.execSQL(CREATE_TODO_TABLE);
 
-        Log.d(TAG, "---> --> SQLite invoked for creation");
-
         //ShoppingLists class
 
         final String ID = "list_id";
@@ -50,8 +48,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 USE_DATE + " TEXT" +
                 ")";
         db.execSQL(CREATE_ShoppingLists_TABLE);
-
-        Log.d(TAG, "** ---> --> shopping list table Created");
 
 
         //items class
@@ -78,8 +74,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 ")";
         db.execSQL(CREATE_Items_TABLE);
 
-        Log.d(TAG, "** ---> --> items table Created");
-
         //Inventory class
         //toDo change Price & DOE format??
 
@@ -96,8 +90,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 itemUsed + " INTEGER" +
                 ")";
         db.execSQL(CREATE_Inventory_TABLE);
-
-        Log.d(TAG, "** ---> --> Inventory table Created");
 
     }
 
@@ -128,7 +120,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         final String shoppingListNAME = "list_name";
         final String shoppingListUseDate = "list_useDate";
 
-        String[] columns = {shoppingListID, shoppingListNAME};
+        String[] columns = {shoppingListID, shoppingListNAME, shoppingListUseDate};
         String where = shoppingListNAME + "=?";         //"TAG1=? OR TAG2=? OR TAG3=? OR TAG4=? OR TAG5=?";
         String[] args = {strListName};                //{"tagname", "tagname", "tagname", "tagname", "tagname"};
 
@@ -136,15 +128,15 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         Cursor cur = null;
         db.beginTransaction();
         try{
-            Log.d(TAG, "---> --> DB Query For Shopping List [" + strListName + "] Starting");
             cur = db.query(TABLE_ShoppingLists, columns, where, args, null, null, null);
             if(cur != null){
                 if(cur.moveToFirst()){
                     do{
                         //adding shoppingList to list of allShoppingLists
                         modelShoppingList list = new modelShoppingList();
-                        list.setListID(cur.getInt(cur.getColumnIndexOrThrow("list_id")));
-                        list.setListName(cur.getString(cur.getColumnIndexOrThrow("list_name")));
+                        list.setListID(cur.getInt(cur.getColumnIndexOrThrow(shoppingListID)));
+                        list.setListName(cur.getString(cur.getColumnIndexOrThrow(shoppingListNAME)));
+                        list.setUseDate(cur.getString(cur.getColumnIndexOrThrow(shoppingListUseDate)));
                         allShoppingLists.add(list);
                     }
                     while(cur.moveToNext());
@@ -156,7 +148,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             assert cur != null;
             cur.close();
         }
-        Log.d(TAG, "---> --> DB Query for Shopping List done successfully");
         return allShoppingLists.get(0);
     }
 
@@ -167,9 +158,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         Cursor cur = null;
         db.beginTransaction();
         try{
-            Log.d(TAG, "---> --> DB Query Starting");
             cur = db.rawQuery("SELECT * FROM " + TABLE_ShoppingLists, null);
-            Log.d(TAG, "---> --> DB Query for all Shopping Lists done successfully");
             if(cur != null){
                 if(cur.moveToFirst()){
                     do{
@@ -241,7 +230,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         Cursor cur = null;
         db.beginTransaction();
         try{
-            Log.d(TAG, "---> --> Items for Shopping List [" + strListName + "] DB Query Starting");
             cur = db.query(TABLE_Items, columns, where, args, null, null, null);
             if(cur != null){
                 if(cur.moveToFirst()){
@@ -266,7 +254,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             assert cur != null;
             cur.close();
         }
-        Log.d(TAG, "---> --> DB Query for shopping list Items done successfully");
         return allItems;
     }
 
@@ -447,7 +434,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         //removing from db
         final String NAME = "item_name";
         db.delete(TABLE_Inventory, NAME + "= ?", new String[] {item_name});
-        Log.d(MainActivity.TAG, "---> *** --> Inventory Item Removed [DB] **");
     }
 
     public modelItem getInventoryItem(String itemName){

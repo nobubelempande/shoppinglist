@@ -74,16 +74,6 @@ public class UseShoppingListActivity extends AppCompatActivity {
         adapter.setAllShoppingListItems(allShoppingListItems);
     }
 
-    private void doDoneUsingShoppingList() {
-        //goto new page
-        Bundle bundle = new Bundle();
-        bundle.putString("list_name", currShoppingList.getListName());
-        Intent I = new Intent(this,MainActivity.class);
-        I.putExtras(bundle);
-        this.startActivity(I);
-        Toast.makeText(this, "Done Using Shopping List.", Toast.LENGTH_SHORT).show();
-    }
-
     //Nav
     public void goToHome(View view){
         //goto Home page

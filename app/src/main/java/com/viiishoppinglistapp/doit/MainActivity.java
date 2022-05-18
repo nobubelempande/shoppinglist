@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
         //goto new page
         Bundle bundle = new Bundle();
         bundle.putString("list_name", "Opening Inventory");
-        Intent I = new Intent(this,InventoryActivity.class);
+        Intent I = new Intent(this,TabsInventoryActivity.class);
         I.putExtras(bundle);
         this.startActivity(I);
     }
