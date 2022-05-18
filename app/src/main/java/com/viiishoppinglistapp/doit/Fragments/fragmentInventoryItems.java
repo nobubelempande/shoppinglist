@@ -53,14 +53,14 @@ public class fragmentInventoryItems extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable @org.jetbrains.annotations.Nullable ViewGroup container, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable  ViewGroup container, @Nullable  Bundle savedInstanceState) {
         //setupInventory();
 
         return inflater.inflate(R.layout.inventory_items_fragment_layout, container, false);
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable  Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         setupInventory(view);

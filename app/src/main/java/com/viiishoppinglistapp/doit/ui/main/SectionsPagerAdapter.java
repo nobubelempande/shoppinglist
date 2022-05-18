@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.viiishoppinglistapp.doit.Adapters.InventoryItemsAdapter;
 import com.viiishoppinglistapp.doit.Fragments.fragmentInventoryItems;
 import com.viiishoppinglistapp.doit.Fragments.fragmentInventoryStats;
 import com.viiishoppinglistapp.doit.R;

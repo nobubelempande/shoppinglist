@@ -17,7 +17,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 
 import com.viiishoppinglistapp.doit.Adapters.InventoryItemsAdapter;
 import com.viiishoppinglistapp.doit.Adapters.UseShoppingListAdapter;
