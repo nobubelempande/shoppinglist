@@ -4,7 +4,7 @@ android {
     compileSdkVersion 30
 
     defaultConfig {
-        applicationId "net.penguincoders.doit"
+        applicationId "com.viiishoppinglistapp.doit"
         minSdkVersion 23
         targetSdkVersion 30
         versionCode 1
