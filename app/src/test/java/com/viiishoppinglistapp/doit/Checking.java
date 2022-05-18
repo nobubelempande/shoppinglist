@@ -13,7 +13,7 @@ public class Checking {
 
 
     @Test
-    public void isinputValid(){
+    public void isInputValid(){
         String a = "Katleho";
         Boolean b = new Validator(a).isinputString();
         assertThat(b).isEqualTo(true);
