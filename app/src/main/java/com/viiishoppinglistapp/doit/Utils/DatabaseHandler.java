@@ -33,8 +33,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        //db.execSQL(CREATE_TODO_TABLE);
-
         //ShoppingLists class
 
         final String ID = "list_id";
@@ -433,6 +431,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public void deleteInventoryItem(String item_name){
         //removing from db
         final String NAME = "item_name";
+        //todo if(exists) -> if(exists-currQty>=1) -> update(newQty)
         db.delete(TABLE_Inventory, NAME + "= ?", new String[] {item_name});
     }
 

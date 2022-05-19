@@ -58,11 +58,12 @@ public class InventoryItemsAdapter extends RecyclerView.Adapter<InventoryItemsAd
 
     public void onBindViewHolder(ViewHolder holder, int position){
         modelItem currItem = allInventoryItems.get(position);
+        String prc  = String.format("%.2f", currItem.getItemPrice());
 
         holder.tvItemName.setText(currItem.getItemName());
         holder.tvItemQty.setText(" x" + currItem.getItemQty());
-        holder.tvItemPrice.setText("Price: " + currItem.getItemPrice());
-        holder.tvItemDOE.setText("DOE: " + currItem.getItemDOE());
+        holder.tvItemPrice.setText("R" + prc);
+        holder.tvItemDOE.setText("Expires: \n " + currItem.getItemDOE());
 
     }
 
