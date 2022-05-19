@@ -58,7 +58,7 @@ public class InventoryActivity extends AppCompatActivity {
 
         rvInventory = findViewById(R.id.rvInventory);
         rvInventory.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new InventoryItemsAdapter(db, this);
+        //todo adapter = new InventoryItemsAdapter(db, this);
         rvInventory.setAdapter(adapter);
 
         //todo: itemTouchHelper

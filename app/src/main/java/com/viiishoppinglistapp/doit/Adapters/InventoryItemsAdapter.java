@@ -8,9 +8,11 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.viiishoppinglistapp.doit.Fragments.fragmentInventoryItems;
 import com.viiishoppinglistapp.doit.InventoryActivity;
 import com.viiishoppinglistapp.doit.Model.modelItem;
 import com.viiishoppinglistapp.doit.R;
+import com.viiishoppinglistapp.doit.TabsInventoryActivity;
 import com.viiishoppinglistapp.doit.Utils.DatabaseHandler;
 
 import java.util.List;
@@ -19,12 +21,12 @@ import java.util.List;
 public class InventoryItemsAdapter extends RecyclerView.Adapter<InventoryItemsAdapter.ViewHolder> {
 
     private List<modelItem> allInventoryItems;
-    private InventoryActivity activity;
+    private TabsInventoryActivity activity;
 
     private DatabaseHandler db;
 
     //constructor
-    public InventoryItemsAdapter(DatabaseHandler db, InventoryActivity activity){
+    public InventoryItemsAdapter(DatabaseHandler db, TabsInventoryActivity activity){
         this.db = db;
         this.activity = activity;
     }
@@ -56,11 +58,12 @@ public class InventoryItemsAdapter extends RecyclerView.Adapter<InventoryItemsAd
 
     public void onBindViewHolder(ViewHolder holder, int position){
         modelItem currItem = allInventoryItems.get(position);
+        String prc  = String.format("%.2f", currItem.getItemPrice());
 
         holder.tvItemName.setText(currItem.getItemName());
         holder.tvItemQty.setText(" x" + currItem.getItemQty());
-        holder.tvItemPrice.setText("Price: " + currItem.getItemPrice());
-        holder.tvItemDOE.setText("DOE: " + currItem.getItemDOE());
+        holder.tvItemPrice.setText("R" + prc);
+        holder.tvItemDOE.setText("Expires: \n " + currItem.getItemDOE());
 
     }
 

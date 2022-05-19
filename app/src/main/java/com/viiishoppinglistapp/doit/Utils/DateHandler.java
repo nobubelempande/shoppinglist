@@ -3,10 +3,12 @@ package com.viiishoppinglistapp.doit.Utils;
 public class DateHandler {
     private int day;
     private String month;
+    private String numMonth;
     private int year;
 
     public DateHandler(int day, int month, int year){
         setDay(day);
+        setNumMonth(String.valueOf(month));
         setMonth(month);
         setYear(year);
     }
@@ -21,9 +23,11 @@ public class DateHandler {
     public int getYear() {
         return year;
     }
-
+    public String getNumMonth() {
+        return numMonth;
+    }
     public String getDate(){
-        return getDay() + " " + getMonth() + " " + getYear();
+        return getDay() + "/" + getNumMonth() + "/" + getYear();
     }
 
     //setters
@@ -34,30 +38,39 @@ public class DateHandler {
         String month = "";
 
         if(m==1){
+            setNumMonth("01");
             month = "Jan";
         }
         if(m==2){
+            setNumMonth("02");
             month = "Feb";
         }
         if(m==3){
+            setNumMonth("03");
             month = "Mar";
         }
         if(m==4){
+            setNumMonth("04");
             month = "Apr";
         }
         if(m==5){
+            setNumMonth("05");
             month = "May";
         }
         if(m==6){
+            setNumMonth("06");
             month = "Jun";
         }
         if(m==7){
+            setNumMonth("07");
             month = "Jul";
         }
         if(m==8){
+            setNumMonth("08");
             month = "Aug";
         }
         if(m==9){
+            setNumMonth("09");
             month = "Sep";
         }
         if(m==10){
@@ -75,5 +88,8 @@ public class DateHandler {
     }
     public void setYear(int yr) {
         this.year = yr;
+    }
+    public void setNumMonth(String numMonth) {
+        this.numMonth = numMonth;
     }
 }

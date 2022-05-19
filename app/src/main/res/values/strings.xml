@@ -3,4 +3,7 @@
     <string name="save">Save</string>
     <string name="new_task">New Task</string>
     <string name="tasks">Tasks</string>
+    <string name="title_activity_tabs_use_shopping_list">TabsUseShoppingListActivity</string>
+    <string name="tab_text_1">Inventory Items</string>
+    <string name="tab_text_2">Statistics</string>
 </resources>
