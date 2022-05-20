@@ -9,11 +9,11 @@ import org.junit.runners.JUnit4;
 @RunWith(JUnit4.class)
 public class modelItemTest extends TestCase {
 
+    modelItem mi=new modelItem("Default");
     public void setUp() throws Exception {
         super.setUp();
     }
-    String name="Padisho";
-    modelItem mi=new modelItem(name);
+
 
 
     @Test
