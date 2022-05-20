@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -35,6 +37,7 @@ public class AddNewItem extends BottomSheetDialogFragment {
     ArrayAdapter adapter;
 
     private DatabaseHandler db;
+    private Validator validator;
 
     private modelShoppingList currShoppingList;
     private modelItem currItem;
@@ -86,7 +89,6 @@ public class AddNewItem extends BottomSheetDialogFragment {
         etItemName = Objects.requireNonNull(getView()).findViewById(R.id.etItemName_lyt);
         etItemQty = Objects.requireNonNull(getView()).findViewById(R.id.etItemQty_lyt);    //view from new_item
         spItemType = Objects.requireNonNull(getView()).findViewById(R.id.spItemType_lyt);
-        //toDO remove price and DOE
 
         btnSaveItem = getView().findViewById(R.id.btnSaveItem);
 
@@ -101,10 +103,10 @@ public class AddNewItem extends BottomSheetDialogFragment {
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-
             }
         });
-        //toDO
+        Log.d(MainActivity.TAG, "Setup Save II.");
+
         String[] itemTypes = getResources().getStringArray(R.array.types);
         adapter = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item, itemTypes);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -114,6 +116,8 @@ public class AddNewItem extends BottomSheetDialogFragment {
 
         db = new DatabaseHandler(getActivity());
         db.openDatabase();
+
+        validator = new Validator(db);
 
         currItem = new modelItem("");
 
@@ -180,29 +184,49 @@ public class AddNewItem extends BottomSheetDialogFragment {
             }
         });
 
+        Log.d(MainActivity.TAG, "Setup III.");
+
         final boolean finalIsUpdate = isUpdate;
         btnSaveItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d(MainActivity.TAG, "Validator not created.");
                 String name = etItemName.getText().toString();
-                int qty = Integer.parseInt(etItemQty.getText().toString());
+                String strQty = etItemQty.getText().toString();
+                Log.d(MainActivity.TAG, "Validator not created.");
 
-                //model setup
-                currItem.setItemName(name);
-                currItem.setItemQty(qty);
-                currItem.setItemPrice(0);
-                currItem.setItemDOE("--");
-                currItem.setListName(currShoppingList.getListName());
+                boolean isNameValid = validator.isItemNameNotEmpty(name);
+                boolean isQtyValid = validator.isItemQtyNotEmpty(strQty);
+                boolean isTypeValid = validator.isItemTypeSelected(currItem.getItemType());
 
-                if(finalIsUpdate){
-                    currItem.setItemID(bundle.getInt("id"));
+                Log.d(MainActivity.TAG, "Is Type Valid? - " + isTypeValid);
 
-                    db.updateItem(currItem);
+                if(!isNameValid){
+                    Toast.makeText(getContext(),"Please Enter the Name.", Toast.LENGTH_SHORT).show();
                 }
-                else {
-                    addingNewItemToDB(currItem);
+                if(!isQtyValid){
+                    Toast.makeText(getContext(),"Please Enter the Quantity.", Toast.LENGTH_LONG).show();
                 }
-                dismiss();
+                if(!isTypeValid){
+                    Toast.makeText(getContext(),"Please Select The Type.", Toast.LENGTH_SHORT).show();
+                }
+                if(isNameValid && isQtyValid && isTypeValid){
+                    currItem.setItemName(name);
+                    currItem.setItemQty(Integer.parseInt(strQty));
+                    currItem.setItemPrice(0);
+                    currItem.setItemDOE("-");
+                    currItem.setListName(currShoppingList.getListName());
+
+                    if(finalIsUpdate){
+                        currItem.setItemID(bundle.getInt("id"));
+
+                        db.updateItem(currItem);
+                    }
+                    else {
+                        addingNewItemToDB(currItem);
+                    }
+                    dismiss();
+                }
             }
         });
     }

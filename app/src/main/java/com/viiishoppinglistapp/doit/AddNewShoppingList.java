@@ -135,7 +135,7 @@ public class AddNewShoppingList extends BottomSheetDialogFragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if(s.toString().equals("")){
-                    btnSaveList.setEnabled(true);
+                    btnSaveList.setEnabled(false);
                     btnSaveList.setTextColor(Color.GRAY);
                 }
                 else{
@@ -153,16 +153,13 @@ public class AddNewShoppingList extends BottomSheetDialogFragment {
         btnSaveList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(MainActivity.TAG, "Save Button Start");
+
                 String text = etNewListName.getText().toString();
                 String date = tvNewListUseDate.getText().toString();
 
-                Log.d(MainActivity.TAG, "Items Captured.");
                 validator = new Validator(db);
-                Log.d(MainActivity.TAG, "Validator Created.");
                 boolean isNameValid = validator.isShoppingListNameValid(text);
 
-                Log.d(MainActivity.TAG, "Validator Ran");
                 if (isNameValid){
                     currShoppingList = new modelShoppingList();
 
