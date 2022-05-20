@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -43,6 +44,7 @@ public class AddNewShoppingList extends BottomSheetDialogFragment {
 
     private DatabaseHandler db;
     private DateHandler date;
+    private Validator validator;
 
     //lists::
     private EditText etNewListName;
@@ -93,6 +95,8 @@ public class AddNewShoppingList extends BottomSheetDialogFragment {
         etNewListName = Objects.requireNonNull(getView()).findViewById(R.id.tvListName_newShoppingList);     //view from new_shopping_list
         btnSaveList = getView().findViewById(R.id.btnSaveShoppingList);
 
+        btnSaveList.setEnabled(true);
+
         initDatePicker();
         tvNewListUseDate = getView().findViewById(R.id.tvListDate_newShoppingList);
         tvNewListUseDate.setText(getTodayDate());
@@ -131,7 +135,7 @@ public class AddNewShoppingList extends BottomSheetDialogFragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if(s.toString().equals("")){
-                    btnSaveList.setEnabled(false);
+                    btnSaveList.setEnabled(true);
                     btnSaveList.setTextColor(Color.GRAY);
                 }
                 else{
@@ -149,23 +153,35 @@ public class AddNewShoppingList extends BottomSheetDialogFragment {
         btnSaveList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d(MainActivity.TAG, "Save Button Start");
                 String text = etNewListName.getText().toString();
                 String date = tvNewListUseDate.getText().toString();
 
-                currShoppingList = new modelShoppingList();
+                Log.d(MainActivity.TAG, "Items Captured.");
+                validator = new Validator(db);
+                Log.d(MainActivity.TAG, "Validator Created.");
+                boolean isNameValid = validator.isShoppingListNameValid(text);
 
-                currShoppingList.setListName(text);
-                currShoppingList.setUseDate(date);
+                Log.d(MainActivity.TAG, "Validator Ran");
+                if (isNameValid){
+                    currShoppingList = new modelShoppingList();
 
-                if(finalIsUpdate){
-                    currShoppingList.setListID(bundle.getInt("id"));
+                    currShoppingList.setListName(text);
+                    currShoppingList.setUseDate(date);
 
-                    db.updateShoppingList(currShoppingList);
+                    if(finalIsUpdate){
+                        currShoppingList.setListID(bundle.getInt("id"));
+
+                        db.updateShoppingList(currShoppingList);
+                    }
+                    else {
+                        addingListToDB(currShoppingList);
+                    }
+                    dismiss();
                 }
-                else {
-                    addingListToDB(currShoppingList);
+                else{
+                    Toast.makeText(getContext(),"Give Your Shopping List A Name.", Toast.LENGTH_LONG).show();
                 }
-                dismiss();
             }
         });
     }

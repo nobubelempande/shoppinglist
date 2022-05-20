@@ -17,7 +17,7 @@ import java.util.List;
 public class DatabaseHandler extends SQLiteOpenHelper {
 
     private static final int VERSION = 1;
-    private static final String NAME = "ListDatabase_2";
+    private static final String NAME = "ListDatabase_3";
 
     private SQLiteDatabase db;
 

@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
         //toDO remove list name bundle
         //goto new page
         Bundle bundle = new Bundle();
-        bundle.putString("list_name", "Opening Inventory");
+        bundle.putString("list_name", "No List Selected.");
         Intent I = new Intent(this,TabsInventoryActivity.class);
         I.putExtras(bundle);
         this.startActivity(I);
