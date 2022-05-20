@@ -2,8 +2,11 @@ package com.viiishoppinglistapp.doit.Model;
 
 import junit.framework.TestCase;
 
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
-
+@RunWith(JUnit4.class)
 public class modelItemTest extends TestCase {
 
     public void setUp() throws Exception {
@@ -11,12 +14,14 @@ public class modelItemTest extends TestCase {
     }
     String name="Padisho";
     modelItem mi=new modelItem(name);
-    int itemid=1;
 
 
+    @Test
     public void testGetItemID() {
+        int itemid=1;
         mi.setItemID(itemid);
         assertEquals(itemid,mi.getItemID());
+
     }
 
     public void testGetItemQty() {
