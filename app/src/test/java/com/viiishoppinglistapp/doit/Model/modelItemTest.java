@@ -19,8 +19,9 @@ public class modelItemTest extends TestCase {
     @Test
     public void testGetItemID() {
         int itemid=1;
-        mi.setItemID(itemid);
-        assertEquals(itemid,mi.getItemID());
+        modelItem m=new modelItem("Default");
+        m.setItemID(itemid);
+        assertEquals(itemid,m.getItemID());
 
     }
 
@@ -45,7 +46,12 @@ public class modelItemTest extends TestCase {
     public void testIsUsed() {
     }
 
+    @Test
     public void testSetItemID() {
+        int itemid=1;
+        modelItem m=new modelItem("Default");
+        m.setItemID(itemid);
+        assertEquals(m.getItemID(), itemid);
 
     }
 
