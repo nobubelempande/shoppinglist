@@ -18,7 +18,7 @@ import com.viiishoppinglistapp.doit.TabsInventoryActivity;
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
  * one of the sections/tabs/pages.
  */
-public class SectionsPagerAdapter extends FragmentPagerAdapter {
+public class InventorySectionsPagerAdapter extends FragmentPagerAdapter {
 
     TabsInventoryActivity activity;
 
@@ -26,7 +26,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     private static final int[] TAB_TITLES = new int[]{R.string.tab_text_1, R.string.tab_text_2};
     private final Context mContext;
 
-    public SectionsPagerAdapter(Context context, FragmentManager fm, TabsInventoryActivity activity) {
+    public InventorySectionsPagerAdapter(Context context, FragmentManager fm, TabsInventoryActivity activity) {
         super(fm);
         mContext = context;
         this.activity = activity;

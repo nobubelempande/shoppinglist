@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.viiishoppinglistapp.doit.R;
+
 import com.viiishoppinglistapp.doit.databinding.FragmentTabsUseShoppingListBinding;
 
 /**
@@ -48,7 +48,6 @@ public class PlaceholderFragment extends Fragment {
     public View onCreateView(
             @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-
         binding = FragmentTabsUseShoppingListBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
