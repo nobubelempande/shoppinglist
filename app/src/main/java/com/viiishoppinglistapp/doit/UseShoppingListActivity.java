@@ -47,7 +47,7 @@ public class UseShoppingListActivity extends AppCompatActivity {
         String strListName = bundle.getString("list_name", "Default");
 
         TextView name = (TextView) findViewById(R.id.tvTop_useList);
-        name.setText("List Name: " + strListName);
+        name.setText("Using " + strListName + " Shopping List");
 
         currShoppingList = db.getShoppingList(strListName);
     }

@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.viiishoppinglistapp.doit.Adapters.UsedShoppingListsAdapter;
 import com.viiishoppinglistapp.doit.Model.modelItem;
 import com.viiishoppinglistapp.doit.Model.modelShoppingList;
 import com.viiishoppinglistapp.doit.R;
