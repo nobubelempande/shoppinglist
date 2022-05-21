@@ -72,9 +72,9 @@ public class UnusedShoppingListsAdapter extends RecyclerView.Adapter<UnusedShopp
         ViewHolder(View view) {
             super(view);
 
-            tvCurrShoppingList = view.findViewById(R.id.tvSavedShoppingList_layout);
-            tvUseDate = view.findViewById(R.id.tvListUseDate_layout);
-            lyt = view.findViewById(R.id.lytShoppingList);
+            tvCurrShoppingList = view.findViewById(R.id.tvUnusedListName_layout);
+            tvUseDate = view.findViewById(R.id.tvUnusedListUseDate_layout);
+            lyt = view.findViewById(R.id.lytUnusedShoppingList);
         }
 
     }

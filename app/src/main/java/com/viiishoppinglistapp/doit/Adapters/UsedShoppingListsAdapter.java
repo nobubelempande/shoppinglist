@@ -64,7 +64,7 @@ public class UsedShoppingListsAdapter extends RecyclerView.Adapter<UsedShoppingL
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tvCurrShoppingList, tvUseDate;
+        TextView tvName, tvUseDate;
         RelativeLayout lyt;
 
         //constructor
@@ -72,9 +72,9 @@ public class UsedShoppingListsAdapter extends RecyclerView.Adapter<UsedShoppingL
         ViewHolder(View view) {
             super(view);
 
-            tvCurrShoppingList = view.findViewById(R.id.tv);
-            tvUseDate = view.findViewById(R.id.tv);
-            lyt = view.findViewById(R.id.lyt);
+            tvName = view.findViewById(R.id.tvUnusedListName_layout);
+            tvUseDate = view.findViewById(R.id.tvUsedListUseDate_layout);
+            lyt = view.findViewById(R.id.lytUsedShoppingList);
         }
 
     }
@@ -108,7 +108,7 @@ public class UsedShoppingListsAdapter extends RecyclerView.Adapter<UsedShoppingL
         final String listName = currList.getListName();
         final String useDate = currList.getUseDate();
 
-        holder.tvCurrShoppingList.setText(listName);
+        holder.tvName.setText(listName);
         holder.tvUseDate.setText(useDate);
         holder.lyt.setOnClickListener(new View.OnClickListener() {
             @Override
