@@ -1,4 +1,4 @@
-package com.viiishoppinglistapp.doit.ui.main;
+package com.viiishoppinglistapp.doit.ui.home;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,21 +12,20 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.viiishoppinglistapp.doit.R;
 import com.viiishoppinglistapp.doit.databinding.FragmentTabbedHomeBinding;
 
 /**
  * A placeholder fragment containing a simple view.
  */
-public class PlaceholderFragment extends Fragment {
+public class PlaceholderFragmentHome extends Fragment {
 
     private static final String ARG_SECTION_NUMBER = "section_number";
 
-    private PageViewModel pageViewModel;
+    private PageViewModelHome pageViewModelHome;
     private FragmentTabbedHomeBinding binding;
 
-    public static PlaceholderFragment newInstance(int index) {
-        PlaceholderFragment fragment = new PlaceholderFragment();
+    public static PlaceholderFragmentHome newInstance(int index) {
+        PlaceholderFragmentHome fragment = new PlaceholderFragmentHome();
         Bundle bundle = new Bundle();
         bundle.putInt(ARG_SECTION_NUMBER, index);
         fragment.setArguments(bundle);
@@ -36,12 +35,12 @@ public class PlaceholderFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        pageViewModel = new ViewModelProvider(this).get(PageViewModel.class);
+        pageViewModelHome = new ViewModelProvider(this).get(PageViewModelHome.class);
         int index = 1;
         if (getArguments() != null) {
             index = getArguments().getInt(ARG_SECTION_NUMBER);
         }
-        pageViewModel.setIndex(index);
+        pageViewModelHome.setIndex(index);
     }
 
     @Override
@@ -53,7 +52,7 @@ public class PlaceholderFragment extends Fragment {
         View root = binding.getRoot();
 
         final TextView textView = binding.sectionLabel;
-        pageViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        pageViewModelHome.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

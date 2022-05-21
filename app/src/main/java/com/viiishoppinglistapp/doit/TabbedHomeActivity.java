@@ -9,11 +9,9 @@ import com.google.android.material.tabs.TabLayout;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 
-import com.viiishoppinglistapp.doit.ui.main.SectionsPagerAdapter;
+import com.viiishoppinglistapp.doit.ui.home.HomeSectionsPagerAdapter;
 import com.viiishoppinglistapp.doit.databinding.ActivityTabbedHomeBinding;
 
 public class TabbedHomeActivity extends AppCompatActivity {
@@ -27,9 +25,9 @@ public class TabbedHomeActivity extends AppCompatActivity {
         binding = ActivityTabbedHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
+        HomeSectionsPagerAdapter homeSectionsPagerAdapter = new HomeSectionsPagerAdapter(this, getSupportFragmentManager());
         ViewPager viewPager = binding.viewPager;
-        viewPager.setAdapter(sectionsPagerAdapter);
+        viewPager.setAdapter(homeSectionsPagerAdapter);
         TabLayout tabs = binding.tabs;
         tabs.setupWithViewPager(viewPager);
         FloatingActionButton fab = binding.fab;
