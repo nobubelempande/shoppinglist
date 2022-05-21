@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,11 +36,20 @@ public class UseShoppingListActivity extends AppCompatActivity implements Dialog
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_use_shopping_list);
 
+        Log.d(HomeActivity_old.TAG, "USE LIST:: onCreate");
+
         getSupportActionBar().hide();
+
+        Log.d(HomeActivity_old.TAG, "USE LIST:: onCreate Start");
 
         setCurrShoppingList();
 
+        Log.d(HomeActivity_old.TAG, "USE LIST:: onCreate Curr List");
+
         setupShoppingList();
+
+        Log.d(HomeActivity_old.TAG, "USE LIST:: onCreate End");
+
     }
 
     private void setCurrShoppingList() {
@@ -57,20 +67,27 @@ public class UseShoppingListActivity extends AppCompatActivity implements Dialog
     }
 
     private void setupShoppingList() {
-        setCurrShoppingList();
-
         rvUseShoppingList = findViewById(R.id.rvInUseShoppingList);
         rvUseShoppingList.setLayoutManager(new LinearLayoutManager(this));
         adapter = new UseShoppingListAdapter(db, this);
         rvUseShoppingList.setAdapter(adapter);
 
+        Log.d(HomeActivity_old.TAG, "USE LIST:: Setup --> Adapter Set");
+
         allShoppingListItems = db.getItemsForShoppingList(currShoppingList.getListName());
+
+        Log.d(HomeActivity_old.TAG, "USE LIST:: Setup --> DB Returned");
         if (allShoppingListItems.size()<1){
-            //doDoneUsingShoppingList();
+            //no items
+            Toast.makeText(this, "Add Items To Your Shopping List.", Toast.LENGTH_SHORT).show();
         }
         Collections.reverse(allShoppingListItems);
 
+        Log.d(HomeActivity_old.TAG, "USE LIST:: Setup --> Adapter Items Set");
+
         adapter.setAllShoppingListItems(allShoppingListItems);
+
+        Log.d(HomeActivity_old.TAG, "USE LIST:: Setup --> Adapter Set II");
     }
 
     @Override

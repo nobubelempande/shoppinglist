@@ -9,15 +9,22 @@ public class DateHandler {
     private String month;
     private String numMonth;
     private int year;
+    private String DATE;
 
+    String no_date = "--/--/--";
+
+    //constructors
     public DateHandler(int day, int month, int year){
-        Log.d(HomeActivity_old.TAG, "--> --> Date: ");
         setDay(day);
         setNumMonth(String.valueOf(month));
         setMonth(month);
         setYear(year);
-        Log.d(HomeActivity_old.TAG, "--> --> Date: Done");
+        setDATE(getDate());
     }
+    public DateHandler(){
+        setDATE(no_date);
+    }
+
 
     //getters
     public int getDay() {
@@ -34,6 +41,10 @@ public class DateHandler {
     }
     public String getDate(){
         return getDay() + "/" + getNumMonth() + "/" + getYear();
+    }
+    public String getNoDate() {
+        setDATE(no_date);
+        return DATE;
     }
 
     //setters
@@ -97,5 +108,13 @@ public class DateHandler {
     }
     public void setNumMonth(String numMonth) {
         this.numMonth = numMonth;
+    }
+
+    public String getDATE() {
+        return DATE;
+    }
+
+    public void setDATE(String DATE) {
+        this.DATE = DATE;
     }
 }

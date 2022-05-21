@@ -5,7 +5,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
+import com.viiishoppinglistapp.doit.HomeActivity_old;
 import com.viiishoppinglistapp.doit.Model.modelItem;
 import com.viiishoppinglistapp.doit.Model.modelShoppingList;
 
@@ -319,6 +321,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 if(cur.moveToFirst()){
                     do{
                         //adding shoppingList to list of allShoppingLists
+                        Log.d(TAG, "getItemsForShoppingList: Start");
                         modelItem currItem = new modelItem(cur.getString(cur.getColumnIndexOrThrow(itemNAME)));
                         currItem.setItemID(cur.getInt(cur.getColumnIndexOrThrow(itemID)));
                         currItem.setItemQty(cur.getInt(cur.getColumnIndexOrThrow(itemQTY)));
@@ -328,6 +331,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                         currItem.setItemDOE(cur.getString(cur.getColumnIndexOrThrow(itemDOE)));
                         currItem.setChecked(cur.getInt(cur.getColumnIndexOrThrow(itemUsed)));
                         allItems.add(currItem);
+                        Log.d(TAG, "getItemsForShoppingList: Done");
                     }
                     while(cur.moveToNext());
                 }

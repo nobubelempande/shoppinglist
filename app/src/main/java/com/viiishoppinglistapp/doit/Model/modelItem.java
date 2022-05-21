@@ -1,6 +1,12 @@
 package com.viiishoppinglistapp.doit.Model;
 
+import android.util.Log;
+
+import com.viiishoppinglistapp.doit.HomeActivity_old;
+import com.viiishoppinglistapp.doit.Utils.DateHandler;
+
 public class modelItem {
+    //attributes
     private int item_id;
     private int item_qty;
     private double item_price;
@@ -10,12 +16,25 @@ public class modelItem {
     private String item_type;
     private boolean checked;
 
+    //handlers
+    DateHandler date;
+
 
     //constructor
     public modelItem(String name){
-        setItemQty(1);
+        date = new DateHandler();
+        Log.d(HomeActivity_old.TAG, "Model Setup Start");
         setItemName(name);
+        setItemQty(1);
+        Log.d(HomeActivity_old.TAG, "Model Setup Mid 1");
         setChecked(0);
+        Log.d(HomeActivity_old.TAG, "Model Setup Mid 2");
+        setItemPrice(0.0);
+        Log.d(HomeActivity_old.TAG, "Model Setup Mid 3");
+        setItemDOE("N/A");
+        Log.d(HomeActivity_old.TAG, "Model Setup Mid 3");
+
+        Log.d(HomeActivity_old.TAG, "Model Setup End");
     }
 
 
@@ -65,7 +84,12 @@ public class modelItem {
         this.item_price = item_price;
     }
     public void setItemDOE(String item_doe) {
-        this.item_doe = item_doe;
+        if(item_doe.equals(date.getNoDate())){
+            this.item_doe = "N/A";
+        }
+        else{
+            this.item_doe = item_doe;
+        }
     }
     public void setChecked(int checked) {
         if(checked == 0){

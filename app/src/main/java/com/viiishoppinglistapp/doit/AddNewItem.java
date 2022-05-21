@@ -82,7 +82,6 @@ public class AddNewItem extends BottomSheetDialogFragment {
         super.onViewCreated(view, savedInstanceState);
 
         setupItemEditorLayoutUsingShoppingList(view, savedInstanceState);
-        //setupItemEditorLayout(view, savedInstanceState);
     }
 
     private void setupItemEditorLayoutUsingShoppingList(View view, Bundle savedInstanceState) {
@@ -108,19 +107,27 @@ public class AddNewItem extends BottomSheetDialogFragment {
         Log.d(HomeActivity_old.TAG, "Setup Save II.");
 
         String[] itemTypes = getResources().getStringArray(R.array.types);
-        adapter = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item, itemTypes);
+        Log.d(HomeActivity_old.TAG, "Setup Save IIa.");
+        adapter = new ArrayAdapter(Objects.requireNonNull(getContext()), android.R.layout.simple_spinner_item, itemTypes);
+        Log.d(HomeActivity_old.TAG, "Setup Save IIb.");
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        Log.d(HomeActivity_old.TAG, "Setup Save IIc.");
         spItemType.setAdapter(adapter);
-
+        Log.d(HomeActivity_old.TAG, "Setup Save IId.");
         boolean isUpdate = false;
 
-        db = new DatabaseHandler(getActivity());
+        db = new DatabaseHandler(Objects.requireNonNull(getContext()));
         db.openDatabase();
 
-        validator = new Validator(db);
+        Log.d(HomeActivity_old.TAG, "Setup Save IIe.");
 
-        currItem = new modelItem("");
+        validator = new Validator(db);
+        Log.d(HomeActivity_old.TAG, "Setup Save IIf.");
+        currItem = new modelItem("new Item");
+        Log.d(HomeActivity_old.TAG, "Setup Save IIg.");
         currShoppingList = new modelShoppingList();
+
+        Log.d(HomeActivity_old.TAG, "Setup Save III: Start");
 
         final Bundle bundle = getArguments();
         if(bundle != null){
@@ -161,6 +168,7 @@ public class AddNewItem extends BottomSheetDialogFragment {
 
         }
 
+        Log.d(HomeActivity_old.TAG, "Setup Save III.");
 
         etItemName.addTextChangedListener(new TextWatcher() {
             @Override
@@ -184,7 +192,7 @@ public class AddNewItem extends BottomSheetDialogFragment {
             }
         });
 
-        Log.d(HomeActivity_old.TAG, "Setup III.");
+        Log.d(HomeActivity_old.TAG, "Setup IV.");
 
         final boolean finalIsUpdate = isUpdate;
         btnSaveItem.setOnClickListener(new View.OnClickListener() {
