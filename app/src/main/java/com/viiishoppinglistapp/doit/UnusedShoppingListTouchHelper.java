@@ -13,14 +13,14 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.viiishoppinglistapp.doit.Adapters.SavedShoppingListAdapter;
+import com.viiishoppinglistapp.doit.Adapters.UnusedShoppingListsAdapter;
 
-public class SavedShoppingListTouchHelper extends ItemTouchHelper.SimpleCallback {
+public class UnusedShoppingListTouchHelper extends ItemTouchHelper.SimpleCallback {
 
-    private SavedShoppingListAdapter adapter;
+    private UnusedShoppingListsAdapter adapter;
 
 
-    public SavedShoppingListTouchHelper(SavedShoppingListAdapter adapter) {
+    public UnusedShoppingListTouchHelper(UnusedShoppingListsAdapter adapter) {
         super(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT);
         this.adapter = adapter;
     }

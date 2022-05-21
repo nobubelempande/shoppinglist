@@ -1,6 +1,12 @@
 package com.viiishoppinglistapp.doit.Model;
 
+import android.util.Log;
+
+import com.viiishoppinglistapp.doit.HomeActivity_old;
+import com.viiishoppinglistapp.doit.Utils.DateHandler;
+
 public class modelItem {
+    //attributes
     private int item_id;
     private int item_qty;
     private double item_price;
@@ -8,15 +14,31 @@ public class modelItem {
     private String item_name;
     private String list_name;
     private String item_type;
-    private boolean used;
+    private boolean checked;
+
+    //handlers
+    DateHandler date;
 
 
     //constructor
     public modelItem(String name){
-        setItemQty(1);
+        date = new DateHandler();
         setItemName(name);
-        setUsed(0);
+        setItemQty(1);
+        setChecked(0);
+        setItemPrice(0.0);
+        setItemDOE("N/A");
     }
+    public modelItem(int ID){
+        date = new DateHandler();
+        setItemID(ID);
+        setItemName("some Item");
+        setItemQty(1);
+        setChecked(0);
+        setItemPrice(0.0);
+        setItemDOE("N/A");
+    }
+
 
 
     //getters
@@ -41,8 +63,8 @@ public class modelItem {
     public String getItemDOE() {
         return item_doe;
     }
-    public boolean isUsed() {
-        return used;
+    public boolean isChecked() {
+        return checked;
     }
 
     //setters
@@ -65,14 +87,19 @@ public class modelItem {
         this.item_price = item_price;
     }
     public void setItemDOE(String item_doe) {
-        this.item_doe = item_doe;
-    }
-    public void setUsed(int used) {
-        if(used == 0){
-            this.used = false;
+        if(item_doe.equals(date.getNoDate())){
+            this.item_doe = "N/A";
         }
-        if(used == 1){
-            this.used = true;
+        else{
+            this.item_doe = item_doe;
+        }
+    }
+    public void setChecked(int checked) {
+        if(checked == 0){
+            this.checked = false;
+        }
+        if(checked == 1){
+            this.checked = true;
         }
     }
 

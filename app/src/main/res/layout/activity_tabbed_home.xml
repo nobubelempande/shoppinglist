@@ -5,12 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".AddShoppingListItemsActivity">
+    tools:context=".TabbedHomeActivity">
 
-    <LinearLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/imgVIII_icon"
@@ -19,59 +18,42 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="15dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/viii_icon" />
 
-        <TextView
-            android:id="@+id/tvTop_newActivity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:layout_marginTop="25dp"
-            android:layout_marginBottom="25dp"
-            android:layout_gravity="center_horizontal"
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.appbar.AppBarLayout>
 
-            />
-    </LinearLayout>
-
-
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvItems_newActivity"
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/view_pager"
         android:layout_width="match_parent"
-        android:layout_height="440dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginRight="15dp"
-        android:layout_marginLeft="15dp"
+        android:layout_height="460dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-
 
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fabGoHome"
-            android:layout_width="265dp"
-            android:layout_height="75dp"
+            android:id="@+id/fabHomeToInventory_tabbed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="44dp"
             android:layout_marginBottom="44dp"
             android:backgroundTint="@android:color/holo_green_dark"
             android:clickable="true"
-            android:onClick="goToHome"
-            app:fabSize="auto"
-            app:srcCompat="@android:drawable/ic_menu_myplaces" />
+            android:onClick="goToInventory"
+            app:srcCompat="@android:drawable/ic_menu_save" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fabAddNewItem_NewActivity"
+            android:id="@+id/fabAddNewShoppingList_tabbed"
             android:layout_width="wrap_content"
-            android:layout_height="72dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:layout_marginEnd="44dp"
@@ -80,6 +62,4 @@
             android:src="@drawable/ic_baseline_add_24" />
 
     </RelativeLayout>
-
-
 </LinearLayout>

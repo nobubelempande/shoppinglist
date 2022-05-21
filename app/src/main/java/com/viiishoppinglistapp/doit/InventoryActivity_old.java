@@ -7,21 +7,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
 
-import com.viiishoppinglistapp.doit.Adapters.AddingItemsAdapter;
 import com.viiishoppinglistapp.doit.Adapters.InventoryItemsAdapter;
 import com.viiishoppinglistapp.doit.Model.modelItem;
 import com.viiishoppinglistapp.doit.Model.modelShoppingList;
 import com.viiishoppinglistapp.doit.Utils.DatabaseHandler;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class InventoryActivity extends AppCompatActivity {
+public class InventoryActivity_old extends AppCompatActivity {
 
     private RecyclerView rvInventory;
     private InventoryItemsAdapter adapter;
@@ -34,7 +30,7 @@ public class InventoryActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_inventory);
+        setContentView(R.layout.activity_inventory_old);
 
         getSupportActionBar().hide();
 
@@ -76,7 +72,7 @@ public class InventoryActivity extends AppCompatActivity {
         //goto Home page
         Bundle bundle = new Bundle();
         bundle.putString("list_name", "TestDay ShoppingList");
-        Intent I = new Intent(this,MainActivity.class);
+        Intent I = new Intent(this, HomeActivity_old.class);
         I.putExtras(bundle);
         this.startActivity(I);
     }

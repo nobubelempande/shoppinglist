@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.viiishoppinglistapp.doit">
 
@@ -9,12 +10,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".TabsInventoryActivity"
+            android:name=".TabbedHomeActivity"
+            android:exported="false"
+            android:label="@string/title_activity_tabbed_home"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".TabbedInventoryActivity"
             android:exported="false"
             android:label="@string/title_activity_tabs_use_shopping_list"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".InventoryActivity"
+            android:name=".InventoryActivity_old"
             android:exported="false" />
         <activity
             android:name=".AddShoppingListItemsActivity"
@@ -22,14 +28,16 @@
         <activity
             android:name=".UseShoppingListActivity"
             android:exported="false" />
-        <activity android:name=".SplashActivity">
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
 
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
+        <activity android:name=".HomeActivity_old" />
     </application>
 
 </manifest>

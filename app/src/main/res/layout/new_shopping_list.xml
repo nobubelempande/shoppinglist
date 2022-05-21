@@ -11,6 +11,7 @@
         android:layout_marginTop="10dp"
         android:background="@null"
         android:hint="Shopping list name"
+        android:text=""
         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
     <TextView

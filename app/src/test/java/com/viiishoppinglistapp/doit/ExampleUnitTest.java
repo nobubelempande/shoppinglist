@@ -1,4 +1,4 @@
-package net.penguincoders.doit;
+package com.viiishoppinglistapp.doit;
 
 import org.junit.Test;
 

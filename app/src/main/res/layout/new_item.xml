@@ -7,12 +7,13 @@
         android:id="@+id/etItemName_lyt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="15dp"
-        android:layout_marginLeft="5dp"
-        android:textSize="15sp"
         android:background="@null"
-        android:hint="Name" />
+        android:hint="Name"
+        android:text=""
+        android:textSize="15sp" />
 
     <EditText
         android:id="@+id/etItemQty_lyt"
@@ -24,6 +25,7 @@
         android:layout_marginLeft="5dp"
         android:textSize="15sp"
         android:hint="Item Qty"
+        android:text=""
         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
     <Spinner

@@ -3,6 +3,8 @@ package com.viiishoppinglistapp.doit.Testingfiles;
 import static com.google.common.truth.Truth.assertThat;
 import static org.junit.Assert.*;
 
+import com.viiishoppinglistapp.doit.Testingfiles.Validator;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;

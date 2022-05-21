@@ -1,17 +1,30 @@
 package com.viiishoppinglistapp.doit.Utils;
 
+import android.util.Log;
+
+import com.viiishoppinglistapp.doit.HomeActivity_old;
+
 public class DateHandler {
     private int day;
     private String month;
     private String numMonth;
     private int year;
+    private String DATE;
 
+    String no_date = "--/--/--";
+
+    //constructors
     public DateHandler(int day, int month, int year){
         setDay(day);
         setNumMonth(String.valueOf(month));
         setMonth(month);
         setYear(year);
+        setDATE(getDate());
     }
+    public DateHandler(){
+        setDATE(no_date);
+    }
+
 
     //getters
     public int getDay() {
@@ -28,6 +41,10 @@ public class DateHandler {
     }
     public String getDate(){
         return getDay() + "/" + getNumMonth() + "/" + getYear();
+    }
+    public String getNoDate() {
+        setDATE(no_date);
+        return DATE;
     }
 
     //setters
@@ -91,5 +108,13 @@ public class DateHandler {
     }
     public void setNumMonth(String numMonth) {
         this.numMonth = numMonth;
+    }
+
+    public String getDATE() {
+        return DATE;
+    }
+
+    public void setDATE(String DATE) {
+        this.DATE = DATE;
     }
 }

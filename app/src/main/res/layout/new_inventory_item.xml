@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
@@ -29,29 +30,47 @@
         android:textSize="15sp"
         android:hint="Item Price"/>
 
-    <TextView
-        android:id="@+id/tvInventoryItemDOE_new"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/lytInventoryDate"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/etInventoryItemPrice_new"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginBottom="20dp"
-        android:textSize="15sp"
-        android:hint="Item DOE"/>
+        android:gravity="center_vertical"
+        android:weightSum="4"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvInventoryItemDOE_new"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:hint="Item DOE"
+            android:textSize="15sp"
+            android:layout_weight="3"
+            />
+
+        <Switch
+            android:id="@+id/switchDate"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="" />
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/btnAddToInventory_new"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="76dp"
+        android:layout_below="@+id/lytInventoryDate"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginBottom="15dp"
-        android:layout_below="@+id/tvInventoryItemDOE_new"
         android:background="@android:color/transparent"
-        android:textColor="@android:color/darker_gray"
-        android:text="add to Inventory" />
+        android:text="add to Inventory"
+        android:textColor="@android:color/darker_gray" />
 
     <Button
         android:id="@+id/btnCancelAddToInventory_new"

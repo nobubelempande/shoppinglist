@@ -8,48 +8,48 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.viiishoppinglistapp.doit.AddNewShoppingList;
 import com.viiishoppinglistapp.doit.AddShoppingListItemsActivity;
-import com.viiishoppinglistapp.doit.MainActivity;
 import com.viiishoppinglistapp.doit.Model.modelShoppingList;
 import com.viiishoppinglistapp.doit.R;
+import com.viiishoppinglistapp.doit.TabbedHomeActivity;
 import com.viiishoppinglistapp.doit.UseShoppingListActivity;
 import com.viiishoppinglistapp.doit.Utils.DatabaseHandler;
 
 import java.util.List;
 
-public class SavedShoppingListAdapter extends RecyclerView.Adapter<SavedShoppingListAdapter.ViewHolder> {
-
-    private final String TAG = "VIII-Adapter";
+public class UsedShoppingListsAdapter extends RecyclerView.Adapter<UsedShoppingListsAdapter.ViewHolder>{
 
     private DatabaseHandler db;
-    private MainActivity activityMain;
+    private TabbedHomeActivity activity;
 
 
     //models
     private List<modelShoppingList> allShoppingLists;
 
     //constructor
-    public SavedShoppingListAdapter(DatabaseHandler db, MainActivity activity) {
+    public UsedShoppingListsAdapter(DatabaseHandler db, TabbedHomeActivity activity) {
         this.db = db;
-        this.activityMain = activity;
+        this.activity = activity;
 
     }
 
-    public void setAllShoppingLists(List<modelShoppingList> allLists) {
+    public void setAllUsedShoppingLists(List<modelShoppingList> allLists) {
         this.allShoppingLists = allLists;
         notifyDataSetChanged();     //updates recycler view
     }
 
     public Context getContext() {
-        return activityMain;
+        return activity;
     }
 
     @Override
@@ -60,26 +60,22 @@ public class SavedShoppingListAdapter extends RecyclerView.Adapter<SavedShopping
         return allShoppingLists.size();
     }
 
-
     //required
 
     //ViewHolder
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        //set bundle // currModel
-        //curr items view
 
-        TextView tvCurrShoppingList, tvUseDate;
+        TextView tvName, tvUseDate;
         RelativeLayout lyt;
 
         //constructor
-        //toDo different constructor
-        ViewHolder(View view) {     //use bundle? use currModel
+        ViewHolder(View view) {
             super(view);
 
-            tvCurrShoppingList = view.findViewById(R.id.tvSavedShoppingList_layout);
-            tvUseDate = view.findViewById(R.id.tvListUseDate_layout);
-            lyt = view.findViewById(R.id.lytShoppingList);
+            tvName = view.findViewById(R.id.tvUsedListName_layout);
+            tvUseDate = view.findViewById(R.id.tvUsedListUseDate_layout);
+            lyt = view.findViewById(R.id.lytUsedShoppingList);
         }
 
     }
@@ -87,35 +83,33 @@ public class SavedShoppingListAdapter extends RecyclerView.Adapter<SavedShopping
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public UsedShoppingListsAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         //responsible for inflating views
 
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.saved_shopping_list_layout, parent, false);      //layout with cardViews
-        return new ViewHolder(itemView);
+                .inflate(R.layout.cardview_layout_used_shopping_list, parent, false);      //layout with cardViews
+        return new UsedShoppingListsAdapter.ViewHolder(itemView);
     }
 
     @Override   //onCreate for layout
-    public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final UsedShoppingListsAdapter.ViewHolder holder, int position) {
         //method called when item is added to task layout
         db.openDatabase();
         //setting up item details to show on checkbox
 
         //---SavedShoppingLists
-        setUpShoppingList(holder, position);
+        setupUsedShoppingLists(holder, position);
 
     }
 
+    //Functions :
 
-
-    //Lists :
-
-    public void setUpShoppingList(final ViewHolder holder, int position){
+    public void setupUsedShoppingLists(final UsedShoppingListsAdapter.ViewHolder holder, int position){
         final modelShoppingList currList = allShoppingLists.get(position);
         final String listName = currList.getListName();
         final String useDate = currList.getUseDate();
 
-        holder.tvCurrShoppingList.setText(listName);
+        holder.tvName.setText(listName);
         holder.tvUseDate.setText(useDate);
         holder.lyt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,13 +118,15 @@ public class SavedShoppingListAdapter extends RecyclerView.Adapter<SavedShopping
                 final Dialog dialog = new Dialog(getContext());
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setCancelable(true);
-                dialog.setContentView(R.layout.dialog_shopping_list);
+                dialog.setContentView(R.layout.dialog_used_shopping_list);
+                Window window = dialog.getWindow();
+                window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
 
                 //button functions
-                Button btnAddItems = dialog.findViewById(R.id.btnAddItems_dialog);
-                Button btnUseList = dialog.findViewById(R.id.btnUseList_dialog);
+                Button btnViewItems = dialog.findViewById(R.id.btnViewItems_usedList);
+                Button btnToCurrentLists = dialog.findViewById(R.id.btnToCurrent_usedList);
 
-                btnAddItems.setOnClickListener(new View.OnClickListener() {
+                btnViewItems.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         //goto new page
@@ -145,18 +141,18 @@ public class SavedShoppingListAdapter extends RecyclerView.Adapter<SavedShopping
                     }
                 });
 
-                btnUseList.setOnClickListener(new View.OnClickListener() {
+                btnToCurrentLists.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        //goto new page
-                        Bundle bundle = new Bundle();
-                        bundle.putString("list_name", listName);
-                        Intent I = new Intent(getContext(), UseShoppingListActivity.class);
-                        I.putExtras(bundle);
-                        getContext().startActivity(I);
+                        //change to unused
+                        currList.setToUnused();
+                        db.updateShoppingList(currList);
+                        //notify dataChange
+                        activity.handleDialogClose(dialog);
 
                         //Toast.makeText(getContext(), "opening shopping list: " + listName, Toast.LENGTH_SHORT).show();
                         dialog.dismiss();
+                        Toast.makeText(getContext(), currList.getListName() + " Moved To Current Lists.", Toast.LENGTH_LONG).show();
                     }
                 });
                 dialog.show();
@@ -182,7 +178,8 @@ public class SavedShoppingListAdapter extends RecyclerView.Adapter<SavedShopping
         bundle.putString("useDate", currList.getUseDate());
         AddNewShoppingList fragment = new AddNewShoppingList();
         fragment.setArguments(bundle);
-        fragment.show(activityMain.getSupportFragmentManager(), AddNewShoppingList.TAG);
+        fragment.show(activity.getSupportFragmentManager(), AddNewShoppingList.TAG);
     }
+
 
 }

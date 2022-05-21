@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -9,13 +10,13 @@
     android:layout_marginVertical="8dp">
 
     <RelativeLayout
-        android:id="@+id/lytShoppingList"
+        android:id="@+id/lytUsedShoppingList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="16dp">
 
         <TextView
-            android:id="@+id/tvSavedShoppingList_layout"
+            android:id="@+id/tvUsedListName_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -25,7 +26,7 @@
             tools:text="Sunday Shopping List" />
 
         <TextView
-            android:id="@+id/tvListUseDate_layout"
+            android:id="@+id/tvUsedListUseDate_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"

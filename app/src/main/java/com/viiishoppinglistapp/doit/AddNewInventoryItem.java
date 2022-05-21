@@ -13,13 +13,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,9 +27,9 @@ import androidx.core.content.ContextCompat;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.viiishoppinglistapp.doit.Model.modelItem;
-import com.viiishoppinglistapp.doit.Model.modelShoppingList;
 import com.viiishoppinglistapp.doit.Utils.DatabaseHandler;
 import com.viiishoppinglistapp.doit.Utils.DateHandler;
+import com.viiishoppinglistapp.doit.Utils.Validation;
 
 import java.util.Calendar;
 import java.util.Objects;
@@ -44,6 +44,7 @@ public class AddNewInventoryItem extends BottomSheetDialogFragment {
 
     private DatabaseHandler db;
     private DateHandler date;
+    Validation validator;
 
     private modelItem currItem;
 
@@ -51,6 +52,7 @@ public class AddNewInventoryItem extends BottomSheetDialogFragment {
     private EditText etItemPrice;
     private Button btnAddToInventory, btnCancelAdd;
     private TextView tvItemName, tvItemDOE;
+    private Switch switchDate;
 
     public static AddNewInventoryItem newInstance(){
         return new AddNewInventoryItem();
@@ -87,25 +89,43 @@ public class AddNewInventoryItem extends BottomSheetDialogFragment {
         super.onViewCreated(view, savedInstanceState);
 
         currItem = new modelItem("Default");
+        date = new DateHandler();
 
         setupInventoryItemEditorLayout(view, savedInstanceState);
     }
 
     private void setupInventoryItemEditorLayout(View view, Bundle savedInstanceState) {
+        final String NullDate = "No Expiry Date";
+
         tvItemName = Objects.requireNonNull(getView()).findViewById(R.id.tvInventoryItemName_new);
         etItemPrice = Objects.requireNonNull(getView()).findViewById(R.id.etInventoryItemPrice_new);
         btnAddToInventory = getView().findViewById(R.id.btnAddToInventory_new);
         btnCancelAdd = getView().findViewById(R.id.btnCancelAddToInventory_new);
 
-        initDatePicker();
         tvItemDOE = getView().findViewById(R.id.tvInventoryItemDOE_new);
-        tvItemDOE.setText(getTodayDate());
-        tvItemDOE.setOnClickListener(new View.OnClickListener() {
+        setupDateTV();
+
+        switchDate = getView().findViewById(R.id.switchDate);
+        switchDate.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View view) {
-                datePickerDialog.show();
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    // do something when check is selected
+                    tvItemDOE.setText(NullDate);
+                    tvItemDOE.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                        }
+                    });
+                } else {
+                    //do something when unchecked
+                    setupDateTV();
+                }
             }
         });
+
+        Log.d(TAG, "setupInventoryItemEditorLayout: Switch Setup");
 
         final Bundle bundle = getArguments();
         if(bundle != null){
@@ -154,24 +174,64 @@ public class AddNewInventoryItem extends BottomSheetDialogFragment {
             }
         });
 
+        validator = new Validation(db);
+
         btnAddToInventory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                double price = Double.parseDouble(etItemPrice.getText().toString());
+                String strPrice = etItemPrice.getText().toString();
                 String doe = tvItemDOE.getText().toString();
+                if(doe.equals(NullDate)){
+                    doe = date.getNoDate();
+                }
+                Log.d(TAG, "onClick: ");
 
-                currItem.setItemPrice(price);
-                currItem.setItemDOE(doe);
-                currItem.setUsed(1);
+                if(validator.isItemPriceEmpty(strPrice)){
+                    Toast.makeText(getContext(), "Please Enter The Price.", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    currItem.setItemPrice(Double.parseDouble(strPrice));
+                    currItem.setItemDOE(doe);
+                    currItem.setChecked(1);
 
-                addItemToInventory(currItem);
-                dismiss();
+                    addItemToInventory(currItem);
+                    dismiss();
+                }
+                Log.d(TAG, "onClick End");
+
             }
         });
         btnCancelAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dismiss();
+                //toDo only update item
+                String strPrice = etItemPrice.getText().toString();
+                String doe = tvItemDOE.getText().toString();
+                Log.d(TAG, "onClick: ");
+
+                if(validator.isItemPriceEmpty(strPrice)){
+                    Toast.makeText(getContext(), "Please Enter The Price.", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    currItem.setItemPrice(Double.parseDouble(strPrice));
+                    currItem.setItemDOE(doe);
+                    currItem.setChecked(1);
+
+                    db.updateItem(currItem);
+                    dismiss();
+                }
+                Log.d(TAG, "onClick End");
+            }
+        });
+    }
+
+    private void setupDateTV() {
+        initDatePicker();
+        tvItemDOE.setText(getTodayDate());
+        tvItemDOE.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                datePickerDialog.show();
             }
         });
     }

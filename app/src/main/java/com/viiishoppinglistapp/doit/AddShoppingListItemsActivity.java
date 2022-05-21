@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -111,7 +110,7 @@ public class AddShoppingListItemsActivity extends AppCompatActivity implements D
         //goto Home page
         Bundle bundle = new Bundle();
         bundle.putString("list_name", currShoppingList.getListName());
-        Intent I = new Intent(this,MainActivity.class);
+        Intent I = new Intent(this, TabbedHomeActivity.class);
         I.putExtras(bundle);
         this.startActivity(I);
     }
