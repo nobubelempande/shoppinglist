@@ -1,5 +1,6 @@
 package com.viiishoppinglistapp.doit;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -16,6 +17,8 @@ import com.viiishoppinglistapp.doit.databinding.ActivityTabbedHomeBinding;
 
 public class TabbedHomeActivity extends AppCompatActivity {
 
+    //toDo setup tabbed Home
+
     private ActivityTabbedHomeBinding binding;
 
     @Override
@@ -30,14 +33,27 @@ public class TabbedHomeActivity extends AppCompatActivity {
         viewPager.setAdapter(homeSectionsPagerAdapter);
         TabLayout tabs = binding.tabs;
         tabs.setupWithViewPager(viewPager);
-        FloatingActionButton fab = binding.fab;
+        FloatingActionButton fab = binding.fabAddNewShoppingListTabbed;
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void onClick(View v) {
+                AddNewShoppingList i = new AddNewShoppingList();
+                i.newInstance();
+                i.show(getSupportFragmentManager(), AddNewShoppingList.TAG);
+
             }
         });
+    }
+
+    //Nav
+    public void goToInventory(View view){
+        //toDO remove list name bundle
+        //goto new page
+        Bundle bundle = new Bundle();
+        bundle.putString("list_name", "No List Selected.");
+        Intent I = new Intent(this, TabbedInventoryActivity.class);
+        I.putExtras(bundle);
+        this.startActivity(I);
     }
 }

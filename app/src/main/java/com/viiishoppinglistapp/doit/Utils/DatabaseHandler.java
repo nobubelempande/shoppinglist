@@ -36,18 +36,19 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         final String ID = "list_id";
         final String NAME = "list_name";
         final String USE_DATE = "list_useDate";
+        final String USED = "list_used";        //0 = unused; 1 = used
 
 
         final String CREATE_ShoppingLists_TABLE = "CREATE TABLE " + TABLE_ShoppingLists + "(" +
                 ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 NAME + " TEXT, " +
-                USE_DATE + " TEXT" +
+                USE_DATE + " TEXT, " +
+                USED + " INTEGER" +
                 ")";
         db.execSQL(CREATE_ShoppingLists_TABLE);
 
 
         //items class
-        //toDo change Price & DOE format??
 
         final String itemID = "item_id";
         final String itemNAME = "item_name";
@@ -71,7 +72,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.execSQL(CREATE_Items_TABLE);
 
         //Inventory class
-        //toDo change Price & DOE format??
 
         //nb: uses same itemTable col names
 
@@ -114,9 +114,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         final String strListName = listName;
         final String shoppingListID = "list_id";
         final String shoppingListNAME = "list_name";
-        final String shoppingListUseDate = "list_useDate";
+        final String shoppingListUSEDATE = "list_useDate";
+        final String shoppingListUSED = "list_used";
 
-        String[] columns = {shoppingListID, shoppingListNAME, shoppingListUseDate};
+
+        String[] columns = {shoppingListID, shoppingListNAME, shoppingListUSEDATE, shoppingListUSED};
         String where = shoppingListNAME + "=?";         //"TAG1=? OR TAG2=? OR TAG3=? OR TAG4=? OR TAG5=?";
         String[] args = {strListName};                //{"tagname", "tagname", "tagname", "tagname", "tagname"};
 
@@ -132,7 +134,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                         modelShoppingList list = new modelShoppingList();
                         list.setListID(cur.getInt(cur.getColumnIndexOrThrow(shoppingListID)));
                         list.setListName(cur.getString(cur.getColumnIndexOrThrow(shoppingListNAME)));
-                        list.setUseDate(cur.getString(cur.getColumnIndexOrThrow(shoppingListUseDate)));
+                        list.setUseDate(cur.getString(cur.getColumnIndexOrThrow(shoppingListUSEDATE)));
+                        list.setUsed(cur.getInt(cur.getColumnIndexOrThrow(shoppingListUSED)));
                         allShoppingLists.add(list);
                     }
                     while(cur.moveToNext());
@@ -146,6 +149,89 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
         return allShoppingLists.get(0);
     }
+
+    public List<modelShoppingList> getAllUsedShoppingLists(){
+        //getting all saved shoppingLists from the DB
+
+        final int intUsed = 1;
+        final String shoppingListID = "list_id";
+        final String shoppingListNAME = "list_name";
+        final String shoppingListUSEDATE = "list_useDate";
+        final String shoppingListUSED = "list_used";
+
+        String[] columns = {shoppingListID, shoppingListNAME, shoppingListUSEDATE, shoppingListUSED};
+        String where = shoppingListUSED + "=?";         //"TAG1=? OR TAG2=? OR TAG3=? OR TAG4=? OR TAG5=?";
+        String[] args = {String.valueOf(intUsed)};                //{"tagname", "tagname", "tagname", "tagname", "tagname"};
+
+        List<modelShoppingList> allShoppingLists = new ArrayList<>();
+        Cursor cur = null;
+        db.beginTransaction();
+        try{
+            cur = db.query(TABLE_ShoppingLists, columns, where, args, null, null, null);
+            if(cur != null){
+                if(cur.moveToFirst()){
+                    do{
+                        //adding shoppingList to list of allShoppingLists
+                        modelShoppingList list = new modelShoppingList();
+                        list.setListID(cur.getInt(cur.getColumnIndexOrThrow(shoppingListID)));
+                        list.setListName(cur.getString(cur.getColumnIndexOrThrow(shoppingListNAME)));
+                        list.setUseDate(cur.getString(cur.getColumnIndexOrThrow(shoppingListUSEDATE)));
+                        list.setUsed(cur.getInt(cur.getColumnIndexOrThrow(shoppingListUSED)));
+                        allShoppingLists.add(list);
+                    }
+                    while(cur.moveToNext());
+                }
+            }
+        }
+        finally {
+            db.endTransaction();
+            assert cur != null;
+            cur.close();
+        }
+        return allShoppingLists;
+    }
+
+    public List<modelShoppingList> getAllUnusedShoppingLists(){
+        //getting all saved shoppingLists from the DB
+
+        final int intUnused = 0;
+        final String shoppingListID = "list_id";
+        final String shoppingListNAME = "list_name";
+        final String shoppingListUSEDATE = "list_useDate";
+        final String shoppingListUSED = "list_used";
+
+        String[] columns = {shoppingListID, shoppingListNAME, shoppingListUSEDATE, shoppingListUSED};
+        String where = shoppingListUSED + "=?";         //"TAG1=? OR TAG2=? OR TAG3=? OR TAG4=? OR TAG5=?";
+        String[] args = {String.valueOf(intUnused)};                //{"tagname", "tagname", "tagname", "tagname", "tagname"};
+
+        List<modelShoppingList> allShoppingLists = new ArrayList<>();
+        Cursor cur = null;
+        db.beginTransaction();
+        try{
+            cur = db.query(TABLE_ShoppingLists, columns, where, args, null, null, null);
+            if(cur != null){
+                if(cur.moveToFirst()){
+                    do{
+                        //adding shoppingList to list of allShoppingLists
+                        modelShoppingList list = new modelShoppingList();
+                        list.setListID(cur.getInt(cur.getColumnIndexOrThrow(shoppingListID)));
+                        list.setListName(cur.getString(cur.getColumnIndexOrThrow(shoppingListNAME)));
+                        list.setUseDate(cur.getString(cur.getColumnIndexOrThrow(shoppingListUSEDATE)));
+                        list.setUsed(cur.getInt(cur.getColumnIndexOrThrow(shoppingListUSED)));
+                        allShoppingLists.add(list);
+                    }
+                    while(cur.moveToNext());
+                }
+            }
+        }
+        finally {
+            db.endTransaction();
+            assert cur != null;
+            cur.close();
+        }
+        return allShoppingLists;
+    }
+
 
     public List<modelShoppingList> getAllShoppingLists(){
         //getting all saved shoppingLists from the DB
@@ -182,6 +268,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         ContentValues cv = new ContentValues();
         cv.put("list_name", currList.getListName());
         cv.put("list_useDate", currList.getUseDate());
+        cv.put("list_used", currList.getUsed());
         db.insert(TABLE_ShoppingLists, null, cv);
     }
 

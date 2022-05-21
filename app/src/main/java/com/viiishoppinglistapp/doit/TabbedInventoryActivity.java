@@ -38,13 +38,7 @@ public class TabbedInventoryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Log.d(HomeActivity_old.TAG, "onCreate: Setup Tabs Start");
-
         setupTabs();
-
-        //setupInventory();
-
-        Log.d(HomeActivity_old.TAG, "onCreate: Setup Tabs Done ***");
 
     }
 
