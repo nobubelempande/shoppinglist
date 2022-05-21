@@ -27,8 +27,6 @@ import java.util.List;
 
 public class UnusedShoppingListsAdapter extends RecyclerView.Adapter<UnusedShoppingListsAdapter.ViewHolder> {
 
-    private final String TAG = "VIII-Adapter";
-
     private DatabaseHandler db;
     private HomeActivity_old activityMain;
 
@@ -66,15 +64,12 @@ public class UnusedShoppingListsAdapter extends RecyclerView.Adapter<UnusedShopp
     //ViewHolder
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        //set bundle // currModel
-        //curr items view
 
         TextView tvCurrShoppingList, tvUseDate;
         RelativeLayout lyt;
 
         //constructor
-        //toDo different constructor
-        ViewHolder(View view) {     //use bundle? use currModel
+        ViewHolder(View view) {
             super(view);
 
             tvCurrShoppingList = view.findViewById(R.id.tvSavedShoppingList_layout);
@@ -102,15 +97,15 @@ public class UnusedShoppingListsAdapter extends RecyclerView.Adapter<UnusedShopp
         //setting up item details to show on checkbox
 
         //---SavedShoppingLists
-        setUpShoppingList(holder, position);
+        setupUnusedShoppingLists(holder, position);
 
     }
 
 
 
-    //Lists :
+    //Functions :
 
-    public void setUpShoppingList(final ViewHolder holder, int position){
+    public void setupUnusedShoppingLists(final ViewHolder holder, int position){
         final modelShoppingList currList = allShoppingLists.get(position);
         final String listName = currList.getListName();
         final String useDate = currList.getUseDate();
