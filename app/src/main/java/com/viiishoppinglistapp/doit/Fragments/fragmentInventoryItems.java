@@ -53,7 +53,6 @@ public class fragmentInventoryItems extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable  ViewGroup container, @Nullable  Bundle savedInstanceState) {
-        //setupInventory();
 
         return inflater.inflate(R.layout.inventory_items_fragment_layout, container, false);
     }
@@ -72,7 +71,6 @@ public class fragmentInventoryItems extends Fragment {
         currShoppingList = new modelShoppingList();
         currShoppingList.setListName(strListName);
 
-        Log.d(MainActivity.TAG, "CurrList Setup");
     }
 
     private void setupInventory(View root) {
@@ -85,7 +83,6 @@ public class fragmentInventoryItems extends Fragment {
         rvInventory.setLayoutManager(new LinearLayoutManager(mContext));
         adapter = new InventoryItemsAdapter(db, activity);
 
-        Log.d(MainActivity.TAG, "FRAGMENT:: Setup Recycler View Done");
 
         //todo: itemTouchHelper
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new InventoryItemTouchHelper(adapter));
@@ -95,7 +92,7 @@ public class fragmentInventoryItems extends Fragment {
         Collections.reverse(allInventoryItems);
         adapter.setAllInventoryItems(allInventoryItems);
 
-        rvInventory.setAdapter(adapter);        //toDO ***** (No adapter attached)
+        rvInventory.setAdapter(adapter);
 
     }
 
