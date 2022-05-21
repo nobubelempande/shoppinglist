@@ -120,10 +120,10 @@ public class UnusedShoppingListsAdapter extends RecyclerView.Adapter<UnusedShopp
                 final Dialog dialog = new Dialog(getContext());
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setCancelable(true);
-                dialog.setContentView(R.layout.dialog_shopping_list);
+                dialog.setContentView(R.layout.dialog_unused_shopping_list);
 
                 //button functions
-                Button btnAddItems = dialog.findViewById(R.id.btnAddItems_dialog);
+                Button btnAddItems = dialog.findViewById(R.id.btnViewItems_dialog);
                 Button btnUseList = dialog.findViewById(R.id.btnUseList_dialog);
 
                 btnAddItems.setOnClickListener(new View.OnClickListener() {

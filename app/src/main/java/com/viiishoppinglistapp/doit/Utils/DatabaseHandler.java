@@ -232,7 +232,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return allShoppingLists;
     }
 
-
     public List<modelShoppingList> getAllShoppingLists(){
         //getting all saved shoppingLists from the DB
 
@@ -278,6 +277,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         ContentValues cv = new ContentValues();
         cv.put("list_name", currList.getListName());
         cv.put("list_useDate", currList.getUseDate());
+        cv.put("list_used", currList.getUsed());
+
         db.update(TABLE_ShoppingLists, cv, ID + "= ?", new String[] {String.valueOf(currList.getListID())});
     }
 
@@ -325,7 +326,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                         currItem.setListName(cur.getString(cur.getColumnIndexOrThrow(itemShoppingList)));
                         currItem.setItemPrice(cur.getInt(cur.getColumnIndexOrThrow(itemPrice)));
                         currItem.setItemDOE(cur.getString(cur.getColumnIndexOrThrow(itemDOE)));
-                        currItem.setUsed(cur.getInt(cur.getColumnIndexOrThrow(itemUsed)));
+                        currItem.setChecked(cur.getInt(cur.getColumnIndexOrThrow(itemUsed)));
                         allItems.add(currItem);
                     }
                     while(cur.moveToNext());
@@ -350,7 +351,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         cv.put("item_listName", currItem.getListName());
         cv.put("item_price", currItem.getItemPrice());
         cv.put("item_doe", currItem.getItemDOE());
-        cv.put("item_used", currItem.isUsed());
+        cv.put("item_used", currItem.isChecked());
 
         db.insert(TABLE_Items, null, cv);
     }
@@ -365,7 +366,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         cv.put("item_type", item.getItemType());
         cv.put("item_price", item.getItemPrice());
         cv.put("item_doe", item.getItemDOE());
-        cv.put("item_used", item.isUsed());
+        cv.put("item_used", item.isChecked());
 
         db.update(TABLE_Items, cv, ID + "= ?", new String[] {String.valueOf(item.getItemID())});
     }
@@ -410,7 +411,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                         currItem.setListName(cur.getString(cur.getColumnIndexOrThrow(itemShoppingList)));
                         currItem.setItemPrice(cur.getInt(cur.getColumnIndexOrThrow(itemPrice)));
                         currItem.setItemDOE(cur.getString(cur.getColumnIndexOrThrow(itemDOE)));
-                        currItem.setUsed(cur.getInt(cur.getColumnIndexOrThrow(itemUsed)));
+                        currItem.setChecked(cur.getInt(cur.getColumnIndexOrThrow(itemUsed)));
                         allItems.add(currItem);
                     }
                     while(cur.moveToNext());
@@ -459,7 +460,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                         currItem.setListName(cur.getString(cur.getColumnIndexOrThrow(itemShoppingList)));
                         currItem.setItemPrice(cur.getInt(cur.getColumnIndexOrThrow(itemPrice)));
                         currItem.setItemDOE(cur.getString(cur.getColumnIndexOrThrow(itemDOE)));
-                        currItem.setUsed(cur.getInt(cur.getColumnIndexOrThrow(itemUsed)));
+                        currItem.setChecked(cur.getInt(cur.getColumnIndexOrThrow(itemUsed)));
                         allItems.add(currItem);
                     }
                     while(cur.moveToNext());
@@ -483,7 +484,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         cv.put("item_listName", currItem.getListName());
         cv.put("item_price", currItem.getItemPrice());
         cv.put("item_doe", currItem.getItemDOE());
-        cv.put("item_used", currItem.isUsed());
+        cv.put("item_used", currItem.isChecked());
 
         modelItem existingItem = getInventoryItem(currItem.getItemName());
 
@@ -508,7 +509,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         cv.put("item_type", item.getItemType());
         cv.put("item_price", item.getItemPrice());
         cv.put("item_doe", item.getItemDOE());
-        cv.put("item_used", item.isUsed());
+        cv.put("item_used", item.isChecked());
 
         db.update(TABLE_Inventory, cv, NAME + "= ?", new String[] {String.valueOf(item.getItemName())});
     }
@@ -553,7 +554,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                         currItem.setListName(cur.getString(cur.getColumnIndexOrThrow(itemShoppingList)));
                         currItem.setItemPrice(cur.getInt(cur.getColumnIndexOrThrow(itemPrice)));
                         currItem.setItemDOE(cur.getString(cur.getColumnIndexOrThrow(itemDOE)));
-                        currItem.setUsed(cur.getInt(cur.getColumnIndexOrThrow(itemUsed)));
+                        currItem.setChecked(cur.getInt(cur.getColumnIndexOrThrow(itemUsed)));
                         allItems.add(currItem);
                     }
                     while(cur.moveToNext());

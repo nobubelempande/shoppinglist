@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -71,7 +72,7 @@ public class UsedShoppingListsAdapter extends RecyclerView.Adapter<UsedShoppingL
         ViewHolder(View view) {
             super(view);
 
-            tvName = view.findViewById(R.id.tvUnusedListName_layout);
+            tvName = view.findViewById(R.id.tvUsedListName_layout);
             tvUseDate = view.findViewById(R.id.tvUsedListUseDate_layout);
             lyt = view.findViewById(R.id.lytUsedShoppingList);
         }
@@ -116,13 +117,15 @@ public class UsedShoppingListsAdapter extends RecyclerView.Adapter<UsedShoppingL
                 final Dialog dialog = new Dialog(getContext());
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setCancelable(true);
-                dialog.setContentView(R.layout.dialog_shopping_list);
+                dialog.setContentView(R.layout.dialog_used_shopping_list);
+                Window window = dialog.getWindow();
+                window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
 
                 //button functions
-                Button btnAddItems = dialog.findViewById(R.id.btnAddItems_dialog);
-                Button btnUseList = dialog.findViewById(R.id.btnUseList_dialog);
+                Button btnViewItems = dialog.findViewById(R.id.btnViewItems_usedList);
+                Button btnToCurrentLists = dialog.findViewById(R.id.btnToCurrent_usedList);
 
-                btnAddItems.setOnClickListener(new View.OnClickListener() {
+                btnViewItems.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         //goto new page
@@ -137,15 +140,14 @@ public class UsedShoppingListsAdapter extends RecyclerView.Adapter<UsedShoppingL
                     }
                 });
 
-                btnUseList.setOnClickListener(new View.OnClickListener() {
+                btnToCurrentLists.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        //goto new page
-                        Bundle bundle = new Bundle();
-                        bundle.putString("list_name", listName);
-                        Intent I = new Intent(getContext(), UseShoppingListActivity.class);
-                        I.putExtras(bundle);
-                        getContext().startActivity(I);
+                        //change to unused
+                        currList.setToUnused();
+                        db.updateShoppingList(currList);
+                        //notify dataChange
+                        activity.handleDialogClose(dialog);
 
                         //Toast.makeText(getContext(), "opening shopping list: " + listName, Toast.LENGTH_SHORT).show();
                         dialog.dismiss();

@@ -8,14 +8,14 @@ public class modelItem {
     private String item_name;
     private String list_name;
     private String item_type;
-    private boolean used;
+    private boolean checked;
 
 
     //constructor
     public modelItem(String name){
         setItemQty(1);
         setItemName(name);
-        setUsed(0);
+        setChecked(0);
     }
 
 
@@ -41,8 +41,8 @@ public class modelItem {
     public String getItemDOE() {
         return item_doe;
     }
-    public boolean isUsed() {
-        return used;
+    public boolean isChecked() {
+        return checked;
     }
 
     //setters
@@ -67,12 +67,12 @@ public class modelItem {
     public void setItemDOE(String item_doe) {
         this.item_doe = item_doe;
     }
-    public void setUsed(int used) {
-        if(used == 0){
-            this.used = false;
+    public void setChecked(int checked) {
+        if(checked == 0){
+            this.checked = false;
         }
-        if(used == 1){
-            this.used = true;
+        if(checked == 1){
+            this.checked = true;
         }
     }
 

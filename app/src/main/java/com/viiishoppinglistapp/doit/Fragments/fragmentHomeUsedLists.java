@@ -3,6 +3,7 @@ package com.viiishoppinglistapp.doit.Fragments;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.viiishoppinglistapp.doit.Adapters.UsedShoppingListsAdapter;
 import com.viiishoppinglistapp.doit.DialogCloseListener;
+import com.viiishoppinglistapp.doit.HomeActivity_old;
 import com.viiishoppinglistapp.doit.Model.modelItem;
 import com.viiishoppinglistapp.doit.Model.modelShoppingList;
 import com.viiishoppinglistapp.doit.R;
@@ -87,11 +89,13 @@ public class fragmentHomeUsedLists extends Fragment {
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new UsedShoppingListTouchHelper(adapter));
         itemTouchHelper.attachToRecyclerView(rvUsedShoppingLists);
 
+        Log.d(HomeActivity_old.TAG, "setupUsedShoppingLists: ");
         allShoppingLists = db.getAllUsedShoppingLists();
         Collections.reverse(allShoppingLists);
         adapter.setAllUsedShoppingLists(allShoppingLists);
 
         rvUsedShoppingLists.setAdapter(adapter);
+        Log.d(HomeActivity_old.TAG, "--> Finish ");
 
     }
 }

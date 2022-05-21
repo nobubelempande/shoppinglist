@@ -48,7 +48,9 @@ public class TabbedHomeActivity extends AppCompatActivity implements DialogClose
         usedShoppingListAdapter = new UsedShoppingListsAdapter(db,this);
         unusedShoppingListAdapter = new UnusedShoppingListsAdapter(db,this);
 
+        Log.d(HomeActivity_old.TAG, "onCreate: ");
         setupHomeTabs();
+        Log.d(HomeActivity_old.TAG, "onCreate: ");
 
     }
 

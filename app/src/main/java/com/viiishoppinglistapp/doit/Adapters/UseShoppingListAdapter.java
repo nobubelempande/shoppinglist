@@ -66,7 +66,7 @@ public class UseShoppingListAdapter extends RecyclerView.Adapter<UseShoppingList
         final modelItem currItem = currShoppingList.get(position);
 
         holder.cbItemName.setText(currItem.getItemName());
-        holder.cbItemName.setChecked(currItem.isUsed());
+        holder.cbItemName.setChecked(currItem.isChecked());
         holder.tvItemType.setText("Type: " + currItem.getItemType());
         holder.tvItemQty.setText(" x" + currItem.getItemQty());
 
@@ -86,7 +86,7 @@ public class UseShoppingListAdapter extends RecyclerView.Adapter<UseShoppingList
                 }
                 else{
                     //unChecked
-                    currItem.setUsed(0);
+                    currItem.setChecked(0);
                     db.updateItem(currItem);
                     db.deleteInventoryItem(currItem.getItemName());
                     Log.d(HomeActivity_old.TAG, "---> *** --> Inventory Item [" + currItem.getItemName() + "] Removed **");
