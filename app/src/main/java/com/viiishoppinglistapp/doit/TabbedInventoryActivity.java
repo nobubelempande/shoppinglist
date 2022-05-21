@@ -21,7 +21,7 @@ import com.viiishoppinglistapp.doit.ui.inventory.InventorySectionsPagerAdapter;
 
 import java.util.List;
 
-public class TabsInventoryActivity extends AppCompatActivity {
+public class TabbedInventoryActivity extends AppCompatActivity {
 
     private ActivityTabsInventoryBinding binding;
 

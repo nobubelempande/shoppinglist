@@ -8,11 +8,9 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.viiishoppinglistapp.doit.Fragments.fragmentInventoryItems;
-import com.viiishoppinglistapp.doit.InventoryActivity;
 import com.viiishoppinglistapp.doit.Model.modelItem;
 import com.viiishoppinglistapp.doit.R;
-import com.viiishoppinglistapp.doit.TabsInventoryActivity;
+import com.viiishoppinglistapp.doit.TabbedInventoryActivity;
 import com.viiishoppinglistapp.doit.Utils.DatabaseHandler;
 
 import java.util.List;
@@ -21,12 +19,12 @@ import java.util.List;
 public class InventoryItemsAdapter extends RecyclerView.Adapter<InventoryItemsAdapter.ViewHolder> {
 
     private List<modelItem> allInventoryItems;
-    private TabsInventoryActivity activity;
+    private TabbedInventoryActivity activity;
 
     private DatabaseHandler db;
 
     //constructor
-    public InventoryItemsAdapter(DatabaseHandler db, TabsInventoryActivity activity){
+    public InventoryItemsAdapter(DatabaseHandler db, TabbedInventoryActivity activity){
         this.db = db;
         this.activity = activity;
     }

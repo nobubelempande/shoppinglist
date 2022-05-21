@@ -8,9 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -113,7 +111,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
         //goto new page
         Bundle bundle = new Bundle();
         bundle.putString("list_name", "No List Selected.");
-        Intent I = new Intent(this,TabsInventoryActivity.class);
+        Intent I = new Intent(this, TabbedInventoryActivity.class);
         I.putExtras(bundle);
         this.startActivity(I);
     }

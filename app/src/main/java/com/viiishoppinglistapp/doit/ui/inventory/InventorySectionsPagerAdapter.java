@@ -11,7 +11,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import com.viiishoppinglistapp.doit.Fragments.fragmentInventoryItems;
 import com.viiishoppinglistapp.doit.Fragments.fragmentInventoryStats;
 import com.viiishoppinglistapp.doit.R;
-import com.viiishoppinglistapp.doit.TabsInventoryActivity;
+import com.viiishoppinglistapp.doit.TabbedInventoryActivity;
 
 
 /**
@@ -20,13 +20,13 @@ import com.viiishoppinglistapp.doit.TabsInventoryActivity;
  */
 public class InventorySectionsPagerAdapter extends FragmentPagerAdapter {
 
-    TabsInventoryActivity activity;
+    TabbedInventoryActivity activity;
 
     @StringRes
     private static final int[] TAB_TITLES = new int[]{R.string.tab_text_1, R.string.tab_text_2};
     private final Context mContext;
 
-    public InventorySectionsPagerAdapter(Context context, FragmentManager fm, TabsInventoryActivity activity) {
+    public InventorySectionsPagerAdapter(Context context, FragmentManager fm, TabbedInventoryActivity activity) {
         super(fm);
         mContext = context;
         this.activity = activity;

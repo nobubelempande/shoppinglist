@@ -1,6 +1,5 @@
 package com.viiishoppinglistapp.doit.Fragments;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,7 +20,7 @@ import com.viiishoppinglistapp.doit.MainActivity;
 import com.viiishoppinglistapp.doit.Model.modelItem;
 import com.viiishoppinglistapp.doit.Model.modelShoppingList;
 import com.viiishoppinglistapp.doit.R;
-import com.viiishoppinglistapp.doit.TabsInventoryActivity;
+import com.viiishoppinglistapp.doit.TabbedInventoryActivity;
 import com.viiishoppinglistapp.doit.Utils.DatabaseHandler;
 
 import java.util.ArrayList;
@@ -31,7 +30,7 @@ import java.util.List;
 
 public class fragmentInventoryItems extends Fragment {
 
-    TabsInventoryActivity activity;
+    TabbedInventoryActivity activity;
     InventoryItemsAdapter adapter;
 
     RecyclerView rvInventory;
@@ -44,7 +43,7 @@ public class fragmentInventoryItems extends Fragment {
     final Context mContext;
 
 
-    public fragmentInventoryItems(Context C, TabsInventoryActivity activity){
+    public fragmentInventoryItems(Context C, TabbedInventoryActivity activity){
         this.mContext = C;
         this.activity = activity;
         allInventoryItems = new ArrayList<>();
