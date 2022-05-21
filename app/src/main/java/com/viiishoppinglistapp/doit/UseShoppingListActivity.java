@@ -100,7 +100,7 @@ public class UseShoppingListActivity extends AppCompatActivity implements Dialog
                     doDoneUsingList();
 
                 }
-            }, 2000);
+            }, 1600);
         }
     }
 

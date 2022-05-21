@@ -12,6 +12,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -151,6 +152,7 @@ public class UsedShoppingListsAdapter extends RecyclerView.Adapter<UsedShoppingL
 
                         //Toast.makeText(getContext(), "opening shopping list: " + listName, Toast.LENGTH_SHORT).show();
                         dialog.dismiss();
+                        Toast.makeText(getContext(), currList.getListName() + " Moved To Current Lists.", Toast.LENGTH_LONG).show();
                     }
                 });
                 dialog.show();
