@@ -19,11 +19,5 @@ public class Checking {
         assertThat(b).isEqualTo(true);
     }
 
-    @Test
-    public void invalidInput(){
-        Integer c = 5;
-        Boolean d = new ValidatorInt(c).isinputInteger();
-        assertThat(d).isEqualTo(true);
-    }
 
 }

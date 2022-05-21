@@ -77,6 +77,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         //nb: uses same itemTable col names
 
+
         final String CREATE_Inventory_TABLE = "CREATE TABLE " + TABLE_Inventory + "(" +
                 itemID + " INTEGER PRIMARY KEY, " +
                 itemNAME + " TEXT, " +
