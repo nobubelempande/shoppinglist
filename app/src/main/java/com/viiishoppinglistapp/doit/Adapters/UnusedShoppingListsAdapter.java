@@ -17,9 +17,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.viiishoppinglistapp.doit.AddNewShoppingList;
 import com.viiishoppinglistapp.doit.AddShoppingListItemsActivity;
-import com.viiishoppinglistapp.doit.HomeActivity_old;
 import com.viiishoppinglistapp.doit.Model.modelShoppingList;
 import com.viiishoppinglistapp.doit.R;
+import com.viiishoppinglistapp.doit.TabbedHomeActivity;
 import com.viiishoppinglistapp.doit.UseShoppingListActivity;
 import com.viiishoppinglistapp.doit.Utils.DatabaseHandler;
 
@@ -28,14 +28,14 @@ import java.util.List;
 public class UnusedShoppingListsAdapter extends RecyclerView.Adapter<UnusedShoppingListsAdapter.ViewHolder> {
 
     private DatabaseHandler db;
-    private HomeActivity_old activity;  //toDo -->TabbedHomeActivity
+    private TabbedHomeActivity activity;
 
 
     //models
     private List<modelShoppingList> allShoppingLists;
 
     //constructor
-    public UnusedShoppingListsAdapter(DatabaseHandler db, HomeActivity_old activity) {
+    public UnusedShoppingListsAdapter(DatabaseHandler db, TabbedHomeActivity activity) {
         this.db = db;
         this.activity = activity;
 
@@ -46,11 +46,6 @@ public class UnusedShoppingListsAdapter extends RecyclerView.Adapter<UnusedShopp
         notifyDataSetChanged();     //updates recycler view
     }
 
-    //to be removed
-    public void setAllShoppingLists(List<modelShoppingList> allLists) {
-        this.allShoppingLists = allLists;
-        notifyDataSetChanged();     //updates recycler view
-    }
 
     public Context getContext() {
         return activity;
