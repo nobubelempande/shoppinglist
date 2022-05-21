@@ -5,7 +5,7 @@
     android:id="@+id/constraintLayout_usedLists"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.PlaceholderFragment">
+    tools:context=".ui.inventory.PlaceholderFragmentInventory">
 
     <TextView
         android:id="@+id/section_label"

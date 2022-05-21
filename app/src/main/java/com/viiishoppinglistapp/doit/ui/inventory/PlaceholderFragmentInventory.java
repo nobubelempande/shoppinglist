@@ -1,4 +1,4 @@
-package com.viiishoppinglistapp.doit.ui.main;
+package com.viiishoppinglistapp.doit.ui.inventory;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -18,15 +18,15 @@ import com.viiishoppinglistapp.doit.databinding.FragmentTabsUseShoppingListBindi
 /**
  * A placeholder fragment containing a simple view.
  */
-public class PlaceholderFragment extends Fragment {
+public class PlaceholderFragmentInventory extends Fragment {
 
     private static final String ARG_SECTION_NUMBER = "section_number";
 
-    private PageViewModel pageViewModel;
+    private PageViewModelInventory pageViewModelInventory;
     private FragmentTabsUseShoppingListBinding binding;
 
-    public static PlaceholderFragment newInstance(int index) {
-        PlaceholderFragment fragment = new PlaceholderFragment();
+    public static PlaceholderFragmentInventory newInstance(int index) {
+        PlaceholderFragmentInventory fragment = new PlaceholderFragmentInventory();
         Bundle bundle = new Bundle();
         bundle.putInt(ARG_SECTION_NUMBER, index);
         fragment.setArguments(bundle);
@@ -36,12 +36,12 @@ public class PlaceholderFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        pageViewModel = new ViewModelProvider(this).get(PageViewModel.class);
+        pageViewModelInventory = new ViewModelProvider(this).get(PageViewModelInventory.class);
         int index = 1;
         if (getArguments() != null) {
             index = getArguments().getInt(ARG_SECTION_NUMBER);
         }
-        pageViewModel.setIndex(index);
+        pageViewModelInventory.setIndex(index);
     }
 
     @Override
@@ -52,7 +52,7 @@ public class PlaceholderFragment extends Fragment {
         View root = binding.getRoot();
 
         final TextView textView = binding.sectionLabel;
-        pageViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        pageViewModelInventory.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

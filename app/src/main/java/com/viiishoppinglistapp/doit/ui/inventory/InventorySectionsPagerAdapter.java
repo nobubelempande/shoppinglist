@@ -1,4 +1,4 @@
-package com.viiishoppinglistapp.doit.ui.main;
+package com.viiishoppinglistapp.doit.ui.inventory;
 
 import android.content.Context;
 

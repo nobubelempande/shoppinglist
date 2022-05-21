@@ -17,7 +17,7 @@ import com.viiishoppinglistapp.doit.Model.modelItem;
 import com.viiishoppinglistapp.doit.Model.modelShoppingList;
 import com.viiishoppinglistapp.doit.Utils.DatabaseHandler;
 import com.viiishoppinglistapp.doit.databinding.ActivityTabsInventoryBinding;
-import com.viiishoppinglistapp.doit.ui.main.InventorySectionsPagerAdapter;
+import com.viiishoppinglistapp.doit.ui.inventory.InventorySectionsPagerAdapter;
 
 import java.util.List;
 
