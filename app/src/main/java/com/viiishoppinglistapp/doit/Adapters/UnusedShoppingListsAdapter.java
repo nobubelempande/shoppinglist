@@ -28,7 +28,7 @@ import java.util.List;
 public class UnusedShoppingListsAdapter extends RecyclerView.Adapter<UnusedShoppingListsAdapter.ViewHolder> {
 
     private DatabaseHandler db;
-    private HomeActivity_old activityMain;
+    private HomeActivity_old activity;  //toDo -->TabbedHomeActivity
 
 
     //models
@@ -37,17 +37,17 @@ public class UnusedShoppingListsAdapter extends RecyclerView.Adapter<UnusedShopp
     //constructor
     public UnusedShoppingListsAdapter(DatabaseHandler db, HomeActivity_old activity) {
         this.db = db;
-        this.activityMain = activity;
+        this.activity = activity;
 
     }
 
-    public void setAllShoppingLists(List<modelShoppingList> allLists) {
+    public void setAllUnusedShoppingLists(List<modelShoppingList> allLists) {
         this.allShoppingLists = allLists;
         notifyDataSetChanged();     //updates recycler view
     }
 
     public Context getContext() {
-        return activityMain;
+        return activity;
     }
 
     @Override
@@ -177,7 +177,7 @@ public class UnusedShoppingListsAdapter extends RecyclerView.Adapter<UnusedShopp
         bundle.putString("useDate", currList.getUseDate());
         AddNewShoppingList fragment = new AddNewShoppingList();
         fragment.setArguments(bundle);
-        fragment.show(activityMain.getSupportFragmentManager(), AddNewShoppingList.TAG);
+        fragment.show(activity.getSupportFragmentManager(), AddNewShoppingList.TAG);
     }
 
 }

@@ -14,10 +14,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.viiishoppinglistapp.doit.Adapters.UnusedShoppingListsAdapter;
-import com.viiishoppinglistapp.doit.Model.modelItem;
 import com.viiishoppinglistapp.doit.Model.modelShoppingList;
 import com.viiishoppinglistapp.doit.R;
 import com.viiishoppinglistapp.doit.TabbedHomeActivity;
+import com.viiishoppinglistapp.doit.UnusedShoppingListTouchHelper;
 import com.viiishoppinglistapp.doit.Utils.DatabaseHandler;
 
 import java.util.ArrayList;
@@ -33,7 +33,7 @@ public class fragmentHomeUnusedLists extends Fragment {
 
     DatabaseHandler db;
 
-    List<modelItem> allShoppingLists;
+    List<modelShoppingList> allShoppingLists;
     modelShoppingList currShoppingList;
 
     final Context mContext;
@@ -81,7 +81,7 @@ public class fragmentHomeUnusedLists extends Fragment {
 
 
         //todo: itemTouchHelper
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new UnsedShoppingListTouchHelper(adapter));
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new UnusedShoppingListTouchHelper(adapter));
         itemTouchHelper.attachToRecyclerView(rvUnusedShoppingLists);
 
         allShoppingLists = db.getAllUnusedShoppingLists();

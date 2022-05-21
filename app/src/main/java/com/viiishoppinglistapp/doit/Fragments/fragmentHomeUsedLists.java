@@ -18,6 +18,7 @@ import com.viiishoppinglistapp.doit.Model.modelItem;
 import com.viiishoppinglistapp.doit.Model.modelShoppingList;
 import com.viiishoppinglistapp.doit.R;
 import com.viiishoppinglistapp.doit.TabbedHomeActivity;
+import com.viiishoppinglistapp.doit.UsedShoppingListTouchHelper;
 import com.viiishoppinglistapp.doit.Utils.DatabaseHandler;
 
 import java.util.ArrayList;
@@ -33,7 +34,7 @@ public class fragmentHomeUsedLists extends Fragment {
 
     DatabaseHandler db;
 
-    List<modelItem> allShoppingLists;
+    List<modelShoppingList> allShoppingLists;
     modelShoppingList currShoppingList;
 
     final Context mContext;
