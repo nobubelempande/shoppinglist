@@ -11,7 +11,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.viiishoppinglistapp.doit.AddNewItem;
-import com.viiishoppinglistapp.doit.MainActivity;
+import com.viiishoppinglistapp.doit.HomeActivity_old;
 import com.viiishoppinglistapp.doit.Model.modelItem;
 import com.viiishoppinglistapp.doit.R;
 import com.viiishoppinglistapp.doit.AddShoppingListItemsActivity;
@@ -95,7 +95,7 @@ public class AddingItemsAdapter extends RecyclerView.Adapter<AddingItemsAdapter.
         //bundle.putDouble("price", currItem.getItemPrice());
         //bundle.putString("doe", currItem.getItemDOE());
 
-        Log.d(MainActivity.TAG, "--Adapter--> item details captured. ItemID : " + currItem.getItemID() + " ****");
+        Log.d(HomeActivity_old.TAG, "--Adapter--> item details captured. ItemID : " + currItem.getItemID() + " ****");
 
         bundle.putString("listName", currItem.getListName());
 
@@ -103,7 +103,7 @@ public class AddingItemsAdapter extends RecyclerView.Adapter<AddingItemsAdapter.
         fragment.setArguments(bundle);
         fragment.show(activity.getSupportFragmentManager(), AddNewItem.TAG);
 
-        Log.d(MainActivity.TAG, "--Adapter--> list name captured. Opening Fragment AddNewItem");
+        Log.d(HomeActivity_old.TAG, "--Adapter--> list name captured. Opening Fragment AddNewItem");
 
 
     }

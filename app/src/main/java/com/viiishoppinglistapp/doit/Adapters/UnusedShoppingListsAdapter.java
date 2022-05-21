@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.viiishoppinglistapp.doit.AddNewShoppingList;
 import com.viiishoppinglistapp.doit.AddShoppingListItemsActivity;
-import com.viiishoppinglistapp.doit.MainActivity;
+import com.viiishoppinglistapp.doit.HomeActivity_old;
 import com.viiishoppinglistapp.doit.Model.modelShoppingList;
 import com.viiishoppinglistapp.doit.R;
 import com.viiishoppinglistapp.doit.UseShoppingListActivity;
@@ -25,19 +25,19 @@ import com.viiishoppinglistapp.doit.Utils.DatabaseHandler;
 
 import java.util.List;
 
-public class SavedShoppingListAdapter extends RecyclerView.Adapter<SavedShoppingListAdapter.ViewHolder> {
+public class UnusedShoppingListsAdapter extends RecyclerView.Adapter<UnusedShoppingListsAdapter.ViewHolder> {
 
     private final String TAG = "VIII-Adapter";
 
     private DatabaseHandler db;
-    private MainActivity activityMain;
+    private HomeActivity_old activityMain;
 
 
     //models
     private List<modelShoppingList> allShoppingLists;
 
     //constructor
-    public SavedShoppingListAdapter(DatabaseHandler db, MainActivity activity) {
+    public UnusedShoppingListsAdapter(DatabaseHandler db, HomeActivity_old activity) {
         this.db = db;
         this.activityMain = activity;
 

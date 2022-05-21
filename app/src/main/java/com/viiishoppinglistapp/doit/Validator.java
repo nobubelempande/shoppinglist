@@ -1,9 +1,7 @@
 package com.viiishoppinglistapp.doit;
 
-import android.content.Context;
 import android.util.Log;
 
-import com.viiishoppinglistapp.doit.Model.modelShoppingList;
 import com.viiishoppinglistapp.doit.Utils.DatabaseHandler;
 
 public class Validator {
@@ -37,7 +35,7 @@ public class Validator {
 
     //items
     public boolean isItemTypeSelected(String type){
-        Log.d(MainActivity.TAG, "Validator:: item type obtained.");
+        Log.d(HomeActivity_old.TAG, "Validator:: item type obtained.");
         if(type.equals("") || type.equals("--") || type.equals(null)){
             return false;
         }

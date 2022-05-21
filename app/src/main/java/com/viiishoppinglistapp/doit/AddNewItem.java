@@ -105,7 +105,7 @@ public class AddNewItem extends BottomSheetDialogFragment {
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
         });
-        Log.d(MainActivity.TAG, "Setup Save II.");
+        Log.d(HomeActivity_old.TAG, "Setup Save II.");
 
         String[] itemTypes = getResources().getStringArray(R.array.types);
         adapter = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item, itemTypes);
@@ -184,22 +184,22 @@ public class AddNewItem extends BottomSheetDialogFragment {
             }
         });
 
-        Log.d(MainActivity.TAG, "Setup III.");
+        Log.d(HomeActivity_old.TAG, "Setup III.");
 
         final boolean finalIsUpdate = isUpdate;
         btnSaveItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(MainActivity.TAG, "Validator not created.");
+                Log.d(HomeActivity_old.TAG, "Validator not created.");
                 String name = etItemName.getText().toString();
                 String strQty = etItemQty.getText().toString();
-                Log.d(MainActivity.TAG, "Validator not created.");
+                Log.d(HomeActivity_old.TAG, "Validator not created.");
 
                 boolean isNameValid = validator.isItemNameNotEmpty(name);
                 boolean isQtyValid = validator.isItemQtyNotEmpty(strQty);
                 boolean isTypeValid = validator.isItemTypeSelected(currItem.getItemType());
 
-                Log.d(MainActivity.TAG, "Is Type Valid? - " + isTypeValid);
+                Log.d(HomeActivity_old.TAG, "Is Type Valid? - " + isTypeValid);
 
                 if(!isNameValid){
                     Toast.makeText(getContext(),"Please Enter the Name.", Toast.LENGTH_SHORT).show();

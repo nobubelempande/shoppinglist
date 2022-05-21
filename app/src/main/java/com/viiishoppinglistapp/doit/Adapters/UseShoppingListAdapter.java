@@ -15,7 +15,7 @@ import android.widget.Toast;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.viiishoppinglistapp.doit.AddNewInventoryItem;
-import com.viiishoppinglistapp.doit.MainActivity;
+import com.viiishoppinglistapp.doit.HomeActivity_old;
 import com.viiishoppinglistapp.doit.Model.modelItem;
 import com.viiishoppinglistapp.doit.Model.modelShoppingList;
 import com.viiishoppinglistapp.doit.R;
@@ -89,7 +89,7 @@ public class UseShoppingListAdapter extends RecyclerView.Adapter<UseShoppingList
                     currItem.setUsed(0);
                     db.updateItem(currItem);
                     db.deleteInventoryItem(currItem.getItemName());
-                    Log.d(MainActivity.TAG, "---> *** --> Inventory Item [" + currItem.getItemName() + "] Removed **");
+                    Log.d(HomeActivity_old.TAG, "---> *** --> Inventory Item [" + currItem.getItemName() + "] Removed **");
                 }
 
             }
@@ -124,7 +124,7 @@ public class UseShoppingListAdapter extends RecyclerView.Adapter<UseShoppingList
         modelShoppingList shoppingList = db.getShoppingList(strListName);
         Bundle bundle = new Bundle();
         bundle.putString("list_name", shoppingList.getListName());
-        Intent I = new Intent(getContext(), MainActivity.class);
+        Intent I = new Intent(getContext(), HomeActivity_old.class);
         I.putExtras(bundle);
         getContext().startActivity(I);
         Toast.makeText(getContext(), "Done Using Shopping List.", Toast.LENGTH_SHORT).show();

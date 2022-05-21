@@ -38,13 +38,13 @@ public class TabbedInventoryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Log.d(MainActivity.TAG, "onCreate: Setup Tabs Start");
+        Log.d(HomeActivity_old.TAG, "onCreate: Setup Tabs Start");
 
         setupTabs();
 
         //setupInventory();
 
-        Log.d(MainActivity.TAG, "onCreate: Setup Tabs Done ***");
+        Log.d(HomeActivity_old.TAG, "onCreate: Setup Tabs Done ***");
 
     }
 
@@ -59,7 +59,7 @@ public class TabbedInventoryActivity extends AppCompatActivity {
         tabs.setupWithViewPager(viewPager);
 
 
-        Log.d(MainActivity.TAG, "onCreate: Setup Tabs Done");
+        Log.d(HomeActivity_old.TAG, "onCreate: Setup Tabs Done");
     }
 
     //Nav
@@ -67,7 +67,7 @@ public class TabbedInventoryActivity extends AppCompatActivity {
         //goto Home page
         Bundle bundle = new Bundle();
         bundle.putString("list_name", "TestDay ShoppingList");
-        Intent I = new Intent(this,MainActivity.class);
+        Intent I = new Intent(this, HomeActivity_old.class);
         I.putExtras(bundle);
         this.startActivity(I);
     }

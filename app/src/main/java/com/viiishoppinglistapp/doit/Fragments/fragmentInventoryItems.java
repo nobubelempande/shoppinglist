@@ -2,7 +2,6 @@ package com.viiishoppinglistapp.doit.Fragments;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.viiishoppinglistapp.doit.Adapters.InventoryItemsAdapter;
 import com.viiishoppinglistapp.doit.InventoryItemTouchHelper;
-import com.viiishoppinglistapp.doit.MainActivity;
 import com.viiishoppinglistapp.doit.Model.modelItem;
 import com.viiishoppinglistapp.doit.Model.modelShoppingList;
 import com.viiishoppinglistapp.doit.R;

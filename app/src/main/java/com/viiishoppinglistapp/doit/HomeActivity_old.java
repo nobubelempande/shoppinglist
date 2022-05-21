@@ -12,7 +12,7 @@ import android.view.View;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import com.viiishoppinglistapp.doit.Adapters.SavedShoppingListAdapter;
+import com.viiishoppinglistapp.doit.Adapters.UnusedShoppingListsAdapter;
 import com.viiishoppinglistapp.doit.Model.modelShoppingList;
 import com.viiishoppinglistapp.doit.Utils.DatabaseHandler;
 
@@ -20,12 +20,12 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-public class MainActivity extends AppCompatActivity implements DialogCloseListener {
+public class HomeActivity_old extends AppCompatActivity implements DialogCloseListener {
 
     private DatabaseHandler db;
 
     private RecyclerView shoppingListsRecyclerView;
-    private SavedShoppingListAdapter shoppingListAdapter;
+    private UnusedShoppingListsAdapter shoppingListAdapter;
     private FloatingActionButton fab;
 
 
@@ -69,10 +69,10 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
 
         shoppingListsRecyclerView = findViewById(R.id.rvShoppingListsHome);
         shoppingListsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        shoppingListAdapter = new SavedShoppingListAdapter(db, MainActivity.this);
+        shoppingListAdapter = new UnusedShoppingListsAdapter(db, HomeActivity_old.this);
         shoppingListsRecyclerView.setAdapter(shoppingListAdapter);
 
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new SavedShoppingListTouchHelper(shoppingListAdapter));
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new UnusedShoppingListTouchHelper(shoppingListAdapter));
         itemTouchHelper.attachToRecyclerView(shoppingListsRecyclerView);
 
         //add new shoppingList to RecyclerViewList button
