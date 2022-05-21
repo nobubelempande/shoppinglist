@@ -52,8 +52,6 @@ public class TabbedInventoryActivity extends AppCompatActivity {
         TabLayout tabs = binding.tabs;
         tabs.setupWithViewPager(viewPager);
 
-
-        Log.d(HomeActivity_old.TAG, "onCreate: Setup Tabs Done");
     }
 
     //Nav

@@ -17,8 +17,6 @@ import com.viiishoppinglistapp.doit.databinding.ActivityTabbedHomeBinding;
 
 public class TabbedHomeActivity extends AppCompatActivity {
 
-    //toDo setup tabbed Home
-
     private ActivityTabbedHomeBinding binding;
 
     @Override
