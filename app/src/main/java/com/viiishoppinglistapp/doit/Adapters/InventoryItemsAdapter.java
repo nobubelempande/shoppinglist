@@ -49,7 +49,7 @@ public class InventoryItemsAdapter extends RecyclerView.Adapter<InventoryItemsAd
 
     //viewHolder methods
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.inventory_items_layout, parent, false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_layout_inventory_item, parent, false);
 
         return new ViewHolder(itemView);
     }

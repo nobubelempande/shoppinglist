@@ -51,7 +51,7 @@ public class AddingItemsAdapter extends RecyclerView.Adapter<AddingItemsAdapter.
 
     //viewHolder methods
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.shopping_list_item_layout, parent, false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_layout_shopping_list_item, parent, false);
 
         return new ViewHolder(itemView);
     }

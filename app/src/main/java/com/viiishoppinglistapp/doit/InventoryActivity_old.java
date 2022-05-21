@@ -17,7 +17,7 @@ import com.viiishoppinglistapp.doit.Utils.DatabaseHandler;
 import java.util.Collections;
 import java.util.List;
 
-public class InventoryActivity extends AppCompatActivity {
+public class InventoryActivity_old extends AppCompatActivity {
 
     private RecyclerView rvInventory;
     private InventoryItemsAdapter adapter;
@@ -30,7 +30,7 @@ public class InventoryActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_inventory);
+        setContentView(R.layout.activity_inventory_old);
 
         getSupportActionBar().hide();
 

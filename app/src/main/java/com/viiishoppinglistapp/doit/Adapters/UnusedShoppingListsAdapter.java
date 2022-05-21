@@ -91,7 +91,7 @@ public class UnusedShoppingListsAdapter extends RecyclerView.Adapter<UnusedShopp
         //responsible for inflating views
 
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.saved_shopping_list_layout, parent, false);      //layout with cardViews
+                .inflate(R.layout.cardview_layout_unused_shopping_list, parent, false);      //layout with cardViews
         return new ViewHolder(itemView);
     }
 

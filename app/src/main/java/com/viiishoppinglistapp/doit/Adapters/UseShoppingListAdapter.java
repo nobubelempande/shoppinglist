@@ -57,7 +57,7 @@ public class UseShoppingListAdapter extends RecyclerView.Adapter<UseShoppingList
 
     //viewHolder methods
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.using_shopping_list_layout, parent, false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_layout_using_shopping_list_item, parent, false);
 
         return new ViewHolder(itemView);
     }

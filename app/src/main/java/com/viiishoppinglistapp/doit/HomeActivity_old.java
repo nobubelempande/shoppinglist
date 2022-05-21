@@ -38,7 +38,7 @@ public class HomeActivity_old extends AppCompatActivity implements DialogCloseLi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_home_old);
 
         setupUsingShoppingLists();
 
