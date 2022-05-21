@@ -120,7 +120,7 @@ public class AddNewItem extends BottomSheetDialogFragment {
         validator = new Validator(db);
 
         currItem = new modelItem("");
-
+        currShoppingList = new modelShoppingList();
 
         final Bundle bundle = getArguments();
         if(bundle != null){

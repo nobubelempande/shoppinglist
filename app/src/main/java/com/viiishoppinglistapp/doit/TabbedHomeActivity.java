@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.util.Log;
 import android.view.View;
 
 import com.viiishoppinglistapp.doit.Adapters.UnusedShoppingListsAdapter;
@@ -45,13 +46,14 @@ public class TabbedHomeActivity extends AppCompatActivity implements DialogClose
         unusedShoppingListAdapter = new UnusedShoppingListsAdapter(db,this);
 
         setupHomeTabs();
+
     }
 
     private void setupHomeTabs() {
         binding = ActivityTabbedHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        HomeSectionsPagerAdapter homeSectionsPagerAdapter = new HomeSectionsPagerAdapter(this, getSupportFragmentManager());
+        HomeSectionsPagerAdapter homeSectionsPagerAdapter = new HomeSectionsPagerAdapter(this, getSupportFragmentManager(), this);
         ViewPager viewPager = binding.viewPager;
         viewPager.setAdapter(homeSectionsPagerAdapter);
         TabLayout tabs = binding.tabs;
@@ -73,6 +75,7 @@ public class TabbedHomeActivity extends AppCompatActivity implements DialogClose
     public void handleDialogClose(DialogInterface dialog) {
         usingUnusedShoppingLists();
         usingUsedShoppingLists();
+        setupHomeTabs();
     }
 
 

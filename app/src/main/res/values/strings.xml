@@ -6,6 +6,8 @@
     <string name="title_activity_tabs_use_shopping_list">TabsUseShoppingListActivity</string>
     <string name="tab_text_1">Inventory Items</string>
     <string name="tab_text_2">Statistics</string>
+    <string name="tab_text_3">Current</string>
+    <string name="tab_text_4">Old</string>
     <string name="title_activity_home_new">HomeActivityNew</string>
     <string name="title_activity_tabbed_home">TabbedHomeActivity</string>
 </resources>

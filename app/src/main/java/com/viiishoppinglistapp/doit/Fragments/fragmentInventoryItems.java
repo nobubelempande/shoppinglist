@@ -44,7 +44,7 @@ public class fragmentInventoryItems extends Fragment {
     public fragmentInventoryItems(Context C, TabbedInventoryActivity activity){
         this.mContext = C;
         this.activity = activity;
-        allInventoryItems = new ArrayList<>();
+        allInventoryItems = new ArrayList<modelItem>();
     }
 
 

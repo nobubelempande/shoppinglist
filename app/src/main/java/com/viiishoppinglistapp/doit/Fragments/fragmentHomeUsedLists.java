@@ -1,6 +1,7 @@
 package com.viiishoppinglistapp.doit.Fragments;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.viiishoppinglistapp.doit.Adapters.UsedShoppingListsAdapter;
+import com.viiishoppinglistapp.doit.DialogCloseListener;
 import com.viiishoppinglistapp.doit.Model.modelItem;
 import com.viiishoppinglistapp.doit.Model.modelShoppingList;
 import com.viiishoppinglistapp.doit.R;
@@ -71,7 +73,7 @@ public class fragmentHomeUsedLists extends Fragment {
     }
 
     private void setupUsedShoppingLists(View root) {
-        setCurrShoppingList();
+        //setCurrShoppingList();
 
         db = new DatabaseHandler(mContext);
         db.openDatabase();

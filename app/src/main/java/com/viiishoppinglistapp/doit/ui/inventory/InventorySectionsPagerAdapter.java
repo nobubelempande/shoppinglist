@@ -20,7 +20,7 @@ import com.viiishoppinglistapp.doit.TabbedInventoryActivity;
  */
 public class InventorySectionsPagerAdapter extends FragmentPagerAdapter {
 
-    TabbedInventoryActivity activity;
+    private TabbedInventoryActivity activity;
 
     @StringRes
     private static final int[] TAB_TITLES = new int[]{R.string.tab_text_1, R.string.tab_text_2};
@@ -43,7 +43,7 @@ public class InventorySectionsPagerAdapter extends FragmentPagerAdapter {
                 fragment = new fragmentInventoryItems(mContext, activity);
                 break;
             case 1:
-                fragment = new fragmentInventoryStats();
+                fragment = new fragmentInventoryStats(mContext, activity);
                 break;
         }
         return fragment;

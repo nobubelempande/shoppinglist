@@ -1,7 +1,9 @@
 package com.viiishoppinglistapp.doit.Fragments;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +16,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.viiishoppinglistapp.doit.Adapters.UnusedShoppingListsAdapter;
+import com.viiishoppinglistapp.doit.DialogCloseListener;
+import com.viiishoppinglistapp.doit.HomeActivity_old;
 import com.viiishoppinglistapp.doit.Model.modelShoppingList;
 import com.viiishoppinglistapp.doit.R;
 import com.viiishoppinglistapp.doit.TabbedHomeActivity;
@@ -24,7 +28,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class fragmentHomeUnusedLists extends Fragment {
+public class fragmentHomeUnusedLists extends Fragment{
 
     TabbedHomeActivity activity;
     UnusedShoppingListsAdapter adapter;
@@ -42,7 +46,7 @@ public class fragmentHomeUnusedLists extends Fragment {
     public fragmentHomeUnusedLists(Context C, TabbedHomeActivity activity){
         this.mContext = C;
         this.activity = activity;
-        allShoppingLists = new ArrayList<>();
+        allShoppingLists = new ArrayList<modelShoppingList>();
     }
 
     @Nullable
@@ -70,8 +74,9 @@ public class fragmentHomeUnusedLists extends Fragment {
     }
 
     private void setupUnusedShoppingLists(View root) {
-        setCurrShoppingList();
+        //setCurrShoppingList();
 
+        Log.d(HomeActivity_old.TAG, "setupUnusedShoppingLists: ");
         db = new DatabaseHandler(mContext);
         db.openDatabase();
 
@@ -89,6 +94,8 @@ public class fragmentHomeUnusedLists extends Fragment {
         adapter.setAllUnusedShoppingLists(allShoppingLists);
 
         rvUnusedShoppingLists.setAdapter(adapter);
+        Log.d(HomeActivity_old.TAG, "--> Finish ");
 
     }
+
 }

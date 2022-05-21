@@ -1,5 +1,9 @@
 package com.viiishoppinglistapp.doit.Utils;
 
+import android.util.Log;
+
+import com.viiishoppinglistapp.doit.HomeActivity_old;
+
 public class DateHandler {
     private int day;
     private String month;
@@ -7,10 +11,12 @@ public class DateHandler {
     private int year;
 
     public DateHandler(int day, int month, int year){
+        Log.d(HomeActivity_old.TAG, "--> --> Date: ");
         setDay(day);
         setNumMonth(String.valueOf(month));
         setMonth(month);
         setYear(year);
+        Log.d(HomeActivity_old.TAG, "--> --> Date: Done");
     }
 
     //getters

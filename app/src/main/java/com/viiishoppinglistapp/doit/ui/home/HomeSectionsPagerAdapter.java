@@ -8,7 +8,12 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
+import com.viiishoppinglistapp.doit.Fragments.fragmentHomeUnusedLists;
+import com.viiishoppinglistapp.doit.Fragments.fragmentHomeUsedLists;
+import com.viiishoppinglistapp.doit.Fragments.fragmentInventoryItems;
+import com.viiishoppinglistapp.doit.Fragments.fragmentInventoryStats;
 import com.viiishoppinglistapp.doit.R;
+import com.viiishoppinglistapp.doit.TabbedHomeActivity;
 
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
@@ -17,19 +22,30 @@ import com.viiishoppinglistapp.doit.R;
 public class HomeSectionsPagerAdapter extends FragmentPagerAdapter {
 
     @StringRes
-    private static final int[] TAB_TITLES = new int[]{R.string.tab_text_1, R.string.tab_text_2};
+    private static final int[] TAB_TITLES = new int[]{R.string.tab_text_3, R.string.tab_text_4};
     private final Context mContext;
+    private TabbedHomeActivity activity;
 
-    public HomeSectionsPagerAdapter(Context context, FragmentManager fm) {
+    public HomeSectionsPagerAdapter(Context context, FragmentManager fm, TabbedHomeActivity activity) {
         super(fm);
         mContext = context;
+        this.activity = activity;
     }
 
     @Override
     public Fragment getItem(int position) {
         // getItem is called to instantiate the fragment for the given page.
         // Return a PlaceholderFragment (defined as a static inner class below).
-        return PlaceholderFragmentHome.newInstance(position + 1);
+        Fragment fragment = null;
+        switch (position){
+            case 0:
+                fragment = new fragmentHomeUnusedLists(mContext, activity);
+                break;
+            case 1:
+                fragment = new fragmentHomeUsedLists(mContext, activity);
+                break;
+        }
+        return fragment;
     }
 
     @Nullable

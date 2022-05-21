@@ -36,7 +36,7 @@ import java.util.Objects;
 
 public class AddNewShoppingList extends BottomSheetDialogFragment {
 
-    public static final String TAG = "ActionBottomDialog";
+    public static final String TAG = "VIII-ActionBottomDialog";
 
     private DatePickerDialog datePickerDialog;
 
@@ -85,8 +85,9 @@ public class AddNewShoppingList extends BottomSheetDialogFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        currShoppingList = new modelShoppingList();
+        Log.d(HomeActivity_old.TAG, "onViewCreated: ");
         setupShoppingListEditorLayout(view, savedInstanceState);
+        Log.d(HomeActivity_old.TAG, "End ");
     }
 
     //shoppingLists :
@@ -95,9 +96,11 @@ public class AddNewShoppingList extends BottomSheetDialogFragment {
         etNewListName = Objects.requireNonNull(getView()).findViewById(R.id.tvListName_newShoppingList);     //view from new_shopping_list
         btnSaveList = getView().findViewById(R.id.btnSaveShoppingList);
 
-        btnSaveList.setEnabled(true);
+        currShoppingList = new modelShoppingList();
 
+        Log.d(HomeActivity_old.TAG, "--> Date Setup -- ");
         initDatePicker();
+        Log.d(HomeActivity_old.TAG, "--> Date Set ");
         tvNewListUseDate = getView().findViewById(R.id.tvListDate_newShoppingList);
         tvNewListUseDate.setText(getTodayDate());
         tvNewListUseDate.setOnClickListener(new View.OnClickListener() {
@@ -108,6 +111,8 @@ public class AddNewShoppingList extends BottomSheetDialogFragment {
         });
 
         boolean isUpdate = false;
+
+        Log.d(HomeActivity_old.TAG, "--> Date Set ");
 
         final Bundle bundle = getArguments();
         if(bundle != null){
@@ -123,7 +128,9 @@ public class AddNewShoppingList extends BottomSheetDialogFragment {
                     btnSaveList.setTextColor(ContextCompat.getColor(Objects.requireNonNull(getContext()), R.color.colorPrimaryDark));
             }
         }
-        
+
+        Log.d(HomeActivity_old.TAG, "--> After Bundle Function");
+
         db = new DatabaseHandler(getActivity());
         db.openDatabase();
 
@@ -161,8 +168,6 @@ public class AddNewShoppingList extends BottomSheetDialogFragment {
                 boolean isNameValid = validator.isShoppingListNameValid(text);
 
                 if (isNameValid){
-                    currShoppingList = new modelShoppingList();
-
                     currShoppingList.setListName(text);
                     currShoppingList.setUseDate(date);
 
@@ -213,11 +218,17 @@ public class AddNewShoppingList extends BottomSheetDialogFragment {
         m+=1;
         int d = cal.get(Calendar.DAY_OF_MONTH);
 
+        Log.d(HomeActivity_old.TAG, "--> -- Setting Up ");
         int style = AlertDialog.THEME_HOLO_LIGHT;
 
+        Log.d(HomeActivity_old.TAG, "--> -- Setting Up: DateHandler ");
         date = new DateHandler(d, m, yr);
+        Log.d(HomeActivity_old.TAG, "--> -- Setting Up: String ");
         String strDate = date.getDate();
+        Log.d(HomeActivity_old.TAG, "--> -- Setting Up: currList ");
         currShoppingList.setUseDate(strDate);
+
+        Log.d(HomeActivity_old.TAG, "--> Date Setting ");
 
         datePickerDialog = new DatePickerDialog(getContext(), style, dateSetListener, yr, m, d);
     }

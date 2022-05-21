@@ -74,7 +74,7 @@ public class UseShoppingListActivity extends AppCompatActivity {
         //goto Home page
         Bundle bundle = new Bundle();
         bundle.putString("list_name", currShoppingList.getListName());
-        Intent I = new Intent(this, HomeActivity_old.class);
+        Intent I = new Intent(this, TabbedHomeActivity.class);
         I.putExtras(bundle);
         this.startActivity(I);
     }
