@@ -57,6 +57,12 @@ public class Validator {
     }
 
     //inventory items
+    public boolean isPriceNotEmpty(String text){
+        if(text.equals("") || text.equals(null)){
+            return false;
+        }
+        return true;
+    }
 
     public int add(){
         return 2;
