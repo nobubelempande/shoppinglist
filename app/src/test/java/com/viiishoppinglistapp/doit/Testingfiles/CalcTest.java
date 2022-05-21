@@ -8,18 +8,13 @@ import org.junit.runners.JUnit4;
 
 import static org.junit.Assert.assertEquals;
 @RunWith(JUnit4.class)
-public class AgeCalculatorTest {
-    AgeCalculator ageCalculator = new AgeCalculator();
-
+public class CalcTest {
+    Calc calc= new Calc();
     @Test
-    public void calculateAgeTest(){
-        String age = ageCalculator.calculateAge("31-03-2000");
+    public void calculateAge() {
+                   String age = calc.calculateAge("31-03-2000");
 
-        assertEquals(age,"21");
+            assertEquals(age,"21");
 
+        }
     }
-
-
-
-
-}

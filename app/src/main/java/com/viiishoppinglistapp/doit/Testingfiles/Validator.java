@@ -1,4 +1,4 @@
-package com.viiishoppinglistapp.doit;
+package com.viiishoppinglistapp.doit.Testingfiles;
 
 public class Validator {
     String a;
