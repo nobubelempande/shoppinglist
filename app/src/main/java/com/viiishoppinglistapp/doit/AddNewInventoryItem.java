@@ -29,6 +29,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.viiishoppinglistapp.doit.Model.modelItem;
 import com.viiishoppinglistapp.doit.Utils.DatabaseHandler;
 import com.viiishoppinglistapp.doit.Utils.DateHandler;
+import com.viiishoppinglistapp.doit.Utils.Validation;
 
 import java.util.Calendar;
 import java.util.Objects;
@@ -43,7 +44,7 @@ public class AddNewInventoryItem extends BottomSheetDialogFragment {
 
     private DatabaseHandler db;
     private DateHandler date;
-    private Validator validator;
+    Validation validator;
 
     private modelItem currItem;
 
@@ -173,7 +174,7 @@ public class AddNewInventoryItem extends BottomSheetDialogFragment {
             }
         });
 
-        validator = new Validator(db);
+        validator = new Validation(db);
 
         btnAddToInventory.setOnClickListener(new View.OnClickListener() {
             @Override

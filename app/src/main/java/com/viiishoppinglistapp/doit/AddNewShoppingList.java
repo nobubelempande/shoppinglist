@@ -28,6 +28,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.viiishoppinglistapp.doit.Model.modelShoppingList;
 import com.viiishoppinglistapp.doit.Utils.DatabaseHandler;
 import com.viiishoppinglistapp.doit.Utils.DateHandler;
+import com.viiishoppinglistapp.doit.Utils.Validation;
 
 import org.w3c.dom.Text;
 
@@ -44,7 +45,7 @@ public class AddNewShoppingList extends BottomSheetDialogFragment {
 
     private DatabaseHandler db;
     private DateHandler date;
-    private Validator validator;
+    private Validation validator;
 
     //lists::
     private EditText etNewListName;
@@ -164,7 +165,7 @@ public class AddNewShoppingList extends BottomSheetDialogFragment {
                 String text = etNewListName.getText().toString();
                 String date = tvNewListUseDate.getText().toString();
 
-                validator = new Validator(db);
+                validator = new Validation(db);
                 boolean isNameValid = validator.isShoppingListNameValid(text);
 
                 if (isNameValid){

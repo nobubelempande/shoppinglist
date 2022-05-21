@@ -27,6 +27,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.viiishoppinglistapp.doit.Model.modelItem;
 import com.viiishoppinglistapp.doit.Model.modelShoppingList;
 import com.viiishoppinglistapp.doit.Utils.DatabaseHandler;
+import com.viiishoppinglistapp.doit.Utils.Validation;
 
 import java.util.Objects;
 
@@ -37,7 +38,7 @@ public class AddNewItem extends BottomSheetDialogFragment {
     ArrayAdapter adapter;
 
     private DatabaseHandler db;
-    private Validator validator;
+    private Validation validator;
 
     private modelShoppingList currShoppingList;
     private modelItem currItem;
@@ -104,30 +105,20 @@ public class AddNewItem extends BottomSheetDialogFragment {
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
         });
-        Log.d(HomeActivity_old.TAG, "Setup Save II.");
 
         String[] itemTypes = getResources().getStringArray(R.array.types);
-        Log.d(HomeActivity_old.TAG, "Setup Save IIa.");
         adapter = new ArrayAdapter(Objects.requireNonNull(getContext()), android.R.layout.simple_spinner_item, itemTypes);
-        Log.d(HomeActivity_old.TAG, "Setup Save IIb.");
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        Log.d(HomeActivity_old.TAG, "Setup Save IIc.");
         spItemType.setAdapter(adapter);
-        Log.d(HomeActivity_old.TAG, "Setup Save IId.");
         boolean isUpdate = false;
 
         db = new DatabaseHandler(Objects.requireNonNull(getContext()));
         db.openDatabase();
 
-        Log.d(HomeActivity_old.TAG, "Setup Save IIe.");
 
-        validator = new Validator(db);
-        Log.d(HomeActivity_old.TAG, "Setup Save IIf.");
+        validator = new Validation(db);
         currItem = new modelItem("new Item");
-        Log.d(HomeActivity_old.TAG, "Setup Save IIg.");
         currShoppingList = new modelShoppingList();
-
-        Log.d(HomeActivity_old.TAG, "Setup Save III: Start");
 
         final Bundle bundle = getArguments();
         if(bundle != null){
@@ -168,8 +159,6 @@ public class AddNewItem extends BottomSheetDialogFragment {
 
         }
 
-        Log.d(HomeActivity_old.TAG, "Setup Save III.");
-
         etItemName.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -192,23 +181,17 @@ public class AddNewItem extends BottomSheetDialogFragment {
             }
         });
 
-        Log.d(HomeActivity_old.TAG, "Setup IV.");
-
         final boolean finalIsUpdate = isUpdate;
         btnSaveItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(HomeActivity_old.TAG, "Validator not created.");
                 String name = etItemName.getText().toString();
                 String strQty = etItemQty.getText().toString();
-                Log.d(HomeActivity_old.TAG, "Validator not created.");
 
                 boolean isNameValid = validator.isItemNameNotEmpty(name);
                 boolean isQtyValid = validator.isItemQtyNotEmpty(strQty);
                 boolean isTypeValid = validator.isItemTypeSelected(currItem.getItemType());
-
-                Log.d(HomeActivity_old.TAG, "Is Type Valid? - " + isTypeValid);
-
+                
                 if(!isNameValid){
                     Toast.makeText(getContext(),"Please Enter the Name.", Toast.LENGTH_SHORT).show();
                 }

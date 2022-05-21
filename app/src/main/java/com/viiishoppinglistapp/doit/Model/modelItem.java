@@ -23,19 +23,22 @@ public class modelItem {
     //constructor
     public modelItem(String name){
         date = new DateHandler();
-        Log.d(HomeActivity_old.TAG, "Model Setup Start");
         setItemName(name);
         setItemQty(1);
-        Log.d(HomeActivity_old.TAG, "Model Setup Mid 1");
         setChecked(0);
-        Log.d(HomeActivity_old.TAG, "Model Setup Mid 2");
         setItemPrice(0.0);
-        Log.d(HomeActivity_old.TAG, "Model Setup Mid 3");
         setItemDOE("N/A");
-        Log.d(HomeActivity_old.TAG, "Model Setup Mid 3");
-
-        Log.d(HomeActivity_old.TAG, "Model Setup End");
     }
+    public modelItem(int ID){
+        date = new DateHandler();
+        setItemID(ID);
+        setItemName("some Item");
+        setItemQty(1);
+        setChecked(0);
+        setItemPrice(0.0);
+        setItemDOE("N/A");
+    }
+
 
 
     //getters
