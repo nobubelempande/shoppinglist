@@ -16,14 +16,14 @@ import com.viiishoppinglistapp.doit.Adapters.InventoryItemsAdapter;
 import com.viiishoppinglistapp.doit.Model.modelItem;
 import com.viiishoppinglistapp.doit.Model.modelShoppingList;
 import com.viiishoppinglistapp.doit.Utils.DatabaseHandler;
-import com.viiishoppinglistapp.doit.databinding.ActivityTabsInventoryBinding;
+import com.viiishoppinglistapp.doit.databinding.ActivityTabbedInventoryBinding;
 import com.viiishoppinglistapp.doit.ui.inventory.InventorySectionsPagerAdapter;
 
 import java.util.List;
 
 public class TabbedInventoryActivity extends AppCompatActivity {
 
-    private ActivityTabsInventoryBinding binding;
+    private ActivityTabbedInventoryBinding binding;
 
     private RecyclerView rvInventory;
     private InventoryItemsAdapter adapter;
@@ -49,7 +49,7 @@ public class TabbedInventoryActivity extends AppCompatActivity {
     }
 
     private void setupTabs() {
-        binding = ActivityTabsInventoryBinding.inflate(getLayoutInflater());
+        binding = ActivityTabbedInventoryBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         InventorySectionsPagerAdapter inventorySectionsPagerAdapter = new InventorySectionsPagerAdapter(this, getSupportFragmentManager(), this);

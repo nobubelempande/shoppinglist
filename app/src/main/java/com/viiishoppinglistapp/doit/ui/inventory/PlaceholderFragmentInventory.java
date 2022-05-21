@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.viiishoppinglistapp.doit.databinding.FragmentTabsUseShoppingListBinding;
+import com.viiishoppinglistapp.doit.databinding.FragmentTabbedInventoryBinding;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -22,7 +22,7 @@ public class PlaceholderFragmentInventory extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
 
     private PageViewModelInventory pageViewModelInventory;
-    private FragmentTabsUseShoppingListBinding binding;
+    private FragmentTabbedInventoryBinding binding;
 
     public static PlaceholderFragmentInventory newInstance(int index) {
         PlaceholderFragmentInventory fragment = new PlaceholderFragmentInventory();
@@ -47,7 +47,7 @@ public class PlaceholderFragmentInventory extends Fragment {
     public View onCreateView(
             @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        binding = FragmentTabsUseShoppingListBinding.inflate(inflater, container, false);
+        binding = FragmentTabbedInventoryBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final TextView textView = binding.sectionLabel;
