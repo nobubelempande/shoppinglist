@@ -7,4 +7,5 @@
     <string name="tab_text_1">Inventory Items</string>
     <string name="tab_text_2">Statistics</string>
     <string name="title_activity_home_new">HomeActivityNew</string>
+    <string name="title_activity_tabbed_home">TabbedHomeActivity</string>
 </resources>

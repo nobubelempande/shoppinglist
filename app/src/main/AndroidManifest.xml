@@ -10,6 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".TabbedHomeActivity"
+            android:exported="false"
+            android:label="@string/title_activity_tabbed_home"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".TabsInventoryActivity"
             android:exported="false"
             android:label="@string/title_activity_tabs_use_shopping_list"
@@ -23,7 +28,8 @@
         <activity
             android:name=".UseShoppingListActivity"
             android:exported="false" />
-        <activity android:name=".SplashActivity"
+        <activity
+            android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
