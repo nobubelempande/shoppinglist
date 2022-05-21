@@ -1,5 +1,7 @@
 package com.viiishoppinglistapp.doit.Model;
 
+
+
 import junit.framework.TestCase;
 
 import org.junit.Test;
@@ -25,26 +27,6 @@ public class modelItemTest extends TestCase {
 
     }
 
-    public void testGetItemQty() {
-    }
-
-    public void testGetItemName() {
-    }
-
-    public void testGetListName() {
-    }
-
-    public void testGetItemType() {
-    }
-
-    public void testGetItemPrice() {
-    }
-
-    public void testGetItemDOE() {
-    }
-
-    public void testIsUsed() {
-    }
 
     @Test
     public void testSetItemID() {
@@ -55,26 +37,6 @@ public class modelItemTest extends TestCase {
 
     }
 
-    public void testSetItemQty() {
-    }
-
-    public void testSetItemName() {
-    }
-
-    public void testSetListName() {
-    }
-
-    public void testSetItemType() {
-    }
-
-    public void testSetItemPrice() {
-    }
-
-    public void testSetItemDOE() {
-    }
-
-    public void testSetUsed() {
-    }
     public void tearDown() {
     }
 }
