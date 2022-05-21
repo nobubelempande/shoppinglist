@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -39,6 +41,7 @@ public class AddNewInventoryItem extends BottomSheetDialogFragment {
 
     private DatabaseHandler db;
     private DateHandler date;
+    private Validator validator;
 
     private modelItem currItem;
 
@@ -149,24 +152,50 @@ public class AddNewInventoryItem extends BottomSheetDialogFragment {
             }
         });
 
+        validator = new Validator(db);
+
         btnAddToInventory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                double price = Double.parseDouble(etItemPrice.getText().toString());
+                String strPrice = etItemPrice.getText().toString();
                 String doe = tvItemDOE.getText().toString();
+                Log.d(TAG, "onClick: ");
 
-                currItem.setItemPrice(price);
-                currItem.setItemDOE(doe);
-                currItem.setChecked(1);
+                if(validator.isItemPriceEmpty(strPrice)){
+                    Toast.makeText(getContext(), "Please Enter The Price.", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    currItem.setItemPrice(Double.parseDouble(strPrice));
+                    currItem.setItemDOE(doe);
+                    currItem.setChecked(1);
 
-                addItemToInventory(currItem);
-                dismiss();
+                    addItemToInventory(currItem);
+                    dismiss();
+                }
+                Log.d(TAG, "onClick End");
+
             }
         });
         btnCancelAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dismiss();
+                //toDo only update item
+                String strPrice = etItemPrice.getText().toString();
+                String doe = tvItemDOE.getText().toString();
+                Log.d(TAG, "onClick: ");
+
+                if(validator.isItemPriceEmpty(strPrice)){
+                    Toast.makeText(getContext(), "Please Enter The Price.", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    currItem.setItemPrice(Double.parseDouble(strPrice));
+                    currItem.setItemDOE(doe);
+                    currItem.setChecked(1);
+
+                    db.updateItem(currItem);
+                    dismiss();
+                }
+                Log.d(TAG, "onClick End");
             }
         });
     }

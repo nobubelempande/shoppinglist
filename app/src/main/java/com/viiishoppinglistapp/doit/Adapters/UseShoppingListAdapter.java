@@ -119,15 +119,4 @@ public class UseShoppingListAdapter extends RecyclerView.Adapter<UseShoppingList
         db.insertInventoryItem(currItem);
     }
 
-    private void doDoneUsingShoppingList(String strListName) {
-        //goto new page
-        modelShoppingList shoppingList = db.getShoppingList(strListName);
-        Bundle bundle = new Bundle();
-        bundle.putString("list_name", shoppingList.getListName());
-        Intent I = new Intent(getContext(), HomeActivity_old.class);
-        I.putExtras(bundle);
-        getContext().startActivity(I);
-        Toast.makeText(getContext(), "Done Using Shopping List.", Toast.LENGTH_SHORT).show();
-    }
-
 }
