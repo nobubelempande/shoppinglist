@@ -29,6 +29,9 @@ public class TabbedHomeActivity extends AppCompatActivity implements DialogClose
 
     UsedShoppingListsAdapter usedShoppingListAdapter;
     UnusedShoppingListsAdapter unusedShoppingListAdapter;
+    HomeSectionsPagerAdapter homeSectionsPagerAdapter;
+
+    ViewPager viewPager;
 
     DatabaseHandler db;
 
@@ -53,8 +56,8 @@ public class TabbedHomeActivity extends AppCompatActivity implements DialogClose
         binding = ActivityTabbedHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        HomeSectionsPagerAdapter homeSectionsPagerAdapter = new HomeSectionsPagerAdapter(this, getSupportFragmentManager(), this);
-        ViewPager viewPager = binding.viewPager;
+        homeSectionsPagerAdapter = new HomeSectionsPagerAdapter(this, getSupportFragmentManager(), this);
+        viewPager = binding.viewPager;
         viewPager.setAdapter(homeSectionsPagerAdapter);
         TabLayout tabs = binding.tabs;
         tabs.setupWithViewPager(viewPager);
@@ -75,7 +78,8 @@ public class TabbedHomeActivity extends AppCompatActivity implements DialogClose
     public void handleDialogClose(DialogInterface dialog) {
         usingUnusedShoppingLists();
         usingUsedShoppingLists();
-        setupHomeTabs();
+        homeSectionsPagerAdapter.notifyDataSetChanged();
+        viewPager.setAdapter(homeSectionsPagerAdapter);
     }
 
 
