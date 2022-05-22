@@ -60,6 +60,22 @@ public class  TabbedHomeActivity extends AppCompatActivity implements DialogClos
 
         homeSectionsPagerAdapter = new HomeSectionsPagerAdapter(this, getSupportFragmentManager(), this);
         viewPager = binding.viewPager;
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                viewPager.getAdapter().notifyDataSetChanged();
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
         viewPager.setAdapter(homeSectionsPagerAdapter);
         TabLayout tabs = binding.tabs;
         tabs.setupWithViewPager(viewPager);

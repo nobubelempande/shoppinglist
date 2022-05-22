@@ -60,4 +60,9 @@ public class InventorySectionsPagerAdapter extends FragmentPagerAdapter {
         // Show 2 total pages.
         return 2;
     }
+
+    public int getItemPosition(Object object) {
+        return POSITION_NONE;
+    }
+
 }
