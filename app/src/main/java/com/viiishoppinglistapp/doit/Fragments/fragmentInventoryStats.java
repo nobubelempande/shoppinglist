@@ -109,7 +109,7 @@ public class fragmentInventoryStats extends Fragment {
     }
 
     private void makePieChartDataSet_Elements() {
-        PieDataSet dataSet = new PieDataSet(pieEntries, "Elements");
+        dataSet = new PieDataSet(pieEntries, "Elements");
         dataSet.setColors(ColorTemplate.LIBERTY_COLORS);
         dataSet.setDrawValues(true);
         dataSet.setValueTextSize(12);
