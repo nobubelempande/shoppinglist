@@ -25,7 +25,7 @@ import com.viiishoppinglistapp.doit.databinding.ActivityTabbedHomeBinding;
 import java.util.Collections;
 import java.util.List;
 
-public class TabbedHomeActivity extends AppCompatActivity implements DialogCloseListener {
+public class  TabbedHomeActivity extends AppCompatActivity implements DialogCloseListener {
 
     UsedShoppingListsAdapter usedShoppingListAdapter;
     UnusedShoppingListsAdapter unusedShoppingListAdapter;

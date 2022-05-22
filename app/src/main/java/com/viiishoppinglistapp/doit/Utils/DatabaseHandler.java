@@ -295,6 +295,17 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     //items
 
+    public Cursor readItemsData(){
+        String query = "SELECT * FROM items WHERE item_price is not null";
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = null;
+        if(db != null){
+            cursor = db.rawQuery(query, null);
+        }
+        return cursor;
+    }
+
     public List<modelItem> getItemsForShoppingList(String listName){
         //getting all saved shoppingLists from the DB
 
