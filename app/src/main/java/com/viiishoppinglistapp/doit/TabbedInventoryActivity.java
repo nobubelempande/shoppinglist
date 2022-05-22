@@ -18,6 +18,7 @@ import com.viiishoppinglistapp.doit.ui.inventory.InventorySectionsPagerAdapter;
 public class TabbedInventoryActivity extends AppCompatActivity {
 
     private ActivityTabbedInventoryBinding binding;
+    private ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +33,23 @@ public class TabbedInventoryActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         InventorySectionsPagerAdapter inventorySectionsPagerAdapter = new InventorySectionsPagerAdapter(this, getSupportFragmentManager(), this);
-        ViewPager viewPager = binding.viewPager;
+        viewPager = binding.viewPager;
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                viewPager.getAdapter().notifyDataSetChanged();
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
         viewPager.setAdapter(inventorySectionsPagerAdapter);
         TabLayout tabs = binding.tabs;
         tabs.setupWithViewPager(viewPager);
