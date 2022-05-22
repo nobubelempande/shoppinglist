@@ -128,7 +128,6 @@ public class fragmentInventoryStats extends Fragment {
     }
 
     private void usingEntries_TotalItemPrices() {
-        //toDo
         usingEntries_ItemPrices();
     }
 
@@ -142,7 +141,6 @@ public class fragmentInventoryStats extends Fragment {
     }
 
     private void makePieChartDataSet_TotalItemPrices() {
-        //ToDo
         pieDataSet = new PieDataSet(categories, "Categories");
         pieDataSet.setColors(ColorTemplate.LIBERTY_COLORS);
         pieDataSet.setDrawValues(true);

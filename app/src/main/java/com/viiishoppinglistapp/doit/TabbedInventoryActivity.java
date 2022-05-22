@@ -67,8 +67,4 @@ public class TabbedInventoryActivity extends AppCompatActivity {
         this.startActivity(I);
     }
 
-    public void goToStats(View view) {
-        Intent i = new Intent(this, StatisticsActivity.class);
-        this.startActivity(i);
-    }
 }
