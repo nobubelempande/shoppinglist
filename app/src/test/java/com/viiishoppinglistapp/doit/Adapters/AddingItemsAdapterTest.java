@@ -10,7 +10,7 @@ import com.viiishoppinglistapp.doit.Utils.DatabaseHandler;
 
 import junit.framework.TestCase;
 
-import org.junit.After;
+
 import org.junit.Before;
 import org.junit.Test;
 
