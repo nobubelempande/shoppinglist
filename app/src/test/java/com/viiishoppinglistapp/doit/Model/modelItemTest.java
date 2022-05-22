@@ -74,14 +74,7 @@ public class modelItemTest extends TestCase {
         assertEquals(itemDOE,m.getItemDOE());
     }
 
-    @Ignore
-    public void testIsUsed() {
-        int used=0;
-        boolean use=false;
-        modelItem s=new modelItem("Default");
-        //s.setUsed(used);
-        //assertThat(s.isUsed()).isEqualTo(use);
-    }
+
 
     @Test
     public void testSetItemID() {
@@ -141,12 +134,35 @@ public class modelItemTest extends TestCase {
 
     }
 
-    @Ignore
-    public void testSetUsed() {
-        int used =0;
-        modelItem s=new modelItem("Default");
-        //s.setUsed(used);
-        //assertFalse(s.isUsed());
+
+    @Test
+    public void testIsChecked() {
+        int used = 0;
+        modelItem s = new modelItem("Default");
+        s.setChecked(used);
+        assertThat(s.isChecked()).isEqualTo(false);
+    }
+    @Test
+    public void testIsChecked1() {
+        int used = 1;
+        modelItem s = new modelItem("Default");
+        s.setChecked(used);
+        assertThat(s.isChecked()).isEqualTo(true);
+    }
+    @Test
+    public void testSetChecked() {
+        int used = 0;
+        modelItem s = new modelItem("Default");
+        s.setChecked(used);
+        assertFalse(s.isChecked());
+    }
+
+    @Test
+    public void testSetChecked1() {
+        int used = 1;
+        modelItem s = new modelItem("Default");
+        s.setChecked(used);
+        assertTrue(s.isChecked());
     }
 
 }
