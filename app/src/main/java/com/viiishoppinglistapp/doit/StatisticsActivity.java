@@ -45,6 +45,17 @@ public class StatisticsActivity extends AppCompatActivity {
         pieChart = (PieChart)findViewById(R.id.PieChart);
         db =  new DatabaseHandler(StatisticsActivity.this);
 
+        usingEntries_ItemPrices(price);
+
+        makeDataSet(categories);
+
+
+        pieData = new PieData(pieDataSet);
+        pieChart.setData(pieData);
+        pieChart.invalidate();
+    }
+
+    private void usingEntries_ItemPrices(double price) {
         categories = new ArrayList<>();
 
         inventory_item_id = new ArrayList<>();
@@ -100,13 +111,6 @@ public class StatisticsActivity extends AppCompatActivity {
         categories.add(new PieEntry((int)stationeryPrice, "Stationery"));
         categories.add(new PieEntry((int)toyPrice, "T&G"));
         categories.add(new PieEntry((int)otherPrice, "Other"));
-
-        makeDataSet(categories);
-
-
-        pieData = new PieData(pieDataSet);
-        pieChart.setData(pieData);
-        pieChart.invalidate();
     }
 
     private void makeDataSet(ArrayList<PieEntry> categories) {
