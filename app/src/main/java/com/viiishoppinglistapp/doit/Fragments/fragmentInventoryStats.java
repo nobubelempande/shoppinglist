@@ -84,7 +84,7 @@ public class fragmentInventoryStats extends Fragment {
 
         //--
         pieChart.setEntryLabelColor(Color.BLACK);
-        pieChart.setCenterText("Total Spent: " +price);
+        pieChart.setCenterText("Total Spent: R" + price);
         pieChart.setCenterTextSize(11f);
     }
 
@@ -257,7 +257,7 @@ public class fragmentInventoryStats extends Fragment {
     private void setupPieChart_ItemPrices() {
 
         pieChart.setEntryLabelColor(Color.BLACK);
-        pieChart.setCenterText("Total Spent: " +price);
+        pieChart.setCenterText("Total Spent: R" +price);
         pieChart.setCenterTextSize(11f);
         pieChart.getDescription().setEnabled(false);
 

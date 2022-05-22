@@ -71,11 +71,7 @@ public class UseShoppingListActivity extends AppCompatActivity implements Dialog
         }
         Collections.reverse(allShoppingListItems);
 
-        Log.d(HomeActivity_old.TAG, "USE LIST:: Setup --> Adapter Items Set");
-
         adapter.setAllShoppingListItems(allShoppingListItems);
-
-        Log.d(HomeActivity_old.TAG, "USE LIST:: Setup --> Adapter Set II");
     }
 
     @Override
