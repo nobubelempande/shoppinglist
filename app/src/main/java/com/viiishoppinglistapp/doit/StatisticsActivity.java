@@ -5,25 +5,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
-import com.github.mikephil.charting.highlight.Highlight;
-import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.viiishoppinglistapp.doit.Utils.DatabaseHandler;
 
 import java.util.ArrayList;
 
 public class StatisticsActivity extends AppCompatActivity {
 
-    DatabaseHandler myDB;
+    DatabaseHandler db;
     PieChart pieChart;
+    PieDataSet pieDataSet;
+    PieData pieData;
     ArrayList<String> inventory_item_id, inventory_item_name, inventory_item_category, inventory_item_quantity, inventory_item_price, inventory_item_expiry;
 
 
@@ -37,7 +33,7 @@ public class StatisticsActivity extends AppCompatActivity {
     }
 
     private void doShowPieChart_ItemPrices() {
-        myDB =  new DatabaseHandler(StatisticsActivity.this);
+        db =  new DatabaseHandler(StatisticsActivity.this);
         inventory_item_id = new ArrayList<>();
         inventory_item_name = new ArrayList<>();
         inventory_item_category = new ArrayList<>();
@@ -94,7 +90,7 @@ public class StatisticsActivity extends AppCompatActivity {
         categories.add(new PieEntry((int)toyPrice, "T&G"));
         categories.add(new PieEntry((int)otherPrice, "Other"));
 
-        PieDataSet pieDataSet = new PieDataSet(categories, "Categories");
+        pieDataSet = new PieDataSet(categories, "Categories");
         ArrayList<Integer> colours = new ArrayList<>();
         colours.add(Color.MAGENTA);
         colours.add(Color.RED);
@@ -110,8 +106,11 @@ public class StatisticsActivity extends AppCompatActivity {
         pieDataSet.setSliceSpace(4f);
 
 
-        PieData pieData = new PieData(pieDataSet);
+        pieData = new PieData(pieDataSet);
         pieChart.setData(pieData);
+        pieChart.invalidate();
+
+
         pieChart.setEntryLabelColor(Color.BLACK);
         pieChart.setCenterText("Total Spent: " +price);
         pieChart.setCenterTextSize(15f);
@@ -121,7 +120,7 @@ public class StatisticsActivity extends AppCompatActivity {
     }
 
     void storeDataInArrays(){
-        Cursor cursor = myDB.readItemsData();
+        Cursor cursor = db.readItemsData();
         while (cursor.moveToNext()){
             inventory_item_id.add(cursor.getString(0));
             inventory_item_name.add(cursor.getString(1));

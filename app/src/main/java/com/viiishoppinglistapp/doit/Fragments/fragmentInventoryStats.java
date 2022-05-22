@@ -36,7 +36,8 @@ public class fragmentInventoryStats extends Fragment {
 
     PieChart pieChart;
     ArrayList<PieEntry> pieEntries;
-    PieDataSet dataSet;
+    PieDataSet pieDataSet;
+    PieData pieData;
 
     DatabaseHandler db;
 
@@ -75,8 +76,8 @@ public class fragmentInventoryStats extends Fragment {
         makePieChartDataSet_Elements();
         //toDo: makePieChartDataSet_TotalItemPrices();
 
-        PieData data = new PieData(dataSet);
-        pieChart.setData(data);
+        pieData = new PieData(pieDataSet);
+        pieChart.setData(pieData);
         pieChart.invalidate();
     }
 
@@ -109,12 +110,12 @@ public class fragmentInventoryStats extends Fragment {
     }
 
     private void makePieChartDataSet_Elements() {
-        dataSet = new PieDataSet(pieEntries, "Elements");
-        dataSet.setColors(ColorTemplate.LIBERTY_COLORS);
-        dataSet.setDrawValues(true);
-        dataSet.setValueTextSize(12);
-        dataSet.setValueTextColor(Color.DKGRAY);
-        dataSet.setValueFormatter(new PercentFormatter(pieChart));
+        pieDataSet = new PieDataSet(pieEntries, "Elements");
+        pieDataSet.setColors(ColorTemplate.LIBERTY_COLORS);
+        pieDataSet.setDrawValues(true);
+        pieDataSet.setValueTextSize(12);
+        pieDataSet.setValueTextColor(Color.DKGRAY);
+        pieDataSet.setValueFormatter(new PercentFormatter(pieChart));
     }
 
     private void makePieChartDataSet_TotalItemPrices() {
