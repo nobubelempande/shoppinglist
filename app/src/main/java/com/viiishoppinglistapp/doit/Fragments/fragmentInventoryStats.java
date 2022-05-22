@@ -70,7 +70,7 @@ public class fragmentInventoryStats extends Fragment {
     }
 
     private void loadPieChartData() {
-        usingElements();
+        usingEntriesElements();
         //toDo: usingTotalItemPrices();
 
         makePieChartDataSet_Elements();
@@ -97,7 +97,7 @@ public class fragmentInventoryStats extends Fragment {
         pieChart.animate();
     }
 
-    private void usingElements() {
+    private void usingEntriesElements() {
         pieEntries = new ArrayList<PieEntry>();
         pieEntries.add(new PieEntry(0.4f, "First Element"));
         pieEntries.add(new PieEntry(0.25f, "Second Element"));

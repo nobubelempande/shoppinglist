@@ -20,6 +20,8 @@ public class StatisticsActivity extends AppCompatActivity {
     PieChart pieChart;
     PieDataSet pieDataSet;
     PieData pieData;
+    ArrayList<PieEntry> categories;
+
     ArrayList<String> inventory_item_id, inventory_item_name, inventory_item_category, inventory_item_quantity, inventory_item_price, inventory_item_expiry;
 
 
@@ -33,7 +35,18 @@ public class StatisticsActivity extends AppCompatActivity {
     }
 
     private void doShowPieChart_ItemPrices() {
+        double price = 0;
+        loadPieChartData_ItemPrices(price);
+
+        setupPieChart(price);
+    }
+
+    private void loadPieChartData_ItemPrices(double price) {
+        pieChart = (PieChart)findViewById(R.id.PieChart);
         db =  new DatabaseHandler(StatisticsActivity.this);
+
+        categories = new ArrayList<>();
+
         inventory_item_id = new ArrayList<>();
         inventory_item_name = new ArrayList<>();
         inventory_item_category = new ArrayList<>();
@@ -49,7 +62,7 @@ public class StatisticsActivity extends AppCompatActivity {
         double stationeryPrice = 0;
         double toyPrice = 0;
         double otherPrice = 0;
-        double price = 0;
+        price = 0;
 
         for(int j = 0; j < inventory_item_price.size(); j++){
             price += (Double.valueOf(inventory_item_price.get(j)) * Double.valueOf(inventory_item_quantity.get(j)));
@@ -80,8 +93,6 @@ public class StatisticsActivity extends AppCompatActivity {
         }
 
 
-        pieChart = (PieChart)findViewById(R.id.PieChart);
-        ArrayList<PieEntry> categories = new ArrayList<>();
         categories.add(new PieEntry((int)foodPrice, "Food"));
         categories.add(new PieEntry((int)clothingPrice, "Clothing"));
         categories.add(new PieEntry((int)appliancePrice, "App"));
@@ -90,6 +101,15 @@ public class StatisticsActivity extends AppCompatActivity {
         categories.add(new PieEntry((int)toyPrice, "T&G"));
         categories.add(new PieEntry((int)otherPrice, "Other"));
 
+        makeDataSet(categories);
+
+
+        pieData = new PieData(pieDataSet);
+        pieChart.setData(pieData);
+        pieChart.invalidate();
+    }
+
+    private void makeDataSet(ArrayList<PieEntry> categories) {
         pieDataSet = new PieDataSet(categories, "Categories");
         ArrayList<Integer> colours = new ArrayList<>();
         colours.add(Color.MAGENTA);
@@ -104,12 +124,9 @@ public class StatisticsActivity extends AppCompatActivity {
         pieDataSet.setValueTextColor(Color.BLACK);
         pieDataSet.setValueTextSize(18f);
         pieDataSet.setSliceSpace(4f);
+    }
 
-
-        pieData = new PieData(pieDataSet);
-        pieChart.setData(pieData);
-        pieChart.invalidate();
-
+    private void setupPieChart(double price) {
 
         pieChart.setEntryLabelColor(Color.BLACK);
         pieChart.setCenterText("Total Spent: " +price);
