@@ -28,6 +28,10 @@ public class modelShoppingListTest extends TestCase{
         m.setListName(name);
         assertNotNull(m.getListName());
         assertEquals(name, m.getListName());
+        modelShoppingList d = new modelShoppingList();
+        d.setListName(name);
+        assertNotNull(d.getListName());
+        assertEquals(name, d.getListName());
     }
 
     @Test
@@ -36,6 +40,9 @@ public class modelShoppingListTest extends TestCase{
         modelShoppingList m = new modelShoppingList("Default");
         m.setListID(ID);
         assertEquals(ID, m.getListID());
+        modelShoppingList d = new modelShoppingList();
+        d.setListID(ID);
+        assertEquals(ID, d.getListID());
     }
 
     @Test
@@ -44,6 +51,9 @@ public class modelShoppingListTest extends TestCase{
         modelShoppingList m = new modelShoppingList("Default");
         m.setUsed(list);
         assertEquals(list, m.getUsed());
+        modelShoppingList d = new modelShoppingList();
+        d.setUsed(list);
+        assertEquals(list, d.getUsed());
     }
 
     @Test
@@ -53,6 +63,10 @@ public class modelShoppingListTest extends TestCase{
         m.setUseDate(name);
         assertNotNull(m.getUseDate());
         assertEquals(name, m.getUseDate());
+        modelShoppingList d = new modelShoppingList();
+        d.setUseDate(name);
+        assertNotNull(d.getUseDate());
+        assertEquals(name, d.getUseDate());
     }
 
     @Test
@@ -63,6 +77,9 @@ public class modelShoppingListTest extends TestCase{
         modelShoppingList s= new modelShoppingList("Default");
         s.setListItems(read);
         assertEquals(s.getListItems(),read);
+        modelShoppingList d = new modelShoppingList();
+        d.setListItems(read);
+        assertEquals(d.getListItems(),read);
     }
 
     @Test
@@ -71,6 +88,9 @@ public class modelShoppingListTest extends TestCase{
         modelShoppingList m = new modelShoppingList("Default");
         m.setListName(itemName);
         assertEquals(m.getListName(), itemName);
+        modelShoppingList d = new modelShoppingList();
+        d.setListName(itemName);
+        assertEquals(d.getListName(), itemName);
     }
 
     @Test
@@ -79,6 +99,9 @@ public class modelShoppingListTest extends TestCase{
         modelShoppingList m = new modelShoppingList("Default");
         m.setListID(ID);
         assertEquals(m.getListID(), ID);
+        modelShoppingList d = new modelShoppingList();
+        d.setListID(ID);
+        assertEquals(d.getListID(), ID);
     }
 
     @Test
@@ -89,6 +112,9 @@ public class modelShoppingListTest extends TestCase{
         modelShoppingList s= new modelShoppingList("Default");
         s.setListItems(read);
         assertEquals(s.getListItems(),read);
+        modelShoppingList d = new modelShoppingList();
+        d.setListItems(read);
+        assertEquals(d.getListItems(),read);
     }
 
     @Test
@@ -97,6 +123,9 @@ public class modelShoppingListTest extends TestCase{
         modelShoppingList m = new modelShoppingList("Default");
         m.setUseDate(itemName);
         assertEquals(m.getUseDate(), itemName);
+        modelShoppingList d = new modelShoppingList();
+        d.setUseDate(itemName);
+        assertEquals(d.getUseDate(), itemName);
     }
 
     @Test
@@ -105,6 +134,9 @@ public class modelShoppingListTest extends TestCase{
         modelShoppingList m = new modelShoppingList("Default");
         m.setUsed(ID);
         assertEquals(m.getUsed(), ID);
+        modelShoppingList d = new modelShoppingList();
+        d.setUsed(ID);
+        assertEquals(d.getUsed(), ID);
     }
 
     @Test
@@ -114,6 +146,8 @@ public class modelShoppingListTest extends TestCase{
         m.setToUsed();
         m.setUsed(used);
         assertEquals(m.getUsed(), used);
+        modelShoppingList d = new modelShoppingList();
+
     }
 
     @Test
