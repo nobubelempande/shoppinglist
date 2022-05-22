@@ -36,20 +36,10 @@ public class UseShoppingListActivity extends AppCompatActivity implements Dialog
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_use_shopping_list);
 
-        Log.d(HomeActivity_old.TAG, "USE LIST:: onCreate");
-
         getSupportActionBar().hide();
 
-        Log.d(HomeActivity_old.TAG, "USE LIST:: onCreate Start");
-
         setCurrShoppingList();
-
-        Log.d(HomeActivity_old.TAG, "USE LIST:: onCreate Curr List");
-
         setupShoppingList();
-
-        Log.d(HomeActivity_old.TAG, "USE LIST:: onCreate End");
-
     }
 
     private void setCurrShoppingList() {
@@ -72,11 +62,9 @@ public class UseShoppingListActivity extends AppCompatActivity implements Dialog
         adapter = new UseShoppingListAdapter(db, this);
         rvUseShoppingList.setAdapter(adapter);
 
-        Log.d(HomeActivity_old.TAG, "USE LIST:: Setup --> Adapter Set");
 
         allShoppingListItems = db.getItemsForShoppingList(currShoppingList.getListName());
 
-        Log.d(HomeActivity_old.TAG, "USE LIST:: Setup --> DB Returned");
         if (allShoppingListItems.size()<1){
             //no items
             Toast.makeText(this, "Add Items To Your Shopping List.", Toast.LENGTH_SHORT).show();
