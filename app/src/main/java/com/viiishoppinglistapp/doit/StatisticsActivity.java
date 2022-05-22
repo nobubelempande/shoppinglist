@@ -32,6 +32,11 @@ public class StatisticsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistics);
 
+        doShowPieChart_ItemPrices();
+
+    }
+
+    private void doShowPieChart_ItemPrices() {
         myDB =  new DatabaseHandler(StatisticsActivity.this);
         inventory_item_id = new ArrayList<>();
         inventory_item_name = new ArrayList<>();
@@ -113,8 +118,8 @@ public class StatisticsActivity extends AppCompatActivity {
         pieChart.getDescription().setEnabled(false);
 
         pieChart.animate();
-
     }
+
     void storeDataInArrays(){
         Cursor cursor = myDB.readItemsData();
         while (cursor.moveToNext()){
