@@ -41,21 +41,36 @@
         android:layout_height="460dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabGoHome_inventory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
             android:backgroundTint="@android:color/holo_green_dark"
             android:clickable="true"
             android:onClick="goToHome"
+
+            android:layout_marginLeft="16dp"
             app:srcCompat="@android:drawable/ic_menu_myplaces" />
 
-    </RelativeLayout>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabGoStats"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/holo_green_dark"
+            android:clickable="true"
+
+            android:onClick="goToStats"
+            android:layout_marginLeft="256dp"
+
+            app:srcCompat="@android:drawable/ic_menu_sort_by_size" />
+
+
+    </LinearLayout>
+
 
 </LinearLayout>

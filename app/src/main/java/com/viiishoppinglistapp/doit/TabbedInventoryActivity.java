@@ -22,6 +22,7 @@ public class TabbedInventoryActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_inventory_old);
 
         setupTabs();
 
@@ -49,4 +50,8 @@ public class TabbedInventoryActivity extends AppCompatActivity {
         this.startActivity(I);
     }
 
+    public void goToStats(View view) {
+        Intent i = new Intent(this, StatisticsActivity.class);
+        this.startActivity(i);
+    }
 }

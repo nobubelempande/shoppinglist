@@ -74,9 +74,12 @@
         <entry key="..\:/Users/delis/AndroidStudioProjects/SD/Do-It-master/app/src/main/res/layout/activity_splash.xml" value="0.16700302724520685" />
         <entry key="..\:/Users/delis/AndroidStudioProjects/SD/Do-It-master/app/src/main/res/layout/new_task.xml" value="0.16700302724520685" />
         <entry key="..\:/Users/delis/AndroidStudioProjects/SD/Do-It-master/app/src/main/res/layout/task_layout.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_inventory_old.xml" value="0.2625" />
         <entry key="app/src/main/res/layout/activity_item_adding.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.24954710144927536" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.2625" />
+        <entry key="app/src/main/res/layout/activity_statistics.xml" value="0.15172101449275363" />
+        <entry key="app/src/main/res/layout/activity_tabbed_inventory.xml" value="0.2625" />
         <entry key="app/src/main/res/layout/new_task.xml" value="0.24954710144927536" />
         <entry key="app/src/main/res/layout/task_layout.xml" value="0.16806722689075632" />
       </map>
