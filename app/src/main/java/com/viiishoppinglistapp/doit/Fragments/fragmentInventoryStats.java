@@ -85,7 +85,7 @@ public class fragmentInventoryStats extends Fragment {
         //--
         pieChart.setEntryLabelColor(Color.BLACK);
         pieChart.setCenterText("Total Spent: " +price);
-        pieChart.setCenterTextSize(15f);
+        pieChart.setCenterTextSize(11f);
     }
 
     private void loadPieChartData() {
@@ -250,7 +250,7 @@ public class fragmentInventoryStats extends Fragment {
 
         pieDataSet.setColors(colours);
         pieDataSet.setValueTextColor(Color.BLACK);
-        pieDataSet.setValueTextSize(18f);
+        pieDataSet.setValueTextSize(16f);
         pieDataSet.setSliceSpace(4f);
     }
 
@@ -258,7 +258,7 @@ public class fragmentInventoryStats extends Fragment {
 
         pieChart.setEntryLabelColor(Color.BLACK);
         pieChart.setCenterText("Total Spent: " +price);
-        pieChart.setCenterTextSize(15f);
+        pieChart.setCenterTextSize(11f);
         pieChart.getDescription().setEnabled(false);
 
         pieChart.animateY(1200);
