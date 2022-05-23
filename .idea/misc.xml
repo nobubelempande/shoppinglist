@@ -75,6 +75,25 @@
         <entry key="..\:/Users/delis/AndroidStudioProjects/SD/Do-It-master/app/src/main/res/layout/activity_splash.xml" value="0.16700302724520685" />
         <entry key="..\:/Users/delis/AndroidStudioProjects/SD/Do-It-master/app/src/main/res/layout/new_task.xml" value="0.16700302724520685" />
         <entry key="..\:/Users/delis/AndroidStudioProjects/SD/Do-It-master/app/src/main/res/layout/task_layout.xml" value="0.33" />
+        <entry key="..\:/newShopping/shoppinglist/app/src/main/res/layout/activity_add_items.xml" value="0.23007246376811594" />
+        <entry key="..\:/newShopping/shoppinglist/app/src/main/res/layout/activity_home_old.xml" value="0.23007246376811594" />
+        <entry key="..\:/newShopping/shoppinglist/app/src/main/res/layout/activity_inventory_old.xml" value="0.23007246376811594" />
+        <entry key="..\:/newShopping/shoppinglist/app/src/main/res/layout/activity_splash.xml" value="0.23007246376811594" />
+        <entry key="..\:/newShopping/shoppinglist/app/src/main/res/layout/activity_tabbed_home.xml" value="0.23007246376811594" />
+        <entry key="..\:/newShopping/shoppinglist/app/src/main/res/layout/activity_tabbed_inventory.xml" value="0.23007246376811594" />
+        <entry key="..\:/newShopping/shoppinglist/app/src/main/res/layout/activity_use_shopping_list.xml" value="0.23007246376811594" />
+        <entry key="..\:/newShopping/shoppinglist/app/src/main/res/layout/cardview_layout_inventory_item.xml" value="0.23007246376811594" />
+        <entry key="..\:/newShopping/shoppinglist/app/src/main/res/layout/dialog_unused_shopping_list.xml" value="0.23007246376811594" />
+        <entry key="..\:/newShopping/shoppinglist/app/src/main/res/layout/dialog_used_shopping_list.xml" value="0.23007246376811594" />
+        <entry key="..\:/newShopping/shoppinglist/app/src/main/res/layout/fragment_layout_home_unused_shopping_lists.xml" value="0.23007246376811594" />
+        <entry key="..\:/newShopping/shoppinglist/app/src/main/res/layout/fragment_layout_home_used_shopping_lists.xml" value="0.23007246376811594" />
+        <entry key="..\:/newShopping/shoppinglist/app/src/main/res/layout/fragment_layout_inventory_items.xml" value="0.23007246376811594" />
+        <entry key="..\:/newShopping/shoppinglist/app/src/main/res/layout/fragment_layout_inventory_stats.xml" value="0.23007246376811594" />
+        <entry key="..\:/newShopping/shoppinglist/app/src/main/res/layout/fragment_tabbed_home.xml" value="0.23007246376811594" />
+        <entry key="..\:/newShopping/shoppinglist/app/src/main/res/layout/fragment_tabbed_inventory.xml" value="0.23007246376811594" />
+        <entry key="..\:/newShopping/shoppinglist/app/src/main/res/layout/new_inventory_item.xml" value="0.23007246376811594" />
+        <entry key="..\:/newShopping/shoppinglist/app/src/main/res/layout/new_item.xml" value="0.23007246376811594" />
+        <entry key="..\:/newShopping/shoppinglist/app/src/main/res/layout/new_shopping_list.xml" value="0.23007246376811594" />
         <entry key="app/src/main/res/layout/activity_item_adding.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.24954710144927536" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.2625" />
@@ -124,7 +143,7 @@
       </value>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

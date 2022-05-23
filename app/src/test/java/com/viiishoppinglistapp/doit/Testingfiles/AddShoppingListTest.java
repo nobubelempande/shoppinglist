@@ -11,14 +11,25 @@ public class AddShoppingListTest {
     AddShoppingList ageCalculator = new AddShoppingList();
 
     @Test
-    public void calculateAgeTest(){
+    public void calculateAgeTest() {
         String age = ageCalculator.calculateAge("31-03-2000");
 
-        assertEquals(age,"21");
+        assertEquals(age, "21");
 
     }
 
+    @Test
+    public void DelayTest() {
 
+        /*
+        added sleep to delay the app
+        */
+        try {
+            Thread.sleep(15);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
+    }
 
 }
