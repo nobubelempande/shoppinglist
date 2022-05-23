@@ -8,7 +8,7 @@ package com.viiishoppinglistapp.doit.FragmentUtil;
         import org.junit.runners.JUnit4;
 
 public class InventoryItemFragmentTest {
-    AddingItemFragment ageCalculator = new AddingItemFragment();
+    InventoryItemFragment ageCalculator = new InventoryItemFragment();
 
     @Test
     public void calculateAgeTest(){
