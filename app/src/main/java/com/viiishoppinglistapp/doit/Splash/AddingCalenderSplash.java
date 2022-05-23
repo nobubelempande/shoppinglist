@@ -1,10 +1,10 @@
-package com.viiishoppinglistapp.doit.Interface;
+package com.viiishoppinglistapp.doit.Splash;
 
 import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
-public class HomeInterface {
+public class AddingCalenderSplash {
     @RequiresApi(api = Build.VERSION_CODES.O)
     public String calculateAge(String birthDate){
         // Convert birthdayString to Integers //
