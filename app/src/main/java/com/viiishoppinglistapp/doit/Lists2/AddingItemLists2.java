@@ -1,11 +1,10 @@
-package com.viiishoppinglistapp.doit.Lists;
+package com.viiishoppinglistapp.doit.Lists2;
 
 import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
-public class ListAdd {
-
+public class AddingItemLists2 {
     @RequiresApi(api = Build.VERSION_CODES.O)
     public String calculateAge(String birthDate){
         // Convert birthdayString to Integers //
@@ -25,4 +24,5 @@ public class ListAdd {
 
         return Integer.toString(2021-bYear);
     }
+
 }
