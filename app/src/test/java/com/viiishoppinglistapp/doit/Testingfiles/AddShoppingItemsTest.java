@@ -1,6 +1,9 @@
 package com.viiishoppinglistapp.doit.Testingfiles;
 
+import android.widget.EditText;
+
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,7 +21,10 @@ public class AddShoppingItemsTest {
 
     }
 
+  /*  @Test
+    public void usernameContainsThree(){
 
-
+        assertEquals("", assertThrows());
+    }*/
 
 }

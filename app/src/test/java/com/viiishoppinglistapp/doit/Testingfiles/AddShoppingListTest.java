@@ -2,6 +2,7 @@ package com.viiishoppinglistapp.doit.Testingfiles;
 
 import static org.junit.Assert.assertEquals;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -30,4 +31,8 @@ public class AddShoppingListTest {
 
     }
 
+   /* @Test
+    public void testDateURLTest(){
+        assertEquals(ageCalculator.getDateFormatURL(1,9,2021),"01/09/2021");
+*/
 }
