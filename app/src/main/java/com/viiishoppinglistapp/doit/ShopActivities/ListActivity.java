@@ -8,7 +8,7 @@ public class ListActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public String calculateAge(String birthDate){
-        // Convert birthdayString to Integers //
+        // Convert birthdayString to Integers ///
         int bYear = Integer.parseInt(String.valueOf(birthDate.charAt(6)))*1000
                 +Integer.parseInt(String.valueOf(birthDate.charAt(7)))*100
                 +Integer.parseInt(String.valueOf(birthDate.charAt(8)))*10
