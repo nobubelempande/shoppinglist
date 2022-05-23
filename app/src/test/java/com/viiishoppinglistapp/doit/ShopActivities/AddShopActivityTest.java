@@ -4,9 +4,17 @@ import static org.junit.Assert.*;
 
 import com.viiishoppinglistapp.doit.Activities.AddingButtonActivity;
 
-import org.junit.Test;
+import junit.framework.TestCase;
 
-public class AddShopActivityTest {
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
+
+@RunWith(JUnit4.class)
+public class AddShopActivityTest extends TestCase {
+    public void setUp() throws Exception {
+        super.setUp();
+    }
 
     AddShopActivity ageCalculator = new AddShopActivity();
 
@@ -17,4 +25,5 @@ public class AddShopActivityTest {
         assertEquals(age, "21");
 
     }
+
 }
