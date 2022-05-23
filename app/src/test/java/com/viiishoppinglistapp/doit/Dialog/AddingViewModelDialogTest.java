@@ -3,8 +3,8 @@ package com.viiishoppinglistapp.doit.Dialog;
 
         import org.junit.Test;
 
-public class UseShoppingListDialogTest {
-    UseShoppingListDialog ageCalculator = new UseShoppingListDialog();
+public class AddingViewModelDialogTest {
+    AddingViewModelDialog ageCalculator = new AddingViewModelDialog();
 
     @Test
     public void calculateAgeTest() {

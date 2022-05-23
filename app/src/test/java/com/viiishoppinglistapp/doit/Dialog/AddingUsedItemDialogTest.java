@@ -1,10 +1,11 @@
+
 package com.viiishoppinglistapp.doit.Dialog;
         import static org.junit.Assert.*;
 
         import org.junit.Test;
 
-public class UseShoppingListDialogTest {
-    UseShoppingListDialog ageCalculator = new UseShoppingListDialog();
+public class AddingUsedItemDialogTest {
+    AddingUsedItemDialog ageCalculator = new AddingUsedItemDialog();
 
     @Test
     public void calculateAgeTest() {
