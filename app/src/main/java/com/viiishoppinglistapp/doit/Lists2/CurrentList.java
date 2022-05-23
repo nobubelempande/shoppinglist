@@ -1,10 +1,11 @@
-package com.viiishoppinglistapp.doit.Fragments2;
+package com.viiishoppinglistapp.doit.Lists;
 
 import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
-public class HomeActivity {
+public class CurrentList {
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     public String calculateAge(String birthDate){
         // Convert birthdayString to Integers //
