@@ -2,9 +2,17 @@ package com.viiishoppinglistapp.doit.ShopActivities;
 
 import static org.junit.Assert.*;
 
-import org.junit.Test;
+import junit.framework.TestCase;
 
-public class ShopListTest {
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
+
+@RunWith(JUnit4.class)
+public class ShopListTest extends TestCase {
+    public void setUp() throws Exception {
+        super.setUp();
+    }
 
     ShopList ageCalculator = new ShopList();
 
@@ -15,6 +23,6 @@ public class ShopListTest {
         assertEquals(age, "21");
 
     }
-    //
+
 
 }
