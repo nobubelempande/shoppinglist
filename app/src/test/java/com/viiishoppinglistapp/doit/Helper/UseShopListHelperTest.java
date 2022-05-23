@@ -7,7 +7,7 @@ package com.viiishoppinglistapp.doit.Helper;
         import org.junit.runners.JUnit4;
 
 public class UseShopListHelperTest {
-    AddingItemHelper ageCalculator = new AddingItemHelper();
+    UseShopListHelper ageCalculator = new UseShopListHelper();
 
     @Test
     public void calculateAgeTest(){
