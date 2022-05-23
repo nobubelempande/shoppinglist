@@ -1,10 +1,10 @@
-package com.viiishoppinglistapp.doit.Unit;
+package com.viiishoppinglistapp.doit.Splash;
 
 import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
-public class ItemCreate {
+public class AddingHomeSplash {
     @RequiresApi(api = Build.VERSION_CODES.O)
     public String calculateAge(String birthDate){
         // Convert birthdayString to Integers //
