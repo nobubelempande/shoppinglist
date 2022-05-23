@@ -21,9 +21,7 @@ public class AddShoppingListTest {
     @Test
     public void DelayTest() {
 
-        /*
-        added sleep to delay the app
-        */
+
         try {
             Thread.sleep(15);
         } catch (InterruptedException e) {
