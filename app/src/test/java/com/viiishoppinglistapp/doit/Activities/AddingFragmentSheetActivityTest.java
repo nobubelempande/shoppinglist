@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class AddingFragmentSheetActivityTest {
-    AddingViewModelActivity ageCalculator = new AddingViewModelActivity();
+    AddingFragmentSheetActivity ageCalculator = new AddingFragmentSheetActivity();
 
     @Test
     public void calculateAgeTest() {
