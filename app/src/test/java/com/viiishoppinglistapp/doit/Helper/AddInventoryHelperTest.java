@@ -6,8 +6,8 @@ package com.viiishoppinglistapp.doit.Helper;
         import org.junit.runner.RunWith;
         import org.junit.runners.JUnit4;
 
-public class UseShoppingListHelperTest {
-    UseShoppingListHelper ageCalculator = new UseShoppingListHelper();
+public class AddInventoryHelperTest {
+    AddInventoryHelper ageCalculator = new AddInventoryHelper();
 
     @Test
     public void calculateAgeTest(){
@@ -16,4 +16,6 @@ public class UseShoppingListHelperTest {
         assertEquals(age,"21");
 
     }
+
+
 }
