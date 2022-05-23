@@ -1,10 +1,10 @@
-package com.viiishoppinglistapp.doit.Activities;
+package com.viiishoppinglistapp.doit.Splash;
 
 import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
-public class AddingButtonActivity {
+public class AddingButtonSplash {
     //ADD BUTTON TEST
     @RequiresApi(api = Build.VERSION_CODES.O)
     public String calculateAge(String birthDate){
