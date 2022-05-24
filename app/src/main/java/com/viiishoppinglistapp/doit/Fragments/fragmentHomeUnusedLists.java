@@ -63,27 +63,9 @@ public class fragmentHomeUnusedLists extends Fragment{
     public void onViewCreated(@NonNull View view, @Nullable  Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        setupSwitch();
         setupUnusedShoppingLists(view);
     }
 
-    private void setupSwitch() {
-        aSwitch = getActivity().findViewById(R.id.switchUnused);
-        aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
-                if(isChecked){
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                    aSwitch.setText("in Dark Mode");
-                }
-                else {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                    aSwitch.setText("");
-                }
-            }
-        });
-    }
 
     private void setupUnusedShoppingLists(View root) {
         //setCurrShoppingList();
