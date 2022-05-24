@@ -7,14 +7,12 @@ import android.os.Bundle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.util.Log;
 import android.view.View;
-import android.widget.CompoundButton;
-import android.widget.Switch;
+import android.widget.ImageView;
 
 import com.viiishoppinglistapp.doit.Adapters.UnusedShoppingListsAdapter;
 import com.viiishoppinglistapp.doit.Adapters.UsedShoppingListsAdapter;
@@ -34,11 +32,12 @@ public class  TabbedHomeActivity extends AppCompatActivity implements DialogClos
     HomeSectionsPagerAdapter homeSectionsPagerAdapter;
 
     ViewPager viewPager;
-    Switch aSwitch;
+    Bundle bundle;
 
     DatabaseHandler db;
 
     List<modelShoppingList> allShoppingLists;
+    int num;
 
     private ActivityTabbedHomeBinding binding;
 
@@ -54,6 +53,13 @@ public class  TabbedHomeActivity extends AppCompatActivity implements DialogClos
 
         setupHomeTabs();
         //toDo theme changer using appIcon
+        ImageView icon = binding.imgInventoryIcon;
+        icon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
 
@@ -124,7 +130,7 @@ public class  TabbedHomeActivity extends AppCompatActivity implements DialogClos
     public void goToInventory(View view){
         //toDO remove list name bundle
         //goto new page
-        Bundle bundle = new Bundle();
+        bundle = new Bundle();
         bundle.putString("list_name", "No List Selected.");
         Intent I = new Intent(this, TabbedInventoryActivity.class);
         I.putExtras(bundle);
