@@ -5,15 +5,16 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
 
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.util.Log;
 import android.view.View;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 
 import com.viiishoppinglistapp.doit.Adapters.UnusedShoppingListsAdapter;
 import com.viiishoppinglistapp.doit.Adapters.UsedShoppingListsAdapter;
@@ -27,11 +28,13 @@ import java.util.List;
 
 public class  TabbedHomeActivity extends AppCompatActivity implements DialogCloseListener {
 
+    private static final String TAG = "VIII";
     UsedShoppingListsAdapter usedShoppingListAdapter;
     UnusedShoppingListsAdapter unusedShoppingListAdapter;
     HomeSectionsPagerAdapter homeSectionsPagerAdapter;
 
     ViewPager viewPager;
+    Switch aSwitch;
 
     DatabaseHandler db;
 
@@ -42,20 +45,21 @@ public class  TabbedHomeActivity extends AppCompatActivity implements DialogClos
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, "onCreate HOME 1: ");
 
         db = new DatabaseHandler(this);
         db.openDatabase();
         usedShoppingListAdapter = new UsedShoppingListsAdapter(db,this);
         unusedShoppingListAdapter = new UnusedShoppingListsAdapter(db,this);
+        binding = ActivityTabbedHomeBinding.inflate(getLayoutInflater());
 
-        Log.d(HomeActivity_old.TAG, "onCreate: ");
+        //setupSwitch();
         setupHomeTabs();
-        Log.d(HomeActivity_old.TAG, "onCreate: ");
 
     }
 
+
     private void setupHomeTabs() {
-        binding = ActivityTabbedHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         homeSectionsPagerAdapter = new HomeSectionsPagerAdapter(this, getSupportFragmentManager(), this);

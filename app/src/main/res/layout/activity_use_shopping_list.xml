@@ -22,6 +22,11 @@
             android:gravity="center"
             >
 
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appBarLayout_inventory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -36,6 +41,7 @@
                     app:srcCompat="@drawable/viii_icon" />
 
             </LinearLayout>
+            </com.google.android.material.appbar.AppBarLayout>
 
         </LinearLayout>
 
@@ -79,8 +85,16 @@
         android:layout_marginBottom="44dp"
         android:clickable="true"
         android:onClick="goToHome"
-        android:backgroundTint="@android:color/holo_green_dark"
         app:srcCompat="@android:drawable/ic_menu_myplaces" />
+
+    <Switch
+        android:id="@+id/switchThemeMode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="130dp"
+        android:textAlignment="center" />
 
 
 </RelativeLayout>

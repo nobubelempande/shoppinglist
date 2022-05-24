@@ -7,9 +7,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -34,11 +37,11 @@ public class fragmentHomeUnusedLists extends Fragment{
     UnusedShoppingListsAdapter adapter;
 
     RecyclerView rvUnusedShoppingLists;
+    Switch aSwitch;
 
     DatabaseHandler db;
 
     List<modelShoppingList> allShoppingLists;
-    modelShoppingList currShoppingList;
 
     final Context mContext;
 
@@ -60,17 +63,26 @@ public class fragmentHomeUnusedLists extends Fragment{
     public void onViewCreated(@NonNull View view, @Nullable  Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        setupSwitch();
         setupUnusedShoppingLists(view);
     }
 
+    private void setupSwitch() {
+        aSwitch = getActivity().findViewById(R.id.switchUnused);
+        aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-    private void setCurrShoppingList() {
-        Bundle bundle = activity.getIntent().getExtras();
-        String strListName = bundle.getString("list_name", "Default");
-
-        currShoppingList = new modelShoppingList();
-        currShoppingList.setListName(strListName);
-
+                if(isChecked){
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    aSwitch.setText("in Dark Mode");
+                }
+                else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    aSwitch.setText("");
+                }
+            }
+        });
     }
 
     private void setupUnusedShoppingLists(View root) {

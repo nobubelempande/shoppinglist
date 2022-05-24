@@ -1,6 +1,7 @@
 package com.viiishoppinglistapp.doit;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -8,8 +9,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +28,8 @@ public class UseShoppingListActivity extends AppCompatActivity implements Dialog
     private RecyclerView rvUseShoppingList;
     private UseShoppingListAdapter adapter;
 
+    Switch aSwitch;
+
     private DatabaseHandler db;
 
     private List<modelItem> allShoppingListItems;
@@ -36,10 +40,25 @@ public class UseShoppingListActivity extends AppCompatActivity implements Dialog
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_use_shopping_list);
 
-        getSupportActionBar().hide();
-
+        setupSwitch();
         setCurrShoppingList();
         setupShoppingList();
+    }
+    private void setupSwitch() {
+        aSwitch = findViewById(R.id.switchThemeMode);
+        aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    aSwitch.setText("in Dark Mode");
+                }
+                else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    aSwitch.setText("");
+                }
+            }
+        });
     }
 
     private void setCurrShoppingList() {

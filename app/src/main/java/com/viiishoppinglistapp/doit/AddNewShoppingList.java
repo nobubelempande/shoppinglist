@@ -126,7 +126,7 @@ public class AddNewShoppingList extends BottomSheetDialogFragment {
                 tvNewListUseDate.setText(strDate);
                 assert strListName != null;
                 if(strListName.length()>0)
-                    btnSaveList.setTextColor(ContextCompat.getColor(Objects.requireNonNull(getContext()), R.color.colorPrimaryDark));
+                    btnSaveList.setTextColor(ContextCompat.getColor(Objects.requireNonNull(getContext()), R.color.primary_dark));
             }
         }
 
@@ -148,7 +148,7 @@ public class AddNewShoppingList extends BottomSheetDialogFragment {
                 }
                 else{
                     btnSaveList.setEnabled(true);
-                    btnSaveList.setTextColor(ContextCompat.getColor(Objects.requireNonNull(getContext()), R.color.colorPrimaryDark));
+                    btnSaveList.setTextColor(ContextCompat.getColor(Objects.requireNonNull(getContext()), R.color.primary_dark));
                 }
             }
 

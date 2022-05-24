@@ -136,8 +136,8 @@ public class AddNewInventoryItem extends BottomSheetDialogFragment {
 
             assert strItemName != null;
             if(strItemName.length()>0){
-                btnAddToInventory.setTextColor(ContextCompat.getColor(Objects.requireNonNull(getContext()), R.color.colorPrimaryDark));
-                btnCancelAdd.setTextColor(ContextCompat.getColor(Objects.requireNonNull(getContext()), R.color.colorPrimaryDark));
+                btnAddToInventory.setTextColor(ContextCompat.getColor(Objects.requireNonNull(getContext()), R.color.primary_dark));
+                btnCancelAdd.setTextColor(ContextCompat.getColor(Objects.requireNonNull(getContext()), R.color.primary_dark));
             }
         }
 
@@ -162,10 +162,10 @@ public class AddNewInventoryItem extends BottomSheetDialogFragment {
                 }
                 else{
                     btnAddToInventory.setEnabled(true);
-                    btnAddToInventory.setTextColor(ContextCompat.getColor(Objects.requireNonNull(getContext()), R.color.colorPrimaryDark));
+                    btnAddToInventory.setTextColor(ContextCompat.getColor(Objects.requireNonNull(getContext()), R.color.primary_dark));
 
                     btnCancelAdd.setEnabled(true);
-                    btnCancelAdd.setTextColor(ContextCompat.getColor(Objects.requireNonNull(getContext()), R.color.colorPrimaryDark));
+                    btnCancelAdd.setTextColor(ContextCompat.getColor(Objects.requireNonNull(getContext()), R.color.primary_dark));
                 }
             }
 
