@@ -45,7 +45,6 @@ public class  TabbedHomeActivity extends AppCompatActivity implements DialogClos
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d(TAG, "onCreate HOME 1: ");
 
         db = new DatabaseHandler(this);
         db.openDatabase();
@@ -53,7 +52,6 @@ public class  TabbedHomeActivity extends AppCompatActivity implements DialogClos
         unusedShoppingListAdapter = new UnusedShoppingListsAdapter(db,this);
         binding = ActivityTabbedHomeBinding.inflate(getLayoutInflater());
 
-        //setupSwitch();
         setupHomeTabs();
 
     }
