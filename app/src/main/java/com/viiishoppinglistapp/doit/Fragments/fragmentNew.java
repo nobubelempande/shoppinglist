@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.viiishoppinglistapp.doit.HomeActivity_old;
 import com.viiishoppinglistapp.doit.Model.modelItem;
 import com.viiishoppinglistapp.doit.R;
 import com.viiishoppinglistapp.doit.TabbedInventoryActivity;
@@ -40,6 +42,8 @@ public class fragmentNew extends Fragment {
     DatabaseHandler db;
 
     List<modelItem> allInventoryItems;
+    double moneyUser;
+    double totalInventory;
 
     final Context mContext;
 
@@ -67,6 +71,9 @@ public class fragmentNew extends Fragment {
     private void doShowPieChart_Elements() {
         pieChart = getActivity().findViewById(R.id.pieChart_inventoryStats);
         db =  new DatabaseHandler(mContext);
+        allInventoryItems = db.getAllInventoryItems();
+
+        Log.d(HomeActivity_old.TAG, "doShowPieChart_Elements: DONE RETURNING ITEMS");
 
         loadPieChartData();
         setupPieChart();
@@ -74,7 +81,7 @@ public class fragmentNew extends Fragment {
     }
 
     private void loadPieChartData() {
-        usingEntriesElements();
+        usingInventory();       //usingEntriesElements();
 
         makePieChartDataSet_Elements();
 
@@ -110,9 +117,22 @@ public class fragmentNew extends Fragment {
         pieEntries.add(new PieEntry(0.1f, "Forth Element"));
     }
 
+    private void usingInventory(){
+        pieEntries = new ArrayList<PieEntry>();
+
+        if(allInventoryItems.size()>0){
+
+        }
+        else{
+            //empty
+            pieChart.setCenterText("No Items In Inventory.");
+        }
+
+    }
+
     private void makePieChartDataSet_Elements() {
         pieDataSet = new PieDataSet(pieEntries, "Elements");
-        pieDataSet.setColors(ColorTemplate.LIBERTY_COLORS);
+        pieDataSet.setColors(ColorTemplate.LIBERTY_COLORS);     //toDo custom template
         pieDataSet.setDrawValues(true);
         pieDataSet.setValueTextSize(12);
         pieDataSet.setValueTextColor(Color.DKGRAY);
