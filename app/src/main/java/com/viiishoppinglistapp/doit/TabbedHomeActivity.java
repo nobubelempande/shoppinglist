@@ -53,7 +53,7 @@ public class  TabbedHomeActivity extends AppCompatActivity implements DialogClos
         binding = ActivityTabbedHomeBinding.inflate(getLayoutInflater());
 
         setupHomeTabs();
-
+        //toDo theme changer using appIcon
     }
 
 
