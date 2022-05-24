@@ -140,7 +140,7 @@ public class TabbedHomeActivity extends AppCompatActivity implements DialogClose
         //goto new page
         bundle = new Bundle();
         bundle.putString("list_name", "No List Selected.");
-        Intent I = new Intent(this, ChangeThemeActivity.class);
+        Intent I = new Intent(this, SettingsActivity.class);
         I.putExtras(bundle);
         this.startActivity(I);
     }

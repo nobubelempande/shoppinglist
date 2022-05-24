@@ -9,14 +9,14 @@ import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 
-public class ChangeThemeActivity extends AppCompatActivity {
+public class SettingsActivity extends AppCompatActivity {
 
     Switch aSwitch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_change_theme);
+        setContentView(R.layout.activity_settings);
 
         setupSwitch();
     }
