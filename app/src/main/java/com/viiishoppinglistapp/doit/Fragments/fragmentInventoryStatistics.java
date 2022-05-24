@@ -21,7 +21,6 @@ import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
-import com.viiishoppinglistapp.doit.HomeActivity_old;
 import com.viiishoppinglistapp.doit.Model.modelItem;
 import com.viiishoppinglistapp.doit.R;
 import com.viiishoppinglistapp.doit.TabbedInventoryActivity;
@@ -30,15 +29,15 @@ import com.viiishoppinglistapp.doit.Utils.DatabaseHandler;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
-public class fragmentNew extends Fragment {
+public class fragmentInventoryStatistics extends Fragment {
 
     private TabbedInventoryActivity activity;
 
     private PieChart pieChart;
     private ArrayList<PieEntry> pieEntries;
     private PieDataSet pieDataSet;
-    private PieData pieData;
 
     private DatabaseHandler db;
 
@@ -48,12 +47,12 @@ public class fragmentNew extends Fragment {
 
     private final Context mContext;
 
-    private ArrayList<String> itemTypes = new ArrayList<String>( Arrays.asList("Food", "Clothing", "Appliance", "Personal Hygiene", "Stationery", "Toys And Games", "Other"));
+    private final ArrayList<String> itemTypes = new ArrayList<String>( Arrays.asList("Food", "Clothing", "Appliance", "Personal Hygiene", "Stationery", "Toys And Games", "Other"));
 
 
 
     //constructor
-    public fragmentNew(Context C, TabbedInventoryActivity activity){
+    public fragmentInventoryStatistics(Context C, TabbedInventoryActivity activity){
         this.mContext = C;
         this.activity = activity;
         allInventoryItems = new ArrayList<modelItem>();
@@ -73,12 +72,10 @@ public class fragmentNew extends Fragment {
     }
 
     private void doShowPieChart_Elements() {
-        pieChart = getActivity().findViewById(R.id.pieChart_inventoryStats);
+        pieChart = Objects.requireNonNull(getActivity()).findViewById(R.id.pieChart_inventoryStats);
         db =  new DatabaseHandler(mContext);
         db.openDatabase();
         allInventoryItems = db.getAllInventoryItems();
-
-        Log.d(HomeActivity_old.TAG, "doShowPieChart_Elements: DONE RETURNING ITEMS");
 
         loadPieChartData();
         setupPieChart();
@@ -86,11 +83,11 @@ public class fragmentNew extends Fragment {
     }
 
     private void loadPieChartData() {
-        usingInventory();       //usingEntriesElements();
+        usingInventory();
 
         makePieChartDataSet_Elements();
 
-        pieData = new PieData(pieDataSet);
+        PieData pieData = new PieData(pieDataSet);
         pieChart.setData(pieData);
         pieChart.invalidate();
     }
@@ -113,14 +110,6 @@ public class fragmentNew extends Fragment {
 
         pieChart.animateY(1200);
         pieChart.animate();
-    }
-
-    private void usingEntriesElements() {
-        pieEntries = new ArrayList<PieEntry>();
-        pieEntries.add(new PieEntry(0.4f, "First Element"));
-        pieEntries.add(new PieEntry(0.25f, "Second Element"));
-        pieEntries.add(new PieEntry(0.25f, "Third Element"));
-        pieEntries.add(new PieEntry(0.1f, "Forth Element"));
     }
 
     private void usingInventory(){
