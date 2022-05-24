@@ -48,7 +48,7 @@ public class fragmentNew extends Fragment {
 
     private final Context mContext;
 
-    private ArrayList<String> itemTypes = new ArrayList<String>( Arrays.asList("Food", "Clothing", "Appliances", "Personal Hygiene", "Stationery", "Toys And Games", "Other"));
+    private ArrayList<String> itemTypes = new ArrayList<String>( Arrays.asList("Food", "Clothing", "Appliance", "Personal Hygiene", "Stationery", "Toys And Games", "Other"));
 
 
 
@@ -108,7 +108,8 @@ public class fragmentNew extends Fragment {
         pieChart.getDescription().setEnabled(false);
 
         Legend L = pieChart.getLegend();
-        L.setEnabled(false);
+        //L.setEnabled(false);
+        L.setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
 
         pieChart.animateY(1200);
         pieChart.animate();
@@ -127,6 +128,9 @@ public class fragmentNew extends Fragment {
 
         if(allInventoryItems.size()>0){
             entriesUsingInventory();
+            pieChart.setCenterText("Spent\nR " + totalInventory + "\nof\nR " + moneyUser);
+            pieChart.setCenterTextSize(18);
+            pieChart.setDrawEntryLabels(false);
         }
         else{
             //empty
@@ -152,40 +156,40 @@ public class fragmentNew extends Fragment {
         moneyUser = Math.pow(10,length);
         diff = moneyUser - totalInventory;
 
-        Log.d(HomeActivity_old.TAG, "entriesUsingInventory: Setting Up PieEntries");
+        int sizeInventory = allInventoryItems.size();
+        int sizeTypes = itemTypes.size();
 
-        Log.d(HomeActivity_old.TAG, "entriesUsingInventory: Total = " + totalInventory + "  Pocket = " + moneyUser + "  Diff = " + diff);
-
-        for(int i = 0; i < itemTypes.size(); i++){
+        for(int i = 0; i < sizeTypes; i++){
             double typeTotal = 0;
             String type = itemTypes.get(i);
 
-            Log.d(HomeActivity_old.TAG, "entriesUsingInventory: Type = " + type);
-
-            for(int j = 0; j < allInventoryItems.size(); i++){
+            for(int j = 0; j < sizeInventory; j++){
                 currItem = allInventoryItems.get(j);
                 String itemType = currItem.getItemType();
 
-                Log.d(HomeActivity_old.TAG, "entriesUsingInventory: Item = " + currItem.getItemName() + "  Type = " + itemType);
 
-                do {
-                    //toDO *****
+                if(itemType.equals(type)){
                     typeTotal = typeTotal + currItem.getItemPrice();
-                }while (itemType.equals(type));
+                    //allInventoryItems.remove(j);
+                }
 
             }
 
-            section = typeTotal/moneyUser;
-            pieEntries.add(new PieEntry((float) section, type));
-        }
-        pieEntries.add(new PieEntry((float) diff, ""));
+            if(typeTotal>0){
+                section = typeTotal/moneyUser;
+                pieEntries.add(new PieEntry((float) section, type));
+            }
 
-        Log.d(HomeActivity_old.TAG, "entriesUsingInventory: Done Setting Up PieEntries");
+        }
+        section = diff/moneyUser;
+        pieEntries.add(new PieEntry((float) section, ""));
+
+        allInventoryItems = db.getAllInventoryItems();
     }
 
     private void makePieChartDataSet_Elements() {
         pieDataSet = new PieDataSet(pieEntries, "Elements");
-        pieDataSet.setColors(ColorTemplate.LIBERTY_COLORS);     //toDo custom template
+        pieDataSet.setColors(ColorTemplate.JOYFUL_COLORS);     //toDo custom template
         pieDataSet.setDrawValues(true);
         pieDataSet.setValueTextSize(12);
         pieDataSet.setValueTextColor(Color.DKGRAY);
