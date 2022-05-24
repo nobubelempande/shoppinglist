@@ -10,15 +10,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.Light">
         <activity
+            android:name=".ChangeThemeActivity"
+            android:exported="false" />
+        <activity
             android:name=".TabbedHomeActivity"
             android:exported="false"
-            android:label="@string/title_activity_tabbed_home"
-            />
+            android:label="@string/title_activity_tabbed_home" />
         <activity
             android:name=".TabbedInventoryActivity"
             android:exported="false"
-            android:label="@string/title_activity_tabs_use_shopping_list"
-            />
+            android:label="@string/title_activity_tabs_use_shopping_list" />
         <activity
             android:name=".InventoryActivity_old"
             android:exported="false" />

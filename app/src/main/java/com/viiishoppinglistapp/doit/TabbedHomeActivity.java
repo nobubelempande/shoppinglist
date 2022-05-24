@@ -10,7 +10,6 @@ import com.google.android.material.tabs.TabLayout;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -24,7 +23,7 @@ import com.viiishoppinglistapp.doit.databinding.ActivityTabbedHomeBinding;
 import java.util.Collections;
 import java.util.List;
 
-public class  TabbedHomeActivity extends AppCompatActivity implements DialogCloseListener {
+public class TabbedHomeActivity extends AppCompatActivity implements DialogCloseListener {
 
     private static final String TAG = "VIII";
     UsedShoppingListsAdapter usedShoppingListAdapter;

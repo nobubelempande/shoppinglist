@@ -87,13 +87,13 @@ public class AddNewShoppingList extends BottomSheetDialogFragment {
         super.onViewCreated(view, savedInstanceState);
 
         Log.d(HomeActivity_old.TAG, "onViewCreated: ");
-        setupShoppingListEditorLayout(view, savedInstanceState);
+        setupShoppingListEditorLayout();
         Log.d(HomeActivity_old.TAG, "End ");
     }
 
     //shoppingLists :
 
-    private void setupShoppingListEditorLayout(View view, Bundle savedInstanceState) {
+    private void setupShoppingListEditorLayout() {
         etNewListName = Objects.requireNonNull(getView()).findViewById(R.id.tvListName_newShoppingList);     //view from new_shopping_list
         btnSaveList = getView().findViewById(R.id.btnSaveShoppingList);
 
