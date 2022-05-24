@@ -56,7 +56,7 @@ public class TabbedHomeActivity extends AppCompatActivity implements DialogClose
         icon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                goToSettings();
             }
         });
     }
@@ -132,6 +132,15 @@ public class TabbedHomeActivity extends AppCompatActivity implements DialogClose
         bundle = new Bundle();
         bundle.putString("list_name", "No List Selected.");
         Intent I = new Intent(this, TabbedInventoryActivity.class);
+        I.putExtras(bundle);
+        this.startActivity(I);
+    }
+    public void goToSettings(){
+        //toDO remove list name bundle
+        //goto new page
+        bundle = new Bundle();
+        bundle.putString("list_name", "No List Selected.");
+        Intent I = new Intent(this, ChangeThemeActivity.class);
         I.putExtras(bundle);
         this.startActivity(I);
     }

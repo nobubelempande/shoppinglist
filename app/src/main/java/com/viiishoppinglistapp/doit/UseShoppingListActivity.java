@@ -40,26 +40,10 @@ public class UseShoppingListActivity extends AppCompatActivity implements Dialog
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_use_shopping_list);
 
-        setupSwitch();
         setCurrShoppingList();
         setupShoppingList();
     }
-    private void setupSwitch() {
-        aSwitch = findViewById(R.id.switchThemeMode);
-        aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                    aSwitch.setText("in Dark Mode");
-                }
-                else {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                    aSwitch.setText("");
-                }
-            }
-        });
-    }
+
 
     private void setCurrShoppingList() {
         db = new DatabaseHandler(this);
