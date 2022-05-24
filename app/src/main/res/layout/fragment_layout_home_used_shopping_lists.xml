@@ -6,10 +6,6 @@
     android:orientation="vertical"
     android:gravity="center_horizontal">
 
-    <Switch
-        android:id="@+id/switchUsed"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvHomeUsedLists_fragment"
