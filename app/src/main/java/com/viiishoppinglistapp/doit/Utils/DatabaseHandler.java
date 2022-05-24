@@ -464,7 +464,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         List<modelItem> allItems = new ArrayList<>();
         Cursor cur = null;
-        openDatabase();
         db.beginTransaction();
         try{
             cur = db.rawQuery("SELECT * FROM " + TABLE_Inventory, null);
@@ -561,7 +560,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         List<modelItem> allItems = new ArrayList<>();
         Cursor cur = null;
-        openDatabase();
         db.beginTransaction();
         try{
             cur = db.query(TABLE_Inventory, columns, where, args, null, null, null);
