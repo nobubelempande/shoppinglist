@@ -1,7 +1,6 @@
 package com.viiishoppinglistapp.doit.Fragments;
 
 import android.content.Context;
-import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -47,7 +46,7 @@ public class fragmentInventoryStatistics extends Fragment {
 
     private final Context mContext;
 
-    private final ArrayList<String> itemTypes = new ArrayList<String>( Arrays.asList("Food", "Clothing", "Appliance", "Personal Hygiene", "Stationery", "Toys And Games", "Other"));
+    private final ArrayList<String> itemTypes = new ArrayList<>(Arrays.asList("Food", "Clothing", "Appliance", "Personal Hygiene", "Stationery", "Toys And Games", "Other"));
 
 
 
@@ -55,7 +54,7 @@ public class fragmentInventoryStatistics extends Fragment {
     public fragmentInventoryStatistics(Context C, TabbedInventoryActivity activity){
         this.mContext = C;
         this.activity = activity;
-        allInventoryItems = new ArrayList<modelItem>();
+        allInventoryItems = new ArrayList<>();
     }
 
     @Nullable
@@ -113,7 +112,7 @@ public class fragmentInventoryStatistics extends Fragment {
     }
 
     private void usingInventory(){
-        pieEntries = new ArrayList<PieEntry>();
+        pieEntries = new ArrayList<>();
 
         if(allInventoryItems.size()>0){
             entriesUsingInventory();
@@ -131,9 +130,9 @@ public class fragmentInventoryStatistics extends Fragment {
     private void entriesUsingInventory() {
         moneyUser = 0;
         totalInventory = 0;
-        double section = 0;
-        double diff = 0;
-        modelItem currItem = new modelItem("");
+        double section;
+        double diff;
+        modelItem currItem;
 
         for(int i = 0; i < allInventoryItems.size(); i++){
             currItem = allInventoryItems.get(i);
