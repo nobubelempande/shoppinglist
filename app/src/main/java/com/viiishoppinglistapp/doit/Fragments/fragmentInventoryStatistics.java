@@ -116,7 +116,7 @@ public class fragmentInventoryStatistics extends Fragment {
 
         if(allInventoryItems.size()>0){
             entriesUsingInventory();
-            pieChart.setCenterText("Spent\nR " + totalInventory + "\nof\nR " + moneyUser);
+            pieChart.setCenterText("Spent\nR " + String.format("%,.2f", totalInventory) + "\nof\nR " + String.format("%,.2f", moneyUser));
             pieChart.setCenterTextSize(18);
             pieChart.setDrawEntryLabels(false);
         }
