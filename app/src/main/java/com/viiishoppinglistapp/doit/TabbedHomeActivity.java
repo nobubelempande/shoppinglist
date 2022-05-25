@@ -136,8 +136,7 @@ public class TabbedHomeActivity extends AppCompatActivity implements DialogClose
         this.startActivity(I);
     }
     public void goToSettings(){
-        //toDO remove list name bundle
-        //goto new page
+        //goto settings
         bundle = new Bundle();
         bundle.putString("list_name", "No List Selected.");
         Intent I = new Intent(this, SettingsActivity.class);
