@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.viiishoppinglistapp.doit.databinding.ActivityTabbedInventoryBinding;
 import com.viiishoppinglistapp.doit.ui.inventory.InventorySectionsPagerAdapter;
@@ -23,9 +24,16 @@ public class TabbedInventoryActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_inventory_old);
 
         setupTabs();
+
+        ImageView icon = binding.imgInventoryIcon;
+        icon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToSettings();
+            }
+        });
 
     }
 
@@ -63,6 +71,14 @@ public class TabbedInventoryActivity extends AppCompatActivity {
         Bundle bundle = new Bundle();
         bundle.putString("list_name", "TestDay ShoppingList");
         Intent I = new Intent(this, TabbedHomeActivity.class);
+        I.putExtras(bundle);
+        this.startActivity(I);
+    }
+    public void goToSettings(){
+        //goto settings
+        Bundle bundle = new Bundle();
+        bundle.putString("list_name", "No List Selected.");
+        Intent I = new Intent(this, SettingsActivity.class);
         I.putExtras(bundle);
         this.startActivity(I);
     }

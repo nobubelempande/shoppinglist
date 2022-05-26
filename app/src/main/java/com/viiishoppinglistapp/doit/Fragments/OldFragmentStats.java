@@ -28,7 +28,7 @@ import com.viiishoppinglistapp.doit.Utils.DatabaseHandler;
 import java.util.ArrayList;
 import java.util.List;
 
-public class fragmentInventoryStats extends Fragment {
+public class OldFragmentStats extends Fragment {
 
     TabbedInventoryActivity activity;
 
@@ -54,7 +54,7 @@ public class fragmentInventoryStats extends Fragment {
 
 
     //constructor
-    public fragmentInventoryStats(Context C, TabbedInventoryActivity activity){
+    public OldFragmentStats(Context C, TabbedInventoryActivity activity){
         this.mContext = C;
         this.activity = activity;
         allInventoryItems = new ArrayList<modelItem>();

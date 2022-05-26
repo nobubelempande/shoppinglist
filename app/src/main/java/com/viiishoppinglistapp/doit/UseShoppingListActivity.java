@@ -1,6 +1,7 @@
 package com.viiishoppinglistapp.doit;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -8,8 +9,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
+import android.widget.CompoundButton;
+import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +29,8 @@ public class UseShoppingListActivity extends AppCompatActivity implements Dialog
     private RecyclerView rvUseShoppingList;
     private UseShoppingListAdapter adapter;
 
+    Switch aSwitch;
+
     private DatabaseHandler db;
 
     private List<modelItem> allShoppingListItems;
@@ -36,11 +41,18 @@ public class UseShoppingListActivity extends AppCompatActivity implements Dialog
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_use_shopping_list);
 
-        getSupportActionBar().hide();
-
         setCurrShoppingList();
         setupShoppingList();
+
+        ImageView icon = findViewById(R.id.imgVIII_icon);
+        icon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToSettings();
+            }
+        });
     }
+
 
     private void setCurrShoppingList() {
         db = new DatabaseHandler(this);
@@ -131,6 +143,14 @@ public class UseShoppingListActivity extends AppCompatActivity implements Dialog
         Intent I = new Intent(this, TabbedHomeActivity.class);
         I.putExtras(bundle);
 
+        this.startActivity(I);
+    }
+    public void goToSettings(){
+        //goto settings
+        Bundle bundle = new Bundle();
+        bundle.putString("list_name", "No List Selected.");
+        Intent I = new Intent(this, SettingsActivity.class);
+        I.putExtras(bundle);
         this.startActivity(I);
     }
 }

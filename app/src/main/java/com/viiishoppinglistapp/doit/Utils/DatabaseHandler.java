@@ -17,7 +17,7 @@ import java.util.List;
 public class DatabaseHandler extends SQLiteOpenHelper {
 
     private static final int VERSION = 1;
-    private static final String NAME = "ListDatabase_3";
+    private static final String NAME = "ListDatabase_2";
 
     private SQLiteDatabase db;
 
@@ -451,6 +451,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public List<modelItem> getAllInventoryItems(){
         //getting all saved shoppingLists from the DB
 
+        Log.d(TAG, "getAllInventoryItems: GETTING ITEMS");
+
         final String itemID = "item_id";
         final String itemNAME = "item_name";
         final String itemQTY = "item_qty";
@@ -488,6 +490,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             assert cur != null;
             cur.close();
         }
+        Log.d(TAG, "getAllInventoryItems: DONE GETTING ITEMS");
         return allItems;
     }
 

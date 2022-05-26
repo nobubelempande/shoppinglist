@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -67,7 +68,7 @@ public class UsedShoppingListsAdapter extends RecyclerView.Adapter<UsedShoppingL
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView tvName, tvUseDate;
-        RelativeLayout lyt;
+        LinearLayout lyt;
 
         //constructor
         ViewHolder(View view) {
