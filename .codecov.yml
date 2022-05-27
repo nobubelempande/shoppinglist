@@ -1,23 +1,18 @@
+codecov:
+  require_ci_to_pass: yes
 
 coverage:
-  status:
-    project:
-      default:
-        # basic
-        target: auto
-        threshold: 0%
-        base: auto 
-        flags: 
-          - unit
-        paths: 
-          - "src/main/java/com/viiishoppinglistapp/doit/model"
+  precision: 2
+  round: down
+  range: "5...100"
 
-       # advanced settings
-        branches: 
-          - main
-        if_ci_failed: error #success, failure, error, ignore
-        informational: false
-        only_pulls: false
+parsers:
+  gcov:
+    branch_detection:
+      conditional: yes
+      loop: yes
+      method: no
+      macro: no
 
 comment:
   layout: "reach,diff,flags,files,footer"
