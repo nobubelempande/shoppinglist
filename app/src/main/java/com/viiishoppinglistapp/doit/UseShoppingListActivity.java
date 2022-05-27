@@ -29,8 +29,6 @@ public class UseShoppingListActivity extends AppCompatActivity implements Dialog
     private RecyclerView rvUseShoppingList;
     private UseShoppingListAdapter adapter;
 
-    Switch aSwitch;
-
     private DatabaseHandler db;
 
     private List<modelItem> allShoppingListItems;
@@ -105,15 +103,8 @@ public class UseShoppingListActivity extends AppCompatActivity implements Dialog
             db.updateShoppingList(currShoppingList);
             //close page
             Toast.makeText(this, "Done Using " + currShoppingList.getListName(), Toast.LENGTH_LONG).show();
-            final Handler handler = new Handler();
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    // Do something after 5s = 5000ms
-                    doDoneUsingList();
 
-                }
-            }, 1600);
+            //doDoneUsingList();
         }
     }
 
@@ -138,12 +129,21 @@ public class UseShoppingListActivity extends AppCompatActivity implements Dialog
     }
     public void doDoneUsingList(){
         //goto Home page
-        Bundle bundle = new Bundle();
-        bundle.putString("list_name", currShoppingList.getListName());
-        Intent I = new Intent(this, TabbedHomeActivity.class);
-        I.putExtras(bundle);
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // Do something after 5s = 5000ms
+                Bundle bundle = new Bundle();
+                bundle.putString("list_name", currShoppingList.getListName());
+                Intent I = new Intent(getApplicationContext(), TabbedHomeActivity.class);
+                I.putExtras(bundle);
 
-        this.startActivity(I);
+                getApplicationContext().startActivity(I);
+
+            }
+        }, 1600);
+
     }
     public void goToSettings(){
         //goto settings

@@ -68,7 +68,7 @@ public class UsedShoppingListsAdapter extends RecyclerView.Adapter<UsedShoppingL
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView tvName, tvUseDate;
-        LinearLayout lyt;
+        RelativeLayout lyt;
 
         //constructor
         ViewHolder(View view) {

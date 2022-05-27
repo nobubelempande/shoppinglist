@@ -343,7 +343,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                         currItem.setItemDOE(cur.getString(cur.getColumnIndexOrThrow(itemDOE)));
                         currItem.setChecked(cur.getInt(cur.getColumnIndexOrThrow(itemUsed)));
                         allItems.add(currItem);
-                        Log.d(TAG, "getItemsForShoppingList: Done");
+                        Log.d(TAG, "getItemsForShoppingList: Item: " + currItem.getItemName() + "  Checked: " + currItem.getChecked());
                     }
                     while(cur.moveToNext());
                 }
@@ -367,7 +367,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         cv.put("item_listName", currItem.getListName());
         cv.put("item_price", currItem.getItemPrice());
         cv.put("item_doe", currItem.getItemDOE());
-        cv.put("item_used", currItem.isChecked());
+        cv.put("item_used", currItem.getChecked());
 
         db.insert(TABLE_Items, null, cv);
     }
@@ -382,7 +382,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         cv.put("item_type", item.getItemType());
         cv.put("item_price", item.getItemPrice());
         cv.put("item_doe", item.getItemDOE());
-        cv.put("item_used", item.isChecked());
+        cv.put("item_used", item.getChecked());
 
         db.update(TABLE_Items, cv, ID + "= ?", new String[] {String.valueOf(item.getItemID())});
     }
@@ -503,7 +503,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         cv.put("item_listName", currItem.getListName());
         cv.put("item_price", currItem.getItemPrice());
         cv.put("item_doe", currItem.getItemDOE());
-        cv.put("item_used", currItem.isChecked());
+        cv.put("item_used", currItem.getChecked());
 
         modelItem existingItem = getInventoryItem(currItem.getItemName());
 
@@ -532,7 +532,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         cv.put("item_type", item.getItemType());
         cv.put("item_price", item.getItemPrice());
         cv.put("item_doe", item.getItemDOE());
-        cv.put("item_used", item.isChecked());
+        cv.put("item_used", item.getChecked());
 
         db.update(TABLE_Inventory, cv, NAME + "= ?", new String[] {String.valueOf(item.getItemName())});
     }

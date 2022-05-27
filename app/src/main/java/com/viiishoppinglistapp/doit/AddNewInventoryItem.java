@@ -190,7 +190,6 @@ public class AddNewInventoryItem extends BottomSheetDialogFragment {
                 else{
                     currItem.setItemPrice(Double.parseDouble(strPrice));
                     currItem.setItemDOE(doe);
-                    currItem.setChecked(1);
 
                     addItemToInventory(currItem);
                     dismiss();
@@ -212,7 +211,6 @@ public class AddNewInventoryItem extends BottomSheetDialogFragment {
                 else{
                     currItem.setItemPrice(Double.parseDouble(strPrice));
                     currItem.setItemDOE(doe);
-                    currItem.setChecked(1);
 
                     db.updateItem(currItem);
                     dismiss();
@@ -234,10 +232,10 @@ public class AddNewInventoryItem extends BottomSheetDialogFragment {
     }
 
     private void addItemToInventory(modelItem currItem) {
-        Log.d(TAG, "addItemToInventory: FUNCTION CALLED");
+        Log.d(TAG, "addItemToInventory: FUNCTION CALLED, ITEM Check: " + currItem.getChecked());
         db.insertInventoryItem(currItem);
-        currItem.setChecked(1);
         db.updateItem(currItem);
+        Log.d(TAG, "addItemToInventory: ITEM ADDED, ITEM Check: " + currItem.getChecked());
     }
 
     private String getTodayDate() {

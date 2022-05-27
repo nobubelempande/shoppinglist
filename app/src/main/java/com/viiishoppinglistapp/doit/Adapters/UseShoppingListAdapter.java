@@ -76,6 +76,9 @@ public class UseShoppingListAdapter extends RecyclerView.Adapter<UseShoppingList
                 //adds item to inventory and then deletes it
                 if(holder.cbItemName.isChecked()){
                     //checked
+                    currItem.setChecked(1);
+                    db.updateItem(currItem);
+
                     Bundle bundle = new Bundle();
                     bundle.putString("itemName", currItem.getItemName());
 
