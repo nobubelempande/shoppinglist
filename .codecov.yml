@@ -11,6 +11,9 @@ coverage:
           - unit
         paths: 
           - "src"
+        ignore:
+          - "fragments"
+
        # advanced settings
         branches: 
           - main
