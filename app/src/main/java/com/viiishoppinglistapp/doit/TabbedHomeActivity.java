@@ -36,7 +36,6 @@ public class TabbedHomeActivity extends AppCompatActivity implements DialogClose
     DatabaseHandler db;
 
     List<modelShoppingList> allShoppingLists;
-    int num;
 
     private ActivityTabbedHomeBinding binding;
 
