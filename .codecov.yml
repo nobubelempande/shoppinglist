@@ -1,10 +1,13 @@
 codecov:
   require_ci_to_pass: yes
+  ignore:
+    - "Model"
+
 
 coverage:
   precision: 2
   round: down
-  range: "70...100"
+  range: "5...100"
 
 parsers:
   gcov:
