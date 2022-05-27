@@ -170,13 +170,13 @@ public class fragmentInventoryStatistics extends Fragment {
 
         }
         section = diff/moneyUser;
-        pieEntries.add(new PieEntry((float) section, ""));
+        pieEntries.add(new PieEntry((float) section, "Unused"));
 
         allInventoryItems = db.getAllInventoryItems();
     }
 
     private void makePieChartDataSet_Elements() {
-        pieDataSet = new PieDataSet(pieEntries, "Elements");
+        pieDataSet = new PieDataSet(pieEntries, "");
         pieDataSet.setColors(ColorTemplate.JOYFUL_COLORS);     //toDo custom template
         pieDataSet.setDrawValues(true);
         pieDataSet.setValueTextSize(12);
