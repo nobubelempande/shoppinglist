@@ -11,8 +11,8 @@ coverage:
           - unit
         paths: 
           - "src"
-        ignore:
-          - "fragments"
+       ignore:
+          - "**/*.java"
 
        # advanced settings
         branches: 
