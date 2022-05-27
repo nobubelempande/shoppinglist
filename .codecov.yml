@@ -10,9 +10,7 @@ coverage:
         flags: 
           - unit
         paths: 
-          - "src"
-       ignore:
-          - "**/*.java"
+          - "src/main/java/com/viiishoppinglistapp/doit/model"
 
        # advanced settings
         branches: 
