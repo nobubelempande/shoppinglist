@@ -85,7 +85,7 @@ task jacocoTestReport(type: JacocoReport,
             excludes: fileFilter
     )
 
-    def mainSrc = "/src/main/java/com/viiishoppinglistapp/doit/Model"
+    def mainSrc = "/src/main/java"
 
     sourceDirectories.setFrom(files([mainSrc]))
 
