@@ -88,8 +88,7 @@ public class UseShoppingListAdapter extends RecyclerView.Adapter<UseShoppingList
                     //unChecked
                     currItem.setChecked(0);
                     db.updateItem(currItem);
-                    db.deleteInventoryItem(currItem.getItemName());
-                    Log.d(HomeActivity_old.TAG, "---> *** --> Inventory Item [" + currItem.getItemName() + "] Removed **");
+                    //db.deleteInventoryItem(currItem.getItemName());
                 }
 
             }

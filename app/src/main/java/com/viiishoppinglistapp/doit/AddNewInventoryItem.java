@@ -125,7 +125,6 @@ public class AddNewInventoryItem extends BottomSheetDialogFragment {
             }
         });
 
-        Log.d(TAG, "setupInventoryItemEditorLayout: Switch Setup");
 
         final Bundle bundle = getArguments();
         if(bundle != null){
@@ -184,7 +183,6 @@ public class AddNewInventoryItem extends BottomSheetDialogFragment {
                 if(doe.equals(NullDate)){
                     doe = date.getNoDate();
                 }
-                Log.d(TAG, "onClick: ");
 
                 if(validator.isItemPriceEmpty(strPrice)){
                     Toast.makeText(getContext(), "Please Enter The Price.", Toast.LENGTH_SHORT).show();
@@ -197,7 +195,6 @@ public class AddNewInventoryItem extends BottomSheetDialogFragment {
                     addItemToInventory(currItem);
                     dismiss();
                 }
-                Log.d(TAG, "onClick End");
 
             }
         });
@@ -237,7 +234,9 @@ public class AddNewInventoryItem extends BottomSheetDialogFragment {
     }
 
     private void addItemToInventory(modelItem currItem) {
+        Log.d(TAG, "addItemToInventory: FUNCTION CALLED");
         db.insertInventoryItem(currItem);
+        currItem.setChecked(1);
         db.updateItem(currItem);
     }
 

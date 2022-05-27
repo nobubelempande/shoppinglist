@@ -509,11 +509,15 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         if(existingItem == null){
             db.insert(TABLE_Inventory, null, cv);
+            Log.d(TAG, "insertInventoryItem DB: NEW INVENTORY ITEM ADDED SUCCESSFULLY");
         }
         else {
+            Log.d(TAG, "insertInventoryItem DB: UPDATE INVENTORY");
             int prevQty = existingItem.getItemQty();
-            currItem.setItemQty(currItem.getItemQty()+prevQty);
+            int newQty = currItem.getItemQty();
+            currItem.setItemQty(newQty+prevQty);
             updateInventoryItem(currItem);
+            Log.d(TAG, "insertInventoryItem DB: INVENTORY UPDATED SUCCESSFULLY");
         }
 
     }
