@@ -40,7 +40,7 @@ public class AddNewInventoryItem extends BottomSheetDialogFragment {
 
     //ArrayAdapter adapter;
 
-    private DatePickerDialog datePickerDialog;
+    public DatePickerDialog datePickerDialog;
 
     private DatabaseHandler db;
     private DateHandler date;
@@ -236,7 +236,7 @@ public class AddNewInventoryItem extends BottomSheetDialogFragment {
         });
     }
 
-    private void addItemToInventory(modelItem currItem) {
+    public void addItemToInventory(modelItem currItem) {
         db.insertInventoryItem(currItem);
         db.updateItem(currItem);
     }
@@ -252,13 +252,13 @@ public class AddNewInventoryItem extends BottomSheetDialogFragment {
         return date.getDate();
     }
 
-    private void initDatePicker() {
+    public void initDatePicker() {
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 month = month+1;
                 date = new DateHandler(day, month, year);
-                String strDate = date.getDate();
+                  String strDate = date.getDate();
                 tvItemDOE.setText(strDate);
                 currItem.setItemDOE(strDate);
 
