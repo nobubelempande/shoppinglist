@@ -25,7 +25,15 @@ public class AddNewInventoryItemTest {
         verify(db).insertInventoryItem(item);
     }*/
 
+    @Test
 
+    public void testAddItemToInventoryWhenItemIsNullThenThrowsException() {
+
+        AddNewInventoryItem addNewInventoryItem = new AddNewInventoryItem();
+        assertThrows(NullPointerException.class, () -> {
+            addNewInventoryItem.addItemToInventory(null);
+        });
+    }
 
     @Test
        public void testNewInstanceShouldReturnANewInstanceOfAddNewInventoryItem() {
