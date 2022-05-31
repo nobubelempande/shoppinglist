@@ -58,6 +58,17 @@ public class TabbedHomeActivity extends AppCompatActivity implements DialogClose
                 goToSettings();
             }
         });
+
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.reminder);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(TabbedHomeActivity.this, ReminderActivity.class));
+            }
+        });
+
+
     }
 
 
