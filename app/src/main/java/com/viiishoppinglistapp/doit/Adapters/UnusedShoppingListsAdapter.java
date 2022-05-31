@@ -245,7 +245,7 @@ public class UnusedShoppingListsAdapter extends RecyclerView.Adapter<UnusedShopp
         Image img = new Image(imgData).setHorizontalAlignment(HorizontalAlignment.CENTER).scaleToFit(100f, 100f);
 
         //list name
-        Paragraph pListName = new Paragraph("\n\n" + currList.getListName() + " Shopping List\n\n")
+        Paragraph pListName = new Paragraph("\n\n" + currList.getListName() + " Shopping List\n\n\n")
                 .setBold().setFontSize(26)
                 .setTextAlignment(TextAlignment.CENTER);
 
