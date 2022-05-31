@@ -75,7 +75,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         //Inventory class
 
-        //nb: uses same itemTable col names
+        //toDo add inventory_id
 
 
         final String CREATE_Inventory_TABLE = "CREATE TABLE " + TABLE_Inventory + "(" +
@@ -394,6 +394,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     public modelItem getItem(String itemName){
+        //toDo also use shopping list name
         //getting all saved shoppingLists from the DB
 
 
@@ -444,6 +445,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
         return allItems.get(0);
     }
+
+
 
 
     //Inventory

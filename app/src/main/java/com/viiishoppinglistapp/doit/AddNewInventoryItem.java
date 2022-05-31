@@ -144,6 +144,7 @@ public class AddNewInventoryItem extends BottomSheetDialogFragment {
         db = new DatabaseHandler(getActivity());
         db.openDatabase();
 
+        //toDo get and use shopping list name
         currItem = db.getItem(currItem.getItemName());
 
         etItemPrice.addTextChangedListener(new TextWatcher() {
@@ -192,7 +193,7 @@ public class AddNewInventoryItem extends BottomSheetDialogFragment {
                 else{
                     currItem.setItemPrice(Double.parseDouble(strPrice));
                     currItem.setItemDOE(doe);
-                    currItem.setChecked(1);
+                    currItem.setChecked(1); //todo remove
 
                     addItemToInventory(currItem);
                     dismiss();
@@ -215,7 +216,7 @@ public class AddNewInventoryItem extends BottomSheetDialogFragment {
                 else{
                     currItem.setItemPrice(Double.parseDouble(strPrice));
                     currItem.setItemDOE(doe);
-                    currItem.setChecked(1);
+                    currItem.setChecked(1);     //todo remove
 
                     db.updateItem(currItem);
                     dismiss();
@@ -237,8 +238,8 @@ public class AddNewInventoryItem extends BottomSheetDialogFragment {
     }
 
     public void addItemToInventory(modelItem currItem) {
-        db.insertInventoryItem(currItem);
         db.updateItem(currItem);
+        db.insertInventoryItem(currItem);
     }
 
     private String getTodayDate() {
