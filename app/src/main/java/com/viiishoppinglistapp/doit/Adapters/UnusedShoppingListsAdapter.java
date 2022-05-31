@@ -3,7 +3,9 @@ package com.viiishoppinglistapp.doit.Adapters;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,6 +26,12 @@ import com.viiishoppinglistapp.doit.TabbedHomeActivity;
 import com.viiishoppinglistapp.doit.UseShoppingListActivity;
 import com.viiishoppinglistapp.doit.Utils.DatabaseHandler;
 
+import org.w3c.dom.Document;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 import java.util.List;
 
 public class UnusedShoppingListsAdapter extends RecyclerView.Adapter<UnusedShoppingListsAdapter.ViewHolder> {
@@ -179,6 +188,24 @@ public class UnusedShoppingListsAdapter extends RecyclerView.Adapter<UnusedShopp
         AddNewShoppingList fragment = new AddNewShoppingList();
         fragment.setArguments(bundle);
         fragment.show(activity.getSupportFragmentManager(), AddNewShoppingList.TAG);
+    }
+
+    //toDO
+    public void createShoppingListPDF(String strName) throws FileNotFoundException {
+        modelShoppingList currList = db.getShoppingList(strName);
+
+        //pdf
+        String pdfPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();
+        File file = new File(pdfPath, "myPDF.pdf");
+        OutputStream outputStream = new FileOutputStream(file);
+
+        PdfWriter writer = new PdfWriter(file);
+        PdfDocument pdfDocument = new PdfDocument(writer);
+        Document docShoppingList = new Document(pdfDocument);
+
+
+        docShoppingList.close();
+        Toast.makeText(getContext(), "PDF Created.", Toast.LENGTH_LONG).show();
     }
 
 }
