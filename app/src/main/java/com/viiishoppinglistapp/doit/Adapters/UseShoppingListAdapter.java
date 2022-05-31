@@ -91,7 +91,7 @@ public class UseShoppingListAdapter extends RecyclerView.Adapter<UseShoppingList
                     //unChecked
                     currItem.setChecked(0);
                     db.updateItem(currItem);
-                    //db.deleteInventoryItem(currItem.getItemName());
+                    db.deleteInventoryItem(currItem.getItemName());
                 }
 
             }

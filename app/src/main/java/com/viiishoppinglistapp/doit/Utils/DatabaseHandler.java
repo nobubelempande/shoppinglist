@@ -541,6 +541,30 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         //removing from db
         final String NAME = "item_name";
         //todo if(exists) -> if(exists-currQty>=1) -> update(newQty)
+
+        modelItem currItem = getItem(item_name);
+        modelItem existingItem = getInventoryItem(item_name);
+
+        if(existingItem == null){
+            db.delete(TABLE_Inventory, NAME + "= ?", new String[] {item_name});
+            Log.d(TAG, "insertInventoryItem DB: NEW INVENTORY ITEM DELETED SUCCESSFULLY");
+        }
+        else {
+            Log.d(TAG, "insertInventoryItem DB: EXISTING INVENTORY ITEM");
+            int prevQty = existingItem.getItemQty();
+            int newQty = currItem.getItemQty();
+
+            if(prevQty-newQty >= 1) {
+                currItem.setItemQty(prevQty-newQty);
+                updateInventoryItem(currItem);
+                Log.d(TAG, "insertInventoryItem DB: EXISTING INVENTORY ITEM UPDATED SUCCESSFULLY");
+            }
+            else {
+                db.delete(TABLE_Inventory, NAME + "= ?", new String[] {item_name});
+                Log.d(TAG, "insertInventoryItem DB: EXISTING INVENTORY ITEM DELETED SUCCESSFULLY");
+            }
+        }
+
         db.delete(TABLE_Inventory, NAME + "= ?", new String[] {item_name});
     }
 
