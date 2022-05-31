@@ -3,7 +3,6 @@ package com.viiishoppinglistapp.doit.Adapters;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.LayoutInflater;
@@ -18,6 +17,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Paragraph;
 import com.viiishoppinglistapp.doit.AddNewShoppingList;
 import com.viiishoppinglistapp.doit.AddShoppingListItemsActivity;
 import com.viiishoppinglistapp.doit.Model.modelShoppingList;
@@ -25,8 +28,6 @@ import com.viiishoppinglistapp.doit.R;
 import com.viiishoppinglistapp.doit.TabbedHomeActivity;
 import com.viiishoppinglistapp.doit.UseShoppingListActivity;
 import com.viiishoppinglistapp.doit.Utils.DatabaseHandler;
-
-import org.w3c.dom.Document;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -203,7 +204,11 @@ public class UnusedShoppingListsAdapter extends RecyclerView.Adapter<UnusedShopp
         PdfDocument pdfDocument = new PdfDocument(writer);
         Document docShoppingList = new Document(pdfDocument);
 
+        //pdf content
+        Paragraph pListName = new Paragraph(currList.getListName() + "Shopping List");
 
+
+        docShoppingList.add(pListName);
         docShoppingList.close();
         Toast.makeText(getContext(), "PDF Created.", Toast.LENGTH_LONG).show();
     }
