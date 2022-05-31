@@ -61,7 +61,7 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 
-    // https://mvnrepository.com/artifact/com.itextpdf/itextpdf
+    // iText 7 for pdfs
     implementation 'com.itextpdf:itext7-core:7.1.3'
 
 
