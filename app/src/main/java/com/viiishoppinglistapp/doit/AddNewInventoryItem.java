@@ -144,8 +144,8 @@ public class AddNewInventoryItem extends BottomSheetDialogFragment {
         db = new DatabaseHandler(getActivity());
         db.openDatabase();
 
-        //toDo get and use shopping list name
-        currItem = db.getItem(currItem.getItemName());
+        String strListName = bundle.getString("shoppingListName");
+        currItem = db.getItem(currItem.getItemName(), strListName);
 
         etItemPrice.addTextChangedListener(new TextWatcher() {
             @Override
@@ -193,7 +193,6 @@ public class AddNewInventoryItem extends BottomSheetDialogFragment {
                 else{
                     currItem.setItemPrice(Double.parseDouble(strPrice));
                     currItem.setItemDOE(doe);
-                    currItem.setChecked(1); //todo remove
 
                     addItemToInventory(currItem);
                     dismiss();
@@ -205,7 +204,6 @@ public class AddNewInventoryItem extends BottomSheetDialogFragment {
         btnCancelAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //toDo only update item
                 String strPrice = etItemPrice.getText().toString();
                 String doe = tvItemDOE.getText().toString();
                 Log.d(TAG, "onClick: ");
@@ -216,7 +214,6 @@ public class AddNewInventoryItem extends BottomSheetDialogFragment {
                 else{
                     currItem.setItemPrice(Double.parseDouble(strPrice));
                     currItem.setItemDOE(doe);
-                    currItem.setChecked(1);     //todo remove
 
                     db.updateItem(currItem);
                     dismiss();

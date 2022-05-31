@@ -81,6 +81,7 @@ public class UseShoppingListAdapter extends RecyclerView.Adapter<UseShoppingList
 
                     Bundle bundle = new Bundle();
                     bundle.putString("itemName", currItem.getItemName());
+                    bundle.putString("shoppingListName", currItem.getListName());
 
                     AddNewInventoryItem i = new AddNewInventoryItem();
                     i.newInstance();
@@ -106,19 +107,6 @@ public class UseShoppingListAdapter extends RecyclerView.Adapter<UseShoppingList
     public void setAllShoppingListItems(List<modelItem> itemsList){
         this.currShoppingList = itemsList;
         notifyDataSetChanged();
-    }
-
-    //methods
-    public void deleteShoppingListItem(int position) {
-        modelItem currItem = currShoppingList.get(position);
-        db.deleteItem(currItem.getItemID());
-        currShoppingList.remove(position);
-        notifyItemRemoved(position);
-    }
-
-    private void addItemToInventory(int position) {
-        modelItem currItem = currShoppingList.get(position);
-        db.insertInventoryItem(currItem);
     }
 
 }
