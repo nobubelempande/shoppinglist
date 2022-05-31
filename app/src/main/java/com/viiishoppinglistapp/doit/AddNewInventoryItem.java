@@ -40,7 +40,7 @@ public class AddNewInventoryItem extends BottomSheetDialogFragment {
 
     //ArrayAdapter adapter;
 
-    private DatePickerDialog datePickerDialog;
+    public DatePickerDialog datePickerDialog;
 
     private DatabaseHandler db;
     private DateHandler date;
@@ -125,6 +125,7 @@ public class AddNewInventoryItem extends BottomSheetDialogFragment {
             }
         });
 
+        Log.d(TAG, "setupInventoryItemEditorLayout: Switch Setup");
 
         final Bundle bundle = getArguments();
         if(bundle != null){
@@ -183,6 +184,7 @@ public class AddNewInventoryItem extends BottomSheetDialogFragment {
                 if(doe.equals(NullDate)){
                     doe = date.getNoDate();
                 }
+                Log.d(TAG, "onClick: ");
 
                 if(validator.isItemPriceEmpty(strPrice)){
                     Toast.makeText(getContext(), "Please Enter The Price.", Toast.LENGTH_SHORT).show();
@@ -190,10 +192,12 @@ public class AddNewInventoryItem extends BottomSheetDialogFragment {
                 else{
                     currItem.setItemPrice(Double.parseDouble(strPrice));
                     currItem.setItemDOE(doe);
+                    currItem.setChecked(1);
 
                     addItemToInventory(currItem);
                     dismiss();
                 }
+                Log.d(TAG, "onClick End");
 
             }
         });
@@ -211,6 +215,7 @@ public class AddNewInventoryItem extends BottomSheetDialogFragment {
                 else{
                     currItem.setItemPrice(Double.parseDouble(strPrice));
                     currItem.setItemDOE(doe);
+                    currItem.setChecked(1);
 
                     db.updateItem(currItem);
                     dismiss();
@@ -231,11 +236,9 @@ public class AddNewInventoryItem extends BottomSheetDialogFragment {
         });
     }
 
-    private void addItemToInventory(modelItem currItem) {
-        Log.d(TAG, "addItemToInventory: FUNCTION CALLED, ITEM Check: " + currItem.getChecked());
+    public void addItemToInventory(modelItem currItem) {
         db.insertInventoryItem(currItem);
         db.updateItem(currItem);
-        Log.d(TAG, "addItemToInventory: ITEM ADDED, ITEM Check: " + currItem.getChecked());
     }
 
     private String getTodayDate() {
@@ -249,13 +252,13 @@ public class AddNewInventoryItem extends BottomSheetDialogFragment {
         return date.getDate();
     }
 
-    private void initDatePicker() {
+    public void initDatePicker() {
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 month = month+1;
                 date = new DateHandler(day, month, year);
-                String strDate = date.getDate();
+                  String strDate = date.getDate();
                 tvItemDOE.setText(strDate);
                 currItem.setItemDOE(strDate);
 

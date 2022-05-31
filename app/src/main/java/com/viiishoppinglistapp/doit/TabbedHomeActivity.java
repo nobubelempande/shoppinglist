@@ -37,7 +37,6 @@ public class TabbedHomeActivity extends AppCompatActivity implements DialogClose
 
     List<modelShoppingList> allShoppingLists;
 
-
     private ActivityTabbedHomeBinding binding;
 
     @Override
