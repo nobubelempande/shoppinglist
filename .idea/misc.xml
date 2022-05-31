@@ -33,6 +33,7 @@
         <entry key="..\:/Coding/Code/Java/Yr 3 SD 2022/Alternate Versions/shoppinglist/app/src/main/res/layout/activity_home_old.xml" value="0.327445652173913" />
         <entry key="..\:/Coding/Code/Java/Yr 3 SD 2022/Alternate Versions/shoppinglist/app/src/main/res/layout/activity_inventory.xml" value="0.16875" />
         <entry key="..\:/Coding/Code/Java/Yr 3 SD 2022/Alternate Versions/shoppinglist/app/src/main/res/layout/activity_main.xml" value="0.27853260869565216" />
+        <entry key="..\:/Coding/Code/Java/Yr 3 SD 2022/Alternate Versions/shoppinglist/app/src/main/res/layout/activity_settings.xml" value="0.14351851851851852" />
         <entry key="..\:/Coding/Code/Java/Yr 3 SD 2022/Alternate Versions/shoppinglist/app/src/main/res/layout/activity_statistics.xml" value="0.1" />
         <entry key="..\:/Coding/Code/Java/Yr 3 SD 2022/Alternate Versions/shoppinglist/app/src/main/res/layout/activity_tabbed_home.xml" value="0.25" />
         <entry key="..\:/Coding/Code/Java/Yr 3 SD 2022/Alternate Versions/shoppinglist/app/src/main/res/layout/activity_tabbed_inventory.xml" value="0.25" />
@@ -44,7 +45,7 @@
         <entry key="..\:/Coding/Code/Java/Yr 3 SD 2022/Alternate Versions/shoppinglist/app/src/main/res/layout/cardview_layout_using_shopping_list_item.xml" value="0.1715438950554995" />
         <entry key="..\:/Coding/Code/Java/Yr 3 SD 2022/Alternate Versions/shoppinglist/app/src/main/res/layout/dialog_change_theme.xml" value="0.33" />
         <entry key="..\:/Coding/Code/Java/Yr 3 SD 2022/Alternate Versions/shoppinglist/app/src/main/res/layout/dialog_shopping_list.xml" value="0.327445652173913" />
-        <entry key="..\:/Coding/Code/Java/Yr 3 SD 2022/Alternate Versions/shoppinglist/app/src/main/res/layout/dialog_unused_shopping_list.xml" value="0.25" />
+        <entry key="..\:/Coding/Code/Java/Yr 3 SD 2022/Alternate Versions/shoppinglist/app/src/main/res/layout/dialog_unused_shopping_list.xml" value="0.1715438950554995" />
         <entry key="..\:/Coding/Code/Java/Yr 3 SD 2022/Alternate Versions/shoppinglist/app/src/main/res/layout/dialog_used_shopping_list.xml" value="0.1" />
         <entry key="..\:/Coding/Code/Java/Yr 3 SD 2022/Alternate Versions/shoppinglist/app/src/main/res/layout/fragment_home_activity_unused_lists.xml" value="0.28020833333333334" />
         <entry key="..\:/Coding/Code/Java/Yr 3 SD 2022/Alternate Versions/shoppinglist/app/src/main/res/layout/fragment_inventory_items.xml" value="0.16875" />
@@ -96,10 +97,14 @@
         <entry key="..\:/newShopping/shoppinglist/app/src/main/res/layout/new_inventory_item.xml" value="0.23007246376811594" />
         <entry key="..\:/newShopping/shoppinglist/app/src/main/res/layout/new_item.xml" value="0.23007246376811594" />
         <entry key="..\:/newShopping/shoppinglist/app/src/main/res/layout/new_shopping_list.xml" value="0.23007246376811594" />
+        <entry key="app/src/main/res/layout/activity_home_old.xml" value="0.18432971014492755" />
         <entry key="app/src/main/res/layout/activity_item_adding.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.24954710144927536" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.2625" />
+        <entry key="app/src/main/res/layout/activity_tabbed_home.xml" value="0.18432971014492755" />
+        <entry key="app/src/main/res/layout/new_shopping_list.xml" value="0.22" />
         <entry key="app/src/main/res/layout/new_task.xml" value="0.24954710144927536" />
+        <entry key="app/src/main/res/layout/reminder.xml" value="0.11927083333333334" />
         <entry key="app/src/main/res/layout/task_layout.xml" value="0.16806722689075632" />
       </map>
     </option>
