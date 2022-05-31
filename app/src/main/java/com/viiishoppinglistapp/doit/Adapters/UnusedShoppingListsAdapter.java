@@ -21,6 +21,7 @@ import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.property.TextAlignment;
 import com.viiishoppinglistapp.doit.AddNewShoppingList;
 import com.viiishoppinglistapp.doit.AddShoppingListItemsActivity;
 import com.viiishoppinglistapp.doit.Model.modelShoppingList;
@@ -135,6 +136,7 @@ public class UnusedShoppingListsAdapter extends RecyclerView.Adapter<UnusedShopp
                 //button functions
                 Button btnAddItems = dialog.findViewById(R.id.btnViewItems_dialog);
                 Button btnUseList = dialog.findViewById(R.id.btnUseList_dialog);
+                Button btnShareList = dialog.findViewById(R.id.btnShareList_dialog);
 
                 btnAddItems.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -165,6 +167,19 @@ public class UnusedShoppingListsAdapter extends RecyclerView.Adapter<UnusedShopp
                         dialog.dismiss();
                     }
                 });
+
+                btnShareList.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        try {
+                            createShoppingListPDF(listName);
+                            dialog.dismiss();
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+
                 dialog.show();
             }
         });
@@ -194,10 +209,11 @@ public class UnusedShoppingListsAdapter extends RecyclerView.Adapter<UnusedShopp
     //toDO
     public void createShoppingListPDF(String strName) throws FileNotFoundException {
         modelShoppingList currList = db.getShoppingList(strName);
+        String pdfName = currList.getListName() + " ShoppingList";
 
         //pdf
         String pdfPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();
-        File file = new File(pdfPath, "myPDF.pdf");
+        File file = new File(pdfPath, pdfName + ".pdf");
         OutputStream outputStream = new FileOutputStream(file);
 
         PdfWriter writer = new PdfWriter(file);
@@ -205,7 +221,9 @@ public class UnusedShoppingListsAdapter extends RecyclerView.Adapter<UnusedShopp
         Document docShoppingList = new Document(pdfDocument);
 
         //pdf content
-        Paragraph pListName = new Paragraph(currList.getListName() + "Shopping List");
+        Paragraph pListName = new Paragraph(currList.getListName() + " Shopping List")
+                .setBold().setFontSize(24)
+                .setTextAlignment(TextAlignment.CENTER);
 
 
         docShoppingList.add(pListName);
