@@ -245,16 +245,22 @@ public class UnusedShoppingListsAdapter extends RecyclerView.Adapter<UnusedShopp
         Image img = new Image(imgData).setHorizontalAlignment(HorizontalAlignment.CENTER).scaleToFit(100f, 100f);
 
         //list name
-        Paragraph pListName = new Paragraph("\n\n" + currList.getListName() + " Shopping List\n\n\n")
+        Paragraph pListName = new Paragraph("\n" + currList.getListName() + " Shopping List")
                 .setBold().setFontSize(26)
                 .setTextAlignment(TextAlignment.CENTER);
 
         //list of items
-        com.itextpdf.layout.element.List itemList = new com.itextpdf.layout.element.List().setFontSize(20).setMarginLeft(20);
-        for (int i = 0; i < size; i++){
-            currItem = currList.getListItems().get(i);
-            String text = currItem.getItemName() + "    x " + currItem.getItemQty();
-            itemList.add(text);
+        com.itextpdf.layout.element.List itemList = new com.itextpdf.layout.element.List().setFontSize(20).setMargins(44, 25, 18, 20);
+        if(size == 0){
+            itemList.add("No Items in shopping list.");
+            itemList.setTextAlignment(TextAlignment.CENTER);
+        }
+        else {
+            for (int i = 0; i < size; i++){
+                currItem = currList.getListItems().get(i);
+                String text = currItem.getItemName() + "    x" + currItem.getItemQty();
+                itemList.add(text);
+            }
         }
 
 
@@ -263,7 +269,7 @@ public class UnusedShoppingListsAdapter extends RecyclerView.Adapter<UnusedShopp
         docShoppingList.add(itemList);
 
         docShoppingList.close();
-        Toast.makeText(getContext(), "PDF Created.", Toast.LENGTH_LONG).show();
+        Toast.makeText(getContext(), currList.getListName() + " PDF Created.", Toast.LENGTH_LONG).show();
     }
 
 }
