@@ -24,6 +24,7 @@ import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.property.TextAlignment;
 import com.viiishoppinglistapp.doit.AddNewShoppingList;
 import com.viiishoppinglistapp.doit.AddShoppingListItemsActivity;
+import com.viiishoppinglistapp.doit.Model.modelItem;
 import com.viiishoppinglistapp.doit.Model.modelShoppingList;
 import com.viiishoppinglistapp.doit.R;
 import com.viiishoppinglistapp.doit.TabbedHomeActivity;
@@ -209,6 +210,9 @@ public class UnusedShoppingListsAdapter extends RecyclerView.Adapter<UnusedShopp
     //toDO
     public void createShoppingListPDF(String strName) throws FileNotFoundException {
         modelShoppingList currList = db.getShoppingList(strName);
+        currList.setListItems(db.getItemsForShoppingList(strName));
+        int size = currList.getListItems().size();
+        modelItem currItem = new modelItem("");
         String pdfName = currList.getListName() + " ShoppingList";
 
         //pdf
@@ -221,12 +225,21 @@ public class UnusedShoppingListsAdapter extends RecyclerView.Adapter<UnusedShopp
         Document docShoppingList = new Document(pdfDocument);
 
         //pdf content
-        Paragraph pListName = new Paragraph(currList.getListName() + " Shopping List")
-                .setBold().setFontSize(24)
+        Paragraph pListName = new Paragraph(currList.getListName() + " Shopping List\n\n")
+                .setBold().setFontSize(26)
                 .setTextAlignment(TextAlignment.CENTER);
+
+        com.itextpdf.layout.element.List itemList = new com.itextpdf.layout.element.List().setFontSize(20);
+        for (int i = 0; i < size; i++){
+            currItem = currList.getListItems().get(i);
+            String text = currItem.getItemName() + "    x " + currItem.getItemQty();
+            itemList.add(text);
+        }
 
 
         docShoppingList.add(pListName);
+        docShoppingList.add(itemList);
+
         docShoppingList.close();
         Toast.makeText(getContext(), "PDF Created.", Toast.LENGTH_LONG).show();
     }
