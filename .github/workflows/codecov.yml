@@ -1,13 +1,12 @@
 codecov:
   require_ci_to_pass: yes
-  ignore:
-    - "Model"
+
 
 
 coverage:
   precision: 2
   round: down
-  range: "5...100"
+  range: "75...100"
 
 parsers:
   gcov:
@@ -16,6 +15,10 @@ parsers:
       loop: yes
       method: no
       macro: no
+      
+ignore:
+    - "**/test_*.java"
+
 
 comment:
   layout: "reach,diff,flags,files,footer"
