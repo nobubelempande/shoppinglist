@@ -1,7 +1,7 @@
 ignore:
-    - "ui"
+    - "**/ui"
     - "**/AddNewItem.java"
-    - "**/UsedShoopingListTouchHelper.java"
+    - "**/UsedShoppingListTouchHelper.java"
     - "**/UnusedShoppingListTouchHelper.java"
     - "**/SplashActivity.java"
     - "**/SettingsActivity.java"
@@ -12,4 +12,7 @@ ignore:
     - "**/HomeActivity.java"
     - "**/AlarmReceiver.java"
     - "**/AddNewShoppingList.java"
+    - "**/UseShoppingListActivity.java"
+    - "**/HomeActivity_old.java"
+    - "**/Fragments"
     
