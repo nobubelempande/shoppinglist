@@ -50,7 +50,6 @@ public class TabbedHomeActivity extends AppCompatActivity implements DialogClose
         binding = ActivityTabbedHomeBinding.inflate(getLayoutInflater());
 
         setupHomeTabs();
-        //toDo theme changer using appIcon
         ImageView icon = binding.imgInventoryIcon;
         icon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,6 +57,17 @@ public class TabbedHomeActivity extends AppCompatActivity implements DialogClose
                 goToSettings();
             }
         });
+
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.reminder);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(TabbedHomeActivity.this, ReminderActivity.class));
+            }
+        });
+
+
     }
 
 
@@ -126,7 +136,6 @@ public class TabbedHomeActivity extends AppCompatActivity implements DialogClose
 
     //Nav
     public void goToInventory(View view){
-        //toDO remove list name bundle
         //goto new page
         bundle = new Bundle();
         bundle.putString("list_name", "No List Selected.");

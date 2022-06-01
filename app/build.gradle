@@ -4,6 +4,7 @@ apply plugin: 'jacoco'
 android {
     compileSdkVersion 31
 
+
     defaultConfig {
         applicationId "com.viiishoppinglistapp.doit"
         minSdkVersion 26

@@ -29,6 +29,9 @@
             android:name=".AddShoppingListItemsActivity"
             android:exported="false" />
         <activity
+            android:name=".ReminderActivity"
+            android:exported="false" />
+        <activity
             android:name=".UseShoppingListActivity"
             android:exported="false" />
         <activity
