@@ -15,4 +15,6 @@ ignore:
     - "**/UseShoppingListActivity.java"
     - "**/HomeActivity_old.java"
     - "**/Fragments"
+    - "**/AddNewInventoryItem.java"
+    - "**/utils"
     
