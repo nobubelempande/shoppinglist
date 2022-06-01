@@ -3,7 +3,11 @@ package com.viiishoppinglistapp.doit.Adapters;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,18 +15,34 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.itextpdf.io.image.ImageData;
+import com.itextpdf.io.image.ImageDataFactory;
+import com.itextpdf.io.source.ByteArrayOutputStream;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Image;
+import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.property.HorizontalAlignment;
+import com.itextpdf.layout.property.TextAlignment;
 import com.viiishoppinglistapp.doit.AddNewShoppingList;
 import com.viiishoppinglistapp.doit.AddShoppingListItemsActivity;
+import com.viiishoppinglistapp.doit.Model.modelItem;
 import com.viiishoppinglistapp.doit.Model.modelShoppingList;
 import com.viiishoppinglistapp.doit.R;
 import com.viiishoppinglistapp.doit.TabbedHomeActivity;
 import com.viiishoppinglistapp.doit.UseShoppingListActivity;
 import com.viiishoppinglistapp.doit.Utils.DatabaseHandler;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 import java.util.List;
 
 public class UnusedShoppingListsAdapter extends RecyclerView.Adapter<UnusedShoppingListsAdapter.ViewHolder> {
@@ -125,6 +145,7 @@ public class UnusedShoppingListsAdapter extends RecyclerView.Adapter<UnusedShopp
                 //button functions
                 Button btnAddItems = dialog.findViewById(R.id.btnViewItems_dialog);
                 Button btnUseList = dialog.findViewById(R.id.btnUseList_dialog);
+                Button btnShareList = dialog.findViewById(R.id.btnShareList_dialog);
 
                 btnAddItems.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -155,6 +176,19 @@ public class UnusedShoppingListsAdapter extends RecyclerView.Adapter<UnusedShopp
                         dialog.dismiss();
                     }
                 });
+
+                btnShareList.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        try {
+                            createShoppingListPDF(listName);
+                            dialog.dismiss();
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+
                 dialog.show();
             }
         });
@@ -179,6 +213,63 @@ public class UnusedShoppingListsAdapter extends RecyclerView.Adapter<UnusedShopp
         AddNewShoppingList fragment = new AddNewShoppingList();
         fragment.setArguments(bundle);
         fragment.show(activity.getSupportFragmentManager(), AddNewShoppingList.TAG);
+    }
+
+    //toDO
+    public void createShoppingListPDF(String strName) throws FileNotFoundException {
+        modelShoppingList currList = db.getShoppingList(strName);
+        currList.setListItems(db.getItemsForShoppingList(strName));
+        int size = currList.getListItems().size();
+        modelItem currItem = new modelItem("");
+        String pdfName = currList.getListName() + " ShoppingList";
+
+        //pdf
+        String pdfPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();
+        File file = new File(pdfPath, pdfName + ".pdf");
+        OutputStream outputStream = new FileOutputStream(file);
+
+        PdfWriter writer = new PdfWriter(file);
+        PdfDocument pdfDocument = new PdfDocument(writer);
+        Document docShoppingList = new Document(pdfDocument);
+
+        //pdf content
+
+        //viii icon image
+        Drawable d = getContext().getDrawable(R.drawable.viii_icon);
+        Bitmap bitmap = ((BitmapDrawable)d).getBitmap();
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        byte[] bitmapData = stream.toByteArray();
+
+        ImageData imgData = ImageDataFactory.create(bitmapData);
+        Image img = new Image(imgData).setHorizontalAlignment(HorizontalAlignment.CENTER).scaleToFit(100f, 100f);
+
+        //list name
+        Paragraph pListName = new Paragraph("\n" + currList.getListName() + " Shopping List")
+                .setBold().setFontSize(26)
+                .setTextAlignment(TextAlignment.CENTER);
+
+        //list of items
+        com.itextpdf.layout.element.List itemList = new com.itextpdf.layout.element.List().setFontSize(20).setMargins(44, 25, 18, 20);
+        if(size == 0){
+            itemList.add("No Items in shopping list.");
+            itemList.setTextAlignment(TextAlignment.CENTER);
+        }
+        else {
+            for (int i = 0; i < size; i++){
+                currItem = currList.getListItems().get(i);
+                String text = currItem.getItemName() + "    x" + currItem.getItemQty();
+                itemList.add(text);
+            }
+        }
+
+
+        docShoppingList.add(img);
+        docShoppingList.add(pListName);
+        docShoppingList.add(itemList);
+
+        docShoppingList.close();
+        Toast.makeText(getContext(), currList.getListName() + " PDF Created.", Toast.LENGTH_LONG).show();
     }
 
 }

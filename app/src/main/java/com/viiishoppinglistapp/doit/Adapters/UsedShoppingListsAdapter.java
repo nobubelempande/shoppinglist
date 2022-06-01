@@ -20,12 +20,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.viiishoppinglistapp.doit.AddNewShoppingList;
 import com.viiishoppinglistapp.doit.AddShoppingListItemsActivity;
+import com.viiishoppinglistapp.doit.Model.modelItem;
 import com.viiishoppinglistapp.doit.Model.modelShoppingList;
 import com.viiishoppinglistapp.doit.R;
 import com.viiishoppinglistapp.doit.TabbedHomeActivity;
 import com.viiishoppinglistapp.doit.UseShoppingListActivity;
 import com.viiishoppinglistapp.doit.Utils.DatabaseHandler;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UsedShoppingListsAdapter extends RecyclerView.Adapter<UsedShoppingListsAdapter.ViewHolder>{
@@ -68,7 +70,7 @@ public class UsedShoppingListsAdapter extends RecyclerView.Adapter<UsedShoppingL
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView tvName, tvUseDate;
-        LinearLayout lyt;
+        RelativeLayout lyt;
 
         //constructor
         ViewHolder(View view) {
@@ -148,6 +150,8 @@ public class UsedShoppingListsAdapter extends RecyclerView.Adapter<UsedShoppingL
                         //change to unused
                         currList.setToUnused();
                         db.updateShoppingList(currList);
+                        //update all items
+                        uncheckListItems(currList);
                         //notify dataChange
                         activity.handleDialogClose(dialog);
 
@@ -161,6 +165,15 @@ public class UsedShoppingListsAdapter extends RecyclerView.Adapter<UsedShoppingL
         });
 
 
+    }
+
+    private void uncheckListItems(modelShoppingList currList) {
+        List<modelItem> allItemsInList = db.getItemsForShoppingList(currList.getListName());
+
+        for (modelItem item : allItemsInList){
+            item.setChecked(0);
+            db.updateItem(item);
+        }
     }
 
     public void deleteShoppingList(int position) {

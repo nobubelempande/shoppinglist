@@ -29,8 +29,6 @@ public class UseShoppingListActivity extends AppCompatActivity implements Dialog
     private RecyclerView rvUseShoppingList;
     private UseShoppingListAdapter adapter;
 
-    Switch aSwitch;
-
     private DatabaseHandler db;
 
     private List<modelItem> allShoppingListItems;
@@ -51,6 +49,17 @@ public class UseShoppingListActivity extends AppCompatActivity implements Dialog
                 goToSettings();
             }
         });
+
+        boolean allItemsChecked = areAllItemsChecked(allShoppingListItems);
+
+        if(allItemsChecked){
+            //set used
+            currShoppingList.setToUsed();
+            db.updateShoppingList(currShoppingList);
+            //close page
+            Toast.makeText(this, currShoppingList.getListName() + " Moved to OLD.", Toast.LENGTH_LONG).show();
+
+        }
     }
 
 
@@ -105,19 +114,14 @@ public class UseShoppingListActivity extends AppCompatActivity implements Dialog
             db.updateShoppingList(currShoppingList);
             //close page
             Toast.makeText(this, "Done Using " + currShoppingList.getListName(), Toast.LENGTH_LONG).show();
-            final Handler handler = new Handler();
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    // Do something after 5s = 5000ms
-                    doDoneUsingList();
 
-                }
-            }, 1600);
         }
     }
 
     private boolean areAllItemsChecked(List<modelItem> allShoppingListItems) {
+        if(allShoppingListItems.size() == 0){
+            return false;
+        }
         for(modelItem I:allShoppingListItems){
             if(!I.isChecked()){
                 return false;
@@ -128,7 +132,7 @@ public class UseShoppingListActivity extends AppCompatActivity implements Dialog
 
 
     //Nav
-    public void goToHome(View view){
+    public void goToHome(View view) {
         //goto Home page
         Bundle bundle = new Bundle();
         bundle.putString("list_name", currShoppingList.getListName());
@@ -136,15 +140,7 @@ public class UseShoppingListActivity extends AppCompatActivity implements Dialog
         I.putExtras(bundle);
         this.startActivity(I);
     }
-    public void doDoneUsingList(){
-        //goto Home page
-        Bundle bundle = new Bundle();
-        bundle.putString("list_name", currShoppingList.getListName());
-        Intent I = new Intent(this, TabbedHomeActivity.class);
-        I.putExtras(bundle);
 
-        this.startActivity(I);
-    }
     public void goToSettings(){
         //goto settings
         Bundle bundle = new Bundle();

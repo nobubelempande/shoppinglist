@@ -97,6 +97,10 @@ public class AddNewInventoryItem extends BottomSheetDialogFragment {
     private void setupInventoryItemEditorLayout(View view, Bundle savedInstanceState) {
         final String NullDate = "No Expiry Date";
 
+        db = new DatabaseHandler(getActivity());
+        db.openDatabase();
+
+
         tvItemName = Objects.requireNonNull(getView()).findViewById(R.id.tvInventoryItemName_new);
         etItemPrice = Objects.requireNonNull(getView()).findViewById(R.id.etInventoryItemPrice_new);
         btnAddToInventory = getView().findViewById(R.id.btnAddToInventory_new);
@@ -139,12 +143,12 @@ public class AddNewInventoryItem extends BottomSheetDialogFragment {
                 btnAddToInventory.setTextColor(ContextCompat.getColor(Objects.requireNonNull(getContext()), R.color.primary_dark));
                 btnCancelAdd.setTextColor(ContextCompat.getColor(Objects.requireNonNull(getContext()), R.color.primary_dark));
             }
+
+            String strListName = bundle.getString("shoppingListName");
+            currItem = db.getItem(currItem.getItemName(), strListName);
         }
 
-        db = new DatabaseHandler(getActivity());
-        db.openDatabase();
 
-        currItem = db.getItem(currItem.getItemName());
 
         etItemPrice.addTextChangedListener(new TextWatcher() {
             @Override
@@ -192,7 +196,6 @@ public class AddNewInventoryItem extends BottomSheetDialogFragment {
                 else{
                     currItem.setItemPrice(Double.parseDouble(strPrice));
                     currItem.setItemDOE(doe);
-                    currItem.setChecked(1);
 
                     addItemToInventory(currItem);
                     dismiss();
@@ -204,7 +207,6 @@ public class AddNewInventoryItem extends BottomSheetDialogFragment {
         btnCancelAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //toDo only update item
                 String strPrice = etItemPrice.getText().toString();
                 String doe = tvItemDOE.getText().toString();
                 Log.d(TAG, "onClick: ");
@@ -215,7 +217,6 @@ public class AddNewInventoryItem extends BottomSheetDialogFragment {
                 else{
                     currItem.setItemPrice(Double.parseDouble(strPrice));
                     currItem.setItemDOE(doe);
-                    currItem.setChecked(1);
 
                     db.updateItem(currItem);
                     dismiss();
@@ -237,8 +238,8 @@ public class AddNewInventoryItem extends BottomSheetDialogFragment {
     }
 
     public void addItemToInventory(modelItem currItem) {
-        db.insertInventoryItem(currItem);
         db.updateItem(currItem);
+        db.insertInventoryItem(currItem);
     }
 
     private String getTodayDate() {
