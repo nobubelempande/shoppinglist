@@ -132,7 +132,7 @@ public class NewItemTouchHelper extends ItemTouchHelper.SimpleCallback {
         //bundle.putDouble("price", currItem.getItemPrice());
         //bundle.putString("doe", currItem.getItemDOE());
 
-        bundle.putString("listName", currItem.getListName());
+        bundle.putInt("listID", currItem.getListID());
 
         AddNewItem fragment = new AddNewItem();
         fragment.setArguments(bundle);

@@ -77,8 +77,8 @@ public class UseShoppingListAdapter extends RecyclerView.Adapter<UseShoppingList
                     db.updateItem(currItem);
 
                     Bundle bundle = new Bundle();
+                    bundle.putInt("itemID", currItem.getItemID());
                     bundle.putString("itemName", currItem.getItemName());
-                    bundle.putString("shoppingListName", currItem.getListName());
 
                     AddNewInventoryItem i = new AddNewInventoryItem();
                     i.newInstance();

@@ -85,7 +85,7 @@ public class UseShoppingListActivity extends AppCompatActivity implements Dialog
         rvUseShoppingList.setAdapter(adapter);
 
 
-        allShoppingListItems = db.getItemsForShoppingList(currShoppingList.getListName());
+        allShoppingListItems = db.getItemsForShoppingList(currShoppingList.getListID());
 
         if (allShoppingListItems.size()<1){
             //no items
@@ -102,7 +102,7 @@ public class UseShoppingListActivity extends AppCompatActivity implements Dialog
     }
 
     private void usingItems() {
-        allShoppingListItems = db.getItemsForShoppingList(currShoppingList.getListName());
+        allShoppingListItems = db.getItemsForShoppingList(currShoppingList.getListID());
         Collections.reverse(allShoppingListItems);
         adapter.setAllShoppingListItems(allShoppingListItems);
         adapter.notifyDataSetChanged();

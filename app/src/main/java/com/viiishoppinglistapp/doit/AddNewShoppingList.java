@@ -165,7 +165,7 @@ public class AddNewShoppingList extends BottomSheetDialogFragment {
                     currShoppingList.setUseDate(date);
 
                     if(finalIsUpdate){
-                        currShoppingList.setListID(bundle.getInt("ID"));
+                        currShoppingList.setListID(bundle.getInt("listID"));
 
                         db.updateShoppingList(currShoppingList);
                     }

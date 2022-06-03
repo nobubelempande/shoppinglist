@@ -136,7 +136,6 @@ public class AddNewInventoryItem extends BottomSheetDialogFragment {
 
             String strItemName = bundle.getString("itemName");
             tvItemName.setText(strItemName);
-            currItem.setItemName(strItemName);
 
             assert strItemName != null;
             if(strItemName.length()>0){
@@ -144,8 +143,8 @@ public class AddNewInventoryItem extends BottomSheetDialogFragment {
                 btnCancelAdd.setTextColor(ContextCompat.getColor(Objects.requireNonNull(getContext()), R.color.primary_dark));
             }
 
-            String strListName = bundle.getString("shoppingListName");
-            currItem = db.getItem(currItem.getItemName(), strListName);
+            int intID = bundle.getInt("itemID");
+            currItem = db.getItem(intID);
         }
 
 

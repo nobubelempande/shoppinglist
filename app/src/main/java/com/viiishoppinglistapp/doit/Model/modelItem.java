@@ -9,7 +9,7 @@ public class modelItem {
     private double item_price;
     private String item_doe;
     private String item_name;
-    private String list_name;
+    private int list_id;
     private String item_type;
     private boolean checked;
 
@@ -48,8 +48,8 @@ public class modelItem {
     public String getItemName() {
         return item_name;
     }
-    public String getListName() {
-        return list_name;
+    public int getListID() {
+        return list_id;
     }
     public String getItemType() {
         return item_type;
@@ -81,8 +81,8 @@ public class modelItem {
     public void setItemName(String item_name) {
         this.item_name = item_name;
     }
-    public void setListName(String list_name) {
-        this.list_name = list_name;
+    public void setShoppingListID(int list_id) {
+        this.list_id = list_id;
     }
     public void setItemType(String item_type) {
         this.item_type = item_type;

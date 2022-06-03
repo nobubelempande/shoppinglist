@@ -170,7 +170,7 @@ public class UsedShoppingListsAdapter extends RecyclerView.Adapter<UsedShoppingL
     }
 
     private void uncheckListItems(modelShoppingList currList) {
-        List<modelItem> allItemsInList = db.getItemsForShoppingList(currList.getListName());
+        List<modelItem> allItemsInList = db.getItemsForShoppingList(currList.getListID());
 
         for (modelItem item : allItemsInList){
             item.setChecked(0);

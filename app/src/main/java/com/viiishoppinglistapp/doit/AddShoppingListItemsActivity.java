@@ -78,10 +78,9 @@ public class AddShoppingListItemsActivity extends AppCompatActivity implements D
         itemTouchHelper.attachToRecyclerView(rvItems);
 
 
-        itemsList = db.getItemsForShoppingList(currShoppingList.getListName());
+        itemsList = db.getItemsForShoppingList(currShoppingList.getListID());
         Collections.reverse(itemsList);
         adapterItems.setAllItems(itemsList, currShoppingList);
-        Log.d(TAG, "setupItems: Load");
 
         fabAddItem = findViewById(R.id.fabAddNewItem_NewActivity);
         fabAddItem.setOnClickListener(new View.OnClickListener() {
@@ -89,9 +88,7 @@ public class AddShoppingListItemsActivity extends AppCompatActivity implements D
             public void onClick(View view) {
                 Bundle bundle = new Bundle();
                 bundle.putString("listName", currShoppingList.getListName());
-                Log.d(TAG, "AddListItem Activity Bundle: Before ID request");
                 bundle.putInt("listID", currShoppingList.getListID());
-                Log.d(TAG, "AddListItem Activity Bundle: After ID request");
 
                 AddNewItem i = new AddNewItem();
                 i.newInstance();
@@ -107,7 +104,7 @@ public class AddShoppingListItemsActivity extends AppCompatActivity implements D
     }
 
     private void usingItems() {
-        itemsList = db.getItemsForShoppingList(currShoppingList.getListName());
+        itemsList = db.getItemsForShoppingList(currShoppingList.getListID());
         Collections.reverse(itemsList);
         adapterItems.setAllItems(itemsList, currShoppingList);
         adapterItems.notifyDataSetChanged();

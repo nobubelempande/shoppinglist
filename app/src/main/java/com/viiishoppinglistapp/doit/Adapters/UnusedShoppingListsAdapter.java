@@ -184,7 +184,7 @@ public class UnusedShoppingListsAdapter extends RecyclerView.Adapter<UnusedShopp
                     @Override
                     public void onClick(View v) {
                         try {
-                            createShoppingListPDF(ID, listName);
+                            createShoppingListPDF(ID);
                             dialog.dismiss();
                         } catch (FileNotFoundException e) {
                             e.printStackTrace();
@@ -218,9 +218,9 @@ public class UnusedShoppingListsAdapter extends RecyclerView.Adapter<UnusedShopp
         fragment.show(activity.getSupportFragmentManager(), AddNewShoppingList.TAG);
     }
 
-    public void createShoppingListPDF(int ID, String strName) throws FileNotFoundException {
+    public void createShoppingListPDF(int ID) throws FileNotFoundException {
         modelShoppingList currList = db.getShoppingList(ID);
-        currList.setListItems(db.getItemsForShoppingList(strName));
+        currList.setListItems(db.getItemsForShoppingList(ID));
         int size = currList.getListItems().size();
         modelItem currItem = new modelItem("");
         String pdfName = currList.getListName() + " ShoppingList";

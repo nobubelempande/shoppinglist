@@ -209,7 +209,7 @@ public class AddNewItem extends BottomSheetDialogFragment {
                     currItem.setItemQty(Integer.parseInt(strQty));
                     currItem.setItemPrice(0);
                     currItem.setItemDOE("-");
-                    currItem.setListName(currShoppingList.getListName());
+                    currItem.setShoppingListID(currShoppingList.getListID());
 
                     if(finalIsUpdate){
                         currItem.setItemID(bundle.getInt("itemID"));
