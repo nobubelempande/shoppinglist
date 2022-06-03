@@ -116,7 +116,7 @@ public class fragmentInventoryStatistics extends Fragment {
 
         if(allInventoryItems.size()>0){
             entriesUsingInventory();
-            pieChart.setCenterText("Spent\nR " + String.format("%,.2f", totalInventory) + "\nof\nR " + String.format("%,.2f", moneyUser));
+            pieChart.setCenterText("Spent\nR " + String.format("%,.2f", totalInventory));
             pieChart.setCenterTextSize(18);
             pieChart.setDrawEntryLabels(false);
         }
@@ -128,6 +128,47 @@ public class fragmentInventoryStatistics extends Fragment {
     }
 
     private void entriesUsingInventory() {
+        moneyUser = 0;
+        totalInventory = 0;
+        double section;
+        double diff;
+        modelItem currItem;
+
+        for(int i = 0; i < allInventoryItems.size(); i++){
+            currItem = allInventoryItems.get(i);
+            totalInventory += currItem.getItemPrice();
+        }
+
+        int sizeInventory = allInventoryItems.size();
+        int sizeTypes = itemTypes.size();
+
+        for(int i = 0; i < sizeTypes; i++){
+            double typeTotal = 0;
+            String type = itemTypes.get(i);
+
+            for(int j = 0; j < sizeInventory; j++){
+                currItem = allInventoryItems.get(j);
+                String itemType = currItem.getItemType();
+
+
+                if(itemType.equals(type)){
+                    typeTotal = typeTotal + currItem.getItemPrice();
+                    //allInventoryItems.remove(j);
+                }
+
+            }
+
+            if(typeTotal>0){
+                section = typeTotal/totalInventory;
+                pieEntries.add(new PieEntry((float) section, type));
+            }
+
+        }
+
+        allInventoryItems = db.getAllInventoryItems();
+    }
+
+    private void entriesUsingInventoryII() {
         moneyUser = 0;
         totalInventory = 0;
         double section;
