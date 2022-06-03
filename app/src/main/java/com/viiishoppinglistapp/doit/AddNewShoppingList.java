@@ -95,6 +95,9 @@ public class AddNewShoppingList extends BottomSheetDialogFragment {
         etNewListName = Objects.requireNonNull(getView()).findViewById(R.id.tvListName_newShoppingList);     //view from new_shopping_list
         btnSaveList = getView().findViewById(R.id.btnSaveShoppingList);
 
+        db = new DatabaseHandler(getActivity());
+        db.openDatabase();
+
         currShoppingList = new modelShoppingList();
 
         initDatePicker();
@@ -116,6 +119,8 @@ public class AddNewShoppingList extends BottomSheetDialogFragment {
                 isUpdate = true;
                 String strListName = bundle.getString("name");
                 String strDate = bundle.getString("useDate");
+                int intID = bundle.getInt("listID");
+                currShoppingList = db.getShoppingList(intID);
                 etNewListName.setText(strListName);
                 tvNewListUseDate.setText(strDate);
                 assert strListName != null;
@@ -123,9 +128,6 @@ public class AddNewShoppingList extends BottomSheetDialogFragment {
                     btnSaveList.setTextColor(ContextCompat.getColor(Objects.requireNonNull(getContext()), R.color.primary_dark));
             }
         }
-
-        db = new DatabaseHandler(getActivity());
-        db.openDatabase();
 
         etNewListName.addTextChangedListener(new TextWatcher() {
             @Override
@@ -165,8 +167,6 @@ public class AddNewShoppingList extends BottomSheetDialogFragment {
                     currShoppingList.setUseDate(date);
 
                     if(finalIsUpdate){
-                        currShoppingList.setListID(bundle.getInt("listID"));
-
                         db.updateShoppingList(currShoppingList);
                     }
                     else {

@@ -69,7 +69,7 @@ public class UseShoppingListActivity extends AppCompatActivity implements Dialog
 
         Bundle bundle = getIntent().getExtras();
         String strListName = bundle.getString("list_name", "Default");
-        int intID = bundle.getInt("ID", 0);
+        int intID = bundle.getInt("listID", 0);
 
         TextView name = (TextView) findViewById(R.id.tvTop_useList);
         name.setText("Using " + strListName + " Shopping List");

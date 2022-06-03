@@ -109,7 +109,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     //shoppingLists ::
 
     public modelShoppingList getShoppingList(int ID){
-        //Todo Use ID
         //getting all saved shoppingLists from the DB
 
 
@@ -153,7 +152,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     public List<modelShoppingList> getAllUsedShoppingLists(){
-        //getting all saved shoppingLists from the DB
+        //getting all used shoppingLists from the DB
 
         final int intUsed = 1;
         final String shoppingListID = "list_id";
@@ -306,7 +305,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     public List<modelItem> getItemsForShoppingList(int shoppingListID){
-        //getting all saved shoppingLists from the DB
+        //getting all shoppingList items from the DB using list id
 
         final String itemID = "item_id";
         final String itemNAME = "item_name";
@@ -354,7 +353,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     public void insertItem(modelItem currItem){
-        //adding to db
+        //adding item to db
         ContentValues cv = new ContentValues();
         cv.put("item_name", currItem.getItemName());
         cv.put("item_qty", currItem.getItemQty());
@@ -441,8 +440,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     public modelItem getItem(String itemName){
-        //getting all saved shoppingLists from the DB
-
+        //getting an item from the DB using item name
 
         final String itemID = "item_id";
         final String itemNAME = "item_name";

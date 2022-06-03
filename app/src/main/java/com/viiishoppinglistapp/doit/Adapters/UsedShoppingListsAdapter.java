@@ -189,7 +189,7 @@ public class UsedShoppingListsAdapter extends RecyclerView.Adapter<UsedShoppingL
         modelShoppingList currList = allShoppingLists.get(position);
 
         Bundle bundle = new Bundle();
-        bundle.putInt("ID", currList.getListID());
+        bundle.putInt("listID", currList.getListID());
         bundle.putString("name", currList.getListName());
         bundle.putString("useDate", currList.getUseDate());
         AddNewShoppingList fragment = new AddNewShoppingList();
