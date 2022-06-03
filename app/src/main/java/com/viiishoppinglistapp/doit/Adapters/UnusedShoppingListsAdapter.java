@@ -154,7 +154,7 @@ public class UnusedShoppingListsAdapter extends RecyclerView.Adapter<UnusedShopp
                         //goto new page
                         Bundle bundle = new Bundle();
                         bundle.putString("list_name", listName);
-                        bundle.putInt("ID", ID);
+                        bundle.putInt("listID", ID);
                         Intent I = new Intent(getContext(), AddShoppingListItemsActivity.class);
                         I.putExtras(bundle);
                         getContext().startActivity(I);
@@ -170,7 +170,7 @@ public class UnusedShoppingListsAdapter extends RecyclerView.Adapter<UnusedShopp
                         //goto new page
                         Bundle bundle = new Bundle();
                         bundle.putString("list_name", listName);
-                        bundle.putInt("ID", ID);
+                        bundle.putInt("listID", ID);
                         Intent I = new Intent(getContext(), UseShoppingListActivity.class);
                         I.putExtras(bundle);
                         getContext().startActivity(I);
@@ -210,7 +210,7 @@ public class UnusedShoppingListsAdapter extends RecyclerView.Adapter<UnusedShopp
         modelShoppingList currList = allShoppingLists.get(position);
 
         Bundle bundle = new Bundle();
-        bundle.putInt("ID", currList.getListID());
+        bundle.putInt("listID", currList.getListID());
         bundle.putString("name", currList.getListName());
         bundle.putString("useDate", currList.getUseDate());
         AddNewShoppingList fragment = new AddNewShoppingList();

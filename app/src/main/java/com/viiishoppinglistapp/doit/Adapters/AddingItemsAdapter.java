@@ -1,5 +1,6 @@
 package com.viiishoppinglistapp.doit.Adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.viiishoppinglistapp.doit.AddNewItem;
 import com.viiishoppinglistapp.doit.Model.modelItem;
+import com.viiishoppinglistapp.doit.Model.modelShoppingList;
 import com.viiishoppinglistapp.doit.R;
 import com.viiishoppinglistapp.doit.AddShoppingListItemsActivity;
 import com.viiishoppinglistapp.doit.Utils.DatabaseHandler;
@@ -20,7 +22,9 @@ import java.util.List;
 
 public class AddingItemsAdapter extends RecyclerView.Adapter<AddingItemsAdapter.ViewHolder> {
 
+    private static final String TAG = "ADD ITEMS ADAPTER";
     private List<modelItem> allItems;
+    private modelShoppingList currShoppingList;
     private AddShoppingListItemsActivity activity;
 
     private DatabaseHandler db;
@@ -33,6 +37,14 @@ public class AddingItemsAdapter extends RecyclerView.Adapter<AddingItemsAdapter.
 
     public Context getContext() {
         return activity;
+    }
+
+    public AddShoppingListItemsActivity getActivity() {
+        return activity;
+    }
+
+    public List<modelItem> getAllItems() {
+        return  allItems;
     }
 
     //viewHolder
@@ -70,8 +82,9 @@ public class AddingItemsAdapter extends RecyclerView.Adapter<AddingItemsAdapter.
     }
 
     //setters
-    public void setAllItems(List<modelItem> itemsList){
+    public void setAllItems(List<modelItem> itemsList, modelShoppingList currShoppingList){
         this.allItems = itemsList;
+        this.currShoppingList = currShoppingList;
         notifyDataSetChanged();
     }
 
@@ -83,23 +96,8 @@ public class AddingItemsAdapter extends RecyclerView.Adapter<AddingItemsAdapter.
         notifyItemRemoved(position);
     }
 
-    public void editItem(int position){
-        modelItem currItem = allItems.get(position);
-
-        Bundle bundle = new Bundle();
-        bundle.putInt("id", currItem.getItemID());
-        bundle.putString("name", currItem.getItemName());
-        bundle.putInt("qty", currItem.getItemQty());
-        bundle.putString("type", currItem.getItemType());
-        //bundle.putDouble("price", currItem.getItemPrice());
-        //bundle.putString("doe", currItem.getItemDOE());
-
-        bundle.putString("listName", currItem.getListName());
-
-        AddNewItem fragment = new AddNewItem();
-        fragment.setArguments(bundle);
-        fragment.show(activity.getSupportFragmentManager(), AddNewItem.TAG);
-
+    public modelShoppingList getCurrShoppingList(){
+        return currShoppingList;
     }
 
 }

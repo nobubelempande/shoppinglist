@@ -137,7 +137,7 @@ public class UseShoppingListActivity extends AppCompatActivity implements Dialog
         //goto Home page
         Bundle bundle = new Bundle();
         bundle.putString("list_name", currShoppingList.getListName());
-        bundle.putInt("ID", currShoppingList.getListID());
+        bundle.putInt("listID", currShoppingList.getListID());
         Intent I = new Intent(this, TabbedHomeActivity.class);
         I.putExtras(bundle);
         this.startActivity(I);

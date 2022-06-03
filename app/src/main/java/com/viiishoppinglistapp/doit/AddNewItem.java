@@ -125,12 +125,13 @@ public class AddNewItem extends BottomSheetDialogFragment {
             if (bundle.size()<3){
                 isUpdate = false;
                 String strListName = bundle.getString("listName");
-                int intID = bundle.getInt("id");
+                int intID = bundle.getInt("listID");
                 currShoppingList = db.getShoppingList(intID);
 
             }
             else {
                 isUpdate = true;
+                Log.d(TAG, "setupItemEditorLayoutUsingShoppingList: IS UPDATE ***");
                 String strItemName = bundle.getString("name");
                 int intQty = bundle.getInt("qty");
 
@@ -153,7 +154,7 @@ public class AddNewItem extends BottomSheetDialogFragment {
                 }
                 //get currList
                 String strListName = bundle.getString("listName");
-                int intID = bundle.getInt("id");
+                int intID = bundle.getInt("listID");
                 currShoppingList = db.getShoppingList(intID);
             }
 
@@ -211,7 +212,7 @@ public class AddNewItem extends BottomSheetDialogFragment {
                     currItem.setListName(currShoppingList.getListName());
 
                     if(finalIsUpdate){
-                        currItem.setItemID(bundle.getInt("id"));
+                        currItem.setItemID(bundle.getInt("itemID"));
 
                         db.updateItem(currItem);
                     }

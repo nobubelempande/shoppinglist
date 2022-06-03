@@ -136,7 +136,7 @@ public class UsedShoppingListsAdapter extends RecyclerView.Adapter<UsedShoppingL
                         //goto new page
                         Bundle bundle = new Bundle();
                         bundle.putString("list_name", listName);
-                        bundle.putInt("ID", ID);
+                        bundle.putInt("listID", ID);
                         Intent I = new Intent(getContext(), AddShoppingListItemsActivity.class);
                         I.putExtras(bundle);
                         getContext().startActivity(I);

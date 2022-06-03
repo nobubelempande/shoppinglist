@@ -59,7 +59,7 @@ public class AddShoppingListItemsActivity extends AppCompatActivity implements D
 
         Bundle bundle = getIntent().getExtras();
         String strListName = bundle.getString("list_name", "Default");
-        int intID = bundle.getInt("ID", 0);
+        int intID = bundle.getInt("listID", 0);
 
         TextView name = (TextView) findViewById(R.id.tvTop_newActivity);
         name.setText(strListName);
@@ -68,9 +68,6 @@ public class AddShoppingListItemsActivity extends AppCompatActivity implements D
     }
 
     private void setupItems() {
-        //db = new DatabaseHandler(this);
-        //db.openDatabase();
-
         rvItems = findViewById(R.id.rvItems_newActivity);
         rvItems.setLayoutManager(new LinearLayoutManager(this));
         adapterItems = new AddingItemsAdapter(db, this);
@@ -83,7 +80,7 @@ public class AddShoppingListItemsActivity extends AppCompatActivity implements D
 
         itemsList = db.getItemsForShoppingList(currShoppingList.getListName());
         Collections.reverse(itemsList);
-        adapterItems.setAllItems(itemsList);
+        adapterItems.setAllItems(itemsList, currShoppingList);
         Log.d(TAG, "setupItems: Load");
 
         fabAddItem = findViewById(R.id.fabAddNewItem_NewActivity);
@@ -93,7 +90,7 @@ public class AddShoppingListItemsActivity extends AppCompatActivity implements D
                 Bundle bundle = new Bundle();
                 bundle.putString("listName", currShoppingList.getListName());
                 Log.d(TAG, "AddListItem Activity Bundle: Before ID request");
-                bundle.putInt("id", currShoppingList.getListID());
+                bundle.putInt("listID", currShoppingList.getListID());
                 Log.d(TAG, "AddListItem Activity Bundle: After ID request");
 
                 AddNewItem i = new AddNewItem();
@@ -112,7 +109,7 @@ public class AddShoppingListItemsActivity extends AppCompatActivity implements D
     private void usingItems() {
         itemsList = db.getItemsForShoppingList(currShoppingList.getListName());
         Collections.reverse(itemsList);
-        adapterItems.setAllItems(itemsList);
+        adapterItems.setAllItems(itemsList, currShoppingList);
         adapterItems.notifyDataSetChanged();
     }
 
