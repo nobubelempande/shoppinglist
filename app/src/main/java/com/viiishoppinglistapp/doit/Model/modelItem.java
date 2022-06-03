@@ -1,8 +1,5 @@
 package com.viiishoppinglistapp.doit.Model;
 
-import android.util.Log;
-
-import com.viiishoppinglistapp.doit.HomeActivity_old;
 import com.viiishoppinglistapp.doit.Utils.DateHandler;
 
 public class modelItem {

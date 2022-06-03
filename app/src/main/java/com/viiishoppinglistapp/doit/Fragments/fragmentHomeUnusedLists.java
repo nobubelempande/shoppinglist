@@ -1,26 +1,21 @@
 package com.viiishoppinglistapp.doit.Fragments;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
 import android.widget.Switch;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.viiishoppinglistapp.doit.Adapters.UnusedShoppingListsAdapter;
-import com.viiishoppinglistapp.doit.DialogCloseListener;
-import com.viiishoppinglistapp.doit.HomeActivity_old;
 import com.viiishoppinglistapp.doit.Model.modelShoppingList;
 import com.viiishoppinglistapp.doit.R;
 import com.viiishoppinglistapp.doit.TabbedHomeActivity;
@@ -37,7 +32,6 @@ public class fragmentHomeUnusedLists extends Fragment{
     UnusedShoppingListsAdapter adapter;
 
     RecyclerView rvUnusedShoppingLists;
-    Switch aSwitch;
 
     DatabaseHandler db;
 
@@ -68,12 +62,10 @@ public class fragmentHomeUnusedLists extends Fragment{
 
 
     private void setupUnusedShoppingLists(View root) {
-        //setCurrShoppingList();
-
-        Log.d(HomeActivity_old.TAG, "setupUnusedShoppingLists: ");
         db = new DatabaseHandler(mContext);
         db.openDatabase();
 
+        //use recycler view from layout
         rvUnusedShoppingLists = root.findViewById(R.id.rvHomeUnusedLists_fragment);
         rvUnusedShoppingLists.setLayoutManager(new LinearLayoutManager(mContext));
         adapter = new UnusedShoppingListsAdapter(db, activity);
@@ -83,12 +75,11 @@ public class fragmentHomeUnusedLists extends Fragment{
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new UnusedShoppingListTouchHelper(adapter));
         itemTouchHelper.attachToRecyclerView(rvUnusedShoppingLists);
 
+        //setup recycler view adapter
         allShoppingLists = db.getAllUnusedShoppingLists();
         Collections.reverse(allShoppingLists);
         adapter.setAllUnusedShoppingLists(allShoppingLists);
-
         rvUnusedShoppingLists.setAdapter(adapter);
-        Log.d(HomeActivity_old.TAG, "--> Finish ");
 
     }
 

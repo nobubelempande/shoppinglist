@@ -43,6 +43,7 @@ public class SettingsActivity extends AppCompatActivity {
         //goto Home page
         Bundle bundle = new Bundle();
         bundle.putString("list_name", "Default");
+        bundle.putInt("ID", 0);
         Intent I = new Intent(this, TabbedHomeActivity.class);
         I.putExtras(bundle);
         this.startActivity(I);

@@ -122,10 +122,11 @@ public class AddNewItem extends BottomSheetDialogFragment {
 
         final Bundle bundle = getArguments();
         if(bundle != null){
-            if (bundle.size()<2){
+            if (bundle.size()<3){
                 isUpdate = false;
                 String strListName = bundle.getString("listName");
-                currShoppingList = db.getShoppingList(strListName);
+                int intID = bundle.getInt("id");
+                currShoppingList = db.getShoppingList(intID);
 
             }
             else {
@@ -152,7 +153,8 @@ public class AddNewItem extends BottomSheetDialogFragment {
                 }
                 //get currList
                 String strListName = bundle.getString("listName");
-                currShoppingList = db.getShoppingList(strListName);
+                int intID = bundle.getInt("id");
+                currShoppingList = db.getShoppingList(intID);
             }
 
 

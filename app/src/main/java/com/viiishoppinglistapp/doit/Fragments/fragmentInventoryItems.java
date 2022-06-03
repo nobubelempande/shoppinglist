@@ -62,21 +62,11 @@ public class fragmentInventoryItems extends Fragment {
         setupInventory(view);
     }
 
-    private void setCurrShoppingList() {
-        Bundle bundle = activity.getIntent().getExtras();
-        String strListName = bundle.getString("list_name", "Default");
-
-        currShoppingList = new modelShoppingList();
-        currShoppingList.setListName(strListName);
-
-    }
-
     private void setupInventory(View root) {
-        setCurrShoppingList();
-
         db = new DatabaseHandler(mContext);
         db.openDatabase();
 
+        //use recycler view from layout
         rvInventory = root.findViewById(R.id.rvInventory_fragment);
         rvInventory.setLayoutManager(new LinearLayoutManager(mContext));
         adapter = new InventoryItemsAdapter(db, activity);
@@ -86,10 +76,10 @@ public class fragmentInventoryItems extends Fragment {
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new InventoryItemTouchHelper(adapter));
         itemTouchHelper.attachToRecyclerView(rvInventory);
 
+        //setup recycler view adapter
         allInventoryItems = db.getAllInventoryItems();
         Collections.reverse(allInventoryItems);
         adapter.setAllInventoryItems(allInventoryItems);
-
         rvInventory.setAdapter(adapter);
 
     }

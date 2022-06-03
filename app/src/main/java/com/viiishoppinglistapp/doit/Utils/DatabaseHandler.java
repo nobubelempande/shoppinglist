@@ -7,7 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.viiishoppinglistapp.doit.HomeActivity_old;
 import com.viiishoppinglistapp.doit.Model.modelItem;
 import com.viiishoppinglistapp.doit.Model.modelShoppingList;
 
@@ -110,11 +109,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     //shoppingLists ::
 
-    public modelShoppingList getShoppingList(String listName){
+    public modelShoppingList getShoppingList(int ID){
+        //Todo Use ID
         //getting all saved shoppingLists from the DB
 
 
-        final String strListName = listName;
+        final int strListID = ID;
         final String shoppingListID = "list_id";
         final String shoppingListNAME = "list_name";
         final String shoppingListUSEDATE = "list_useDate";
@@ -122,8 +122,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 
         String[] columns = {shoppingListID, shoppingListNAME, shoppingListUSEDATE, shoppingListUSED};
-        String where = shoppingListNAME + "=?";         //"TAG1=? OR TAG2=? OR TAG3=? OR TAG4=? OR TAG5=?";
-        String[] args = {strListName};                //{"tagname", "tagname", "tagname", "tagname", "tagname"};
+        String where = shoppingListID + "=?";         //"TAG1=? OR TAG2=? OR TAG3=? OR TAG4=? OR TAG5=?";
+        String[] args = {String.valueOf(strListID)};                //{"tagname", "tagname", "tagname", "tagname", "tagname"};
 
         List<modelShoppingList> allShoppingLists = new ArrayList<>();
         Cursor cur = null;
@@ -333,7 +333,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 if(cur.moveToFirst()){
                     do{
                         //adding shoppingList to list of allShoppingLists
-                        Log.d(TAG, "getItemsForShoppingList: Start");
                         modelItem currItem = new modelItem(cur.getString(cur.getColumnIndexOrThrow(itemNAME)));
                         currItem.setItemID(cur.getInt(cur.getColumnIndexOrThrow(itemID)));
                         currItem.setItemQty(cur.getInt(cur.getColumnIndexOrThrow(itemQTY)));
@@ -343,7 +342,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                         currItem.setItemDOE(cur.getString(cur.getColumnIndexOrThrow(itemDOE)));
                         currItem.setChecked(cur.getInt(cur.getColumnIndexOrThrow(itemUsed)));
                         allItems.add(currItem);
-                        Log.d(TAG, "getItemsForShoppingList: Item: " + currItem.getItemName() + "  Checked: " + currItem.getChecked());
                     }
                     while(cur.moveToNext());
                 }
@@ -500,9 +498,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     //Inventory
 
     public List<modelItem> getAllInventoryItems(){
-        //getting all saved shoppingLists from the DB
-
-        Log.d(TAG, "getAllInventoryItems: GETTING ITEMS");
+        //getting all inventory items from the DB
 
         final String itemID = "item_id";
         final String itemNAME = "item_name";
@@ -541,12 +537,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             assert cur != null;
             cur.close();
         }
-        Log.d(TAG, "getAllInventoryItems: DONE GETTING ITEMS");
         return allItems;
     }
 
     public void insertInventoryItem(modelItem currItem){
-        //adding to db
+        //adding inventory item to db
         ContentValues cv = new ContentValues();
         cv.put("item_name", currItem.getItemName());
         cv.put("item_qty", currItem.getItemQty());
@@ -560,10 +555,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         if(existingItem == null){
             db.insert(TABLE_Inventory, null, cv);
-            Log.d(TAG, "insertInventoryItem DB: NEW INVENTORY ITEM ADDED SUCCESSFULLY");
         }
         else {
-            Log.d(TAG, "insertInventoryItem DB: UPDATE INVENTORY");
             int prevQty = existingItem.getItemQty();
             double prevPrice = existingItem.getItemPrice();
 
@@ -574,7 +567,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             currItem.setItemPrice(prevPrice + newPrice);
 
             updateInventoryItem(currItem);
-            Log.d(TAG, "insertInventoryItem DB: INVENTORY UPDATED SUCCESSFULLY");
         }
 
     }
@@ -604,21 +596,17 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         if(existingItem == null){
             db.delete(TABLE_Inventory, NAME + "= ?", new String[] {item_name});
-            Log.d(TAG, "insertInventoryItem DB: NEW INVENTORY ITEM DELETED SUCCESSFULLY");
         }
         else {
-            Log.d(TAG, "insertInventoryItem DB: EXISTING INVENTORY ITEM");
             int prevQty = existingItem.getItemQty();
             int newQty = currItem.getItemQty();
 
             if(prevQty-newQty >= 1) {
                 currItem.setItemQty(prevQty-newQty);
                 updateInventoryItem(currItem);
-                Log.d(TAG, "insertInventoryItem DB: EXISTING INVENTORY ITEM UPDATED SUCCESSFULLY");
             }
             else {
                 db.delete(TABLE_Inventory, NAME + "= ?", new String[] {item_name});
-                Log.d(TAG, "insertInventoryItem DB: EXISTING INVENTORY ITEM DELETED SUCCESSFULLY");
             }
         }
 

@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -58,11 +59,12 @@ public class AddShoppingListItemsActivity extends AppCompatActivity implements D
 
         Bundle bundle = getIntent().getExtras();
         String strListName = bundle.getString("list_name", "Default");
+        int intID = bundle.getInt("ID", 0);
 
         TextView name = (TextView) findViewById(R.id.tvTop_newActivity);
         name.setText(strListName);
 
-        currShoppingList = db.getShoppingList(strListName);
+        currShoppingList = db.getShoppingList(intID);
     }
 
     private void setupItems() {
@@ -82,6 +84,7 @@ public class AddShoppingListItemsActivity extends AppCompatActivity implements D
         itemsList = db.getItemsForShoppingList(currShoppingList.getListName());
         Collections.reverse(itemsList);
         adapterItems.setAllItems(itemsList);
+        Log.d(TAG, "setupItems: Load");
 
         fabAddItem = findViewById(R.id.fabAddNewItem_NewActivity);
         fabAddItem.setOnClickListener(new View.OnClickListener() {
@@ -89,7 +92,9 @@ public class AddShoppingListItemsActivity extends AppCompatActivity implements D
             public void onClick(View view) {
                 Bundle bundle = new Bundle();
                 bundle.putString("listName", currShoppingList.getListName());
-
+                Log.d(TAG, "AddListItem Activity Bundle: Before ID request");
+                bundle.putInt("id", currShoppingList.getListID());
+                Log.d(TAG, "AddListItem Activity Bundle: After ID request");
 
                 AddNewItem i = new AddNewItem();
                 i.newInstance();
@@ -114,10 +119,8 @@ public class AddShoppingListItemsActivity extends AppCompatActivity implements D
 
     //navigation
     public void goToHome(View view){
-        //toDO remove bundle to Home
         //goto Home page
         Bundle bundle = new Bundle();
-        bundle.putString("list_name", currShoppingList.getListName());
         Intent I = new Intent(this, TabbedHomeActivity.class);
         I.putExtras(bundle);
         this.startActivity(I);

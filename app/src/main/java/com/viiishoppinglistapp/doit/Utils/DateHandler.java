@@ -1,9 +1,5 @@
 package com.viiishoppinglistapp.doit.Utils;
 
-import android.util.Log;
-
-import com.viiishoppinglistapp.doit.HomeActivity_old;
-
 public class DateHandler {
     private int day;
     private String month;
