@@ -15,7 +15,7 @@ import java.util.List;
 public class DatabaseHandler extends SQLiteOpenHelper {
 
     private static final int VERSION = 1;
-    private static final String NAME = "ListDatabase_3";
+    private static final String NAME = "ListDatabase_1";
 
     private SQLiteDatabase db;
 
@@ -74,10 +74,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         //Inventory class
 
         //toDo add inventory_id
-
+        final String inventoryID = "inventory_id";
 
         final String CREATE_Inventory_TABLE = "CREATE TABLE " + TABLE_Inventory + "(" +
-                itemID + " INTEGER PRIMARY KEY, " +
+                inventoryID + " INTEGER PRIMARY KEY, " +
+                itemID + " INTEGER, " +
                 itemNAME + " TEXT, " +
                 itemQTY + " INTEGER, " +
                 itemType + " TEXT, " +
@@ -496,6 +497,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public List<modelItem> getAllInventoryItems(){
         //getting all inventory items from the DB
 
+        final String inventoryID = "inventory_id";
         final String itemID = "item_id";
         final String itemNAME = "item_name";
         final String itemQTY = "item_qty";
@@ -515,6 +517,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                     do{
                         //adding item to list of inventory items
                         modelItem currItem = new modelItem(cur.getString(cur.getColumnIndexOrThrow(itemNAME)));
+                        currItem.setInventory_ID(cur.getInt(cur.getColumnIndexOrThrow(inventoryID)));
                         currItem.setItemID(cur.getInt(cur.getColumnIndexOrThrow(itemID)));
                         currItem.setItemQty(cur.getInt(cur.getColumnIndexOrThrow(itemQTY)));
                         currItem.setItemType(cur.getString(cur.getColumnIndexOrThrow(itemType)));
@@ -538,18 +541,18 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public void insertInventoryItem(modelItem currItem){
         //adding inventory item to db
-        ContentValues cv = new ContentValues();
-        cv.put("item_name", currItem.getItemName());
-        cv.put("item_qty", currItem.getItemQty());
-        cv.put("item_type", currItem.getItemType());
-        cv.put("item_listID", currItem.getListID());
-        cv.put("item_price", currItem.getItemPrice());
-        cv.put("item_doe", currItem.getItemDOE());
-        cv.put("item_used", currItem.getChecked());
-
-        modelItem existingItem = getInventoryItem(currItem.getItemName());
+        modelItem existingItem = getInventoryItem(currItem);
 
         if(existingItem == null){
+            ContentValues cv = new ContentValues();
+            cv.put("item_name", currItem.getItemName());
+            cv.put("item_qty", currItem.getItemQty());
+            cv.put("item_type", currItem.getItemType());
+            cv.put("item_listID", currItem.getListID());
+            cv.put("item_price", currItem.getItemPrice());
+            cv.put("item_doe", currItem.getItemDOE());
+            cv.put("item_used", currItem.getChecked());
+
             db.insert(TABLE_Inventory, null, cv);
         }
         else {
@@ -568,9 +571,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     public void updateInventoryItem(modelItem item) {
-        //toDO use ID
-        //updating db
-        final String NAME = "item_name";
+        //updating inventory item in DB
+        final String ID = "inventory_id";
         ContentValues cv = new ContentValues();
         cv.put("item_name", item.getItemName());
         cv.put("item_qty", item.getItemQty());
@@ -580,19 +582,18 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         cv.put("item_doe", item.getItemDOE());
         cv.put("item_used", item.getChecked());
 
-        db.update(TABLE_Inventory, cv, NAME + "= ?", new String[] {String.valueOf(item.getItemName())});
+        db.update(TABLE_Inventory, cv, ID + "= ?", new String[] {String.valueOf(item.getInventory_ID())});
     }
 
-    public void deleteInventoryItem(String item_name){
+    public void deleteInventoryItem(modelItem currItem){
         //removing from db
-        final String NAME = "item_name";
+        final String ID = "inventory_id";
         //todo if(exists) -> if(exists-currQty>=1) -> update(newQty)
 
-        modelItem currItem = getItem(item_name);
-        modelItem existingItem = getInventoryItem(item_name);
+        modelItem existingItem = getInventoryItem(currItem);
 
         if(existingItem == null){
-            db.delete(TABLE_Inventory, NAME + "= ?", new String[] {item_name});
+            db.delete(TABLE_Inventory, ID + "= ?", new String[] {String.valueOf(currItem.getInventory_ID())});
         }
         else {
             int prevQty = existingItem.getItemQty();
@@ -603,19 +604,19 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 updateInventoryItem(currItem);
             }
             else {
-                db.delete(TABLE_Inventory, NAME + "= ?", new String[] {item_name});
+                db.delete(TABLE_Inventory, ID + "= ?", new String[] {String.valueOf(currItem.getInventory_ID())});
             }
         }
 
-        db.delete(TABLE_Inventory, NAME + "= ?", new String[] {item_name});
     }
 
-    public modelItem getInventoryItem(String itemName){
+    public modelItem getInventoryItem(modelItem item){
         //toDO use inventoryID
         //getting all saved shoppingLists from the DB
 
+        int intInventoryID = item.getInventory_ID();
 
-        final String strItemName = itemName;
+        final String inventoryID = "inventory_id";
         final String itemID = "item_id";
         final String itemNAME = "item_name";
         final String itemQTY = "item_qty";
@@ -625,9 +626,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         final String itemDOE = "item_doe";
         final String itemUsed = "item_used";
 
-        String[] columns = {itemNAME, itemQTY, itemType, itemShoppingList, itemPrice, itemDOE, itemUsed};
-        String where = itemNAME + "=?";         //"TAG1=? OR TAG2=? OR TAG3=? OR TAG4=? OR TAG5=?";
-        String[] args = {strItemName};                //{"tagname", "tagname", "tagname", "tagname", "tagname"};
+        String[] columns = {inventoryID, itemNAME, itemID, itemQTY, itemType, itemShoppingList, itemPrice, itemDOE, itemUsed};
+        String where = inventoryID + "=?";         //"TAG1=? OR TAG2=? OR TAG3=? OR TAG4=? OR TAG5=?";
+        String[] args = {String.valueOf(intInventoryID)};                //{"tagname", "tagname", "tagname", "tagname", "tagname"};
 
         List<modelItem> allItems = new ArrayList<>();
         Cursor cur = null;
@@ -639,6 +640,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                     do{
                         //adding item to list of inventory items
                         modelItem currItem = new modelItem(cur.getString(cur.getColumnIndexOrThrow(itemNAME)));
+                        currItem.setInventory_ID(cur.getInt(cur.getColumnIndexOrThrow(inventoryID)));
+                        currItem.setItemID(cur.getInt(cur.getColumnIndexOrThrow(itemID)));
                         currItem.setItemQty(cur.getInt(cur.getColumnIndexOrThrow(itemQTY)));
                         currItem.setItemType(cur.getString(cur.getColumnIndexOrThrow(itemType)));
                         currItem.setShoppingListID(cur.getInt(cur.getColumnIndexOrThrow(itemShoppingList)));

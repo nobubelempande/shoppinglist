@@ -87,7 +87,7 @@ public class InventoryItemsAdapter extends RecyclerView.Adapter<InventoryItemsAd
     //methods
     public void deleteItem(int position){
         modelItem currItem = allInventoryItems.get(position);
-        db.deleteInventoryItem(currItem.getItemName());
+        db.deleteInventoryItem(currItem);
         allInventoryItems.remove(position);
         notifyItemRemoved(position);
     }

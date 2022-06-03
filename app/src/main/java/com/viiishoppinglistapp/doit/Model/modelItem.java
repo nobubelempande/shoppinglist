@@ -12,6 +12,7 @@ public class modelItem {
     private int list_id;
     private String item_type;
     private boolean checked;
+    private int inventory_id;
 
     //handlers
     DateHandler date;
@@ -25,6 +26,7 @@ public class modelItem {
         setChecked(0);
         setItemPrice(0.0);
         setItemDOE("N/A");
+        setInventory_ID(0);
     }
     public modelItem(int ID){
         date = new DateHandler();
@@ -34,6 +36,7 @@ public class modelItem {
         setChecked(0);
         setItemPrice(0.0);
         setItemDOE("N/A");
+        setInventory_ID(0);
     }
 
 
@@ -107,4 +110,11 @@ public class modelItem {
         }
     }
 
+    public int getInventory_ID() {
+        return inventory_id;
+    }
+
+    public void setInventory_ID(int inventory_id) {
+        this.inventory_id = inventory_id;
+    }
 }
