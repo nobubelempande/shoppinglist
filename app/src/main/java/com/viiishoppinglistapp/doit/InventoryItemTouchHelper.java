@@ -44,13 +44,8 @@ public class InventoryItemTouchHelper extends ItemTouchHelper.SimpleCallback {
         View itemView = viewHolder.itemView;
         int backgroundCornerOffset = 20;
 
-        if (dX > 0) {
-            icon = ContextCompat.getDrawable(adapter.getContext(), R.drawable.ic_baseline_edit);
-            background = new ColorDrawable(ContextCompat.getColor(adapter.getContext(), R.color.primary_dark));
-        } else {
-            icon = ContextCompat.getDrawable(adapter.getContext(), R.drawable.ic_baseline_delete);
-            background = new ColorDrawable(Color.RED);
-        }
+        icon = ContextCompat.getDrawable(adapter.getContext(), R.drawable.ic_baseline_delete);
+        background = new ColorDrawable(Color.RED);
 
         assert icon != null;
         int iconMargin = (itemView.getHeight() - icon.getIntrinsicHeight()) / 2;
@@ -93,30 +88,30 @@ public class InventoryItemTouchHelper extends ItemTouchHelper.SimpleCallback {
 
     public void onInventoryItemSwiped(final RecyclerView.ViewHolder viewHolder, int direction) {
         final int position = viewHolder.getAdapterPosition();
-        if (direction == ItemTouchHelper.LEFT) {
-            //deletes item
-            AlertDialog.Builder builder = new AlertDialog.Builder(adapter.getContext());
-            builder.setTitle("Remove Item");
-            builder.setMessage("Are you sure you want to remove this item?");
-            builder.setPositiveButton("Confirm",
-                    new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            adapter.deleteItem(position);
-                        }
-                    });
-            builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    adapter.notifyItemChanged(viewHolder.getAdapterPosition());
-                }
-            });
-            AlertDialog dialog = builder.create();
-            dialog.show();
-        } else {
-            //edits item name
-            //toDo
-            //adapter.editItem(position);
-        }
+        deleteInventoryItem(viewHolder, position);
+        adapter.notifyItemChanged(viewHolder.getAdapterPosition());
+    }
+
+    private void deleteInventoryItem(RecyclerView.ViewHolder viewHolder, int position) {
+        //deletes item
+        AlertDialog.Builder builder = new AlertDialog.Builder(adapter.getContext());
+        builder.setTitle("Remove Item");
+        builder.setCancelable(true);
+        builder.setMessage("Are you sure you want to remove this item?");
+        builder.setPositiveButton("Confirm",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        adapter.deleteItem(position);
+                    }
+                });
+        builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                adapter.notifyItemChanged(viewHolder.getAdapterPosition());
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }

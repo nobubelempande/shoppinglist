@@ -71,8 +71,6 @@ public class fragmentInventoryItems extends Fragment {
         rvInventory.setLayoutManager(new LinearLayoutManager(mContext));
         adapter = new InventoryItemsAdapter(db, activity);
 
-
-        //todo: itemTouchHelper
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new InventoryItemTouchHelper(adapter));
         itemTouchHelper.attachToRecyclerView(rvInventory);
 

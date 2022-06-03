@@ -217,7 +217,7 @@ public class fragmentInventoryStatistics extends Fragment {
 
     private void makePieChartDataSet_Elements() {
         pieDataSet = new PieDataSet(pieEntries, "");
-        pieDataSet.setColors(ColorTemplate.JOYFUL_COLORS);     //toDo custom template
+        pieDataSet.setColors(ColorTemplate.JOYFUL_COLORS);
         pieDataSet.setDrawValues(true);
         pieDataSet.setValueTextSize(12);
         pieDataSet.setValueTextColor(Color.DKGRAY);

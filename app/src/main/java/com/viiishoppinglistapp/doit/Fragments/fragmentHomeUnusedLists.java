@@ -70,8 +70,6 @@ public class fragmentHomeUnusedLists extends Fragment{
         rvUnusedShoppingLists.setLayoutManager(new LinearLayoutManager(mContext));
         adapter = new UnusedShoppingListsAdapter(db, activity);
 
-
-        //todo: itemTouchHelper
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new UnusedShoppingListTouchHelper(adapter));
         itemTouchHelper.attachToRecyclerView(rvUnusedShoppingLists);
 
