@@ -148,7 +148,7 @@ public class AddNewItem extends BottomSheetDialogFragment {
 
                 assert strItemName != null;
                 if(strItemName.length()>0) {
-                    btnSaveItem.setTextColor(ContextCompat.getColor(Objects.requireNonNull(getContext()), R.color.primary_dark));
+                    btnSaveItem.setTextColor(ContextCompat.getColor(Objects.requireNonNull(getContext()), R.color.colorPrimaryDark));
                 }
                 //get currList
                 String strListName = bundle.getString("listName");
@@ -172,7 +172,7 @@ public class AddNewItem extends BottomSheetDialogFragment {
                 }
                 else{
                     btnSaveItem.setEnabled(true);
-                    btnSaveItem.setTextColor(ContextCompat.getColor(Objects.requireNonNull(getContext()), R.color.primary_dark));
+                    btnSaveItem.setTextColor(ContextCompat.getColor(Objects.requireNonNull(getContext()), R.color.colorPrimaryDark));
                 }
             }
 

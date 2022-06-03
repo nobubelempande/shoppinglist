@@ -5,25 +5,29 @@ import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.Switch;
+import android.widget.TextView;
 
 public class SettingsActivity extends AppCompatActivity {
 
-    Switch aSwitch;
-
+    private Switch aSwitch;
+    private TextView mode;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
+            setTheme(R.style.DarkTheme);
+        }else{
+            setTheme(R.style.AppTheme);
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        setupSwitch();
-    }
+        aSwitch = findViewById(R.id.switchColor);
+        mode = findViewById(R.id.themeTxt);
 
-    private void setupSwitch() {
-        aSwitch = findViewById(R.id.switchThemeMode);
-        if(AppCompatDelegate.getDefaultNightMode()==AppCompatDelegate.MODE_NIGHT_YES){
+        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
             aSwitch.setChecked(true);
         }
         aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -31,21 +35,21 @@ public class SettingsActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    mode.setText("Dark Mode");
                 }
-                else {
+                else{
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    //mode.setText("Light Mode");
                 }
+                //reset();
             }
         });
+
     }
 
-    public void goToHome(View view){
-        //goto Home page
-        Bundle bundle = new Bundle();
-        bundle.putString("list_name", "Default");
-        Intent I = new Intent(this, TabbedHomeActivity.class);
-        I.putExtras(bundle);
-        this.startActivity(I);
+    private void reset() {
+        Intent i = new Intent(getApplicationContext(), SettingsActivity.class);
+        startActivity(i);
+        finish();
     }
-
 }

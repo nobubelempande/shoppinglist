@@ -9,7 +9,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -40,16 +39,11 @@ public class AddShoppingListItemsActivity extends AppCompatActivity implements D
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_items);
 
-        setCurrShoppingList();
-        setupItems();
+        getSupportActionBar().hide();
 
-        ImageView icon = findViewById(R.id.imgVIII_icon);
-        icon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goToSettings();
-            }
-        });
+        setCurrShoppingList();
+
+        setupItems();
     }
 
     private void setCurrShoppingList() {
@@ -111,22 +105,12 @@ public class AddShoppingListItemsActivity extends AppCompatActivity implements D
         adapterItems.notifyDataSetChanged();
     }
 
-
-    //navigation
     public void goToHome(View view){
         //toDO remove bundle to Home
         //goto Home page
         Bundle bundle = new Bundle();
         bundle.putString("list_name", currShoppingList.getListName());
         Intent I = new Intent(this, TabbedHomeActivity.class);
-        I.putExtras(bundle);
-        this.startActivity(I);
-    }
-    public void goToSettings(){
-        //goto settings
-        Bundle bundle = new Bundle();
-        bundle.putString("list_name", "No List Selected.");
-        Intent I = new Intent(this, SettingsActivity.class);
         I.putExtras(bundle);
         this.startActivity(I);
     }
