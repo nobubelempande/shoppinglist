@@ -7,12 +7,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
-import android.widget.Switch;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -38,7 +35,6 @@ public class fragmentHomeUsedLists extends Fragment {
     UsedShoppingListsAdapter adapter;
 
     RecyclerView rvUsedShoppingLists;
-    Switch aSwitch;
 
     DatabaseHandler db;
 
@@ -68,6 +64,15 @@ public class fragmentHomeUsedLists extends Fragment {
         setupUsedShoppingLists(view);
     }
 
+
+    private void setCurrShoppingList() {
+        Bundle bundle = activity.getIntent().getExtras();
+        String strListName = bundle.getString("list_name", "Default");
+
+        currShoppingList = new modelShoppingList();
+        currShoppingList.setListName(strListName);
+
+    }
 
     private void setupUsedShoppingLists(View root) {
         //setCurrShoppingList();

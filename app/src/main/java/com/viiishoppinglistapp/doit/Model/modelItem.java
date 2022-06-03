@@ -63,16 +63,9 @@ public class modelItem {
     public String getItemDOE() {
         return item_doe;
     }
-    public int getChecked() {
-        if(this.checked){
-            return 1;
-        }
-        return 0;
-    }
     public boolean isChecked() {
         return checked;
     }
-
 
     //setters
     public void setItemID(int item_id) {

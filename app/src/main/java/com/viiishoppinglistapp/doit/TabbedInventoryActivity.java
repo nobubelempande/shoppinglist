@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 
 import com.viiishoppinglistapp.doit.databinding.ActivityTabbedInventoryBinding;
 import com.viiishoppinglistapp.doit.ui.inventory.InventorySectionsPagerAdapter;
@@ -19,21 +18,13 @@ import com.viiishoppinglistapp.doit.ui.inventory.InventorySectionsPagerAdapter;
 public class TabbedInventoryActivity extends AppCompatActivity {
 
     private ActivityTabbedInventoryBinding binding;
-    private ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_inventory_old);
 
         setupTabs();
-
-        ImageView icon = binding.imgInventoryIcon;
-        icon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goToSettings();
-            }
-        });
 
     }
 
@@ -42,23 +33,7 @@ public class TabbedInventoryActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         InventorySectionsPagerAdapter inventorySectionsPagerAdapter = new InventorySectionsPagerAdapter(this, getSupportFragmentManager(), this);
-        viewPager = binding.viewPager;
-        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                viewPager.getAdapter().notifyDataSetChanged();
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
+        ViewPager viewPager = binding.viewPager;
         viewPager.setAdapter(inventorySectionsPagerAdapter);
         TabLayout tabs = binding.tabs;
         tabs.setupWithViewPager(viewPager);
@@ -74,13 +49,19 @@ public class TabbedInventoryActivity extends AppCompatActivity {
         I.putExtras(bundle);
         this.startActivity(I);
     }
-    public void goToSettings(){
-        //goto settings
-        Bundle bundle = new Bundle();
-        bundle.putString("list_name", "No List Selected.");
-        Intent I = new Intent(this, SettingsActivity.class);
-        I.putExtras(bundle);
-        this.startActivity(I);
+
+    public void goToStats(View view) {
+        Intent i = new Intent(this, StatisticsActivity.class);
+        this.startActivity(i);
     }
 
+    public void goToBar(View view) {
+        Intent i = new Intent(this, BarChartActivity.class);
+        this.startActivity(i);
+    }
+
+    public void goToItemCategory(View view){
+        Intent i = new Intent(this, ItemCategoryActivity.class);
+        this.startActivity(i);
+    }
 }
