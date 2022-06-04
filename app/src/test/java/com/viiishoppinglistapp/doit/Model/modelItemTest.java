@@ -56,14 +56,14 @@ public class modelItemTest extends TestCase {
     }
 
     @Test
-    public void testGetListName() {
-        int listName=0;
+    public void testGetListID() {
+        int listID =0;
         modelItem m=new modelItem("Default");
-        m.setShoppingListID(listName);
-        assertEquals(listName,m.getListID());
+        m.setShoppingListID(listID);
+        assertEquals(listID, m.getListID());
         modelItem d=new modelItem(1);
-        d.setShoppingListID(listName);
-        assertEquals(listName,d.getListID());
+        d.setShoppingListID(listID);
+        assertEquals(listID, d.getListID());
 
     }
     @Test
@@ -139,14 +139,14 @@ public class modelItemTest extends TestCase {
     }
 
     @Test
-    public void testSetListName() {
-        int listName= 0;
+    public void testSetListID() {
+        int listID = 0;
         modelItem m=new modelItem("Default");
-        m.setShoppingListID(listName);
-        assertEquals(m.getListID(), listName);
+        m.setShoppingListID(listID);
+        assertEquals(m.getListID(), listID);
         modelItem d=new modelItem(1);
-        d.setShoppingListID(listName);
-        assertEquals(d.getListID(), listName);
+        d.setShoppingListID(listID);
+        assertEquals(d.getListID(), listID);
     }
 
     @Test
