@@ -10,6 +10,7 @@ import android.os.Build;
 
 import androidx.core.app.NotificationCompat;
 
+//creating an alarm
 public class AlarmReceiver extends BroadcastReceiver {
 
     private static final String CHANNEL_ID = "CHANNEL_SAMPLE";
