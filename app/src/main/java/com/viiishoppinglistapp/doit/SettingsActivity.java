@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.Switch;
 
 public class SettingsActivity extends AppCompatActivity {
@@ -19,6 +20,14 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
 
         setupSwitch();
+        ImageView icon = findViewById(R.id.imgIcon);
+        icon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToHome();
+            }
+        });
+
     }
 
     private void setupSwitch() {
@@ -40,6 +49,16 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     public void goToHome(View view){
+        //goto Home page
+        Bundle bundle = new Bundle();
+        bundle.putString("list_name", "Default");
+        bundle.putInt("ID", 0);
+        Intent I = new Intent(this, TabbedHomeActivity.class);
+        I.putExtras(bundle);
+        this.startActivity(I);
+    }
+
+    public void goToHome(){
         //goto Home page
         Bundle bundle = new Bundle();
         bundle.putString("list_name", "Default");

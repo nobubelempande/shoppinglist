@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".SettingsActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".PieChartActivity">
+
 
     <LinearLayout
-        android:id="@+id/lytViewPager_Settings"
+        android:id="@+id/lytPieChart_activity"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -57,7 +56,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
-                android:text="Settings"
+                android:text="@string/pie_chart"
                 android:textStyle="bold" />
 
         </LinearLayout>
@@ -67,30 +66,17 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <Switch
-                android:id="@+id/switchThemeMode"
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/PieChart"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="40dp"
-                android:layout_marginTop="50dp"
-                android:text="Enable Dark Mode"/>
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="22dp"
+                android:layout_marginBottom="22dp" />
 
         </LinearLayout>
 
+
     </LinearLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabGoHome_Settings"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="44dp"
-        android:clickable="true"
-        android:onClick="goToHome"
-        android:src="@drawable/ic_baseline_home_24" />
 
-
-
-
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

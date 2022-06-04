@@ -133,7 +133,7 @@ public class TabbedHomeActivity extends AppCompatActivity implements DialogClose
 
     }
 
-    //Nav
+    //Navigation
     public void goToInventory(View view){
         //goto new page
         bundle = new Bundle();

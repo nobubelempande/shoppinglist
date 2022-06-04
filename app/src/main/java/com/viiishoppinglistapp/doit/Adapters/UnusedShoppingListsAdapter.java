@@ -159,7 +159,6 @@ public class UnusedShoppingListsAdapter extends RecyclerView.Adapter<UnusedShopp
                         I.putExtras(bundle);
                         getContext().startActivity(I);
 
-                        //Toast.makeText(getContext(), "opening shopping list: " + listName, Toast.LENGTH_SHORT).show();
                         dialog.dismiss();
                     }
                 });
@@ -175,7 +174,6 @@ public class UnusedShoppingListsAdapter extends RecyclerView.Adapter<UnusedShopp
                         I.putExtras(bundle);
                         getContext().startActivity(I);
 
-                        //Toast.makeText(getContext(), "opening shopping list: " + listName, Toast.LENGTH_SHORT).show();
                         dialog.dismiss();
                     }
                 });

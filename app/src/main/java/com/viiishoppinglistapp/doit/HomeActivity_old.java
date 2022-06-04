@@ -52,7 +52,7 @@ public class HomeActivity_old extends AppCompatActivity implements DialogCloseLi
     //shoppingLists ::
 
     private void usingShoppingLists() {
-        allSavedShoppingLists = db.getAllShoppingLists();
+        //allSavedShoppingLists = db.getAllShoppingLists();
         Collections.reverse(allSavedShoppingLists);
         //shoppingListAdapter.setAllShoppingLists(allSavedShoppingLists);
         shoppingListAdapter.notifyDataSetChanged();
@@ -77,7 +77,7 @@ public class HomeActivity_old extends AppCompatActivity implements DialogCloseLi
         //add new shoppingList to RecyclerViewList button
         fab = findViewById(R.id.fabAddShoppingList);
 
-        allSavedShoppingLists = db.getAllShoppingLists();
+        //allSavedShoppingLists = db.getAllShoppingLists();
         Collections.reverse(allSavedShoppingLists);
 
         //setupCurrentShoppingList();

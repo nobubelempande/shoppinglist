@@ -23,9 +23,6 @@
             android:exported="false"
             android:label="@string/title_activity_tabs_use_shopping_list" />
         <activity
-            android:name=".InventoryActivity_old"
-            android:exported="false" />
-        <activity
             android:name=".AddShoppingListItemsActivity"
             android:exported="false" />
         <activity
@@ -38,7 +35,7 @@
             android:exported="false"/>
         <activity android:name=".BarChartActivity"
             android:exported="false"/>
-        <activity android:name=".StatisticsActivity"
+        <activity android:name=".PieChartActivity"
             android:exported="false"/>
 
 

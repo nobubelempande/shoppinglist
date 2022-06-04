@@ -18,12 +18,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.viiishoppinglistapp.doit.Adapters.AddingItemsAdapter;
 import com.viiishoppinglistapp.doit.Model.modelItem;
 
-public class NewItemTouchHelper extends ItemTouchHelper.SimpleCallback {
+public class ShoppingListItemTouchHelper extends ItemTouchHelper.SimpleCallback {
 
     private static final String TAG = "VIII-ItemTouchHelper";
     private AddingItemsAdapter adapter;
 
-    public NewItemTouchHelper(AddingItemsAdapter adapter) {
+    public ShoppingListItemTouchHelper(AddingItemsAdapter adapter) {
         super(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT);
         this.adapter = adapter;
     }
@@ -123,15 +123,10 @@ public class NewItemTouchHelper extends ItemTouchHelper.SimpleCallback {
         modelItem currItem = adapter.getAllItems().get(position);
 
         Bundle bundle = new Bundle();
-        bundle.putInt("listID", adapter.getCurrShoppingList().getListID());
-
         bundle.putInt("itemID", currItem.getItemID());
         bundle.putString("name", currItem.getItemName());
         bundle.putInt("qty", currItem.getItemQty());
         bundle.putString("type", currItem.getItemType());
-        //bundle.putDouble("price", currItem.getItemPrice());
-        //bundle.putString("doe", currItem.getItemDOE());
-
         bundle.putInt("listID", currItem.getListID());
 
         AddNewItem fragment = new AddNewItem();

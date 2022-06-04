@@ -1,19 +1,16 @@
 package com.viiishoppinglistapp.doit;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
@@ -21,7 +18,7 @@ import com.viiishoppinglistapp.doit.Utils.DatabaseHandler;
 
 import java.util.ArrayList;
 
-public class StatisticsActivity extends AppCompatActivity {
+public class PieChartActivity extends AppCompatActivity {
 
     DatabaseHandler myDB;
     PieChart pieChart;
@@ -31,9 +28,17 @@ public class StatisticsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_statistics);
+        setContentView(R.layout.activity_pie_chart);
 
-        myDB =  new DatabaseHandler(StatisticsActivity.this);
+        ImageView icon = findViewById(R.id.imgIcon);
+        icon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToSettings();
+            }
+        });
+
+        myDB =  new DatabaseHandler(PieChartActivity.this);
         inventory_item_id = new ArrayList<>();
         inventory_item_name = new ArrayList<>();
         inventory_item_category = new ArrayList<>();
@@ -125,6 +130,7 @@ public class StatisticsActivity extends AppCompatActivity {
         pieChart.setCenterText("Total Spent: R" +price);
         pieChart.setCenterTextSize(15f);
         pieChart.getDescription().setEnabled(false);
+        pieChart.getLegend().setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
 
         pieChart.animate();
 
@@ -141,7 +147,23 @@ public class StatisticsActivity extends AppCompatActivity {
         }
     }
 
+    public void goToHome(View view){
+        //goto Home page
+        Bundle bundle = new Bundle();
+        bundle.putString("list_name", "TestDay ShoppingList");
+        Intent I = new Intent(this, TabbedHomeActivity.class);
+        I.putExtras(bundle);
+        this.startActivity(I);
+    }
 
+    public void goToSettings(){
+        //goto settings
+        Bundle bundle = new Bundle();
+        bundle.putString("list_name", "No List Selected.");
+        Intent I = new Intent(this, SettingsActivity.class);
+        I.putExtras(bundle);
+        this.startActivity(I);
+    }
 
 }
 

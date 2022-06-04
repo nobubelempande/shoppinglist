@@ -33,12 +33,10 @@ public class fragmentHomeUsedLists extends Fragment {
     UsedShoppingListsAdapter adapter;
 
     RecyclerView rvUsedShoppingLists;
-    Switch aSwitch;
 
     DatabaseHandler db;
 
     List<modelShoppingList> allShoppingLists;
-    modelShoppingList currShoppingList;
 
     final Context mContext;
 

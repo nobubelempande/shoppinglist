@@ -36,7 +36,6 @@ public class fragmentInventoryItems extends Fragment {
     DatabaseHandler db;
 
     List<modelItem> allInventoryItems;
-    modelShoppingList currShoppingList;
 
     final Context mContext;
 

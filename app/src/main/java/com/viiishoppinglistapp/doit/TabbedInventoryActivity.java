@@ -8,7 +8,6 @@ import com.google.android.material.tabs.TabLayout;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -65,7 +64,7 @@ public class TabbedInventoryActivity extends AppCompatActivity {
 
     }
 
-    //Nav
+    //Navigation
     public void goToHome(View view){
         //goto Home page
         Bundle bundle = new Bundle();
@@ -84,7 +83,7 @@ public class TabbedInventoryActivity extends AppCompatActivity {
     }
 
     public void goToPieChart(View view){
-        Intent I = new Intent(this, StatisticsActivity.class);
+        Intent I = new Intent(this, PieChartActivity.class);
         this.startActivity(I);
     }
 

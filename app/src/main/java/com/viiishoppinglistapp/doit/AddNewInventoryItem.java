@@ -38,8 +38,6 @@ public class AddNewInventoryItem extends BottomSheetDialogFragment {
 
     public static final String TAG = "VIII-ActionBottomDialog";
 
-    //ArrayAdapter adapter;
-
     public DatePickerDialog datePickerDialog;
 
     private DatabaseHandler db;
@@ -129,8 +127,6 @@ public class AddNewInventoryItem extends BottomSheetDialogFragment {
             }
         });
 
-        Log.d(TAG, "setupInventoryItemEditorLayout: Switch Setup");
-
         final Bundle bundle = getArguments();
         if(bundle != null){
 
@@ -187,7 +183,6 @@ public class AddNewInventoryItem extends BottomSheetDialogFragment {
                 if(doe.equals(NullDate)){
                     doe = date.getNoDate();
                 }
-                Log.d(TAG, "onClick: ");
 
                 if(validator.isItemPriceEmpty(strPrice)){
                     Toast.makeText(getContext(), "Please Enter The Price.", Toast.LENGTH_SHORT).show();
@@ -199,7 +194,6 @@ public class AddNewInventoryItem extends BottomSheetDialogFragment {
                     addItemToInventory(currItem);
                     dismiss();
                 }
-                Log.d(TAG, "onClick End");
 
             }
         });
@@ -208,7 +202,6 @@ public class AddNewInventoryItem extends BottomSheetDialogFragment {
             public void onClick(View view) {
                 String strPrice = etItemPrice.getText().toString();
                 String doe = tvItemDOE.getText().toString();
-                Log.d(TAG, "onClick: ");
 
                 if(validator.isItemPriceEmpty(strPrice)){
                     Toast.makeText(getContext(), "Please Enter The Price.", Toast.LENGTH_SHORT).show();
@@ -220,7 +213,6 @@ public class AddNewInventoryItem extends BottomSheetDialogFragment {
                     db.updateItem(currItem);
                     dismiss();
                 }
-                Log.d(TAG, "onClick End");
             }
         });
     }
