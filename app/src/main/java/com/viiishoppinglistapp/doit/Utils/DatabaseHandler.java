@@ -73,7 +73,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         //Inventory class
 
-        //toDo add inventory_id
         final String inventoryID = "inventory_id";
 
         final String CREATE_Inventory_TABLE = "CREATE TABLE " + TABLE_Inventory + "(" +
@@ -110,7 +109,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     //shoppingLists ::
 
     public modelShoppingList getShoppingList(int ID){
-        //getting all saved shoppingLists from the DB
+        //getting a shoppingList from the DB
 
 
         final int strListID = ID;
@@ -194,7 +193,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     public List<modelShoppingList> getAllUnusedShoppingLists(){
-        //getting all saved shoppingLists from the DB
+        //getting all unused shoppingLists from the DB
 
         final int intUnused = 0;
         final String shoppingListID = "list_id";
@@ -234,38 +233,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return allShoppingLists;
     }
 
-    public List<modelShoppingList> getAllShoppingLists(){
-        //getting all saved shoppingLists from the DB
-
-        List<modelShoppingList> allShoppingLists = new ArrayList<>();
-        Cursor cur = null;
-        db.beginTransaction();
-        try{
-            cur = db.rawQuery("SELECT * FROM " + TABLE_ShoppingLists, null);
-            if(cur != null){
-                if(cur.moveToFirst()){
-                    do{
-                        //adding shoppingList to list of allShoppingLists
-                        modelShoppingList list = new modelShoppingList();
-                        list.setListID(cur.getInt(cur.getColumnIndexOrThrow("list_id")));
-                        list.setListName(cur.getString(cur.getColumnIndexOrThrow("list_name")));
-                        list.setUseDate(cur.getString(cur.getColumnIndexOrThrow("list_useDate")));
-                        allShoppingLists.add(list);
-                    }
-                    while(cur.moveToNext());
-                }
-            }
-        }
-        finally {
-            db.endTransaction();
-            assert cur != null;
-            cur.close();
-        }
-        return allShoppingLists;
-    }
-
     public void insertShoppingList(modelShoppingList currList){
-        //adding to db
+        //adding a shopping list to the db
         ContentValues cv = new ContentValues();
         cv.put("list_name", currList.getListName());
         cv.put("list_useDate", currList.getUseDate());
@@ -274,7 +243,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     public void updateShoppingList(modelShoppingList currList) {
-        //updating db
+        //updating an existing shopping list in the db
         final String ID = "list_id";
         ContentValues cv = new ContentValues();
         cv.put("list_name", currList.getListName());
@@ -285,7 +254,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     public void deleteShoppingList(int list_id){
-        //removing from db
+        //removing a shopping list from the db
         final String ID = "list_id";
         db.delete(TABLE_ShoppingLists, ID + "= ?", new String[] {String.valueOf(list_id)});
     }
@@ -369,7 +338,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     public void updateItem(modelItem item) {
-        //updating db
+        //updating existing item in db
         final String ID = "item_id";
         ContentValues cv = new ContentValues();
         cv.put("item_name", item.getItemName());
@@ -391,7 +360,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public modelItem getItem(int ID){
         //getting an item from the DB
-
 
         final String itemID = "item_id";
         final String itemNAME = "item_name";
@@ -439,57 +407,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
         return allItems.get(0);
     }
-
-    public modelItem getItem(String itemName){
-        //getting an item from the DB using item name
-
-        final String itemID = "item_id";
-        final String itemNAME = "item_name";
-        final String itemQTY = "item_qty";
-        final String itemType = "item_type";
-        final String itemShoppingList = "item_listID";
-        final String itemPrice = "item_price";
-        final String itemDOE = "item_doe";
-        final String itemUsed = "item_used";
-
-        String[] columns = {itemID, itemNAME, itemQTY, itemType, itemShoppingList, itemPrice, itemDOE, itemUsed};
-        String where = itemNAME + "=?";         //"TAG1=? OR TAG2=? OR TAG3=? OR TAG4=? OR TAG5=?";
-        String[] args = {itemName};                //{"tagname", "tagname", "tagname", "tagname", "tagname"};
-
-        List<modelItem> allItems = new ArrayList<>();
-        Cursor cur = null;
-        db.beginTransaction();
-        try{
-            cur = db.query(TABLE_Items, columns, where, args, null, null, null);
-            if(cur != null){
-                if(cur.moveToFirst()){
-                    do{
-                        //adding item to list of inventory items
-                        modelItem currItem = new modelItem(cur.getString(cur.getColumnIndexOrThrow(itemNAME)));
-                        currItem.setItemID(cur.getInt(cur.getColumnIndexOrThrow(itemID)));
-                        currItem.setItemQty(cur.getInt(cur.getColumnIndexOrThrow(itemQTY)));
-                        currItem.setItemType(cur.getString(cur.getColumnIndexOrThrow(itemType)));
-                        currItem.setShoppingListID(cur.getInt(cur.getColumnIndexOrThrow(itemShoppingList)));
-                        currItem.setItemPrice(cur.getInt(cur.getColumnIndexOrThrow(itemPrice)));
-                        currItem.setItemDOE(cur.getString(cur.getColumnIndexOrThrow(itemDOE)));
-                        currItem.setChecked(cur.getInt(cur.getColumnIndexOrThrow(itemUsed)));
-                        allItems.add(currItem);
-                    }
-                    while(cur.moveToNext());
-                }
-            }
-        }
-        finally {
-            db.endTransaction();
-            assert cur != null;
-            cur.close();
-        }
-        if(allItems.size()<1){
-            return null;
-        }
-        return allItems.get(0);
-    }
-
 
 
     //Inventory
@@ -588,7 +505,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public void deleteInventoryItem(modelItem currItem){
         //removing from db
         final String ID = "inventory_id";
-        //todo if(exists) -> if(exists-currQty>=1) -> update(newQty)
 
         modelItem existingItem = getInventoryItem(currItem);
 
@@ -611,8 +527,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     public modelItem getInventoryItem(modelItem item){
-        //toDO use inventoryID
-        //getting all saved shoppingLists from the DB
+        //getting an inventory item from the DB
 
         int intInventoryID = item.getInventory_ID();
 

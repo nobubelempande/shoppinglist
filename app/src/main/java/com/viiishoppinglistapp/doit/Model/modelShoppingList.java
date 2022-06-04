@@ -42,7 +42,6 @@ public class modelShoppingList {
     public String getUseDate() {
         return list_useDate;
     }
-
     public List<modelItem> getListItems() {
         return list_items;
     }

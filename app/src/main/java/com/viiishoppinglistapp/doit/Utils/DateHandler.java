@@ -42,6 +42,10 @@ public class DateHandler {
         setDATE(no_date);
         return DATE;
     }
+    public String getDATE() {
+        return DATE;
+    }
+
 
     //setters
     public void setDay(int d) {
@@ -105,11 +109,6 @@ public class DateHandler {
     public void setNumMonth(String numMonth) {
         this.numMonth = numMonth;
     }
-
-    public String getDATE() {
-        return DATE;
-    }
-
     public void setDATE(String DATE) {
         this.DATE = DATE;
     }

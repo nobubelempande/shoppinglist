@@ -94,6 +94,7 @@ public class fragmentInventoryStatistics extends Fragment {
 
 
     private void setupPieChart() {
+        //setup pie chart appearance
         pieChart.setUsePercentValues(true);
         pieChart.setDrawHoleEnabled(true);
         pieChart.setDescription(new Description());
@@ -103,7 +104,6 @@ public class fragmentInventoryStatistics extends Fragment {
         pieChart.getDescription().setEnabled(false);
 
         Legend L = pieChart.getLegend();
-        //L.setEnabled(false);
         L.setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
 
         pieChart.animateY(1200);
@@ -111,6 +111,7 @@ public class fragmentInventoryStatistics extends Fragment {
     }
 
     private void usingInventory(){
+        //setup Pie chart
         pieEntries = new ArrayList<>();
 
         if(allInventoryItems.size()>0){
@@ -127,6 +128,7 @@ public class fragmentInventoryStatistics extends Fragment {
     }
 
     private void entriesUsingInventory() {
+        //pie chart entries using inventory item prices
         moneyUser = 0;
         totalInventory = 0;
         double section;
@@ -152,7 +154,6 @@ public class fragmentInventoryStatistics extends Fragment {
 
                 if(itemType.equals(type)){
                     typeTotal = typeTotal + currItem.getItemPrice();
-                    //allInventoryItems.remove(j);
                 }
 
             }
@@ -168,6 +169,7 @@ public class fragmentInventoryStatistics extends Fragment {
     }
 
     private void entriesUsingInventoryII() {
+        //pie chart entries using inventory item prices including assumed money owned by user
         moneyUser = 0;
         totalInventory = 0;
         double section;
@@ -198,7 +200,6 @@ public class fragmentInventoryStatistics extends Fragment {
 
                 if(itemType.equals(type)){
                     typeTotal = typeTotal + currItem.getItemPrice();
-                    //allInventoryItems.remove(j);
                 }
 
             }
@@ -216,6 +217,7 @@ public class fragmentInventoryStatistics extends Fragment {
     }
 
     private void makePieChartDataSet_Elements() {
+        //setup pie chart data set
         pieDataSet = new PieDataSet(pieEntries, "");
         pieDataSet.setColors(ColorTemplate.JOYFUL_COLORS);
         pieDataSet.setDrawValues(true);

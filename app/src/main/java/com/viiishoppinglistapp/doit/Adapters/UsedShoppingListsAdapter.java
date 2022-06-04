@@ -141,7 +141,6 @@ public class UsedShoppingListsAdapter extends RecyclerView.Adapter<UsedShoppingL
                         I.putExtras(bundle);
                         getContext().startActivity(I);
 
-                        //Toast.makeText(getContext(), "opening shopping list: " + listName, Toast.LENGTH_SHORT).show();
                         dialog.dismiss();
                     }
                 });
@@ -157,7 +156,6 @@ public class UsedShoppingListsAdapter extends RecyclerView.Adapter<UsedShoppingL
                         //notify dataChange
                         activity.handleDialogClose(dialog);
 
-                        //Toast.makeText(getContext(), "opening shopping list: " + listName, Toast.LENGTH_SHORT).show();
                         dialog.dismiss();
                         Toast.makeText(getContext(), currList.getListName() + " Moved To Current Lists.", Toast.LENGTH_LONG).show();
                     }

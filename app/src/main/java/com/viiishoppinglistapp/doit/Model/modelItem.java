@@ -69,6 +69,9 @@ public class modelItem {
         }
         return 0;
     }
+    public int getInventory_ID() {
+        return inventory_id;
+    }
     public boolean isChecked() {
         return checked;
     }
@@ -109,11 +112,6 @@ public class modelItem {
             this.checked = true;
         }
     }
-
-    public int getInventory_ID() {
-        return inventory_id;
-    }
-
     public void setInventory_ID(int inventory_id) {
         this.inventory_id = inventory_id;
     }
