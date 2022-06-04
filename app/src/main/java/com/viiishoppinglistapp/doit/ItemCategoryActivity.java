@@ -1,5 +1,6 @@
 package com.viiishoppinglistapp.doit;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
@@ -140,12 +141,16 @@ public class ItemCategoryActivity extends AppCompatActivity {
     void storeDataInArrays(String category){
         Cursor cursor = myDB.readItemsCategory(category);
         while (cursor.moveToNext()){
-                item_id.add(cursor.getString(0));
+                item_id.add(cursor.getString(2));
                 item_name.add(cursor.getString(1));
-                item_category.add(cursor.getString(3));
-                item_quantity.add(cursor.getString(2));
+                item_category.add(cursor.getString(6));
+                item_quantity.add(cursor.getString(5));
 
             }
         }
 
+    public void goHome(View view) {
+        Intent I = new Intent(this, TabbedHomeActivity.class);
+        this.startActivity(I);
+    }
 }

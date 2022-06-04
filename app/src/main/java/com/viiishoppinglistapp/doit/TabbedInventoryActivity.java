@@ -83,4 +83,13 @@ public class TabbedInventoryActivity extends AppCompatActivity {
         this.startActivity(I);
     }
 
+    public void goToPieChart(View view){
+        Intent I = new Intent(this, StatisticsActivity.class);
+        this.startActivity(I);
+    }
+
+    public void goBarChart(View view){
+        Intent I = new Intent(this, BarChartActivity.class);
+        this.startActivity(I);
+    }
 }
