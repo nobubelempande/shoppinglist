@@ -1,7 +1,5 @@
 package com.viiishoppinglistapp.doit.Utils;
 
-import android.util.Log;
-
 public class Validation {
     public static String TAG = "VIII";
     DatabaseHandler db;
@@ -17,7 +15,6 @@ public class Validation {
         if (name.equals("")){
             return false;
         }
-        //toDo check for existing list
         return true;
     }
 
