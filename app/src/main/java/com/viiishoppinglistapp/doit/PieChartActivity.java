@@ -1,12 +1,15 @@
 package com.viiishoppinglistapp.doit;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
@@ -118,6 +121,7 @@ public class PieChartActivity extends AppCompatActivity {
         pieChart.setCenterText("Total Spent: R" +price);
         pieChart.setCenterTextSize(15f);
         pieChart.getDescription().setEnabled(false);
+        pieChart.getLegend().setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
 
         pieChart.animate();
 
@@ -134,7 +138,14 @@ public class PieChartActivity extends AppCompatActivity {
         }
     }
 
-
+    public void goToHome(View view){
+        //goto Home page
+        Bundle bundle = new Bundle();
+        bundle.putString("list_name", "TestDay ShoppingList");
+        Intent I = new Intent(this, TabbedHomeActivity.class);
+        I.putExtras(bundle);
+        this.startActivity(I);
+    }
 
 }
 

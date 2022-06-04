@@ -41,7 +41,6 @@ public class fragmentInventoryStatistics extends Fragment {
     private DatabaseHandler db;
 
     private List<modelItem> allInventoryItems;
-    private double moneyUser;
     private double totalInventory;
 
     private final Context mContext;
@@ -82,16 +81,11 @@ public class fragmentInventoryStatistics extends Fragment {
 
     private void loadPieChartData() {
         usingInventory();
-
         makePieChartDataSet_Elements();
-
         PieData pieData = new PieData(pieDataSet);
         pieChart.setData(pieData);
         pieChart.invalidate();
     }
-
-
-
 
     private void setupPieChart() {
         //setup pie chart appearance
@@ -129,10 +123,8 @@ public class fragmentInventoryStatistics extends Fragment {
 
     private void entriesUsingInventory() {
         //pie chart entries using inventory item prices
-        moneyUser = 0;
         totalInventory = 0;
         double section;
-        double diff;
         modelItem currItem;
 
         for(int i = 0; i < allInventoryItems.size(); i++){
@@ -150,7 +142,6 @@ public class fragmentInventoryStatistics extends Fragment {
             for(int j = 0; j < sizeInventory; j++){
                 currItem = allInventoryItems.get(j);
                 String itemType = currItem.getItemType();
-
 
                 if(itemType.equals(type)){
                     typeTotal = typeTotal + currItem.getItemPrice();
@@ -164,54 +155,6 @@ public class fragmentInventoryStatistics extends Fragment {
             }
 
         }
-
-        allInventoryItems = db.getAllInventoryItems();
-    }
-
-    private void entriesUsingInventoryII() {
-        //pie chart entries using inventory item prices including assumed money owned by user
-        moneyUser = 0;
-        totalInventory = 0;
-        double section;
-        double diff;
-        modelItem currItem;
-
-        for(int i = 0; i < allInventoryItems.size(); i++){
-            currItem = allInventoryItems.get(i);
-            totalInventory += currItem.getItemPrice();
-        }
-
-        int number = (int)totalInventory;
-        int length = (int) (Math. log10(number) + 1);
-        moneyUser = Math.pow(10,length);
-        diff = moneyUser - totalInventory;
-
-        int sizeInventory = allInventoryItems.size();
-        int sizeTypes = itemTypes.size();
-
-        for(int i = 0; i < sizeTypes; i++){
-            double typeTotal = 0;
-            String type = itemTypes.get(i);
-
-            for(int j = 0; j < sizeInventory; j++){
-                currItem = allInventoryItems.get(j);
-                String itemType = currItem.getItemType();
-
-
-                if(itemType.equals(type)){
-                    typeTotal = typeTotal + currItem.getItemPrice();
-                }
-
-            }
-
-            if(typeTotal>0){
-                section = typeTotal/moneyUser;
-                pieEntries.add(new PieEntry((float) section, type));
-            }
-
-        }
-        section = diff/moneyUser;
-        pieEntries.add(new PieEntry((float) section, "Unused"));
 
         allInventoryItems = db.getAllInventoryItems();
     }
