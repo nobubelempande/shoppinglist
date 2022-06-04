@@ -1,44 +1,54 @@
 package com.viiishoppinglistapp.doit.Model;
 
-import static org.junit.Assert.*;
-
 import junit.framework.TestCase;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
-
-@RunWith(JUnit4.class)
 public class ModelTest extends TestCase {
 
-    public void setUp() throws Exception {
-        super.setUp();
-    }
-    @Test
-    public void getTitle() {
-        String itemName="padisho";
-        Model m=new Model("Default","3/05/2022","00:12");
-        m.setTitle(itemName);
-        assertEquals(itemName,m.getTitle());
+    public void testGetTitle() {
+        String title="padisho";
+        Model m=new Model("Default","02/02/2022","09:00");
+        m.setTitle(title);
+        assertEquals(title,m.getTitle());
     }
 
-    @Test
-    public void setTitle() {
+    public void testSetTitle() {
+        String title="Padisho";
+        Model m=new Model("Default","02/02/2022","09:00");
+        m.setTitle(title);
+        assertEquals(m.getTitle(), title);
+
     }
 
-    @Test
-    public void getDate() {
+    public void testGetDate() {
+        String Date="02/02/2022";
+        Model m=new Model ("Default","02/02/2022","09:00");
+        m.setDate(Date);
+        assertEquals(Date,m.getDate());
+
+    }
+    public void testSetDate() {
+        String Date="02/02/2022";
+        Model m=new Model ("Default","02/02/2022","09:00");
+        m.setDate(Date);
+        assertEquals(Date,m.getDate());
+
     }
 
-    @Test
-    public void setDate() {
+
+    public void testGetTime() {
+        String itemDOE="09:00";
+        Model m=new Model ("Default","02/02/2022","09:00");
+        m.setTime(itemDOE);
+        assertEquals(itemDOE,m.getTime());
+
     }
 
-    @Test
-    public void getTime() {
+    public void testSetTime() {
+        String itemDOE="09:00";
+        Model m=new Model ("Default","02/02/2022","09:00");
+        m.setTime(itemDOE);
+        assertEquals(itemDOE,m.getTime());
+
     }
 
-    @Test
-    public void setTime() {
-    }
 }
