@@ -55,7 +55,7 @@ public class modelShoppingList {
     public void setListID(int list_id) {
         this.list_id = list_id;
     }
-    public void setListItems(ArrayList<modelItem> list_items) {
+    public void setListItems(List<modelItem> list_items) {
         this.list_items = list_items;
     }
     public void setUseDate(String list_useDate) {

@@ -76,8 +76,12 @@ public class UseShoppingListAdapter extends RecyclerView.Adapter<UseShoppingList
                 //adds item to inventory and then deletes it
                 if(holder.cbItemName.isChecked()){
                     //checked
+                    currItem.setChecked(1);
+                    db.updateItem(currItem);
+
                     Bundle bundle = new Bundle();
                     bundle.putString("itemName", currItem.getItemName());
+                    bundle.putString("shoppingListName", currItem.getListName());
 
                     AddNewInventoryItem i = new AddNewInventoryItem();
                     i.newInstance();
@@ -88,8 +92,7 @@ public class UseShoppingListAdapter extends RecyclerView.Adapter<UseShoppingList
                     //unChecked
                     currItem.setChecked(0);
                     db.updateItem(currItem);
-                    db.deleteInventoryItem(currItem.getItemName());
-                    Log.d(HomeActivity_old.TAG, "---> *** --> Inventory Item [" + currItem.getItemName() + "] Removed **");
+                    //db.deleteInventoryItem(currItem.getItemName());
                 }
 
             }
@@ -104,19 +107,6 @@ public class UseShoppingListAdapter extends RecyclerView.Adapter<UseShoppingList
     public void setAllShoppingListItems(List<modelItem> itemsList){
         this.currShoppingList = itemsList;
         notifyDataSetChanged();
-    }
-
-    //methods
-    public void deleteShoppingListItem(int position) {
-        modelItem currItem = currShoppingList.get(position);
-        db.deleteItem(currItem.getItemID());
-        currShoppingList.remove(position);
-        notifyItemRemoved(position);
-    }
-
-    private void addItemToInventory(int position) {
-        modelItem currItem = currShoppingList.get(position);
-        db.insertInventoryItem(currItem);
     }
 
 }

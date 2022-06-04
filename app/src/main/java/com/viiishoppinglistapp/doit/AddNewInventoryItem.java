@@ -40,7 +40,7 @@ public class AddNewInventoryItem extends BottomSheetDialogFragment {
 
     //ArrayAdapter adapter;
 
-    private DatePickerDialog datePickerDialog;
+    public DatePickerDialog datePickerDialog;
 
     private DatabaseHandler db;
     private DateHandler date;
@@ -97,6 +97,10 @@ public class AddNewInventoryItem extends BottomSheetDialogFragment {
     private void setupInventoryItemEditorLayout(View view, Bundle savedInstanceState) {
         final String NullDate = "No Expiry Date";
 
+        db = new DatabaseHandler(getActivity());
+        db.openDatabase();
+
+
         tvItemName = Objects.requireNonNull(getView()).findViewById(R.id.tvInventoryItemName_new);
         etItemPrice = Objects.requireNonNull(getView()).findViewById(R.id.etInventoryItemPrice_new);
         btnAddToInventory = getView().findViewById(R.id.btnAddToInventory_new);
@@ -136,15 +140,15 @@ public class AddNewInventoryItem extends BottomSheetDialogFragment {
 
             assert strItemName != null;
             if(strItemName.length()>0){
-                btnAddToInventory.setTextColor(ContextCompat.getColor(Objects.requireNonNull(getContext()), R.color.colorPrimaryDark));
-                btnCancelAdd.setTextColor(ContextCompat.getColor(Objects.requireNonNull(getContext()), R.color.colorPrimaryDark));
+                btnAddToInventory.setTextColor(ContextCompat.getColor(Objects.requireNonNull(getContext()), R.color.primary_dark));
+                btnCancelAdd.setTextColor(ContextCompat.getColor(Objects.requireNonNull(getContext()), R.color.primary_dark));
             }
+
+            String strListName = bundle.getString("shoppingListName");
+            currItem = db.getItem(currItem.getItemName(), strListName);
         }
 
-        db = new DatabaseHandler(getActivity());
-        db.openDatabase();
 
-        currItem = db.getItem(currItem.getItemName());
 
         etItemPrice.addTextChangedListener(new TextWatcher() {
             @Override
@@ -162,10 +166,10 @@ public class AddNewInventoryItem extends BottomSheetDialogFragment {
                 }
                 else{
                     btnAddToInventory.setEnabled(true);
-                    btnAddToInventory.setTextColor(ContextCompat.getColor(Objects.requireNonNull(getContext()), R.color.colorPrimaryDark));
+                    btnAddToInventory.setTextColor(ContextCompat.getColor(Objects.requireNonNull(getContext()), R.color.primary_dark));
 
                     btnCancelAdd.setEnabled(true);
-                    btnCancelAdd.setTextColor(ContextCompat.getColor(Objects.requireNonNull(getContext()), R.color.colorPrimaryDark));
+                    btnCancelAdd.setTextColor(ContextCompat.getColor(Objects.requireNonNull(getContext()), R.color.primary_dark));
                 }
             }
 
@@ -192,7 +196,6 @@ public class AddNewInventoryItem extends BottomSheetDialogFragment {
                 else{
                     currItem.setItemPrice(Double.parseDouble(strPrice));
                     currItem.setItemDOE(doe);
-                    currItem.setChecked(1);
 
                     addItemToInventory(currItem);
                     dismiss();
@@ -204,7 +207,6 @@ public class AddNewInventoryItem extends BottomSheetDialogFragment {
         btnCancelAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //toDo only update item
                 String strPrice = etItemPrice.getText().toString();
                 String doe = tvItemDOE.getText().toString();
                 Log.d(TAG, "onClick: ");
@@ -215,7 +217,6 @@ public class AddNewInventoryItem extends BottomSheetDialogFragment {
                 else{
                     currItem.setItemPrice(Double.parseDouble(strPrice));
                     currItem.setItemDOE(doe);
-                    currItem.setChecked(1);
 
                     db.updateItem(currItem);
                     dismiss();
@@ -236,9 +237,9 @@ public class AddNewInventoryItem extends BottomSheetDialogFragment {
         });
     }
 
-    private void addItemToInventory(modelItem currItem) {
-        db.insertInventoryItem(currItem);
+    public void addItemToInventory(modelItem currItem) {
         db.updateItem(currItem);
+        db.insertInventoryItem(currItem);
     }
 
     private String getTodayDate() {
@@ -252,13 +253,13 @@ public class AddNewInventoryItem extends BottomSheetDialogFragment {
         return date.getDate();
     }
 
-    private void initDatePicker() {
+    public void initDatePicker() {
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 month = month+1;
                 date = new DateHandler(day, month, year);
-                String strDate = date.getDate();
+                  String strDate = date.getDate();
                 tvItemDOE.setText(strDate);
                 currItem.setItemDOE(strDate);
 

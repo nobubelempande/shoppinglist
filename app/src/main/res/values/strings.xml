@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Do It</string>
+    <string name="app_name">ShoppingLyst</string>
     <string name="save">Save</string>
     <string name="new_task">New Task</string>
     <string name="tasks">Tasks</string>
@@ -10,14 +10,4 @@
     <string name="tab_text_4">Old</string>
     <string name="title_activity_home_new">HomeActivityNew</string>
     <string name="title_activity_tabbed_home">TabbedHomeActivity</string>
-
-    <string-array name="items">
-        <item>Food</item>
-        <item>Clothing</item>
-        <item>Appliance</item>
-        <item>Personal Hygiene</item>
-        <item>Stationery</item>
-        <item>Toys and Games</item>
-        <item>Other</item>
-    </string-array>
 </resources>
