@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ShoppingLyst</string>
+    <string name="app_name">ShoppingList</string>
     <string name="save">Save</string>
     <string name="new_task">New Task</string>
     <string name="tasks">Tasks</string>

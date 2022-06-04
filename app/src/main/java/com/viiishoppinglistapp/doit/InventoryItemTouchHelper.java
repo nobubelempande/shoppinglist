@@ -21,8 +21,6 @@ public class InventoryItemTouchHelper extends ItemTouchHelper.SimpleCallback {
 
     private InventoryItemsAdapter adapter;
 
-    //toDo
-
     public InventoryItemTouchHelper(InventoryItemsAdapter adapter) {
         super(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT);
         this.adapter = adapter;

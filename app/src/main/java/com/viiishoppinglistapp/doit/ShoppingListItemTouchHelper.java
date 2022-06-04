@@ -123,15 +123,10 @@ public class ShoppingListItemTouchHelper extends ItemTouchHelper.SimpleCallback 
         modelItem currItem = adapter.getAllItems().get(position);
 
         Bundle bundle = new Bundle();
-        bundle.putInt("listID", adapter.getCurrShoppingList().getListID());
-
         bundle.putInt("itemID", currItem.getItemID());
         bundle.putString("name", currItem.getItemName());
         bundle.putInt("qty", currItem.getItemQty());
         bundle.putString("type", currItem.getItemType());
-        //bundle.putDouble("price", currItem.getItemPrice());
-        //bundle.putString("doe", currItem.getItemDOE());
-
         bundle.putInt("listID", currItem.getListID());
 
         AddNewItem fragment = new AddNewItem();
