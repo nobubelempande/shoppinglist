@@ -1,12 +1,12 @@
 package com.viiishoppinglistapp.doit.Fragments;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Switch;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,14 +16,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.viiishoppinglistapp.doit.Adapters.UsedShoppingListsAdapter;
-import com.viiishoppinglistapp.doit.DialogCloseListener;
-import com.viiishoppinglistapp.doit.HomeActivity_old;
-import com.viiishoppinglistapp.doit.Model.modelItem;
 import com.viiishoppinglistapp.doit.Model.modelShoppingList;
 import com.viiishoppinglistapp.doit.R;
 import com.viiishoppinglistapp.doit.TabbedHomeActivity;
 import com.viiishoppinglistapp.doit.UsedShoppingListTouchHelper;
 import com.viiishoppinglistapp.doit.Utils.DatabaseHandler;
+import com.viiishoppinglistapp.doit.Utils.Validation;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -35,6 +33,7 @@ public class fragmentHomeUsedLists extends Fragment {
     UsedShoppingListsAdapter adapter;
 
     RecyclerView rvUsedShoppingLists;
+    Switch aSwitch;
 
     DatabaseHandler db;
 
@@ -65,37 +64,23 @@ public class fragmentHomeUsedLists extends Fragment {
     }
 
 
-    private void setCurrShoppingList() {
-        Bundle bundle = activity.getIntent().getExtras();
-        String strListName = bundle.getString("list_name", "Default");
-
-        currShoppingList = new modelShoppingList();
-        currShoppingList.setListName(strListName);
-
-    }
-
     private void setupUsedShoppingLists(View root) {
-        //setCurrShoppingList();
-
         db = new DatabaseHandler(mContext);
         db.openDatabase();
 
+        //use recycler view from layout
         rvUsedShoppingLists = root.findViewById(R.id.rvHomeUsedLists_fragment);
         rvUsedShoppingLists.setLayoutManager(new LinearLayoutManager(mContext));
         adapter = new UsedShoppingListsAdapter(db, activity);
 
-
-        //todo: itemTouchHelper
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new UsedShoppingListTouchHelper(adapter));
         itemTouchHelper.attachToRecyclerView(rvUsedShoppingLists);
 
-        Log.d(HomeActivity_old.TAG, "setupUsedShoppingLists: ");
+        //setup recycler view adapter
         allShoppingLists = db.getAllUsedShoppingLists();
         Collections.reverse(allShoppingLists);
         adapter.setAllUsedShoppingLists(allShoppingLists);
-
         rvUsedShoppingLists.setAdapter(adapter);
-        Log.d(HomeActivity_old.TAG, "--> Finish ");
 
     }
 }

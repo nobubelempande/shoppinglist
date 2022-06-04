@@ -1,6 +1,7 @@
 package com.viiishoppinglistapp.doit;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -8,8 +9,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
+import android.widget.CompoundButton;
+import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,21 +39,29 @@ public class UseShoppingListActivity extends AppCompatActivity implements Dialog
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_use_shopping_list);
 
-        Log.d(HomeActivity_old.TAG, "USE LIST:: onCreate");
-
-        getSupportActionBar().hide();
-
-        Log.d(HomeActivity_old.TAG, "USE LIST:: onCreate Start");
-
         setCurrShoppingList();
-
-        Log.d(HomeActivity_old.TAG, "USE LIST:: onCreate Curr List");
-
         setupShoppingList();
 
-        Log.d(HomeActivity_old.TAG, "USE LIST:: onCreate End");
+        ImageView icon = findViewById(R.id.imgVIII_icon);
+        icon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToSettings();
+            }
+        });
 
+        boolean allItemsChecked = areAllItemsChecked(allShoppingListItems);
+
+        if(allItemsChecked){
+            //set used
+            currShoppingList.setToUsed();
+            db.updateShoppingList(currShoppingList);
+            //close page
+            Toast.makeText(this, currShoppingList.getListName() + " Moved to OLD.", Toast.LENGTH_LONG).show();
+
+        }
     }
+
 
     private void setCurrShoppingList() {
         db = new DatabaseHandler(this);
@@ -58,12 +69,13 @@ public class UseShoppingListActivity extends AppCompatActivity implements Dialog
 
         Bundle bundle = getIntent().getExtras();
         String strListName = bundle.getString("list_name", "Default");
+        int intID = bundle.getInt("listID", 0);
 
         TextView name = (TextView) findViewById(R.id.tvTop_useList);
         name.setText("Using " + strListName + " Shopping List");
 
         currShoppingList = new modelShoppingList();
-        currShoppingList = db.getShoppingList(strListName);
+        currShoppingList = db.getShoppingList(intID);
     }
 
     private void setupShoppingList() {
@@ -72,22 +84,16 @@ public class UseShoppingListActivity extends AppCompatActivity implements Dialog
         adapter = new UseShoppingListAdapter(db, this);
         rvUseShoppingList.setAdapter(adapter);
 
-        Log.d(HomeActivity_old.TAG, "USE LIST:: Setup --> Adapter Set");
 
-        allShoppingListItems = db.getItemsForShoppingList(currShoppingList.getListName());
+        allShoppingListItems = db.getItemsForShoppingList(currShoppingList.getListID());
 
-        Log.d(HomeActivity_old.TAG, "USE LIST:: Setup --> DB Returned");
         if (allShoppingListItems.size()<1){
             //no items
             Toast.makeText(this, "Add Items To Your Shopping List.", Toast.LENGTH_SHORT).show();
         }
         Collections.reverse(allShoppingListItems);
 
-        Log.d(HomeActivity_old.TAG, "USE LIST:: Setup --> Adapter Items Set");
-
         adapter.setAllShoppingListItems(allShoppingListItems);
-
-        Log.d(HomeActivity_old.TAG, "USE LIST:: Setup --> Adapter Set II");
     }
 
     @Override
@@ -96,7 +102,7 @@ public class UseShoppingListActivity extends AppCompatActivity implements Dialog
     }
 
     private void usingItems() {
-        allShoppingListItems = db.getItemsForShoppingList(currShoppingList.getListName());
+        allShoppingListItems = db.getItemsForShoppingList(currShoppingList.getListID());
         Collections.reverse(allShoppingListItems);
         adapter.setAllShoppingListItems(allShoppingListItems);
         adapter.notifyDataSetChanged();
@@ -109,19 +115,14 @@ public class UseShoppingListActivity extends AppCompatActivity implements Dialog
             db.updateShoppingList(currShoppingList);
             //close page
             Toast.makeText(this, "Done Using " + currShoppingList.getListName(), Toast.LENGTH_LONG).show();
-            final Handler handler = new Handler();
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    // Do something after 5s = 5000ms
-                    doDoneUsingList();
 
-                }
-            }, 1600);
         }
     }
 
     private boolean areAllItemsChecked(List<modelItem> allShoppingListItems) {
+        if(allShoppingListItems.size() == 0){
+            return false;
+        }
         for(modelItem I:allShoppingListItems){
             if(!I.isChecked()){
                 return false;
@@ -132,21 +133,24 @@ public class UseShoppingListActivity extends AppCompatActivity implements Dialog
 
 
     //Nav
-    public void goToHome(View view){
+    public void goToHome(View view) {
         //goto Home page
         Bundle bundle = new Bundle();
         bundle.putString("list_name", currShoppingList.getListName());
+        bundle.putInt("listID", currShoppingList.getListID());
         Intent I = new Intent(this, TabbedHomeActivity.class);
         I.putExtras(bundle);
         this.startActivity(I);
     }
-    public void doDoneUsingList(){
-        //goto Home page
-        Bundle bundle = new Bundle();
-        bundle.putString("list_name", currShoppingList.getListName());
-        Intent I = new Intent(this, TabbedHomeActivity.class);
-        I.putExtras(bundle);
 
+    public void goToSettings(){
+        //goto settings
+        //todo remove
+        Bundle bundle = new Bundle();
+        bundle.putString("list_name", "No List Selected.");
+        bundle.putInt("ID", 0);
+        Intent I = new Intent(this, SettingsActivity.class);
+        I.putExtras(bundle);
         this.startActivity(I);
     }
 }

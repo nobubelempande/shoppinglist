@@ -5,6 +5,8 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -14,9 +16,11 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.viiishoppinglistapp.doit.Adapters.AddingItemsAdapter;
+import com.viiishoppinglistapp.doit.Model.modelItem;
 
 public class NewItemTouchHelper extends ItemTouchHelper.SimpleCallback {
 
+    private static final String TAG = "VIII-ItemTouchHelper";
     private AddingItemsAdapter adapter;
 
     public NewItemTouchHelper(AddingItemsAdapter adapter) {
@@ -42,7 +46,7 @@ public class NewItemTouchHelper extends ItemTouchHelper.SimpleCallback {
 
         if (dX > 0) {
             icon = ContextCompat.getDrawable(adapter.getContext(), R.drawable.ic_baseline_edit);
-            background = new ColorDrawable(ContextCompat.getColor(adapter.getContext(), R.color.colorPrimaryDark));
+            background = new ColorDrawable(ContextCompat.getColor(adapter.getContext(), R.color.primary_dark));
         } else {
             icon = ContextCompat.getDrawable(adapter.getContext(), R.drawable.ic_baseline_delete);
             background = new ColorDrawable(Color.RED);
@@ -111,8 +115,28 @@ public class NewItemTouchHelper extends ItemTouchHelper.SimpleCallback {
             dialog.show();
         } else {
             //edits item name
-            adapter.editItem(position);
+            editItem(position);
         }
+    }
+
+    public void editItem(int position){
+        modelItem currItem = adapter.getAllItems().get(position);
+
+        Bundle bundle = new Bundle();
+        bundle.putInt("listID", adapter.getCurrShoppingList().getListID());
+
+        bundle.putInt("itemID", currItem.getItemID());
+        bundle.putString("name", currItem.getItemName());
+        bundle.putInt("qty", currItem.getItemQty());
+        bundle.putString("type", currItem.getItemType());
+        //bundle.putDouble("price", currItem.getItemPrice());
+        //bundle.putString("doe", currItem.getItemDOE());
+
+        bundle.putInt("listID", currItem.getListID());
+
+        AddNewItem fragment = new AddNewItem();
+        fragment.setArguments(bundle);
+        fragment.show(adapter.getActivity().getSupportFragmentManager(), AddNewItem.TAG);
     }
 
 

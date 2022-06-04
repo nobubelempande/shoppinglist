@@ -1,23 +1,18 @@
 package com.viiishoppinglistapp.doit.Adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.viiishoppinglistapp.doit.AddNewInventoryItem;
-import com.viiishoppinglistapp.doit.HomeActivity_old;
 import com.viiishoppinglistapp.doit.Model.modelItem;
-import com.viiishoppinglistapp.doit.Model.modelShoppingList;
 import com.viiishoppinglistapp.doit.R;
 import com.viiishoppinglistapp.doit.UseShoppingListActivity;
 import com.viiishoppinglistapp.doit.Utils.DatabaseHandler;
@@ -30,6 +25,8 @@ public class UseShoppingListAdapter extends RecyclerView.Adapter<UseShoppingList
     private UseShoppingListActivity activity;
 
     private DatabaseHandler db;
+
+    //todo use ID
 
     //constructor
     public UseShoppingListAdapter(DatabaseHandler db, UseShoppingListActivity activity){
@@ -76,7 +73,11 @@ public class UseShoppingListAdapter extends RecyclerView.Adapter<UseShoppingList
                 //adds item to inventory and then deletes it
                 if(holder.cbItemName.isChecked()){
                     //checked
+                    currItem.setChecked(1);
+                    db.updateItem(currItem);
+
                     Bundle bundle = new Bundle();
+                    bundle.putInt("itemID", currItem.getItemID());
                     bundle.putString("itemName", currItem.getItemName());
 
                     AddNewInventoryItem i = new AddNewInventoryItem();
@@ -88,8 +89,7 @@ public class UseShoppingListAdapter extends RecyclerView.Adapter<UseShoppingList
                     //unChecked
                     currItem.setChecked(0);
                     db.updateItem(currItem);
-                    db.deleteInventoryItem(currItem.getItemName());
-                    Log.d(HomeActivity_old.TAG, "---> *** --> Inventory Item [" + currItem.getItemName() + "] Removed **");
+                    //db.deleteInventoryItem(currItem.getItemName());
                 }
 
             }
@@ -104,19 +104,6 @@ public class UseShoppingListAdapter extends RecyclerView.Adapter<UseShoppingList
     public void setAllShoppingListItems(List<modelItem> itemsList){
         this.currShoppingList = itemsList;
         notifyDataSetChanged();
-    }
-
-    //methods
-    public void deleteShoppingListItem(int position) {
-        modelItem currItem = currShoppingList.get(position);
-        db.deleteItem(currItem.getItemID());
-        currShoppingList.remove(position);
-        notifyItemRemoved(position);
-    }
-
-    private void addItemToInventory(int position) {
-        modelItem currItem = currShoppingList.get(position);
-        db.insertInventoryItem(currItem);
     }
 
 }

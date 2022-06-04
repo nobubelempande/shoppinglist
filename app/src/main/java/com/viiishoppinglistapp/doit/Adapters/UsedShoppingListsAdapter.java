@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,12 +20,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.viiishoppinglistapp.doit.AddNewShoppingList;
 import com.viiishoppinglistapp.doit.AddShoppingListItemsActivity;
+import com.viiishoppinglistapp.doit.Model.modelItem;
 import com.viiishoppinglistapp.doit.Model.modelShoppingList;
 import com.viiishoppinglistapp.doit.R;
 import com.viiishoppinglistapp.doit.TabbedHomeActivity;
 import com.viiishoppinglistapp.doit.UseShoppingListActivity;
 import com.viiishoppinglistapp.doit.Utils.DatabaseHandler;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UsedShoppingListsAdapter extends RecyclerView.Adapter<UsedShoppingListsAdapter.ViewHolder>{
@@ -107,6 +110,7 @@ public class UsedShoppingListsAdapter extends RecyclerView.Adapter<UsedShoppingL
     public void setupUsedShoppingLists(final UsedShoppingListsAdapter.ViewHolder holder, int position){
         final modelShoppingList currList = allShoppingLists.get(position);
         final String listName = currList.getListName();
+        final int ID = currList.getListID();
         final String useDate = currList.getUseDate();
 
         holder.tvName.setText(listName);
@@ -132,6 +136,7 @@ public class UsedShoppingListsAdapter extends RecyclerView.Adapter<UsedShoppingL
                         //goto new page
                         Bundle bundle = new Bundle();
                         bundle.putString("list_name", listName);
+                        bundle.putInt("listID", ID);
                         Intent I = new Intent(getContext(), AddShoppingListItemsActivity.class);
                         I.putExtras(bundle);
                         getContext().startActivity(I);
@@ -147,6 +152,8 @@ public class UsedShoppingListsAdapter extends RecyclerView.Adapter<UsedShoppingL
                         //change to unused
                         currList.setToUnused();
                         db.updateShoppingList(currList);
+                        //update all items
+                        uncheckListItems(currList);
                         //notify dataChange
                         activity.handleDialogClose(dialog);
 
@@ -162,6 +169,15 @@ public class UsedShoppingListsAdapter extends RecyclerView.Adapter<UsedShoppingL
 
     }
 
+    private void uncheckListItems(modelShoppingList currList) {
+        List<modelItem> allItemsInList = db.getItemsForShoppingList(currList.getListID());
+
+        for (modelItem item : allItemsInList){
+            item.setChecked(0);
+            db.updateItem(item);
+        }
+    }
+
     public void deleteShoppingList(int position) {
         modelShoppingList currList = allShoppingLists.get(position);
         db.deleteShoppingList(currList.getListID());
@@ -173,7 +189,7 @@ public class UsedShoppingListsAdapter extends RecyclerView.Adapter<UsedShoppingL
         modelShoppingList currList = allShoppingLists.get(position);
 
         Bundle bundle = new Bundle();
-        bundle.putInt("id", currList.getListID());
+        bundle.putInt("listID", currList.getListID());
         bundle.putString("name", currList.getListName());
         bundle.putString("useDate", currList.getUseDate());
         AddNewShoppingList fragment = new AddNewShoppingList();

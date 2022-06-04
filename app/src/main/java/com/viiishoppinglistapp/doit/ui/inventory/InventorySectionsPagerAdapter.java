@@ -9,7 +9,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.viiishoppinglistapp.doit.Fragments.fragmentInventoryItems;
-import com.viiishoppinglistapp.doit.Fragments.fragmentInventoryStats;
+import com.viiishoppinglistapp.doit.Fragments.fragmentInventoryStatistics;
 import com.viiishoppinglistapp.doit.R;
 import com.viiishoppinglistapp.doit.TabbedInventoryActivity;
 
@@ -43,7 +43,7 @@ public class InventorySectionsPagerAdapter extends FragmentPagerAdapter {
                 fragment = new fragmentInventoryItems(mContext, activity);
                 break;
             case 1:
-                fragment = new fragmentInventoryStats(mContext, activity);
+                fragment = new fragmentInventoryStatistics(mContext, activity);
                 break;
         }
         return fragment;
@@ -60,4 +60,9 @@ public class InventorySectionsPagerAdapter extends FragmentPagerAdapter {
         // Show 2 total pages.
         return 2;
     }
+
+    public int getItemPosition(Object object) {
+        return POSITION_NONE;
+    }
+
 }

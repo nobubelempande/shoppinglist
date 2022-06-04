@@ -122,14 +122,16 @@ public class AddNewItem extends BottomSheetDialogFragment {
 
         final Bundle bundle = getArguments();
         if(bundle != null){
-            if (bundle.size()<2){
+            if (bundle.size()<3){
                 isUpdate = false;
                 String strListName = bundle.getString("listName");
-                currShoppingList = db.getShoppingList(strListName);
+                int intID = bundle.getInt("listID");
+                currShoppingList = db.getShoppingList(intID);
 
             }
             else {
                 isUpdate = true;
+                Log.d(TAG, "setupItemEditorLayoutUsingShoppingList: IS UPDATE ***");
                 String strItemName = bundle.getString("name");
                 int intQty = bundle.getInt("qty");
 
@@ -148,11 +150,12 @@ public class AddNewItem extends BottomSheetDialogFragment {
 
                 assert strItemName != null;
                 if(strItemName.length()>0) {
-                    btnSaveItem.setTextColor(ContextCompat.getColor(Objects.requireNonNull(getContext()), R.color.colorPrimaryDark));
+                    btnSaveItem.setTextColor(ContextCompat.getColor(Objects.requireNonNull(getContext()), R.color.primary_dark));
                 }
                 //get currList
                 String strListName = bundle.getString("listName");
-                currShoppingList = db.getShoppingList(strListName);
+                int intID = bundle.getInt("listID");
+                currShoppingList = db.getShoppingList(intID);
             }
 
 
@@ -172,7 +175,7 @@ public class AddNewItem extends BottomSheetDialogFragment {
                 }
                 else{
                     btnSaveItem.setEnabled(true);
-                    btnSaveItem.setTextColor(ContextCompat.getColor(Objects.requireNonNull(getContext()), R.color.colorPrimaryDark));
+                    btnSaveItem.setTextColor(ContextCompat.getColor(Objects.requireNonNull(getContext()), R.color.primary_dark));
                 }
             }
 
@@ -206,10 +209,10 @@ public class AddNewItem extends BottomSheetDialogFragment {
                     currItem.setItemQty(Integer.parseInt(strQty));
                     currItem.setItemPrice(0);
                     currItem.setItemDOE("-");
-                    currItem.setListName(currShoppingList.getListName());
+                    currItem.setShoppingListID(currShoppingList.getListID());
 
                     if(finalIsUpdate){
-                        currItem.setItemID(bundle.getInt("id"));
+                        currItem.setItemID(bundle.getInt("itemID"));
 
                         db.updateItem(currItem);
                     }

@@ -5,15 +5,13 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
 
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.viiishoppinglistapp.doit.Adapters.UnusedShoppingListsAdapter;
 import com.viiishoppinglistapp.doit.Adapters.UsedShoppingListsAdapter;
@@ -25,13 +23,14 @@ import com.viiishoppinglistapp.doit.databinding.ActivityTabbedHomeBinding;
 import java.util.Collections;
 import java.util.List;
 
-public class  TabbedHomeActivity extends AppCompatActivity implements DialogCloseListener {
+public class TabbedHomeActivity extends AppCompatActivity implements DialogCloseListener {
 
     UsedShoppingListsAdapter usedShoppingListAdapter;
     UnusedShoppingListsAdapter unusedShoppingListAdapter;
     HomeSectionsPagerAdapter homeSectionsPagerAdapter;
 
     ViewPager viewPager;
+    Bundle bundle;
 
     DatabaseHandler db;
 
@@ -47,19 +46,51 @@ public class  TabbedHomeActivity extends AppCompatActivity implements DialogClos
         db.openDatabase();
         usedShoppingListAdapter = new UsedShoppingListsAdapter(db,this);
         unusedShoppingListAdapter = new UnusedShoppingListsAdapter(db,this);
+        binding = ActivityTabbedHomeBinding.inflate(getLayoutInflater());
 
-        Log.d(HomeActivity_old.TAG, "onCreate: ");
         setupHomeTabs();
-        Log.d(HomeActivity_old.TAG, "onCreate: ");
+        ImageView icon = binding.imgInventoryIcon;
+        icon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToSettings();
+            }
+        });
+
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.reminder);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(TabbedHomeActivity.this, ReminderActivity.class));
+            }
+        });
+
 
     }
 
+
     private void setupHomeTabs() {
-        binding = ActivityTabbedHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         homeSectionsPagerAdapter = new HomeSectionsPagerAdapter(this, getSupportFragmentManager(), this);
         viewPager = binding.viewPager;
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                viewPager.getAdapter().notifyDataSetChanged();
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
         viewPager.setAdapter(homeSectionsPagerAdapter);
         TabLayout tabs = binding.tabs;
         tabs.setupWithViewPager(viewPager);
@@ -104,18 +135,19 @@ public class  TabbedHomeActivity extends AppCompatActivity implements DialogClos
 
     //Nav
     public void goToInventory(View view){
-        //toDO remove list name bundle
         //goto new page
-        Bundle bundle = new Bundle();
+        bundle = new Bundle();
         bundle.putString("list_name", "No List Selected.");
         Intent I = new Intent(this, TabbedInventoryActivity.class);
         I.putExtras(bundle);
         this.startActivity(I);
     }
-
-
-    public void toSettings(View view) {
-        Intent In = new Intent(this, ItemCategoryActivity.class);
-        this.startActivity(In);
+    public void goToSettings(){
+        //goto settings
+        bundle = new Bundle();
+        bundle.putString("list_name", "No List Selected.");
+        Intent I = new Intent(this, SettingsActivity.class);
+        I.putExtras(bundle);
+        this.startActivity(I);
     }
 }

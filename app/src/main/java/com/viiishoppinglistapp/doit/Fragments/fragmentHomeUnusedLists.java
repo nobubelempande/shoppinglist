@@ -1,12 +1,12 @@
 package com.viiishoppinglistapp.doit.Fragments;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Switch;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,8 +16,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.viiishoppinglistapp.doit.Adapters.UnusedShoppingListsAdapter;
-import com.viiishoppinglistapp.doit.DialogCloseListener;
-import com.viiishoppinglistapp.doit.HomeActivity_old;
 import com.viiishoppinglistapp.doit.Model.modelShoppingList;
 import com.viiishoppinglistapp.doit.R;
 import com.viiishoppinglistapp.doit.TabbedHomeActivity;
@@ -38,7 +36,6 @@ public class fragmentHomeUnusedLists extends Fragment{
     DatabaseHandler db;
 
     List<modelShoppingList> allShoppingLists;
-    modelShoppingList currShoppingList;
 
     final Context mContext;
 
@@ -64,37 +61,23 @@ public class fragmentHomeUnusedLists extends Fragment{
     }
 
 
-    private void setCurrShoppingList() {
-        Bundle bundle = activity.getIntent().getExtras();
-        String strListName = bundle.getString("list_name", "Default");
-
-        currShoppingList = new modelShoppingList();
-        currShoppingList.setListName(strListName);
-
-    }
-
     private void setupUnusedShoppingLists(View root) {
-        //setCurrShoppingList();
-
-        Log.d(HomeActivity_old.TAG, "setupUnusedShoppingLists: ");
         db = new DatabaseHandler(mContext);
         db.openDatabase();
 
+        //use recycler view from layout
         rvUnusedShoppingLists = root.findViewById(R.id.rvHomeUnusedLists_fragment);
         rvUnusedShoppingLists.setLayoutManager(new LinearLayoutManager(mContext));
         adapter = new UnusedShoppingListsAdapter(db, activity);
 
-
-        //todo: itemTouchHelper
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new UnusedShoppingListTouchHelper(adapter));
         itemTouchHelper.attachToRecyclerView(rvUnusedShoppingLists);
 
+        //setup recycler view adapter
         allShoppingLists = db.getAllUnusedShoppingLists();
         Collections.reverse(allShoppingLists);
         adapter.setAllUnusedShoppingLists(allShoppingLists);
-
         rvUnusedShoppingLists.setAdapter(adapter);
-        Log.d(HomeActivity_old.TAG, "--> Finish ");
 
     }
 
