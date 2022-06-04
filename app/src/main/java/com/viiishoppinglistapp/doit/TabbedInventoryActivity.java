@@ -65,7 +65,7 @@ public class TabbedInventoryActivity extends AppCompatActivity {
 
     }
 
-    //Nav
+    //Navigation
     public void goToHome(View view){
         //goto Home page
         Bundle bundle = new Bundle();
