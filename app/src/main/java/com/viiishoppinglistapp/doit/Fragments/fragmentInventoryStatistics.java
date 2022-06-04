@@ -1,6 +1,7 @@
 package com.viiishoppinglistapp.doit.Fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,6 +21,7 @@ import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.viiishoppinglistapp.doit.ItemCategoryActivity;
 import com.viiishoppinglistapp.doit.Model.modelItem;
 import com.viiishoppinglistapp.doit.R;
 import com.viiishoppinglistapp.doit.TabbedInventoryActivity;
@@ -62,167 +64,9 @@ public class fragmentInventoryStatistics extends Fragment {
         return inflater.inflate(R.layout.fragment_layout_inventory_stats, container, false);
     }
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-        doShowPieChart_Elements();
-    }
-
-    private void doShowPieChart_Elements() {
-        pieChart = Objects.requireNonNull(getActivity()).findViewById(R.id.pieChart_inventoryStats);
-        db =  new DatabaseHandler(mContext);
-        db.openDatabase();
-        allInventoryItems = db.getAllInventoryItems();
-
-        loadPieChartData();
-        setupPieChart();
-
-    }
-
-    private void loadPieChartData() {
-        usingInventory();
-
-        makePieChartDataSet_Elements();
-
-        PieData pieData = new PieData(pieDataSet);
-        pieChart.setData(pieData);
-        pieChart.invalidate();
-    }
 
 
 
-
-    private void setupPieChart() {
-        pieChart.setUsePercentValues(true);
-        pieChart.setDrawHoleEnabled(true);
-        pieChart.setDescription(new Description());
-        pieChart.setEntryLabelTextSize(12);
-        pieChart.setHoleRadius(75f);
-        pieChart.setTransparentCircleRadius(33f);
-        pieChart.getDescription().setEnabled(false);
-
-        Legend L = pieChart.getLegend();
-        //L.setEnabled(false);
-        L.setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
-
-        pieChart.animateY(1200);
-        pieChart.animate();
-    }
-
-    private void usingInventory(){
-        pieEntries = new ArrayList<>();
-
-        if(allInventoryItems.size()>0){
-            entriesUsingInventory();
-            pieChart.setCenterText("Spent\nR " + String.format("%,.2f", totalInventory));
-            pieChart.setCenterTextSize(18);
-            pieChart.setDrawEntryLabels(false);
-        }
-        else{
-            //empty
-            pieChart.setCenterText("No Items In Inventory.");
-        }
-
-    }
-
-    private void entriesUsingInventory() {
-        moneyUser = 0;
-        totalInventory = 0;
-        double section;
-        double diff;
-        modelItem currItem;
-
-        for(int i = 0; i < allInventoryItems.size(); i++){
-            currItem = allInventoryItems.get(i);
-            totalInventory += currItem.getItemPrice();
-        }
-
-        int sizeInventory = allInventoryItems.size();
-        int sizeTypes = itemTypes.size();
-
-        for(int i = 0; i < sizeTypes; i++){
-            double typeTotal = 0;
-            String type = itemTypes.get(i);
-
-            for(int j = 0; j < sizeInventory; j++){
-                currItem = allInventoryItems.get(j);
-                String itemType = currItem.getItemType();
-
-
-                if(itemType.equals(type)){
-                    typeTotal = typeTotal + currItem.getItemPrice();
-                    //allInventoryItems.remove(j);
-                }
-
-            }
-
-            if(typeTotal>0){
-                section = typeTotal/totalInventory;
-                pieEntries.add(new PieEntry((float) section, type));
-            }
-
-        }
-
-        allInventoryItems = db.getAllInventoryItems();
-    }
-
-    private void entriesUsingInventoryII() {
-        moneyUser = 0;
-        totalInventory = 0;
-        double section;
-        double diff;
-        modelItem currItem;
-
-        for(int i = 0; i < allInventoryItems.size(); i++){
-            currItem = allInventoryItems.get(i);
-            totalInventory += currItem.getItemPrice();
-        }
-
-        int number = (int)totalInventory;
-        int length = (int) (Math. log10(number) + 1);
-        moneyUser = Math.pow(10,length);
-        diff = moneyUser - totalInventory;
-
-        int sizeInventory = allInventoryItems.size();
-        int sizeTypes = itemTypes.size();
-
-        for(int i = 0; i < sizeTypes; i++){
-            double typeTotal = 0;
-            String type = itemTypes.get(i);
-
-            for(int j = 0; j < sizeInventory; j++){
-                currItem = allInventoryItems.get(j);
-                String itemType = currItem.getItemType();
-
-
-                if(itemType.equals(type)){
-                    typeTotal = typeTotal + currItem.getItemPrice();
-                    //allInventoryItems.remove(j);
-                }
-
-            }
-
-            if(typeTotal>0){
-                section = typeTotal/moneyUser;
-                pieEntries.add(new PieEntry((float) section, type));
-            }
-
-        }
-        section = diff/moneyUser;
-        pieEntries.add(new PieEntry((float) section, "Unused"));
-
-        allInventoryItems = db.getAllInventoryItems();
-    }
-
-    private void makePieChartDataSet_Elements() {
-        pieDataSet = new PieDataSet(pieEntries, "");
-        pieDataSet.setColors(ColorTemplate.JOYFUL_COLORS);
-        pieDataSet.setDrawValues(true);
-        pieDataSet.setValueTextSize(12);
-        pieDataSet.setValueTextColor(Color.DKGRAY);
-        pieDataSet.setValueFormatter(new PercentFormatter(pieChart));
-    }
 
 
 }

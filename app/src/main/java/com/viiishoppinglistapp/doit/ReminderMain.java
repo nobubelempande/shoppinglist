@@ -58,4 +58,9 @@ public class ReminderMain extends AppCompatActivity {
         super.onBackPressed();
 
     }
+
+    public void goToHome(View view) {
+        Intent I = new Intent(this, TabbedHomeActivity.class);
+        this.startActivity(I);
+    }
 }

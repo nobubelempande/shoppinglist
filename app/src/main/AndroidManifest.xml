@@ -34,6 +34,12 @@
         <activity
             android:name=".UseShoppingListActivity"
             android:exported="false" />
+        <activity android:name=".ItemCategoryActivity"
+            android:exported="false"/>
+        <activity android:name=".BarChartActivity"
+            android:exported="false"/>
+        <activity android:name=".StatisticsActivity"
+            android:exported="false"/>
 
 
 
