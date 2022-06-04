@@ -129,6 +129,7 @@ public class UnusedShoppingListsAdapter extends RecyclerView.Adapter<UnusedShopp
     public void setupUnusedShoppingLists(final ViewHolder holder, int position){
         final modelShoppingList currList = allShoppingLists.get(position);
         final String listName = currList.getListName();
+        final int ID = currList.getListID();
         final String useDate = currList.getUseDate();
 
         holder.tvCurrShoppingList.setText(listName);
@@ -153,6 +154,7 @@ public class UnusedShoppingListsAdapter extends RecyclerView.Adapter<UnusedShopp
                         //goto new page
                         Bundle bundle = new Bundle();
                         bundle.putString("list_name", listName);
+                        bundle.putInt("listID", ID);
                         Intent I = new Intent(getContext(), AddShoppingListItemsActivity.class);
                         I.putExtras(bundle);
                         getContext().startActivity(I);
@@ -168,6 +170,7 @@ public class UnusedShoppingListsAdapter extends RecyclerView.Adapter<UnusedShopp
                         //goto new page
                         Bundle bundle = new Bundle();
                         bundle.putString("list_name", listName);
+                        bundle.putInt("listID", ID);
                         Intent I = new Intent(getContext(), UseShoppingListActivity.class);
                         I.putExtras(bundle);
                         getContext().startActivity(I);
@@ -181,7 +184,7 @@ public class UnusedShoppingListsAdapter extends RecyclerView.Adapter<UnusedShopp
                     @Override
                     public void onClick(View v) {
                         try {
-                            createShoppingListPDF(listName);
+                            createShoppingListPDF(ID);
                             dialog.dismiss();
                         } catch (FileNotFoundException e) {
                             e.printStackTrace();
@@ -207,7 +210,7 @@ public class UnusedShoppingListsAdapter extends RecyclerView.Adapter<UnusedShopp
         modelShoppingList currList = allShoppingLists.get(position);
 
         Bundle bundle = new Bundle();
-        bundle.putInt("id", currList.getListID());
+        bundle.putInt("listID", currList.getListID());
         bundle.putString("name", currList.getListName());
         bundle.putString("useDate", currList.getUseDate());
         AddNewShoppingList fragment = new AddNewShoppingList();
@@ -215,10 +218,9 @@ public class UnusedShoppingListsAdapter extends RecyclerView.Adapter<UnusedShopp
         fragment.show(activity.getSupportFragmentManager(), AddNewShoppingList.TAG);
     }
 
-    //toDO
-    public void createShoppingListPDF(String strName) throws FileNotFoundException {
-        modelShoppingList currList = db.getShoppingList(strName);
-        currList.setListItems(db.getItemsForShoppingList(strName));
+    public void createShoppingListPDF(int ID) throws FileNotFoundException {
+        modelShoppingList currList = db.getShoppingList(ID);
+        currList.setListItems(db.getItemsForShoppingList(ID));
         int size = currList.getListItems().size();
         modelItem currItem = new modelItem("");
         String pdfName = currList.getListName() + " ShoppingList";

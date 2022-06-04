@@ -110,6 +110,7 @@ public class UsedShoppingListsAdapter extends RecyclerView.Adapter<UsedShoppingL
     public void setupUsedShoppingLists(final UsedShoppingListsAdapter.ViewHolder holder, int position){
         final modelShoppingList currList = allShoppingLists.get(position);
         final String listName = currList.getListName();
+        final int ID = currList.getListID();
         final String useDate = currList.getUseDate();
 
         holder.tvName.setText(listName);
@@ -135,6 +136,7 @@ public class UsedShoppingListsAdapter extends RecyclerView.Adapter<UsedShoppingL
                         //goto new page
                         Bundle bundle = new Bundle();
                         bundle.putString("list_name", listName);
+                        bundle.putInt("listID", ID);
                         Intent I = new Intent(getContext(), AddShoppingListItemsActivity.class);
                         I.putExtras(bundle);
                         getContext().startActivity(I);
@@ -168,7 +170,7 @@ public class UsedShoppingListsAdapter extends RecyclerView.Adapter<UsedShoppingL
     }
 
     private void uncheckListItems(modelShoppingList currList) {
-        List<modelItem> allItemsInList = db.getItemsForShoppingList(currList.getListName());
+        List<modelItem> allItemsInList = db.getItemsForShoppingList(currList.getListID());
 
         for (modelItem item : allItemsInList){
             item.setChecked(0);
@@ -187,7 +189,7 @@ public class UsedShoppingListsAdapter extends RecyclerView.Adapter<UsedShoppingL
         modelShoppingList currList = allShoppingLists.get(position);
 
         Bundle bundle = new Bundle();
-        bundle.putInt("id", currList.getListID());
+        bundle.putInt("listID", currList.getListID());
         bundle.putString("name", currList.getListName());
         bundle.putString("useDate", currList.getUseDate());
         AddNewShoppingList fragment = new AddNewShoppingList();

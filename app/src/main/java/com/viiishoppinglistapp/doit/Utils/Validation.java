@@ -2,9 +2,8 @@ package com.viiishoppinglistapp.doit.Utils;
 
 import android.util.Log;
 
-import com.viiishoppinglistapp.doit.HomeActivity_old;
-
 public class Validation {
+    public static String TAG = "VIII";
     DatabaseHandler db;
 
     //constructors
@@ -24,7 +23,6 @@ public class Validation {
 
     //items
     public boolean isItemTypeSelected(String type){
-        Log.d(HomeActivity_old.TAG, "Validator:: item type obtained.");
         if(type.equals("") || type.equals("--") || type.equals(null)){
             return false;
         }

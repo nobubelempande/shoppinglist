@@ -25,7 +25,6 @@ import java.util.List;
 
 public class TabbedHomeActivity extends AppCompatActivity implements DialogCloseListener {
 
-    private static final String TAG = "VIII";
     UsedShoppingListsAdapter usedShoppingListAdapter;
     UnusedShoppingListsAdapter unusedShoppingListAdapter;
     HomeSectionsPagerAdapter homeSectionsPagerAdapter;

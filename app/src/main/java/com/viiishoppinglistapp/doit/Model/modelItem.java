@@ -1,8 +1,5 @@
 package com.viiishoppinglistapp.doit.Model;
 
-import android.util.Log;
-
-import com.viiishoppinglistapp.doit.HomeActivity_old;
 import com.viiishoppinglistapp.doit.Utils.DateHandler;
 
 public class modelItem {
@@ -12,9 +9,10 @@ public class modelItem {
     private double item_price;
     private String item_doe;
     private String item_name;
-    private String list_name;
+    private int list_id;
     private String item_type;
     private boolean checked;
+    private int inventory_id;
 
     //handlers
     DateHandler date;
@@ -28,6 +26,7 @@ public class modelItem {
         setChecked(0);
         setItemPrice(0.0);
         setItemDOE("N/A");
+        setInventory_ID(0);
     }
     public modelItem(int ID){
         date = new DateHandler();
@@ -37,6 +36,7 @@ public class modelItem {
         setChecked(0);
         setItemPrice(0.0);
         setItemDOE("N/A");
+        setInventory_ID(0);
     }
 
 
@@ -51,8 +51,8 @@ public class modelItem {
     public String getItemName() {
         return item_name;
     }
-    public String getListName() {
-        return list_name;
+    public int getListID() {
+        return list_id;
     }
     public String getItemType() {
         return item_type;
@@ -84,8 +84,8 @@ public class modelItem {
     public void setItemName(String item_name) {
         this.item_name = item_name;
     }
-    public void setListName(String list_name) {
-        this.list_name = list_name;
+    public void setShoppingListID(int list_id) {
+        this.list_id = list_id;
     }
     public void setItemType(String item_type) {
         this.item_type = item_type;
@@ -110,4 +110,11 @@ public class modelItem {
         }
     }
 
+    public int getInventory_ID() {
+        return inventory_id;
+    }
+
+    public void setInventory_ID(int inventory_id) {
+        this.inventory_id = inventory_id;
+    }
 }

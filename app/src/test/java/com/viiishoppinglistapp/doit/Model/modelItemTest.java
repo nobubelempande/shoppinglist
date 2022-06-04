@@ -3,7 +3,6 @@ package com.viiishoppinglistapp.doit.Model;
 import junit.framework.TestCase;
 
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -58,13 +57,13 @@ public class modelItemTest extends TestCase {
 
     @Test
     public void testGetListName() {
-        String listName="padisho";
+        int listName=0;
         modelItem m=new modelItem("Default");
-        m.setListName(listName);
-        assertEquals(listName,m.getListName());
+        m.setShoppingListID(listName);
+        assertEquals(listName,m.getListID());
         modelItem d=new modelItem(1);
-        d.setListName(listName);
-        assertEquals(listName,d.getListName());
+        d.setShoppingListID(listName);
+        assertEquals(listName,d.getListID());
 
     }
     @Test
@@ -141,13 +140,13 @@ public class modelItemTest extends TestCase {
 
     @Test
     public void testSetListName() {
-        String listName="Padisho";
+        int listName= 0;
         modelItem m=new modelItem("Default");
-        m.setListName(listName);
-        assertEquals(m.getListName(), listName);
+        m.setShoppingListID(listName);
+        assertEquals(m.getListID(), listName);
         modelItem d=new modelItem(1);
-        d.setListName(listName);
-        assertEquals(d.getListName(), listName);
+        d.setShoppingListID(listName);
+        assertEquals(d.getListID(), listName);
     }
 
     @Test

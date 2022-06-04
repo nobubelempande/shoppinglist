@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -58,17 +59,15 @@ public class AddShoppingListItemsActivity extends AppCompatActivity implements D
 
         Bundle bundle = getIntent().getExtras();
         String strListName = bundle.getString("list_name", "Default");
+        int intID = bundle.getInt("listID", 0);
 
         TextView name = (TextView) findViewById(R.id.tvTop_newActivity);
         name.setText(strListName);
 
-        currShoppingList = db.getShoppingList(strListName);
+        currShoppingList = db.getShoppingList(intID);
     }
 
     private void setupItems() {
-        //db = new DatabaseHandler(this);
-        //db.openDatabase();
-
         rvItems = findViewById(R.id.rvItems_newActivity);
         rvItems.setLayoutManager(new LinearLayoutManager(this));
         adapterItems = new AddingItemsAdapter(db, this);
@@ -79,9 +78,9 @@ public class AddShoppingListItemsActivity extends AppCompatActivity implements D
         itemTouchHelper.attachToRecyclerView(rvItems);
 
 
-        itemsList = db.getItemsForShoppingList(currShoppingList.getListName());
+        itemsList = db.getItemsForShoppingList(currShoppingList.getListID());
         Collections.reverse(itemsList);
-        adapterItems.setAllItems(itemsList);
+        adapterItems.setAllItems(itemsList, currShoppingList);
 
         fabAddItem = findViewById(R.id.fabAddNewItem_NewActivity);
         fabAddItem.setOnClickListener(new View.OnClickListener() {
@@ -89,7 +88,7 @@ public class AddShoppingListItemsActivity extends AppCompatActivity implements D
             public void onClick(View view) {
                 Bundle bundle = new Bundle();
                 bundle.putString("listName", currShoppingList.getListName());
-
+                bundle.putInt("listID", currShoppingList.getListID());
 
                 AddNewItem i = new AddNewItem();
                 i.newInstance();
@@ -105,19 +104,17 @@ public class AddShoppingListItemsActivity extends AppCompatActivity implements D
     }
 
     private void usingItems() {
-        itemsList = db.getItemsForShoppingList(currShoppingList.getListName());
+        itemsList = db.getItemsForShoppingList(currShoppingList.getListID());
         Collections.reverse(itemsList);
-        adapterItems.setAllItems(itemsList);
+        adapterItems.setAllItems(itemsList, currShoppingList);
         adapterItems.notifyDataSetChanged();
     }
 
 
     //navigation
     public void goToHome(View view){
-        //toDO remove bundle to Home
         //goto Home page
         Bundle bundle = new Bundle();
-        bundle.putString("list_name", currShoppingList.getListName());
         Intent I = new Intent(this, TabbedHomeActivity.class);
         I.putExtras(bundle);
         this.startActivity(I);

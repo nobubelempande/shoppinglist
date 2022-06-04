@@ -69,12 +69,13 @@ public class UseShoppingListActivity extends AppCompatActivity implements Dialog
 
         Bundle bundle = getIntent().getExtras();
         String strListName = bundle.getString("list_name", "Default");
+        int intID = bundle.getInt("listID", 0);
 
         TextView name = (TextView) findViewById(R.id.tvTop_useList);
         name.setText("Using " + strListName + " Shopping List");
 
         currShoppingList = new modelShoppingList();
-        currShoppingList = db.getShoppingList(strListName);
+        currShoppingList = db.getShoppingList(intID);
     }
 
     private void setupShoppingList() {
@@ -84,7 +85,7 @@ public class UseShoppingListActivity extends AppCompatActivity implements Dialog
         rvUseShoppingList.setAdapter(adapter);
 
 
-        allShoppingListItems = db.getItemsForShoppingList(currShoppingList.getListName());
+        allShoppingListItems = db.getItemsForShoppingList(currShoppingList.getListID());
 
         if (allShoppingListItems.size()<1){
             //no items
@@ -101,7 +102,7 @@ public class UseShoppingListActivity extends AppCompatActivity implements Dialog
     }
 
     private void usingItems() {
-        allShoppingListItems = db.getItemsForShoppingList(currShoppingList.getListName());
+        allShoppingListItems = db.getItemsForShoppingList(currShoppingList.getListID());
         Collections.reverse(allShoppingListItems);
         adapter.setAllShoppingListItems(allShoppingListItems);
         adapter.notifyDataSetChanged();
@@ -136,6 +137,7 @@ public class UseShoppingListActivity extends AppCompatActivity implements Dialog
         //goto Home page
         Bundle bundle = new Bundle();
         bundle.putString("list_name", currShoppingList.getListName());
+        bundle.putInt("listID", currShoppingList.getListID());
         Intent I = new Intent(this, TabbedHomeActivity.class);
         I.putExtras(bundle);
         this.startActivity(I);
@@ -143,8 +145,10 @@ public class UseShoppingListActivity extends AppCompatActivity implements Dialog
 
     public void goToSettings(){
         //goto settings
+        //todo remove
         Bundle bundle = new Bundle();
         bundle.putString("list_name", "No List Selected.");
+        bundle.putInt("ID", 0);
         Intent I = new Intent(this, SettingsActivity.class);
         I.putExtras(bundle);
         this.startActivity(I);
