@@ -1,5 +1,4 @@
 ignore:
-    - "**/ui"
     - "**/AddNewItem.java"
     - "**/UsedShoppingListTouchHelper.java"
     - "**/UnusedShoppingListTouchHelper.java"
