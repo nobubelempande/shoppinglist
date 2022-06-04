@@ -1,2 +1,14 @@
-ignore:
-    - "**/BarChartActivity.java"
+coverage:
+  status:
+    project:
+      backend:
+        flags:
+          - backend
+      frontend:
+        target: 50%
+        flags:
+          - frontend
+flags:
+  tests:
+    paths:
+      - tests/
