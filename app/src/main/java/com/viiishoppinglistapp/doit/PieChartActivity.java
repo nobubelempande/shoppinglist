@@ -1,16 +1,9 @@
 package com.viiishoppinglistapp.doit;
 
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.mikephil.charting.charts.PieChart;
@@ -21,7 +14,7 @@ import com.viiishoppinglistapp.doit.Utils.DatabaseHandler;
 
 import java.util.ArrayList;
 
-public class StatisticsActivity extends AppCompatActivity {
+public class PieChartActivity extends AppCompatActivity {
 
     DatabaseHandler myDB;
     PieChart pieChart;
@@ -31,9 +24,9 @@ public class StatisticsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_statistics);
+        setContentView(R.layout.activity_pie_chart);
 
-        myDB =  new DatabaseHandler(StatisticsActivity.this);
+        myDB =  new DatabaseHandler(PieChartActivity.this);
         inventory_item_id = new ArrayList<>();
         inventory_item_name = new ArrayList<>();
         inventory_item_category = new ArrayList<>();

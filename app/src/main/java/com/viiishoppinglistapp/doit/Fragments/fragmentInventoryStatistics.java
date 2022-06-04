@@ -70,7 +70,7 @@ public class fragmentInventoryStatistics extends Fragment {
     }
 
     private void doShowPieChart_Elements() {
-        pieChart = Objects.requireNonNull(getActivity()).findViewById(R.id.pieChart_inventoryStats);
+        pieChart = Objects.requireNonNull(getActivity()).findViewById(R.id.PieChart);
         db =  new DatabaseHandler(mContext);
         db.openDatabase();
         allInventoryItems = db.getAllInventoryItems();
