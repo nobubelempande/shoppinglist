@@ -30,7 +30,7 @@ import java.util.List;
 
 public class OldFragmentStats extends Fragment {
 
-    TabbedInventoryActivity activity;
+    /*TabbedInventoryActivity activity;
 
     PieChart pieChart;
     ArrayList<PieEntry> pieEntries;
@@ -75,7 +75,7 @@ public class OldFragmentStats extends Fragment {
         //doShowPieChart_Elements();
     }
 
-    private void doShowPieChart_Elements() {
+    /*private void doShowPieChart_Elements() {
         pieChart = getActivity().findViewById(R.id.pieChart_inventoryStats);
         db =  new DatabaseHandler(mContext);
 
@@ -163,7 +163,7 @@ public class OldFragmentStats extends Fragment {
         setupPieChart_ItemPrices();
     }
 
-    private void loadPieChartData_ItemPrices() {
+    /*private void loadPieChartData_ItemPrices() {
         pieChart = getActivity().findViewById(R.id.pieChart_inventoryStats);
         db =  new DatabaseHandler(mContext);
 
@@ -273,6 +273,6 @@ public class OldFragmentStats extends Fragment {
             inventory_item_price.add(cursor.getString(5));
             inventory_item_expiry.add(cursor.getString(6));
         }
-    }
+    }*/
 
 }

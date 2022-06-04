@@ -63,6 +63,7 @@
                 android:layout_height="match_parent"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior" >
 
+
             </androidx.viewpager.widget.ViewPager>
 
         </LinearLayout>
@@ -97,7 +98,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="225dp"
+        android:layout_marginBottom="44dp"
         app:srcCompat="@android:drawable/ic_popup_reminder" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/toItemCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="44dp"
+        android:layout_marginEnd="125dp"
+        android:onClick="goToItemCategory"
+        app:srcCompat="@android:drawable/ic_dialog_info"
+        tools:ignore="OnClick" />
+
 
 
 </RelativeLayout>

@@ -150,4 +150,9 @@ public class TabbedHomeActivity extends AppCompatActivity implements DialogClose
         I.putExtras(bundle);
         this.startActivity(I);
     }
+
+    public void goToItemCategory(View view) {
+        Intent I = new Intent(this, ItemCategoryActivity.class);
+        this.startActivity(I);
+    }
 }

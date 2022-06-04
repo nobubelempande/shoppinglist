@@ -82,14 +82,27 @@ public class StatisticsActivity extends AppCompatActivity {
 
         pieChart = (PieChart)findViewById(R.id.PieChart);
         ArrayList<PieEntry> categories = new ArrayList<>();
+        if(foodPrice!= 0){
         categories.add(new PieEntry((int)foodPrice, "Food"));
+        }
+        if(clothingPrice!= 0){
         categories.add(new PieEntry((int)clothingPrice, "Clothing"));
+        }
+        if(appliancePrice!= 0){
         categories.add(new PieEntry((int)appliancePrice, "App"));
+        }
+        if(hygienePrice!= 0){
         categories.add(new PieEntry((int)hygienePrice, "PH"));
+        }
+        if(stationeryPrice!= 0){
         categories.add(new PieEntry((int)stationeryPrice, "Stationery"));
-        categories.add(new PieEntry((int)toyPrice, "T&G"));
-        categories.add(new PieEntry((int)otherPrice, "Other"));
-
+        }
+        if(toyPrice!= 0) {
+            categories.add(new PieEntry((int) toyPrice, "T&G"));
+        }
+        if(otherPrice!= 0) {
+            categories.add(new PieEntry((int) otherPrice, "Other"));
+        }
         PieDataSet pieDataSet = new PieDataSet(categories, "Categories");
         ArrayList<Integer> colours = new ArrayList<>();
         colours.add(Color.MAGENTA);
@@ -109,7 +122,7 @@ public class StatisticsActivity extends AppCompatActivity {
         PieData pieData = new PieData(pieDataSet);
         pieChart.setData(pieData);
         pieChart.setEntryLabelColor(Color.BLACK);
-        pieChart.setCenterText("Total Spent: " +price);
+        pieChart.setCenterText("Total Spent: R" +price);
         pieChart.setCenterTextSize(15f);
         pieChart.getDescription().setEnabled(false);
 
@@ -128,50 +141,6 @@ public class StatisticsActivity extends AppCompatActivity {
         }
     }
 
-    public boolean onCreateOptionsMenu(Menu menu){
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.my_menu, menu);
-        return true;
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == 1){
-            recreate();
-        }
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        //Create a delete all options in the menu
-        if(item.getItemId() == R.id.Setting){
-            confirmDialog();
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    void confirmDialog(){
-        //Question user if they are sure about their choice and give them a negative and positive response option
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Settings");
-        builder.setMessage("Are you sure you want to delete all Data?");
-        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                Intent intent = new Intent(StatisticsActivity.this, SettingsActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-
-            }
-        });
-        builder.create().show();
-    }
 
 
 }
