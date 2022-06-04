@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
@@ -133,6 +134,7 @@ public class BarChartActivity extends AppCompatActivity {
 
         barChart.setFitBars(true);
         barChart.setData(barData);
+        barChart.getLegend().setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
         barChart.animateY(2000);
 
 
