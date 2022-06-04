@@ -10,6 +10,7 @@ import android.os.Build;
 
 import androidx.core.app.NotificationCompat;
 
+//creating an alarm
 public class AlarmReceiver extends BroadcastReceiver {
 
     private static final String CHANNEL_ID = "CHANNEL_SAMPLE";
@@ -22,7 +23,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         String message = intent.getStringExtra("message");
 
         // Call ReminderActivity when notification is tapped.
-        Intent mainIntent = new Intent(context, ReminderActivity.class);
+        Intent mainIntent = new Intent(context, ShoppingListReminder.class);
         PendingIntent contentIntent = PendingIntent.getActivity(context, 0, mainIntent, 0);
 
         // NotificationManager
