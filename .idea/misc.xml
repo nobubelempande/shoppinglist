@@ -97,15 +97,31 @@
         <entry key="..\:/newShopping/shoppinglist/app/src/main/res/layout/new_inventory_item.xml" value="0.23007246376811594" />
         <entry key="..\:/newShopping/shoppinglist/app/src/main/res/layout/new_item.xml" value="0.23007246376811594" />
         <entry key="..\:/newShopping/shoppinglist/app/src/main/res/layout/new_shopping_list.xml" value="0.23007246376811594" />
+        <entry key="app/src/main/res/drawable/alaram.xml" value="0.129" />
+        <entry key="app/src/main/res/drawable/ic_baseline_settings.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/plus_icon.xml" value="0.13" />
+        <entry key="app/src/main/res/layout/activity_bar_chart.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_home_old.xml" value="0.18432971014492755" />
+        <entry key="app/src/main/res/layout/activity_inventory_old.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_item_adding.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_item_category.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.24954710144927536" />
+        <entry key="app/src/main/res/layout/activity_notification_message.xml" value="0.11822916666666666" />
+        <entry key="app/src/main/res/layout/activity_reminder.xml" value="0.11822916666666666" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.2625" />
+        <entry key="app/src/main/res/layout/activity_statistics.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_tabbed_home.xml" value="0.18432971014492755" />
+        <entry key="app/src/main/res/layout/activity_tabbed_inventory.xml" value="0.19157608695652173" />
+        <entry key="app/src/main/res/layout/fragment_tabbed_inventory.xml" value="0.19157608695652173" />
+        <entry key="app/src/main/res/layout/my_item_category_list.xml" value="0.1" />
         <entry key="app/src/main/res/layout/new_shopping_list.xml" value="0.22" />
         <entry key="app/src/main/res/layout/new_task.xml" value="0.24954710144927536" />
+        <entry key="app/src/main/res/layout/notification_layout.xml" value="0.11822916666666666" />
         <entry key="app/src/main/res/layout/reminder.xml" value="0.11927083333333334" />
+        <entry key="app/src/main/res/layout/reminder_main.xml" value="0.19157608695652173" />
+        <entry key="app/src/main/res/layout/single_reminder_file.xml" value="0.11822916666666666" />
         <entry key="app/src/main/res/layout/task_layout.xml" value="0.16806722689075632" />
+        <entry key="app/src/main/res/menu/my_menu.xml" value="0.1" />
       </map>
     </option>
   </component>

@@ -305,6 +305,18 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return cursor;
     }
 
+    public Cursor readItemsCategory(String category){
+        String query = "SELECT * FROM items WHERE item_type = '"+category+"'";
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = null;
+        if(db != null){
+            cursor = db.rawQuery(query, null);
+        }
+        return cursor;
+    }
+
+
     public List<modelItem> getItemsForShoppingList(int shoppingListID){
         //getting all shoppingList items from the DB using list id
 
