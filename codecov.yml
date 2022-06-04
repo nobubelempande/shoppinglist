@@ -1,17 +1,2 @@
-ignore:
-    - "**/AddNewItem.java"
-    - "**/UsedShoppingListTouchHelper.java"
-    - "**/UnusedShoppingListTouchHelper.java"
-    - "**/SplashActivity.java"
-    - "**/SettingsActivity.java"
-    - "**/ReminderActivity.java"
-    - "**/NewItemTouchHelper.java"
-    - "**/InventoryItemTouchHelper.java"
-    - "**/InventoryActivity_old.java"
-    - "**/HomeActivity.java"
-    - "**/AlarmReceiver.java"
-    - "**/AddNewShoppingList.java"
-    - "**/UseShoppingListActivity.java"
-    - "**/HomeActivity_old.java"
-    - "**/Fragments"
+
     
