@@ -62,7 +62,7 @@ public class TabbedHomeActivity extends AppCompatActivity implements DialogClose
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(TabbedHomeActivity.this, ReminderActivity.class));
+                startActivity(new Intent(TabbedHomeActivity.this, ReminderMain.class));
             }
         });
 
