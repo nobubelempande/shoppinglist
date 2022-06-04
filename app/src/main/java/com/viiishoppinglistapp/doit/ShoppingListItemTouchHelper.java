@@ -18,12 +18,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.viiishoppinglistapp.doit.Adapters.AddingItemsAdapter;
 import com.viiishoppinglistapp.doit.Model.modelItem;
 
-public class NewItemTouchHelper extends ItemTouchHelper.SimpleCallback {
+public class ShoppingListItemTouchHelper extends ItemTouchHelper.SimpleCallback {
 
     private static final String TAG = "VIII-ItemTouchHelper";
     private AddingItemsAdapter adapter;
 
-    public NewItemTouchHelper(AddingItemsAdapter adapter) {
+    public ShoppingListItemTouchHelper(AddingItemsAdapter adapter) {
         super(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT);
         this.adapter = adapter;
     }

@@ -120,9 +120,11 @@ public class AddNewShoppingList extends BottomSheetDialogFragment {
                 String strListName = bundle.getString("name");
                 String strDate = bundle.getString("useDate");
                 int intID = bundle.getInt("listID");
+
                 currShoppingList = db.getShoppingList(intID);
                 etNewListName.setText(strListName);
                 tvNewListUseDate.setText(strDate);
+
                 assert strListName != null;
                 if(strListName.length()>0)
                     btnSaveList.setTextColor(ContextCompat.getColor(Objects.requireNonNull(getContext()), R.color.primary_dark));
@@ -155,7 +157,6 @@ public class AddNewShoppingList extends BottomSheetDialogFragment {
         btnSaveList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 String text = etNewListName.getText().toString();
                 String date = tvNewListUseDate.getText().toString();
 

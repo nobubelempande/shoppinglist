@@ -115,7 +115,6 @@ public class AddNewItem extends BottomSheetDialogFragment {
         db = new DatabaseHandler(Objects.requireNonNull(getContext()));
         db.openDatabase();
 
-
         validator = new Validation(db);
         currItem = new modelItem("new Item");
         currShoppingList = new modelShoppingList();
@@ -131,13 +130,9 @@ public class AddNewItem extends BottomSheetDialogFragment {
             }
             else {
                 isUpdate = true;
-                Log.d(TAG, "setupItemEditorLayoutUsingShoppingList: IS UPDATE ***");
                 String strItemName = bundle.getString("name");
                 int intQty = bundle.getInt("qty");
-
                 String strType = bundle.getString("type");
-                //double dblPrice = bundle.getDouble("price");
-                //String strDOE = bundle.getString("doe");
 
                 //currItem
                 currItem.setItemName(strItemName);
@@ -146,7 +141,6 @@ public class AddNewItem extends BottomSheetDialogFragment {
                 etItemName.setText(strItemName);
                 etItemQty.setText(String.valueOf(intQty));
                 spItemType.setSelection(adapter.getPosition(strType));
-
 
                 assert strItemName != null;
                 if(strItemName.length()>0) {

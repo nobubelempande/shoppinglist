@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -73,10 +72,8 @@ public class AddShoppingListItemsActivity extends AppCompatActivity implements D
         adapterItems = new AddingItemsAdapter(db, this);
         rvItems.setAdapter(adapterItems);
 
-        //toDo: itemTouchHelper
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new NewItemTouchHelper(adapterItems));
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ShoppingListItemTouchHelper(adapterItems));
         itemTouchHelper.attachToRecyclerView(rvItems);
-
 
         itemsList = db.getItemsForShoppingList(currShoppingList.getListID());
         Collections.reverse(itemsList);
@@ -104,6 +101,7 @@ public class AddShoppingListItemsActivity extends AppCompatActivity implements D
     }
 
     private void usingItems() {
+        //re-setup page using shopping list items
         itemsList = db.getItemsForShoppingList(currShoppingList.getListID());
         Collections.reverse(itemsList);
         adapterItems.setAllItems(itemsList, currShoppingList);
