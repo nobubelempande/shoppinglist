@@ -130,9 +130,13 @@ public class PieChartActivity extends AppCompatActivity {
         pieChart.setEntryLabelColor(Color.BLACK);
         pieChart.setCenterText("Total Spent: R" +price);
         pieChart.setCenterTextSize(15f);
+        pieChart.setEntryLabelTextSize(12);
+        pieChart.setHoleRadius(75f);
+        pieChart.setTransparentCircleRadius(33f);
         pieChart.getDescription().setEnabled(false);
         pieChart.getLegend().setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
 
+        pieChart.animateY(1200);
         pieChart.animate();
 
     }
