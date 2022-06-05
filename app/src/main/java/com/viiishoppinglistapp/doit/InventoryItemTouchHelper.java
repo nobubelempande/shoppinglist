@@ -39,6 +39,7 @@ public class InventoryItemTouchHelper extends ItemTouchHelper.SimpleCallback {
         Drawable icon;
         ColorDrawable background;
 
+
         View itemView = viewHolder.itemView;
         int backgroundCornerOffset = 20;
 

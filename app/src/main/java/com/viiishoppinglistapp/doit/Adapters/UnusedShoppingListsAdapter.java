@@ -52,6 +52,7 @@ public class UnusedShoppingListsAdapter extends RecyclerView.Adapter<UnusedShopp
 
 
     //models
+
     private List<modelShoppingList> allShoppingLists;
 
     //constructor

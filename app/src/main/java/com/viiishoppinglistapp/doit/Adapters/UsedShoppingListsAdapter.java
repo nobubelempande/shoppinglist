@@ -40,6 +40,7 @@ public class UsedShoppingListsAdapter extends RecyclerView.Adapter<UsedShoppingL
     private List<modelShoppingList> allShoppingLists;
 
     //constructor
+
     public UsedShoppingListsAdapter(DatabaseHandler db, TabbedHomeActivity activity) {
         this.db = db;
         this.activity = activity;

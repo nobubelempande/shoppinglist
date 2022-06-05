@@ -12,6 +12,7 @@ public class ShoppingListReminder extends AppCompatActivity {
         setContentView(R.layout.shoppingreminder);
 
 
+
     }
 }
 

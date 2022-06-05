@@ -37,6 +37,7 @@ public class InventorySectionsPagerAdapterTest extends TestCase {
         InventorySectionsPagerAdapter m=new InventorySectionsPagerAdapter(context,p,s);
         m.getCount();
         assertEquals(2,m.getCount());
+
     }
 
     @Test

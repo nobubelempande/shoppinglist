@@ -31,6 +31,7 @@ public class ReminderMain extends AppCompatActivity {
 
 
         mRecyclerview = (RecyclerView) findViewById(R.id.recyclerView);
+
         mRecyclerview.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         mCreateRem = (FloatingActionButton) findViewById(R.id.create_reminder);                     //Floating action button to change activity
         mCreateRem.setOnClickListener(new View.OnClickListener() {

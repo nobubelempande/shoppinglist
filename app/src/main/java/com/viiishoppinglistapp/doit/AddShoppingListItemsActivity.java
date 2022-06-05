@@ -40,6 +40,7 @@ public class AddShoppingListItemsActivity extends AppCompatActivity implements D
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_items);
 
+
         setCurrShoppingList();
         setupItems();
 

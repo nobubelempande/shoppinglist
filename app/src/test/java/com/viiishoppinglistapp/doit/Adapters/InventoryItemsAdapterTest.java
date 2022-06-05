@@ -29,6 +29,7 @@ public class InventoryItemsAdapterTest {
     public void onCreateViewHolder() {
 
 
+
     }
 
     @Test

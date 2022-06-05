@@ -52,6 +52,7 @@ public class AddNewInventoryItem extends BottomSheetDialogFragment {
     private TextView tvItemName, tvItemDOE;
     private Switch switchDate;
 
+
     public static AddNewInventoryItem newInstance(){
         return new AddNewInventoryItem();
     }

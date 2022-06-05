@@ -32,6 +32,7 @@ public class TabbedInventoryActivity extends AppCompatActivity {
             public void onClick(View v) {
                 goToSettings();
             }
+
         });
 
     }

@@ -33,6 +33,7 @@ public class HomeSectionsPagerAdapterTest extends TestCase {
     @Test
     public void getCount() {
         Context context=new TabbedHomeActivity();
+
         TabbedHomeActivity s=new TabbedHomeActivity();
         FragmentManager p= s.getSupportFragmentManager();
         HomeSectionsPagerAdapter m=new HomeSectionsPagerAdapter(context,p,s);

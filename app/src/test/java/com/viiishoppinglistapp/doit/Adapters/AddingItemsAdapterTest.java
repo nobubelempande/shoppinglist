@@ -36,6 +36,7 @@ public class AddingItemsAdapterTest extends TestCase {
 
     @Test
     public void getContext() {
+
         Context context= new AddShoppingListItemsActivity();
         DatabaseHandler db= new DatabaseHandler(context);
         assertNotNull(db);

@@ -36,6 +36,7 @@ public class PieChartActivity extends AppCompatActivity {
             public void onClick(View v) {
                 goToSettings();
             }
+
         });
 
         myDB =  new DatabaseHandler(PieChartActivity.this);

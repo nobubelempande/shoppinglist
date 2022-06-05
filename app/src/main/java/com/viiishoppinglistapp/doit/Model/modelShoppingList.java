@@ -18,6 +18,7 @@ public class modelShoppingList {
         setListName(name);
         setListItems(new ArrayList<modelItem>());
         setToUnused();
+
     }
 
     public modelShoppingList(){

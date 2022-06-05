@@ -27,6 +27,7 @@ public class modelItemTest extends TestCase {
         assertEquals(itemid,m.getItemID());
         modelItem d=new modelItem(1);
         d.setItemID(itemid);
+
         assertEquals(itemid,d.getItemID());
 
     }

@@ -31,6 +31,7 @@ public class InventorySectionsPagerAdapter extends FragmentPagerAdapter {
         super(fm);
         mContext = context;
         this.activity = activity;
+
     }
 
     @Override

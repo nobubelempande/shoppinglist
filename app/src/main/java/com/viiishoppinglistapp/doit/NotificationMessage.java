@@ -18,5 +18,6 @@ public class NotificationMessage extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();                                                    //call the data which is passed by another intent
         textView.setText(bundle.getString("message"));
 
+
     }
 }

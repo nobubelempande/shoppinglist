@@ -27,6 +27,7 @@ public class UseShoppingListAdapterTest {
 
     @Test
     public void onBindViewHolder() {
+
     }
 
     @Test

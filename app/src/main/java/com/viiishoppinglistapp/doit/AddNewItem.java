@@ -48,6 +48,7 @@ public class AddNewItem extends BottomSheetDialogFragment {
     private Button btnSaveItem;
     private Spinner spItemType;
 
+
     public static AddNewItem newInstance(){
         return new AddNewItem();
     }

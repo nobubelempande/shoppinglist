@@ -45,6 +45,7 @@ public class fragmentInventoryStatistics extends Fragment {
 
     private final Context mContext;
 
+
     private final ArrayList<String> itemTypes = new ArrayList<>(Arrays.asList("Food", "Clothing", "Appliance", "Personal Hygiene", "Stationery", "Toys And Games", "Other"));
 
 

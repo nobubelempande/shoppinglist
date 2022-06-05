@@ -34,6 +34,7 @@ public class UseShoppingListAdapter extends RecyclerView.Adapter<UseShoppingList
         this.activity = activity;
     }
 
+
     public Context getContext() {
         return activity;
     }

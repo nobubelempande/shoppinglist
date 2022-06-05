@@ -29,6 +29,7 @@ public class AddingItemsAdapter extends RecyclerView.Adapter<AddingItemsAdapter.
 
     private DatabaseHandler db;
 
+
     //constructor
     public AddingItemsAdapter(DatabaseHandler db, AddShoppingListItemsActivity activity){
         this.db = db;
