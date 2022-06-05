@@ -2,13 +2,14 @@ apply plugin: 'com.android.application'
 apply plugin: 'jacoco'
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion 30
+    buildToolsVersion "30.0.0"
 
 
     defaultConfig {
         applicationId "com.viiishoppinglistapp.doit"
         minSdkVersion 26
-        targetSdkVersion 31
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
 
@@ -16,6 +17,7 @@ android {
 
 
     }
+
 
     buildTypes {
         debug {
@@ -73,11 +75,12 @@ dependencies {
 }
 
 task jacocoTestReport(type: JacocoReport,
-        dependsOn: ['testDebugUnitTest']) {
+        dependsOn: ['testDebugUnitTest','connectedAndroidTest']) {
     group = "Reporting"
     description = "Generate Jacoco coverage reports after running tests."
 
-    reports {xml.required = true
+    reports {
+        xml.required = true
         csv.required = false
         html.required = true
     }
@@ -103,5 +106,7 @@ task jacocoTestReport(type: JacocoReport,
 
     classDirectories.setFrom(files([debugTree]))
     executionData.setFrom(fileTree(dir: "${buildDir}", includes:[
-            "/jacoco/testDebugUnitTest.exec","outputs/unit_test_code_coverage/debugUnitTest/testDebugUnitTest.exec"]))
+            "/jacoco/testDebugUnitTest.exec",
+            "outputs/unit_test_code_coverage/debugUnitTest/testDebugUnitTest.exec",
+            "outputs/code-coverage/debugAndroidTest/connected/*coverage.ec"]))
 }
