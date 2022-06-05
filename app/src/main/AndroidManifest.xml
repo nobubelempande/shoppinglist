@@ -39,13 +39,9 @@
         <activity android:name=".PieChartActivity"
             android:exported="false"/>
 
-
-
         <activity android:name=".ReminderActivity" />
         <activity android:name=".ReminderMain"/>
         <receiver android:name=".AlarmBrodcast" />
-
-
 
         <activity
             android:name=".SplashActivity"
