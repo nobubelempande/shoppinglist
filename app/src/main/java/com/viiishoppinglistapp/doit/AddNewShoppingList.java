@@ -52,6 +52,7 @@ public class AddNewShoppingList extends BottomSheetDialogFragment {
     private TextView tvNewListUseDate;
     private Button btnSaveList;
 
+
     public static AddNewShoppingList newInstance(){
         return new AddNewShoppingList();
     }

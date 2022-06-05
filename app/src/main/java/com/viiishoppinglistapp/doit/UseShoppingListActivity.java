@@ -42,6 +42,7 @@ public class UseShoppingListActivity extends AppCompatActivity implements Dialog
         setCurrShoppingList();
         setupShoppingList();
 
+
         ImageView icon = findViewById(R.id.imgVIII_icon);
         icon.setOnClickListener(new View.OnClickListener() {
             @Override

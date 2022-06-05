@@ -23,4 +23,5 @@ public class PageViewModelInventory extends ViewModel {
     public LiveData<String> getText() {
         return mText;
     }
+
 }

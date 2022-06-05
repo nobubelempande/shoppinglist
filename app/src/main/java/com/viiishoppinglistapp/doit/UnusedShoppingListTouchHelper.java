@@ -29,6 +29,7 @@ public class UnusedShoppingListTouchHelper extends ItemTouchHelper.SimpleCallbac
     @Override
     public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
         return false;
+
     }
 
     @Override

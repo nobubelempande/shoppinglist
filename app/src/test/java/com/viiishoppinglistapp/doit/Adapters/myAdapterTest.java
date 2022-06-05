@@ -28,6 +28,7 @@ public class myAdapterTest extends TestCase {
     @Test
     public void getItemCount() {
         Model m=new Model();
+
         ArrayList<Model> dataholder = new ArrayList<>();
         dataholder.add(m);
         myAdapter b=new myAdapter(dataholder);

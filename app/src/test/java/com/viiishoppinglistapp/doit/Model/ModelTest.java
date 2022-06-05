@@ -21,6 +21,7 @@ public class ModelTest extends TestCase {
 
     public void testGetDate() {
         String Date="02/02/2022";
+
         Model m=new Model ("Default","02/02/2022","09:00");
         m.setDate(Date);
         assertEquals(Date,m.getDate());

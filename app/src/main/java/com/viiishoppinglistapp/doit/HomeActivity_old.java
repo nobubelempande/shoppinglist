@@ -39,6 +39,7 @@ public class HomeActivity_old extends AppCompatActivity implements DialogCloseLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_old);
 
+
         setupUsingShoppingLists();
 
     }

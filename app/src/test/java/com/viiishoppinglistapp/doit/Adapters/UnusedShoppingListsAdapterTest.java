@@ -44,6 +44,7 @@ public class UnusedShoppingListsAdapterTest extends TestCase {
         Context context= new TabbedHomeActivity();
         DatabaseHandler db= new DatabaseHandler(context);
         assertNotNull(db);
+
         TabbedHomeActivity activity=new TabbedHomeActivity();
         UnusedShoppingListsAdapter m=new UnusedShoppingListsAdapter(db,activity);
         assertEquals(activity,m.getContext());

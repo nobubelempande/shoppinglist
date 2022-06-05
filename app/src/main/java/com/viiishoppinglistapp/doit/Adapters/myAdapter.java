@@ -25,6 +25,7 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.myviewholder> {
     public myviewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_reminder_file, parent, false);  //inflates the xml file in recyclerview
         return new myviewholder(view);
+
     }
 
     @Override

@@ -38,6 +38,7 @@ public class TabbedHomeActivity extends AppCompatActivity implements DialogClose
 
     private ActivityTabbedHomeBinding binding;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -28,6 +28,7 @@ public class dbManager extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(query);                                                              //executes the sql command
         onCreate(sqLiteDatabase);
 
+
     }
 
     public String addreminder(String title, String date, String time) {

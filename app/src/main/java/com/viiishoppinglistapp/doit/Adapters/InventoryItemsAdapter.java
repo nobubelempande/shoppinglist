@@ -26,6 +26,7 @@ public class InventoryItemsAdapter extends RecyclerView.Adapter<InventoryItemsAd
     private DatabaseHandler db;
     private DateHandler date;
 
+
     //constructor
     public InventoryItemsAdapter(DatabaseHandler db, TabbedInventoryActivity activity){
         this.db = db;

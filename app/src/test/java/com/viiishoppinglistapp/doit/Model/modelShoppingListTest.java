@@ -32,6 +32,7 @@ public class modelShoppingListTest extends TestCase{
         d.setListName(name);
         assertNotNull(d.getListName());
         assertEquals(name, d.getListName());
+
     }
 
     @Test

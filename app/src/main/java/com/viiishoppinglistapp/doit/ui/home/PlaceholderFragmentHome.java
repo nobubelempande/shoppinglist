@@ -30,6 +30,7 @@ public class PlaceholderFragmentHome extends Fragment {
         bundle.putInt(ARG_SECTION_NUMBER, index);
         fragment.setArguments(bundle);
         return fragment;
+
     }
 
     @Override

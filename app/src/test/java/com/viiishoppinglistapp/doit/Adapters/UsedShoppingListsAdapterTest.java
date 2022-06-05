@@ -32,6 +32,7 @@ public class UsedShoppingListsAdapterTest extends TestCase {
         Context context=new TabbedHomeActivity();
         TabbedHomeActivity activity=new TabbedHomeActivity();
         DatabaseHandler db= new DatabaseHandler(context);
+
         UsedShoppingListsAdapter m= new UsedShoppingListsAdapter(db,activity);
         assertEquals(activity,m.getContext());
     }

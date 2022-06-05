@@ -40,6 +40,7 @@ public class ItemCategoryActivity extends AppCompatActivity {
         spinner.setAdapter(adapter);
 
 
+
         itemRecyclerViewer = findViewById(R.id.itemRecyclerView);
 
         myDB=new DatabaseHandler(ItemCategoryActivity.this);

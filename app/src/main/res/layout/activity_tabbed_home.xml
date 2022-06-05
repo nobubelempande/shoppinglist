@@ -21,6 +21,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center"
+
             >
 
             <com.google.android.material.appbar.AppBarLayout

@@ -29,6 +29,7 @@ public class ItemCategoryAdapterTest extends TestCase {
     @Test
     public void getItemCount() {
         Context context=new Activity();
+
         Activity activity=new Activity();
         ArrayList<Integer> item_quantity=new ArrayList<>();
         ArrayList<Integer> item_id = new ArrayList<>();

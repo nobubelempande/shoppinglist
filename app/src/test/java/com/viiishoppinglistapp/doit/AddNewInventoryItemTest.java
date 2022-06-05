@@ -32,6 +32,7 @@ public class AddNewInventoryItemTest {
         AddNewInventoryItem addNewInventoryItem = new AddNewInventoryItem();
         assertThrows(NullPointerException.class, () -> {
             addNewInventoryItem.addItemToInventory(null);
+
         });
     }
 

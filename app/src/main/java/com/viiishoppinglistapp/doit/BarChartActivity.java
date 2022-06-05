@@ -43,6 +43,7 @@ public class BarChartActivity extends AppCompatActivity {
         myDB =  new DatabaseHandler(BarChartActivity.this);
         inventory_item_id = new ArrayList<>();
         inventory_item_name = new ArrayList<>();
+
         inventory_item_category = new ArrayList<>();
         inventory_item_quantity = new ArrayList<>();
         inventory_item_price = new ArrayList<>();

@@ -36,6 +36,7 @@ public class InventoryActivity_old extends AppCompatActivity {
 
         setupInventory();
 
+
     }
 
     private void setCurrShoppingList() {

@@ -36,6 +36,7 @@ public class fragmentInventoryStats extends Fragment {
     final Context mContext;
 
 
+
     public fragmentInventoryStats(Context C, TabbedInventoryActivity activity){
         this.mContext = C;
         this.activity = activity;

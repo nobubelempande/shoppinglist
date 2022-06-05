@@ -18,6 +18,7 @@ public class modelItem {
     DateHandler date;
 
 
+
     //constructor
     public modelItem(String name){
         date = new DateHandler();

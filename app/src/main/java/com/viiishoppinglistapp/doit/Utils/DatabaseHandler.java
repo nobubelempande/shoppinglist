@@ -25,6 +25,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String TABLE_Items = "items";
     private static final String TABLE_Inventory = "inventory";
 
+
     public DatabaseHandler(Context context) {
         super(context, NAME, null, VERSION);
     }
