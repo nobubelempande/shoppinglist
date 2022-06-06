@@ -11,6 +11,7 @@ import com.viiishoppinglistapp.doit.Activities.TabbedInventoryActivity;
 import junit.framework.TestCase;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -32,7 +33,7 @@ public class InventorySectionsPagerAdapterTest extends TestCase {
 
     }
 
-    @Test
+    @Ignore("To do")
     public void getPageTitle() {
         Context context=new TabbedInventoryActivity();
         TabbedInventoryActivity s=new TabbedInventoryActivity();
