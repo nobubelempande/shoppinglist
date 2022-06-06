@@ -1,5 +1,16 @@
 ignore:
     - "**/Utils"
+    - "**/Activities"
+    - "**/Utils"
+    - "**/PageViewModelInventory.java"
+    - "**/PlaceholderFragmentInventory.java"
+    - "**/Fragments"
+    - "**/PageViewModelInventory.java"
+    - "**/SplashActivity.java"
+    - "**/ShoppingListReminder.java"
+    - "**/NotificationMessage.java"
+    
+    
 
     
     
