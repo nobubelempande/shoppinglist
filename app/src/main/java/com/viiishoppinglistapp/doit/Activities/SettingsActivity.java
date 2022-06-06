@@ -1,4 +1,4 @@
-package com.viiishoppinglistapp.doit;
+package com.viiishoppinglistapp.doit.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Switch;
+
+import com.viiishoppinglistapp.doit.R;
 
 public class SettingsActivity extends AppCompatActivity {
 

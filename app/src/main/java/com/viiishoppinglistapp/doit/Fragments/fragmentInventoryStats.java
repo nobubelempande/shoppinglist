@@ -15,7 +15,7 @@ import com.viiishoppinglistapp.doit.Adapters.InventoryItemsAdapter;
 import com.viiishoppinglistapp.doit.Model.modelItem;
 import com.viiishoppinglistapp.doit.Model.modelShoppingList;
 import com.viiishoppinglistapp.doit.R;
-import com.viiishoppinglistapp.doit.TabbedInventoryActivity;
+import com.viiishoppinglistapp.doit.Activities.TabbedInventoryActivity;
 import com.viiishoppinglistapp.doit.Utils.DatabaseHandler;
 
 import java.util.ArrayList;

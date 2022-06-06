@@ -1,4 +1,4 @@
-package com.viiishoppinglistapp.doit;
+package com.viiishoppinglistapp.doit.Activities;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -8,7 +8,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +26,7 @@ import androidx.core.content.ContextCompat;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.viiishoppinglistapp.doit.Model.modelItem;
+import com.viiishoppinglistapp.doit.R;
 import com.viiishoppinglistapp.doit.Utils.DatabaseHandler;
 import com.viiishoppinglistapp.doit.Utils.DateHandler;
 import com.viiishoppinglistapp.doit.Utils.Validation;

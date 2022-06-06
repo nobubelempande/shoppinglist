@@ -2,11 +2,9 @@ package com.viiishoppinglistapp.doit.Fragments;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Switch;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,8 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.viiishoppinglistapp.doit.Adapters.UnusedShoppingListsAdapter;
 import com.viiishoppinglistapp.doit.Model.modelShoppingList;
 import com.viiishoppinglistapp.doit.R;
-import com.viiishoppinglistapp.doit.TabbedHomeActivity;
-import com.viiishoppinglistapp.doit.UnusedShoppingListTouchHelper;
+import com.viiishoppinglistapp.doit.Activities.TabbedHomeActivity;
+import com.viiishoppinglistapp.doit.Activities.UnusedShoppingListTouchHelper;
 import com.viiishoppinglistapp.doit.Utils.DatabaseHandler;
 
 import java.util.ArrayList;

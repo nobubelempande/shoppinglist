@@ -1,4 +1,4 @@
-package com.viiishoppinglistapp.doit;
+package com.viiishoppinglistapp.doit.Activities;
 
 import android.content.DialogInterface;
 

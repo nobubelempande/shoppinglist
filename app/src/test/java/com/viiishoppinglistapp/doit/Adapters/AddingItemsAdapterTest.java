@@ -4,10 +4,8 @@ package com.viiishoppinglistapp.doit.Adapters;
 
 import android.content.Context;
 
-import com.viiishoppinglistapp.doit.AddShoppingListItemsActivity;
+import com.viiishoppinglistapp.doit.Activities.AddShoppingListItemsActivity;
 
-import com.viiishoppinglistapp.doit.Model.Model;
-import com.viiishoppinglistapp.doit.Model.modelItem;
 import com.viiishoppinglistapp.doit.Utils.DatabaseHandler;
 
 import junit.framework.TestCase;
@@ -19,9 +17,6 @@ import org.junit.Test;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 @RunWith(JUnit4.class)

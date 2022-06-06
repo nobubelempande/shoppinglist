@@ -1,30 +1,27 @@
-package com.viiishoppinglistapp.doit;
+package com.viiishoppinglistapp.doit.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.viiishoppinglistapp.doit.Adapters.UseShoppingListAdapter;
 import com.viiishoppinglistapp.doit.Model.modelItem;
 import com.viiishoppinglistapp.doit.Model.modelShoppingList;
+import com.viiishoppinglistapp.doit.R;
 import com.viiishoppinglistapp.doit.Utils.DatabaseHandler;
 
 import java.util.Collections;
 import java.util.List;
 
-public class UseShoppingListActivity extends AppCompatActivity implements DialogCloseListener{
+public class UseShoppingListActivity extends AppCompatActivity implements DialogCloseListener {
 
     private RecyclerView rvUseShoppingList;
     private UseShoppingListAdapter adapter;

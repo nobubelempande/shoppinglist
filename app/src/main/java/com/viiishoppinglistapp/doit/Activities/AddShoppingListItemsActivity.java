@@ -1,4 +1,4 @@
-package com.viiishoppinglistapp.doit;
+package com.viiishoppinglistapp.doit.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -16,6 +16,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.viiishoppinglistapp.doit.Adapters.AddingItemsAdapter;
 import com.viiishoppinglistapp.doit.Model.modelItem;
 import com.viiishoppinglistapp.doit.Model.modelShoppingList;
+import com.viiishoppinglistapp.doit.R;
 import com.viiishoppinglistapp.doit.Utils.DatabaseHandler;
 
 import java.util.Collections;

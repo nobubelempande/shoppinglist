@@ -30,13 +30,13 @@ import com.itextpdf.layout.element.Image;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.property.HorizontalAlignment;
 import com.itextpdf.layout.property.TextAlignment;
-import com.viiishoppinglistapp.doit.AddNewShoppingList;
-import com.viiishoppinglistapp.doit.AddShoppingListItemsActivity;
+import com.viiishoppinglistapp.doit.Activities.AddNewShoppingList;
+import com.viiishoppinglistapp.doit.Activities.AddShoppingListItemsActivity;
 import com.viiishoppinglistapp.doit.Model.modelItem;
 import com.viiishoppinglistapp.doit.Model.modelShoppingList;
 import com.viiishoppinglistapp.doit.R;
-import com.viiishoppinglistapp.doit.TabbedHomeActivity;
-import com.viiishoppinglistapp.doit.UseShoppingListActivity;
+import com.viiishoppinglistapp.doit.Activities.TabbedHomeActivity;
+import com.viiishoppinglistapp.doit.Activities.UseShoppingListActivity;
 import com.viiishoppinglistapp.doit.Utils.DatabaseHandler;
 
 import java.io.File;

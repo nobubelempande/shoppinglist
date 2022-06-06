@@ -1,4 +1,4 @@
-package com.viiishoppinglistapp.doit;
+package com.viiishoppinglistapp.doit.Activities;
 
 import android.content.DialogInterface;
 import android.graphics.Canvas;
@@ -13,14 +13,16 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.viiishoppinglistapp.doit.Adapters.UsedShoppingListsAdapter;
+import com.viiishoppinglistapp.doit.Adapters.AddingItemsAdapter;
+import com.viiishoppinglistapp.doit.Adapters.InventoryItemsAdapter;
+import com.viiishoppinglistapp.doit.Adapters.UseShoppingListAdapter;
+import com.viiishoppinglistapp.doit.R;
 
-public class UsedShoppingListTouchHelper extends ItemTouchHelper.SimpleCallback {
+public class InventoryItemTouchHelper extends ItemTouchHelper.SimpleCallback {
 
-    private UsedShoppingListsAdapter adapter;
+    private InventoryItemsAdapter adapter;
 
-
-    public UsedShoppingListTouchHelper(UsedShoppingListsAdapter adapter) {
+    public InventoryItemTouchHelper(InventoryItemsAdapter adapter) {
         super(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT);
         this.adapter = adapter;
     }
@@ -29,7 +31,6 @@ public class UsedShoppingListTouchHelper extends ItemTouchHelper.SimpleCallback 
     @Override
     public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
         return false;
-
     }
 
     @Override
@@ -39,16 +40,12 @@ public class UsedShoppingListTouchHelper extends ItemTouchHelper.SimpleCallback 
         Drawable icon;
         ColorDrawable background;
 
+
         View itemView = viewHolder.itemView;
         int backgroundCornerOffset = 20;
 
-        if (dX > 0) {
-            icon = ContextCompat.getDrawable(adapter.getContext(), R.drawable.ic_baseline_edit);
-            background = new ColorDrawable(ContextCompat.getColor(adapter.getContext(), R.color.primary_dark));
-        } else {
-            icon = ContextCompat.getDrawable(adapter.getContext(), R.drawable.ic_baseline_delete);
-            background = new ColorDrawable(Color.RED);
-        }
+        icon = ContextCompat.getDrawable(adapter.getContext(), R.drawable.ic_baseline_delete);
+        background = new ColorDrawable(Color.RED);
 
         assert icon != null;
         int iconMargin = (itemView.getHeight() - icon.getIntrinsicHeight()) / 2;
@@ -83,37 +80,38 @@ public class UsedShoppingListTouchHelper extends ItemTouchHelper.SimpleCallback 
     public void onSwiped(@NonNull final RecyclerView.ViewHolder viewHolder, int direction) {
         //what happens when savedShoppingList is swiped
 
-        onShoppingListSwiped(viewHolder, direction);
+        onInventoryItemSwiped(viewHolder, direction);
     }
 
 
-    //lists :
+    //items
 
-    public void onShoppingListSwiped(final RecyclerView.ViewHolder viewHolder, int direction){
+    public void onInventoryItemSwiped(final RecyclerView.ViewHolder viewHolder, int direction) {
         final int position = viewHolder.getAdapterPosition();
-        if (direction == ItemTouchHelper.LEFT) {
-            //deletes shoppingList
-            AlertDialog.Builder builder = new AlertDialog.Builder(adapter.getContext());
-            builder.setTitle("Delete Shopping List");
-            builder.setMessage("Are you sure you want to delete this List?");
-            builder.setPositiveButton("Confirm",
-                    new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            adapter.deleteShoppingList(position);
-                        }
-                    });
-            builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    adapter.notifyItemChanged(viewHolder.getAdapterPosition());
-                }
-            });
-            AlertDialog dialog = builder.create();
-            dialog.show();
-        } else {
-            //edits shoppingList name
-            adapter.editShoppingList(position);
-        }
+        deleteInventoryItem(viewHolder, position);
+        adapter.notifyItemChanged(viewHolder.getAdapterPosition());
+    }
+
+    private void deleteInventoryItem(RecyclerView.ViewHolder viewHolder, int position) {
+        //deletes item
+        AlertDialog.Builder builder = new AlertDialog.Builder(adapter.getContext());
+        builder.setTitle("Remove Item");
+        builder.setCancelable(true);
+        builder.setMessage("Are you sure you want to remove this item?");
+        builder.setPositiveButton("Confirm",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        adapter.deleteItem(position);
+                    }
+                });
+        builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                adapter.notifyItemChanged(viewHolder.getAdapterPosition());
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }

@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,16 +17,14 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.viiishoppinglistapp.doit.AddNewShoppingList;
-import com.viiishoppinglistapp.doit.AddShoppingListItemsActivity;
+import com.viiishoppinglistapp.doit.Activities.AddNewShoppingList;
+import com.viiishoppinglistapp.doit.Activities.AddShoppingListItemsActivity;
 import com.viiishoppinglistapp.doit.Model.modelItem;
 import com.viiishoppinglistapp.doit.Model.modelShoppingList;
 import com.viiishoppinglistapp.doit.R;
-import com.viiishoppinglistapp.doit.TabbedHomeActivity;
-import com.viiishoppinglistapp.doit.UseShoppingListActivity;
+import com.viiishoppinglistapp.doit.Activities.TabbedHomeActivity;
 import com.viiishoppinglistapp.doit.Utils.DatabaseHandler;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class UsedShoppingListsAdapter extends RecyclerView.Adapter<UsedShoppingListsAdapter.ViewHolder>{

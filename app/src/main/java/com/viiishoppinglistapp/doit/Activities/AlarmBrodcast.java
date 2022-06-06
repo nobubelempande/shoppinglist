@@ -1,4 +1,4 @@
-package com.viiishoppinglistapp.doit;
+package com.viiishoppinglistapp.doit.Activities;
 
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -12,6 +12,9 @@ import android.os.Bundle;
 import android.widget.RemoteViews;
 
 import androidx.core.app.NotificationCompat;
+
+import com.viiishoppinglistapp.doit.NotificationMessage;
+import com.viiishoppinglistapp.doit.R;
 
 public class AlarmBrodcast extends BroadcastReceiver {
     @Override

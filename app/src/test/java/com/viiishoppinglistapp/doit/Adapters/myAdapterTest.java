@@ -1,6 +1,9 @@
 package com.viiishoppinglistapp.doit.Adapters;
 
 
+import android.view.View;
+
+import androidx.fragment.app.Fragment;
 
 import com.viiishoppinglistapp.doit.Model.Model;
 
@@ -11,14 +14,20 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
 import java.util.ArrayList;
+
+
 @RunWith(JUnit4.class)
 public class myAdapterTest extends TestCase {
+    private myAdapter adapter;
+    private View mockView;
+    private Fragment mockFragment;
     public void setUp() throws Exception {
         super.setUp();
     }
 
     @Test
     public void onCreateViewHolder() {
+
     }
 
     @Test

@@ -1,4 +1,4 @@
-package com.viiishoppinglistapp.doit;
+package com.viiishoppinglistapp.doit.Activities;
 
 import android.app.AlarmManager;
 import android.app.DatePickerDialog;
@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.viiishoppinglistapp.doit.R;
 import com.viiishoppinglistapp.doit.Utils.dbManager;
 
 import java.text.DateFormat;

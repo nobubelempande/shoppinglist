@@ -3,11 +3,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
+import com.viiishoppinglistapp.doit.Activities.AddNewInventoryItem;
 
 public class AddNewInventoryItemTest {
 

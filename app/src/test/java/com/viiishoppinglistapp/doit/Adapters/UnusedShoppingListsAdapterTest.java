@@ -1,29 +1,16 @@
 package com.viiishoppinglistapp.doit.Adapters;
 
-import static org.junit.Assert.*;
-
 import android.content.Context;
 
-import com.viiishoppinglistapp.doit.AddShoppingListItemsActivity;
-import com.viiishoppinglistapp.doit.TabbedHomeActivity;
-import com.viiishoppinglistapp.doit.UseShoppingListActivity;
+import com.viiishoppinglistapp.doit.Activities.TabbedHomeActivity;
 import com.viiishoppinglistapp.doit.Utils.DatabaseHandler;
 
 import junit.framework.TestCase;
 
-import static org.junit.Assert.*;
-
-import android.content.Context;
-
-import com.viiishoppinglistapp.doit.AddShoppingListItemsActivity;
-
-import com.viiishoppinglistapp.doit.TabbedInventoryActivity;
-import com.viiishoppinglistapp.doit.Utils.DatabaseHandler;
-
+import org.junit.Ignore;
 import org.junit.Test;
 
 import org.junit.Before;
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
@@ -50,7 +37,7 @@ public class UnusedShoppingListsAdapterTest extends TestCase {
         assertEquals(activity,m.getContext());
     }
 
-    @Test
+    @Ignore
     public void getItemCount() {
     }
 
