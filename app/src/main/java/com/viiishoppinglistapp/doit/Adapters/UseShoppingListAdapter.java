@@ -11,10 +11,10 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.viiishoppinglistapp.doit.AddNewInventoryItem;
+import com.viiishoppinglistapp.doit.Activities.AddNewInventoryItem;
 import com.viiishoppinglistapp.doit.Model.modelItem;
 import com.viiishoppinglistapp.doit.R;
-import com.viiishoppinglistapp.doit.UseShoppingListActivity;
+import com.viiishoppinglistapp.doit.Activities.UseShoppingListActivity;
 import com.viiishoppinglistapp.doit.Utils.DatabaseHandler;
 
 import java.util.List;

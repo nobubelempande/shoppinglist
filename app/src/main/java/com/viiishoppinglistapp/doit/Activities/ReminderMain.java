@@ -1,4 +1,4 @@
-package com.viiishoppinglistapp.doit;
+package com.viiishoppinglistapp.doit.Activities;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.viiishoppinglistapp.doit.Adapters.myAdapter;
 import com.viiishoppinglistapp.doit.Model.Model;
+import com.viiishoppinglistapp.doit.R;
 import com.viiishoppinglistapp.doit.Utils.dbManager;
 
 import java.util.ArrayList;

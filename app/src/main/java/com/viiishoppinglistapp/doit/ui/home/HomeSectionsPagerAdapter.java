@@ -11,7 +11,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import com.viiishoppinglistapp.doit.Fragments.fragmentHomeUnusedLists;
 import com.viiishoppinglistapp.doit.Fragments.fragmentHomeUsedLists;
 import com.viiishoppinglistapp.doit.R;
-import com.viiishoppinglistapp.doit.TabbedHomeActivity;
+import com.viiishoppinglistapp.doit.Activities.TabbedHomeActivity;
 
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to

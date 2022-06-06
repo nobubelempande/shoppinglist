@@ -1,12 +1,10 @@
 package com.viiishoppinglistapp.doit.ui.home;
 
-import static org.junit.Assert.*;
-
 import android.content.Context;
 
 import androidx.fragment.app.FragmentManager;
 
-import com.viiishoppinglistapp.doit.TabbedHomeActivity;
+import com.viiishoppinglistapp.doit.Activities.TabbedHomeActivity;
 
 import junit.framework.TestCase;
 

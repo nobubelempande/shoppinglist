@@ -13,35 +13,35 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.Light">
         <activity
-            android:name=".SettingsActivity"
+            android:name=".Activities.SettingsActivity"
             android:exported="false" />
         <activity
-            android:name=".TabbedHomeActivity"
+            android:name=".Activities.TabbedHomeActivity"
             android:exported="false"
             android:label="@string/title_activity_tabbed_home" />
         <activity
-            android:name=".TabbedInventoryActivity"
+            android:name=".Activities.TabbedInventoryActivity"
             android:exported="false"
             android:label="@string/title_activity_tabs_use_shopping_list" />
         <activity
-            android:name=".AddShoppingListItemsActivity"
+            android:name=".Activities.AddShoppingListItemsActivity"
             android:exported="false" />
         <activity
             android:name=".ShoppingListReminder"
             android:exported="false" />
         <activity
-            android:name=".UseShoppingListActivity"
+            android:name=".Activities.UseShoppingListActivity"
             android:exported="false" />
-        <activity android:name=".ItemCategoryActivity"
+        <activity android:name=".Activities.ItemCategoryActivity"
             android:exported="false"/>
-        <activity android:name=".BarChartActivity"
+        <activity android:name=".Activities.BarChartActivity"
             android:exported="false"/>
-        <activity android:name=".PieChartActivity"
+        <activity android:name=".Activities.PieChartActivity"
             android:exported="false"/>
 
-        <activity android:name=".ReminderActivity" />
-        <activity android:name=".ReminderMain"/>
-        <receiver android:name=".AlarmBrodcast" />
+        <activity android:name=".Activities.ReminderActivity" />
+        <activity android:name=".Activities.ReminderMain"/>
+        <receiver android:name=".Activities.AlarmBrodcast" />
 
         <activity
             android:name=".SplashActivity"

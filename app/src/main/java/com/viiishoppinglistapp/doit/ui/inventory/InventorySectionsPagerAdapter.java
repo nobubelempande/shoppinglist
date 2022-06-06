@@ -9,10 +9,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.viiishoppinglistapp.doit.Fragments.fragmentInventoryItems;
-import com.viiishoppinglistapp.doit.Fragments.fragmentInventoryStatistics;
 import com.viiishoppinglistapp.doit.Fragments.fragmentInventoryStats;
 import com.viiishoppinglistapp.doit.R;
-import com.viiishoppinglistapp.doit.TabbedInventoryActivity;
+import com.viiishoppinglistapp.doit.Activities.TabbedInventoryActivity;
 
 
 /**

@@ -1,4 +1,4 @@
-package com.viiishoppinglistapp.doit;
+package com.viiishoppinglistapp.doit.Activities;
 
 import android.content.DialogInterface;
 import android.graphics.Canvas;
@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.viiishoppinglistapp.doit.Adapters.UnusedShoppingListsAdapter;
+import com.viiishoppinglistapp.doit.R;
 
 public class UnusedShoppingListTouchHelper extends ItemTouchHelper.SimpleCallback {
 

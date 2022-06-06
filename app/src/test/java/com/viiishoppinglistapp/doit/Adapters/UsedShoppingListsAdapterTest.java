@@ -1,10 +1,8 @@
 package com.viiishoppinglistapp.doit.Adapters;
 
-import static org.junit.Assert.*;
-
 import android.content.Context;
 
-import com.viiishoppinglistapp.doit.TabbedHomeActivity;
+import com.viiishoppinglistapp.doit.Activities.TabbedHomeActivity;
 import com.viiishoppinglistapp.doit.Utils.DatabaseHandler;
 
 import junit.framework.TestCase;

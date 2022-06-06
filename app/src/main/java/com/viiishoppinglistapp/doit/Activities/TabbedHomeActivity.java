@@ -1,4 +1,4 @@
-package com.viiishoppinglistapp.doit;
+package com.viiishoppinglistapp.doit.Activities;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -16,9 +16,10 @@ import android.widget.ImageView;
 import com.viiishoppinglistapp.doit.Adapters.UnusedShoppingListsAdapter;
 import com.viiishoppinglistapp.doit.Adapters.UsedShoppingListsAdapter;
 import com.viiishoppinglistapp.doit.Model.modelShoppingList;
+import com.viiishoppinglistapp.doit.R;
 import com.viiishoppinglistapp.doit.Utils.DatabaseHandler;
-import com.viiishoppinglistapp.doit.ui.home.HomeSectionsPagerAdapter;
 import com.viiishoppinglistapp.doit.databinding.ActivityTabbedHomeBinding;
+import com.viiishoppinglistapp.doit.ui.home.HomeSectionsPagerAdapter;
 
 import java.util.Collections;
 import java.util.List;

@@ -1,12 +1,10 @@
 package com.viiishoppinglistapp.doit.ui.inventory;
 
-import static org.junit.Assert.*;
-
 import android.content.Context;
 
 import androidx.fragment.app.FragmentManager;
 
-import com.viiishoppinglistapp.doit.TabbedInventoryActivity;
+import com.viiishoppinglistapp.doit.Activities.TabbedInventoryActivity;
 
 import junit.framework.TestCase;
 

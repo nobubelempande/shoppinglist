@@ -4,9 +4,9 @@ import static org.junit.Assert.*;
 
 import android.content.Context;
 
-import com.viiishoppinglistapp.doit.AddShoppingListItemsActivity;
+import com.viiishoppinglistapp.doit.Activities.AddShoppingListItemsActivity;
 
-import com.viiishoppinglistapp.doit.TabbedInventoryActivity;
+import com.viiishoppinglistapp.doit.Activities.TabbedInventoryActivity;
 import com.viiishoppinglistapp.doit.Utils.DatabaseHandler;
 
 import org.junit.Test;
