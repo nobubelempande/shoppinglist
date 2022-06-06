@@ -1,5 +1,4 @@
 ignore:
-    - "**/Fragments"
     - "**/Activities"
     - "**/utils"
     - "**/PlaceholderFragmentInventory.java"
