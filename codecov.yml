@@ -6,5 +6,7 @@ ignore:
     - "**/PageViewModelInventory.java"
     - "**/PageViewModelHome.Java"
     - "**/PlaceholderFragmentHome.java"
+    - "**/NotificationMessage.java"
+    - "**/SplashActivity.java"
     
     
