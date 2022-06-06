@@ -22,10 +22,21 @@ public class HomeSectionsPagerAdapterTest extends TestCase {
 
     @Test
     public void getItem() {
+        Context context=new TabbedHomeActivity();
+        TabbedHomeActivity s=new TabbedHomeActivity();
+        FragmentManager p= s.getSupportFragmentManager();
+        HomeSectionsPagerAdapter m=new HomeSectionsPagerAdapter(context,p,s);
+        m.getItem(0);
+        assertNotNull(m.getItem(0));
     }
 
     @Test
     public void getPageTitle() {
+        Context context=new TabbedHomeActivity();
+        TabbedHomeActivity s=new TabbedHomeActivity();
+        FragmentManager p= s.getSupportFragmentManager();
+        HomeSectionsPagerAdapter m=new HomeSectionsPagerAdapter(context,p,s);
+        m.getPageTitle(0);
     }
 
     @Test
