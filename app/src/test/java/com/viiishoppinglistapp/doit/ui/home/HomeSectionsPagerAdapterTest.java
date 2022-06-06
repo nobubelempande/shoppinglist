@@ -9,6 +9,7 @@ import com.viiishoppinglistapp.doit.Activities.TabbedHomeActivity;
 import junit.framework.TestCase;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -22,10 +23,21 @@ public class HomeSectionsPagerAdapterTest extends TestCase {
 
     @Test
     public void getItem() {
+        Context context=new TabbedHomeActivity();
+        TabbedHomeActivity s=new TabbedHomeActivity();
+        FragmentManager p= s.getSupportFragmentManager();
+        HomeSectionsPagerAdapter m=new HomeSectionsPagerAdapter(context,p,s);
+        m.getItem(0);
+        assertNotNull(m.getItem(0));
     }
 
-    @Test
+    @Ignore("To do")
     public void getPageTitle() {
+        Context context=new TabbedHomeActivity();
+        TabbedHomeActivity s=new TabbedHomeActivity();
+        FragmentManager p= s.getSupportFragmentManager();
+        HomeSectionsPagerAdapter m=new HomeSectionsPagerAdapter(context,p,s);
+        m.getPageTitle(0);
     }
 
     @Test
